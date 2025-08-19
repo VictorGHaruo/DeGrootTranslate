@@ -34,8 +34,13 @@ Dois meses após o programa educacional, 56 procedimentos foram observados, com 
 A Figura 7.3 mostra as f.d.p.s de ambas as distribuições a posteriori calculadas acima. As distribuições são claramente muito diferentes. Por exemplo, a primeira dá uma probabilidade maior que 0.99 de que $\theta>0.7$, enquanto a segunda dá uma probabilidade menor que $0.001$ de que $\theta>0.7$. No entanto, uma vez que estamos apenas interessados na probabilidade de que $\theta > 13/51=0.5098$, vemos que ambas as prioris concordam que essa probabilidade é bastante grande.
 
 \vspace{1cm}
-% [ESPAÇO PARA FIGURA 7.3]
-\vspace{1cm}
+\begin{figure}[H]
+
+\centering
+
+\includegraphics[width=0.5\textwidth]{img/7_3/img_1.png}
+
+\end{figure}\vspace{1cm}
 
 \subsection*{Amostragem de uma Distribuição de Poisson}
 
@@ -138,8 +143,13 @@ $$ \Pr(\theta > 1|\mathbf{x}) = 1 - \Phi\left(\frac{1-0.1154}{\sqrt{4.62}}\right
 Há uma chance não desprezível, mas não esmagadora, de que os empacotadores estejam omitindo um por cento ou mais de suas calorias dos rótulos.
 
 \vspace{1cm}
-% [ESPAÇO PARA FIGURA 7.4]
-\vspace{1cm}
+\begin{figure}[H]
+
+\centering
+
+\includegraphics[width=0.5\textwidth]{img/7_3/img_2.png}
+
+\end{figure}\vspace{1cm}
 
 \subsection*{Amostragem de uma Distribuição Exponencial}
 
@@ -178,8 +188,13 @@ $$ \xi(\theta|\mathbf{x}) \propto \theta^{21}(1-\theta)^{17}, \quad \text{para }
 Isso é facilmente reconhecido como sendo a mesma coisa que a f.d.p. da distribuição beta com parâmetros 22 e 18, exceto por um fator constante. Assim, se usarmos a "priori imprópria" beta com hiperparâmetros 0 e 0, obtemos a distribuição a posteriori beta para $\theta$ com hiperparâmetros 22 e 18. Note que o Teorema 7.3.1 produz a distribuição a posteriori correta mesmo neste caso de priori imprópria. A Figura 7.5 adiciona a f.d.p. da distribuição beta a posteriori calculada aqui à Fig. 2.4, que representava as probabilidades a posteriori para duas distribuições a priori discretas diferentes. Todas as três posteriores são muito próximas.
 
 \vspace{1cm}
-% [ESPAÇO PARA FIGURA 7.5]
-\vspace{1cm}
+\begin{figure}[H]
+
+\centering
+
+\includegraphics[width=0.5\textwidth]{img/7_3/img_3.png}
+
+\end{figure}\vspace{1cm}
 
 \noindent\textbf{Definição 7.3.2} \quad \textbf{Priori Imprópria.} Seja $\xi(\theta)$ uma função não negativa cujo domínio inclui o espaço de parâmetros de um modelo estatístico. Suponha que $\int \xi(\theta)d\theta = \infty$. Se pretendemos usar $\xi(\theta)$ como a f.d.p. a priori de $\theta$, então estamos usando uma \textit{priori imprópria} para $\theta$.
 

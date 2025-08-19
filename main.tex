@@ -7,11 +7,30 @@
 \usepackage{graphicx}
 \usepackage{float}
 \usepackage{enumitem}
+\usepackage[utf8]{inputenc}
+\usepackage[brazil]{babel}
+\usepackage{fancyhdr} 
+\usepackage{lastpage} 
+
+\pagestyle{fancy}
+\fancyhf{} 
+
+\lhead{\includegraphics[height=0.29cm]{img/emap.png}} 
+\rhead{\textbf{Fundação Getúlio Vargas}}
+
+\lfoot{Inferência Estatística}
+\rfoot{Página \thepage\ de \pageref{LastPage}} 
+
+\renewcommand{\headrulewidth}{0.4pt}
+\renewcommand{\footrulewidth}{0.4pt}
 
 \begin{document}
+\input{tex/cape.tex}
 
-\input{7_1.tex}
-\input{7_2.tex}
-\input{7_3.tex}
+\input{tex/Cap7/7_1.tex}
+\input{tex/Cap7/7_2.tex}
+\input{tex/Cap7/7_3.tex}
+
+
 
 \end{document}

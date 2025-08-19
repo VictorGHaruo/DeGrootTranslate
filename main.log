@@ -1,4 +1,4 @@
-This is LuaHBTeX, Version 1.14.0 (TeX Live 2022/dev/Debian)  (format=lualatex 2025.6.10)  19 AUG 2025 19:30
+This is LuaHBTeX, Version 1.14.0 (TeX Live 2022/dev/Debian)  (format=lualatex 2025.6.10)  19 AUG 2025 20:06
  system commands enabled.
 **/home/taylor/Documents/FGV/Fourth/Translate/main
 (/home/taylor/Documents/FGV/Fourth/Translate/main.tex
@@ -256,6 +256,19 @@ Package: enumitem 2019/06/20 v3.9 Customized lists
 \enit@inbox=\box54
 \enit@count@id=\count271
 \enitdp@description=\count272
+) (/usr/share/texlive/texmf-dist/tex/latex/fancyhdr/fancyhdr.sty
+Package: fancyhdr 2021/01/28 v4.0.1 Extensive control of page headers and footers
+\f@nch@headwidth=\skip53
+\f@nch@O@elh=\skip54
+\f@nch@O@erh=\skip55
+\f@nch@O@olh=\skip56
+\f@nch@O@orh=\skip57
+\f@nch@O@elf=\skip58
+\f@nch@O@erf=\skip59
+\f@nch@O@olf=\skip60
+\f@nch@O@orf=\skip61
+) (/usr/share/texlive/texmf-dist/tex/latex/lastpage/lastpage.sty
+Package: lastpage 2021/09/03 v1.2n Refers to last page's name (HMM; JPG)
 ) (/usr/share/texlive/texmf-dist/tex/latex/l3backend/l3backend-luatex.def
 File: l3backend-luatex.def 2022-01-12 L3 backend support: PDF output (LuaTeX)
 \l__color_backend_stack_int=\count273
@@ -263,26 +276,26 @@ File: l3backend-luatex.def 2022-01-12 L3 backend support: PDF output (LuaTeX)
 ) (./main.aux)
 \openout1 = main.aux
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 11.
-LaTeX Font Info:    ... okay on input line 11.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 11.
-LaTeX Font Info:    ... okay on input line 11.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 11.
-LaTeX Font Info:    ... okay on input line 11.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 11.
-LaTeX Font Info:    ... okay on input line 11.
-LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 11.
-LaTeX Font Info:    Trying to load font information for TS1+cmr on input line 11.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 27.
+LaTeX Font Info:    ... okay on input line 27.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 27.
+LaTeX Font Info:    ... okay on input line 27.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 27.
+LaTeX Font Info:    ... okay on input line 27.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 27.
+LaTeX Font Info:    ... okay on input line 27.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 27.
+LaTeX Font Info:    Trying to load font information for TS1+cmr on input line 27.
  (/usr/share/texlive/texmf-dist/tex/latex/base/ts1cmr.fd
 File: ts1cmr.fd 2019/12/16 v2.5j Standard LaTeX font definitions
 )
-LaTeX Font Info:    ... okay on input line 11.
-LaTeX Font Info:    Checking defaults for TU/lmr/m/n on input line 11.
-LaTeX Font Info:    ... okay on input line 11.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 11.
-LaTeX Font Info:    ... okay on input line 11.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 11.
-LaTeX Font Info:    ... okay on input line 11.
+LaTeX Font Info:    ... okay on input line 27.
+LaTeX Font Info:    Checking defaults for TU/lmr/m/n on input line 27.
+LaTeX Font Info:    ... okay on input line 27.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 27.
+LaTeX Font Info:    ... okay on input line 27.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 27.
+LaTeX Font Info:    ... okay on input line 27.
  (/usr/share/texlive/texmf-dist/tex/context/base/mkii/supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
 \scratchcounter=\count274
@@ -301,54 +314,321 @@ Package: epstopdf-base 2020-01-24 v2.11 Base part for package epstopdf
 Package epstopdf-base Info: Redefining graphics rule for `.eps' on input line 485.
  (/usr/share/texlive/texmf-dist/tex/latex/latexconfig/epstopdf-sys.cfg
 File: epstopdf-sys.cfg 2010/07/13 v1.3 Configuration of (r)epstopdf for TeX Live
-)) (./7_1.tex
-LaTeX Font Info:    Trying to load font information for U+msa on input line 11.
+))
+Package lastpage Info: Please have a look at the pageslts package at
+(lastpage)             https://www.ctan.org/pkg/pageslts
+(lastpage)             ! on input line 27.
+ (./tex/cape.tex
+<img/fgv.png, id=1, 249.93375pt x 44.165pt>
+File: img/fgv.png Graphic file (type png)
+<use img/fgv.png>
+Package luatex.def Info: img/fgv.png  used on input line 5.
+(luatex.def)             Requested size: 68.99895pt x 12.19223pt.
+LaTeX Font Info:    Trying to load font information for U+msa on input line 19.
  (/usr/share/texlive/texmf-dist/tex/latex/amsfonts/umsa.fd
 File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 )
-LaTeX Font Info:    Trying to load font information for U+msb on input line 11.
+LaTeX Font Info:    Trying to load font information for U+msb on input line 19.
  (/usr/share/texlive/texmf-dist/tex/latex/amsfonts/umsb.fd
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 ) [1
 
-{/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}] [2] [3] [4] [5] [6] [7] [8] [9] [10]) (./7_2.tex [11] [12] [13]
+{/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}<./img/fgv.png>]) (./tex/Cap7/7_1.tex
+<img/emap.png, id=11, 213.79875pt x 26.0975pt>
+File: img/emap.png Graphic file (type png)
+<use img/emap.png>
+Package luatex.def Info: img/emap.png  used on input line 13.
+(luatex.def)             Requested size: 67.5949pt x 8.2511pt.
+ [1<./img/emap.png>]
+File: img/emap.png Graphic file (type png)
+<use img/emap.png>
+Package luatex.def Info: img/emap.png  used on input line 24.
+(luatex.def)             Requested size: 67.5949pt x 8.2511pt.
+ [2]
+File: img/emap.png Graphic file (type png)
+<use img/emap.png>
+Package luatex.def Info: img/emap.png  used on input line 43.
+(luatex.def)             Requested size: 67.5949pt x 8.2511pt.
+ [3]
+File: img/emap.png Graphic file (type png)
+<use img/emap.png>
+Package luatex.def Info: img/emap.png  used on input line 52.
+(luatex.def)             Requested size: 67.5949pt x 8.2511pt.
+ [4]
+File: img/emap.png Graphic file (type png)
+<use img/emap.png>
+Package luatex.def Info: img/emap.png  used on input line 65.
+(luatex.def)             Requested size: 67.5949pt x 8.2511pt.
+ [5]
+File: img/emap.png Graphic file (type png)
+<use img/emap.png>
+Package luatex.def Info: img/emap.png  used on input line 80.
+(luatex.def)             Requested size: 67.5949pt x 8.2511pt.
+ [6]
+File: img/emap.png Graphic file (type png)
+<use img/emap.png>
+Package luatex.def Info: img/emap.png  used on input line 91.
+(luatex.def)             Requested size: 67.5949pt x 8.2511pt.
+ [7]
+File: img/emap.png Graphic file (type png)
+<use img/emap.png>
+Package luatex.def Info: img/emap.png  used on input line 109.
+(luatex.def)             Requested size: 67.5949pt x 8.2511pt.
+ [8]
+File: img/emap.png Graphic file (type png)
+<use img/emap.png>
+Package luatex.def Info: img/emap.png  used on input line 121.
+(luatex.def)             Requested size: 67.5949pt x 8.2511pt.
+ [9]
+File: img/emap.png Graphic file (type png)
+<use img/emap.png>
+Package luatex.def Info: img/emap.png  used on input line 131.
+(luatex.def)             Requested size: 67.5949pt x 8.2511pt.
+ [10]) (./tex/Cap7/7_2.tex
+File: img/emap.png Graphic file (type png)
+<use img/emap.png>
+Package luatex.def Info: img/emap.png  used on input line 3.
+(luatex.def)             Requested size: 67.5949pt x 8.2511pt.
+ [11]
+File: img/emap.png Graphic file (type png)
+<use img/emap.png>
+Package luatex.def Info: img/emap.png  used on input line 21.
+(luatex.def)             Requested size: 67.5949pt x 8.2511pt.
+ [12]
+File: img/emap.png Graphic file (type png)
+<use img/emap.png>
+Package luatex.def Info: img/emap.png  used on input line 42.
+(luatex.def)             Requested size: 67.5949pt x 8.2511pt.
+ [13]
 Overfull \hbox (9.40779pt too wide) in paragraph at lines 51--52
 []\TU/lmr/m/n/10 Em mui-tos pro-ble-mas, como no Exem-plo 7.2.1, os da-dos ob-ser-vá-veis $\OML/cmm/m/it/10 X[]; X[]; [] $
  []
 
+File: img/emap.png Graphic file (type png)
+<use img/emap.png>
+Package luatex.def Info: img/emap.png  used on input line 65.
+(luatex.def)             Requested size: 67.5949pt x 8.2511pt.
 [14]
 Overfull \hbox (16.55322pt too wide) in paragraph at lines 73--74
 \TU/lmr/m/n/10 pro-blema de in-fe-rên-cia es-ta-tís-tica com pa-râ-me-tro $\OML/cmm/m/it/10 $ \TU/lmr/m/n/10 e va-riá-veis ale-a-tó-rias $\OML/cmm/m/it/10 X[]; [] ; X[]$\TU/lmr/m/n/10 ,
  []
 
-[15] [16]
-<img/7_2/img_1.png, id=64, 323.2075pt x 295.1025pt>
+File: img/emap.png Graphic file (type png)
+<use img/emap.png>
+Package luatex.def Info: img/emap.png  used on input line 86.
+(luatex.def)             Requested size: 67.5949pt x 8.2511pt.
+[15]
+File: img/emap.png Graphic file (type png)
+<use img/emap.png>
+Package luatex.def Info: img/emap.png  used on input line 115.
+(luatex.def)             Requested size: 67.5949pt x 8.2511pt.
+ [16]
+<img/7_2/img_1.png, id=72, 323.2075pt x 295.1025pt>
 File: img/7_2/img_1.png Graphic file (type png)
 <use img/7_2/img_1.png>
 Package luatex.def Info: img/7_2/img_1.png  used on input line 139.
 (luatex.def)             Requested size: 172.5pt x 157.49777pt.
- [17] [18<./img/7_2/img_1.png>] [19] [20] [21]
-<img/7_2/img_2.png, id=84, 344.28625pt x 214.8025pt>
+File: img/emap.png Graphic file (type png)
+<use img/emap.png>
+Package luatex.def Info: img/emap.png  used on input line 142.
+(luatex.def)             Requested size: 67.5949pt x 8.2511pt.
+ [17]
+File: img/emap.png Graphic file (type png)
+<use img/emap.png>
+Package luatex.def Info: img/emap.png  used on input line 164.
+(luatex.def)             Requested size: 67.5949pt x 8.2511pt.
+ [18<./img/7_2/img_1.png>]
+File: img/emap.png Graphic file (type png)
+<use img/emap.png>
+Package luatex.def Info: img/emap.png  used on input line 190.
+(luatex.def)             Requested size: 67.5949pt x 8.2511pt.
+ [19]
+File: img/emap.png Graphic file (type png)
+<use img/emap.png>
+Package luatex.def Info: img/emap.png  used on input line 206.
+(luatex.def)             Requested size: 67.5949pt x 8.2511pt.
+ [20]
+File: img/emap.png Graphic file (type png)
+<use img/emap.png>
+Package luatex.def Info: img/emap.png  used on input line 222.
+(luatex.def)             Requested size: 67.5949pt x 8.2511pt.
+ [21]
+<img/7_2/img_2.png, id=92, 344.28625pt x 214.8025pt>
 File: img/7_2/img_2.png Graphic file (type png)
 <use img/7_2/img_2.png>
 Package luatex.def Info: img/7_2/img_2.png  used on input line 234.
 (luatex.def)             Requested size: 172.5pt x 107.62386pt.
- [22<./img/7_2/img_2.png>] [23]) (./7_3.tex [24] [25] [26] [27] [28] [29] [30] [31] [32] [33] [34] [35] [36] [37] [38] [39] [40] [41] [42] [43] [44] [45] [46] [47] [48]) [49] (./main.aux))
+File: img/emap.png Graphic file (type png)
+<use img/emap.png>
+Package luatex.def Info: img/emap.png  used on input line 244.
+(luatex.def)             Requested size: 67.5949pt x 8.2511pt.
+ [22<./img/7_2/img_2.png>]
+File: img/emap.png Graphic file (type png)
+<use img/emap.png>
+Package luatex.def Info: img/emap.png  used on input line 271.
+(luatex.def)             Requested size: 67.5949pt x 8.2511pt.
+ [23]) (./tex/Cap7/7_3.tex
+File: img/emap.png Graphic file (type png)
+<use img/emap.png>
+Package luatex.def Info: img/emap.png  used on input line 8.
+(luatex.def)             Requested size: 67.5949pt x 8.2511pt.
+ [24]
+File: img/emap.png Graphic file (type png)
+<use img/emap.png>
+Package luatex.def Info: img/emap.png  used on input line 23.
+(luatex.def)             Requested size: 67.5949pt x 8.2511pt.
+ [25]
+File: img/emap.png Graphic file (type png)
+<use img/emap.png>
+Package luatex.def Info: img/emap.png  used on input line 35.
+(luatex.def)             Requested size: 67.5949pt x 8.2511pt.
+ [26]
+<img/7_3/img_1.png, id=109, 479.7925pt x 303.1325pt>
+File: img/7_3/img_1.png Graphic file (type png)
+<use img/7_3/img_1.png>
+Package luatex.def Info: img/7_3/img_1.png  used on input line 41.
+(luatex.def)             Requested size: 172.5pt x 108.98422pt.
+File: img/emap.png Graphic file (type png)
+<use img/emap.png>
+Package luatex.def Info: img/emap.png  used on input line 50.
+(luatex.def)             Requested size: 67.5949pt x 8.2511pt.
+ [27<./img/7_3/img_1.png>]
+File: img/emap.png Graphic file (type png)
+<use img/emap.png>
+Package luatex.def Info: img/emap.png  used on input line 72.
+(luatex.def)             Requested size: 67.5949pt x 8.2511pt.
+ [28]
+File: img/emap.png Graphic file (type png)
+<use img/emap.png>
+Package luatex.def Info: img/emap.png  used on input line 92.
+(luatex.def)             Requested size: 67.5949pt x 8.2511pt.
+ [29]
+File: img/emap.png Graphic file (type png)
+<use img/emap.png>
+Package luatex.def Info: img/emap.png  used on input line 118.
+(luatex.def)             Requested size: 67.5949pt x 8.2511pt.
+ [30]
+File: img/emap.png Graphic file (type png)
+<use img/emap.png>
+Package luatex.def Info: img/emap.png  used on input line 133.
+(luatex.def)             Requested size: 67.5949pt x 8.2511pt.
+ [31]
+<img/7_3/img_2.png, id=127, 479.7925pt x 303.1325pt>
+File: img/7_3/img_2.png Graphic file (type png)
+<use img/7_3/img_2.png>
+Package luatex.def Info: img/7_3/img_2.png  used on input line 150.
+(luatex.def)             Requested size: 172.5pt x 108.98422pt.
+File: img/emap.png Graphic file (type png)
+<use img/emap.png>
+Package luatex.def Info: img/emap.png  used on input line 153.
+(luatex.def)             Requested size: 67.5949pt x 8.2511pt.
+ [32]
+File: img/emap.png Graphic file (type png)
+<use img/emap.png>
+Package luatex.def Info: img/emap.png  used on input line 172.
+(luatex.def)             Requested size: 67.5949pt x 8.2511pt.
+ [33<./img/7_3/img_2.png>]
+File: img/emap.png Graphic file (type png)
+<use img/emap.png>
+Package luatex.def Info: img/emap.png  used on input line 187.
+(luatex.def)             Requested size: 67.5949pt x 8.2511pt.
+ [34]
+<img/7_3/img_3.png, id=138, 473.77pt x 246.9225pt>
+File: img/7_3/img_3.png Graphic file (type png)
+<use img/7_3/img_3.png>
+Package luatex.def Info: img/7_3/img_3.png  used on input line 195.
+(luatex.def)             Requested size: 172.5pt x 89.90176pt.
+File: img/emap.png Graphic file (type png)
+<use img/emap.png>
+Package luatex.def Info: img/emap.png  used on input line 204.
+(luatex.def)             Requested size: 67.5949pt x 8.2511pt.
+ [35<./img/7_3/img_3.png>]
+File: img/emap.png Graphic file (type png)
+<use img/emap.png>
+Package luatex.def Info: img/emap.png  used on input line 227.
+(luatex.def)             Requested size: 67.5949pt x 8.2511pt.
+ [36]
+File: img/emap.png Graphic file (type png)
+<use img/emap.png>
+Package luatex.def Info: img/emap.png  used on input line 249.
+(luatex.def)             Requested size: 67.5949pt x 8.2511pt.
+ [37]
+File: img/emap.png Graphic file (type png)
+<use img/emap.png>
+Package luatex.def Info: img/emap.png  used on input line 267.
+(luatex.def)             Requested size: 67.5949pt x 8.2511pt.
+ [38]
+File: img/emap.png Graphic file (type png)
+<use img/emap.png>
+Package luatex.def Info: img/emap.png  used on input line 276.
+(luatex.def)             Requested size: 67.5949pt x 8.2511pt.
+ [39]
+File: img/emap.png Graphic file (type png)
+<use img/emap.png>
+Package luatex.def Info: img/emap.png  used on input line 299.
+(luatex.def)             Requested size: 67.5949pt x 8.2511pt.
+ [40]
+File: img/emap.png Graphic file (type png)
+<use img/emap.png>
+Package luatex.def Info: img/emap.png  used on input line 320.
+(luatex.def)             Requested size: 67.5949pt x 8.2511pt.
+ [41]
+File: img/emap.png Graphic file (type png)
+<use img/emap.png>
+Package luatex.def Info: img/emap.png  used on input line 330.
+(luatex.def)             Requested size: 67.5949pt x 8.2511pt.
+ [42]
+File: img/emap.png Graphic file (type png)
+<use img/emap.png>
+Package luatex.def Info: img/emap.png  used on input line 339.
+(luatex.def)             Requested size: 67.5949pt x 8.2511pt.
+ [43]
+File: img/emap.png Graphic file (type png)
+<use img/emap.png>
+Package luatex.def Info: img/emap.png  used on input line 349.
+(luatex.def)             Requested size: 67.5949pt x 8.2511pt.
+ [44]
+File: img/emap.png Graphic file (type png)
+<use img/emap.png>
+Package luatex.def Info: img/emap.png  used on input line 362.
+(luatex.def)             Requested size: 67.5949pt x 8.2511pt.
+ [45]
+File: img/emap.png Graphic file (type png)
+<use img/emap.png>
+Package luatex.def Info: img/emap.png  used on input line 380.
+(luatex.def)             Requested size: 67.5949pt x 8.2511pt.
+ [46]
+File: img/emap.png Graphic file (type png)
+<use img/emap.png>
+Package luatex.def Info: img/emap.png  used on input line 410.
+(luatex.def)             Requested size: 67.5949pt x 8.2511pt.
+ [47]
+File: img/emap.png Graphic file (type png)
+<use img/emap.png>
+Package luatex.def Info: img/emap.png  used on input line 434.
+(luatex.def)             Requested size: 67.5949pt x 8.2511pt.
+ [48]) 
+AED: lastpage setting LastPage
+File: img/emap.png Graphic file (type png)
+<use img/emap.png>
+Package luatex.def Info: img/emap.png  used on input line 36.
+(luatex.def)             Requested size: 67.5949pt x 8.2511pt.
+[49] (./main.aux))
 
 Here is how much of LuaTeX's memory you used:
- 4310 strings out of 477805
+ 4917 strings out of 477805
  100000,460012 words of node,token memory allocated
- 1351 words of node memory still in use:
-   7 hlist, 2 vlist, 2 rule, 2 glue, 4 kern, 1 glyph, 293 attribute, 52 glue_spec, 148 attribute_list, 1 write nodes
-   avail lists: 2:433,3:138,4:53,5:405,6:22,7:8851,8:72,9:535,10:29,11:1110
- 24825 multiletter control sequences out of 65536+600000
+ 1365 words of node memory still in use:
+   7 hlist, 2 vlist, 2 rule, 2 glue, 4 kern, 1 glyph, 295 attribute, 53 glue_spec, 149 attribute_list, 2 write nodes
+   avail lists: 2:548,3:169,4:53,5:415,6:40,7:9049,8:72,9:710,10:29,11:1134
+ 25081 multiletter control sequences out of 65536+600000
  44 fonts using 3079727 bytes
- 55i,12n,59p,2068b,387s stack positions out of 5000i,500n,10000p,200000b,80000s
-</usr/share/texmf/fonts/opentype/public/lm/lmroman10-bold.otf></usr/share/texmf/fonts/opentype/public/lm/lmroman10-italic.otf></usr/share/texmf/fonts/opentype/public/lm/lmroman10-regular.otf></usr/share/texmf/fonts/opentype/public/lm/lmroman12-bold.otf></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi5.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi7.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr5.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy7.pfb>
-Output written on main.pdf (49 pages, 332220 bytes).
+ 55i,16n,59p,2077b,625s stack positions out of 5000i,500n,10000p,200000b,80000s
+</usr/share/texmf/fonts/opentype/public/lm/lmroman10-italic.otf></usr/share/texmf/fonts/opentype/public/lm/lmroman10-bold.otf></usr/share/texmf/fonts/opentype/public/lm/lmroman12-bold.otf></usr/share/texmf/fonts/opentype/public/lm/lmroman10-regular.otf></usr/share/texmf/fonts/opentype/public/lm/lmroman12-regular.otf></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi5.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi7.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr5.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy7.pfb>
+Output written on main.pdf (50 pages, 382215 bytes).
 
-PDF statistics: 230 PDF objects out of 1000 (max. 8388607)
- 151 compressed objects within 2 object streams
+PDF statistics: 250 PDF objects out of 1000 (max. 8388607)
+ 157 compressed objects within 2 object streams
  0 named destinations out of 1000 (max. 131072)
  1 words of extra memory for PDF output out of 10000 (max. 100000000)
 
