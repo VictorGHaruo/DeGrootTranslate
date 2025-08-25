@@ -17,7 +17,7 @@ Na Definição 7.1.4, distinguimos entre os termos \textit{estatística} e \text
 
 \subsection*{Funções de Perda}
 
-\noindent\textbf{Exemplo 7.4.2} \quad \textbf{Contagem de Calorias em Rótulos de Alimentos.} No Exemplo 7.4.1, o grupo de consumidores pode sentir que o constrangimento ou possíveis ações legais que encontrarão como resultado de sua estimativa é uma função de $\theta$ e da estimativa $\delta(\mathbf{x})$. Idealmente, eles gostariam de quantificar a quantidade de problemas negativos como uma função de $\theta$ e $\delta(\mathbf{x})$, e então poderiam ter alguma ideia de quão provável é que encontrem vários níveis de problemas como resultado de sua estimação. O requisito mais fundamental de um bom estimador $b$ é que ele produza uma estimativa que esteja próxima do valor real de $\theta$. Em outras palavras, um bom estimador é aquele para o qual é altamente provável que o erro $b-\theta$ esteja próximo de 0. Assumiremos que para cada valor possível $a$ de uma estimativa e cada valor possível $\theta \in \Omega$ existe um número $L(\theta, a)$ que mede a perda ou o custo para o estatístico quando o verdadeiro valor do parâmetro é $\theta$ e sua estimativa é $a$. Normalmente, quanto maior a distância entre $a$ e $\theta$, maior será o valor de $L(\theta, a)$.
+\noindent\textbf{Exemplo 7.4.2} \quad \textbf{Contagem de Calorias em Rótulos de Alimentos.} No Exemplo 7.4.1, o grupo de consumidores pode sentir que, quanto mais distante sua estimativa $\delta(\mathbf{x})$ estiver da verdadeira diferença média $\theta$, mais constrangimento e possíveis ações legais eles enfrentarão. Idealmente, eles gostariam de quantificar a magnitude das repercussões negativas como uma função de $\theta$ e da estimativa $\delta(\mathbf{x})$, e então poderiam ter alguma ideia da probabilidade de encontrar vários níveis de transtorno como resultado de sua estimação. O requisito mais fundamental de um bom estimador $\delta$ é que ele produza uma estimativa de $\theta$ que esteja próxima do valor real de $\theta$. Em outras palavras, um bom estimador é aquele para o qual é altamente provável que o erro $\delta(\mathbf{X}) - \theta$ esteja próximo de 0. Assumiremos que para cada valor possível de $\theta \in \Omega$ e cada estimativa possível $a$, existe um número $L(\theta, a)$ que mede a perda ou o custo para o estatístico quando o verdadeiro valor do parâmetro é $\theta$ e sua estimativa é $a$. Normalmente, quanto maior a distância entre $a$ e $\theta$, maior será o valor de $L(\theta, a)$.
 
 \vspace{1cm}
 \noindent\textbf{Definição 7.4.2} \quad \textbf{Função de perda.} Uma \textit{função de perda} é uma função de valor real de duas variáveis, $L(\theta, a)$, onde $\theta \in \Omega$ e $a$ é um número real. A interpretação é que um estatístico perde $L(\theta, a)$ se o parâmetro for igual a $\theta$ e a estimativa for igual a $a$.
@@ -45,11 +45,7 @@ Outra maneira de descrever uma estimativa de Bayes $\delta^*(\mathbf{x})$ é not
 \begin{equation}
 E[L(\theta, \delta^*(\mathbf{x}))|\mathbf{x}] = \min_{a} E[L(\theta, a)|\mathbf{x}]. \tag{7.4.3}
 \end{equation}
-Em resumo, consideramos um problema de estimação no qual uma amostra aleatória $\mathbf{X}=(X_1, \dots, X_n)$ deve ser retirada de uma distribuição envolvendo um parâmetro $\theta$ com um valor desconhecido em algum conjunto especificado $\Omega$. Para cada função de perda dada $L(\theta, a)$ e cada f.d.p. a priori $\xi(\theta)$, o estimador de Bayes $\delta^*(\mathbf{X})$ é o estimador $\delta$ para o qual Eq. (7.4.3) é satisfeita para cada valor possível $\mathbf{x}$ de $\mathbf{X}$. Deve ser enfatizado que a forma do estimador de Bayes dependerá tanto da função de perda que é usada no problema quanto da distribuição a priori que é atribuída a $\theta$.
-
-... a função $L(\theta, a)$ é projetada para medir o quão custoso é usar o valor $a$ para estimar $\theta$. Um estimador de Bayes $\delta^*(\mathbf{X})$ é escolhido de modo que $a=\delta^*(\mathbf{x})$ forneça o valor mínimo da média a posteriori de $L(\theta, a)$. Ou seja,
-$$ E[L(\theta, \delta^*(\mathbf{x}))|\mathbf{x}] = \min_a E[L(\theta, a)|\mathbf{x}]. $$
-Se a perda for erro quadrático, $L(\theta, a) = (\theta-a)^2$, então $\delta^*(\mathbf{x})$ é a média a posteriori de $\theta, E(\theta|\mathbf{x})$. Se a perda for erro absoluto, $L(\theta, a) = |\theta-a|$, então $\delta^*(\mathbf{x})$ é uma mediana da distribuição a posteriori de $\theta$. Para outras funções de perda, a localização do mínimo pode ter que ser feita numericamente.
+Em resumo, consideramos um problema de estimação no qual uma amostra aleatória $\mathbf{X}=(X_1, \dots, X_n)$ deve ser retirada de uma distribuição envolvendo um parâmetro $\theta$ que tem um valor desconhecido em algum conjunto especificado $\Omega$. Para cada função de perda $L(\theta, a)$ e cada f.d.p. a priori $\xi(\theta)$ dadas, o estimador de Bayes de $\theta$ é o estimador $\delta^*(\mathbf{X})$ para o qual a Eq. (7.4.3) é satisfeita para cada valor possível $\mathbf{x}$ de $\mathbf{X}$. Deve ser enfatizado que a forma do estimador de Bayes dependerá tanto da função de perda que é usada no problema quanto da distribuição a priori que é atribuída a $\theta$. Nos problemas descritos neste texto, os estimadores de Bayes existirão. No entanto, existem situações mais complicadas nas quais nenhuma função $\delta^*$ satisfaz (7.4.3).
 
 \subsection*{Diferentes Funções de Perda}
 De longe, a função de perda mais comumente usada em problemas de estimação é a função de perda de erro quadrático.
@@ -130,6 +126,13 @@ A estimativa de Bayes será então $\delta(\mathbf{x})=\mu_1$. Note que, a menos
 
 \vspace{1cm}
 % [ESPAÇO PARA FIGURA 7.6]
+\begin{figure}[H]
+
+\centering
+
+\includegraphics[width=0.5\textwidth]{img/7_4/img_1.png}
+
+\end{figure}
 \vspace{1cm}
 
 \noindent\textbf{Consistência do Estimador de Bayes.} Seja $X_1, \dots, X_n$ uma amostra aleatória (dado $\theta$) da distribuição de Bernoulli com parâmetro $\theta$. Suponha que usamos uma priori conjugada para $\theta$. Como $\theta$ é a média da distribuição da qual a amostra está sendo retirada, segue-se das leis dos grandes números discutidas na Seção 6.2 que $\bar{X}_n$ converge em probabilidade para $\theta$ quando $n \to \infty$. Como a diferença entre o estimador de Bayes $\delta^*(\mathbf{X})$ e $\bar{X}_n$ converge em probabilidade para 0 quando $n \to \infty$, também pode ser concluído que $\delta^*(\mathbf{X})$ converge em probabilidade para o valor desconhecido de $\theta$ quando $n \to \infty$.
