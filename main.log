@@ -1,4 +1,4 @@
-This is LuaHBTeX, Version 1.14.0 (TeX Live 2022/dev/Debian)  (format=lualatex 2025.6.10)  5 SEP 2025 11:31
+This is LuaHBTeX, Version 1.14.0 (TeX Live 2022/dev/Debian)  (format=lualatex 2025.6.10)  5 SEP 2025 15:00
  system commands enabled.
 **/home/taylor/Documents/FGV/Fourth/Translate/main
 (/home/taylor/Documents/FGV/Fourth/Translate/main.tex
@@ -655,28 +655,91 @@ File: img/emap.png Graphic file (type png)
 <use img/emap.png>
 Package luatex.def Info: img/emap.png  used on input line 226.
 (luatex.def)             Requested size: 67.5949pt x 8.2511pt.
-[55]) 
+[55]) (./tex/Cap7/7_5.tex
+File: img/emap.png Graphic file (type png)
+<use img/emap.png>
+Package luatex.def Info: img/emap.png  used on input line 16.
+(luatex.def)             Requested size: 67.5949pt x 8.2511pt.
+ [56]
+Overfull \hbox (5.76167pt too wide) in paragraph at lines 30--31
+[]\TU/lmr/bx/n/10 De-fi-ni-ção 7.5.2: Es-ti-ma-dor/Es-ti-ma-tiva de Má-xima Ve-ros-si-mi-lhança.
+ []
+
+File: img/emap.png Graphic file (type png)
+<use img/emap.png>
+Package luatex.def Info: img/emap.png  used on input line 31.
+(luatex.def)             Requested size: 67.5949pt x 8.2511pt.
+[57]
+File: img/emap.png Graphic file (type png)
+<use img/emap.png>
+Package luatex.def Info: img/emap.png  used on input line 52.
+(luatex.def)             Requested size: 67.5949pt x 8.2511pt.
+ [58]
+File: img/emap.png Graphic file (type png)
+<use img/emap.png>
+Package luatex.def Info: img/emap.png  used on input line 70.
+(luatex.def)             Requested size: 67.5949pt x 8.2511pt.
+ [59]
+File: img/emap.png Graphic file (type png)
+<use img/emap.png>
+Package luatex.def Info: img/emap.png  used on input line 90.
+(luatex.def)             Requested size: 67.5949pt x 8.2511pt.
+ [60]
+File: img/emap.png Graphic file (type png)
+<use img/emap.png>
+Package luatex.def Info: img/emap.png  used on input line 106.
+(luatex.def)             Requested size: 67.5949pt x 8.2511pt.
+ [61]
+File: img/emap.png Graphic file (type png)
+<use img/emap.png>
+Package luatex.def Info: img/emap.png  used on input line 116.
+(luatex.def)             Requested size: 67.5949pt x 8.2511pt.
+ [62]
+File: img/emap.png Graphic file (type png)
+<use img/emap.png>
+Package luatex.def Info: img/emap.png  used on input line 134.
+(luatex.def)             Requested size: 67.5949pt x 8.2511pt.
+ [63]
+Overfull \hbox (4.172pt too wide) in paragraph at lines 147--148
+[]\TU/lmr/m/n/10 Fi-nal-mente, de-ve-mos men-ci-o-nar um ponto re-fe-rente à in-ter-pre-ta-ção do M.L.E.
+ []
+
+File: img/emap.png Graphic file (type png)
+<use img/emap.png>
+Package luatex.def Info: img/emap.png  used on input line 148.
+(luatex.def)             Requested size: 67.5949pt x 8.2511pt.
+[64]
+File: img/emap.png Graphic file (type png)
+<use img/emap.png>
+Package luatex.def Info: img/emap.png  used on input line 157.
+(luatex.def)             Requested size: 67.5949pt x 8.2511pt.
+ [65]
+File: img/emap.png Graphic file (type png)
+<use img/emap.png>
+Package luatex.def Info: img/emap.png  used on input line 185.
+(luatex.def)             Requested size: 67.5949pt x 8.2511pt.
+ [66]) 
 AED: lastpage setting LastPage
 File: img/emap.png Graphic file (type png)
 <use img/emap.png>
-Package luatex.def Info: img/emap.png  used on input line 36.
+Package luatex.def Info: img/emap.png  used on input line 38.
 (luatex.def)             Requested size: 67.5949pt x 8.2511pt.
-[56] (./main.aux))
+[67] (./main.aux))
 
 Here is how much of LuaTeX's memory you used:
- 4982 strings out of 477805
+ 5061 strings out of 477805
  100000,460012 words of node,token memory allocated
- 1257 words of node memory still in use:
-   7 hlist, 2 vlist, 2 rule, 2 glue, 4 kern, 1 glyph, 259 attribute, 53 glue_spec, 131 attribute_list, 2 write nodes
-   avail lists: 2:530,3:177,4:53,5:419,6:42,7:9049,8:72,9:710,10:29,11:1134
- 25089 multiletter control sequences out of 65536+600000
- 44 fonts using 3079727 bytes
+ 1419 words of node memory still in use:
+   7 hlist, 2 vlist, 2 rule, 2 glue, 4 kern, 1 glyph, 313 attribute, 53 glue_spec, 158 attribute_list, 2 write nodes
+   avail lists: 2:710,3:177,4:53,5:422,6:42,7:9049,8:78,9:711,10:29,11:1134
+ 25093 multiletter control sequences out of 65536+600000
+ 46 fonts using 3343103 bytes
  55i,16n,59p,2077b,613s stack positions out of 5000i,500n,10000p,200000b,80000s
 </usr/share/texmf/fonts/opentype/public/lm/lmroman10-italic.otf></usr/share/texmf/fonts/opentype/public/lm/lmroman10-bold.otf></usr/share/texmf/fonts/opentype/public/lm/lmroman12-bold.otf></usr/share/texmf/fonts/opentype/public/lm/lmroman10-regular.otf></usr/share/texmf/fonts/opentype/public/lm/lmroman12-regular.otf></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi5.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi7.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr5.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy7.pfb>
-Output written on main.pdf (57 pages, 426314 bytes).
+Output written on main.pdf (68 pages, 478613 bytes).
 
-PDF statistics: 274 PDF objects out of 1000 (max. 8388607)
- 172 compressed objects within 2 object streams
+PDF statistics: 308 PDF objects out of 1000 (max. 8388607)
+ 195 compressed objects within 2 object streams
  0 named destinations out of 1000 (max. 131072)
  1 words of extra memory for PDF output out of 10000 (max. 100000000)
 

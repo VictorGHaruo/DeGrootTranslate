@@ -1,0 +1,193 @@
+\section*{7.5 Estimadores de Máxima Verossimilhança}
+
+A estimação de máxima verossimilhança é um método para escolher estimadores de parâmetros que evita o uso de distribuições a priori e funções de perda. Ela escolhe como a estimativa de $\theta$ o valor de $\theta$ que fornece o maior valor da função de verossimilhança.
+
+\subsection*{Introdução}
+
+\textbf{Exemplo 7.5.1: Tempo de Vida de Componentes Eletrônicos.} Suponha que observamos os dados no Exemplo 7.3.11 consistindo nos tempos de vida de três componentes eletrônicos. Existe um método para estimar a taxa de falha $\theta$ sem primeiro construir uma distribuição a priori e uma função de perda?
+
+\vspace{\baselineskip}
+
+Nesta seção, desenvolveremos um método relativamente simples de construir um estimador sem ter que especificar uma função de perda e uma distribuição a priori. É chamado de método de \textit{máxima verossimilhança}, e foi introduzido por R. A. Fisher em 1912. A estimação de máxima verossimilhança pode ser aplicada na maioria dos problemas, tem um forte apelo intuitivo, e frequentemente produzirá um estimador razoável de $\theta$. Além disso, se a amostra for grande, o método normalmente produzirá um excelente estimador de $\theta$. Por essas razões, o método de máxima verossimilhança é provavelmente o método de estimação mais amplamente utilizado em estatística.
+
+\vspace{\baselineskip}
+
+\textbf{Nota: Terminologia.} Como a estimação de máxima verossimilhança, assim como muitos outros procedimentos a serem introduzidos posteriormente no texto, não envolve a especificação de uma distribuição a priori do parâmetro, uma terminologia um pouco diferente é frequentemente usada na descrição dos modelos estatísticos aos quais esses procedimentos são aplicados. Em vez de dizer que $X_1, \dots, X_n$ são i.i.d. com f.p. ou f.d.p. $f(x|\theta)$ condicional a $\theta$, podemos dizer que $X_1, \dots, X_n$ formam uma amostra aleatória de uma distribuição com f.p. ou f.d.p. $f(x|\theta)$ onde $\theta$ é desconhecido. Mais especificamente, no Exemplo 7.5.1, poderíamos dizer que os tempos de vida formam uma amostra aleatória da distribuição exponencial com um parâmetro de taxa de falha desconhecido $\theta$.
+
+\subsection*{Definição de um Estimador de Máxima Verossimilhança}
+Sejam as variáveis aleatórias $X_1, \dots, X_n$ formando uma amostra aleatória de uma distribuição discreta ou uma distribuição contínua para a qual a f.p. ou a f.d.p. é $f(x|\theta)$, onde o parâmetro $\theta$ pertence a algum espaço de parâmetros $\Omega$. Aqui, $\theta$ pode ser um valor real ou um vetor. Para cada vetor observado $\textbf{x} = (x_1, \dots, x_n)$ na amostra, o valor da f.p. conjunta ou f.d.p. conjunta será, como de costume, denotado por $f_n(\textbf{x}|\theta)$.
+
+\vspace{\baselineskip}
+
+\textbf{Definição 7.5.1: Função de Verossimilhança.} Quando a f.d.p. conjunta ou a f.p. conjunta $f_n(\textbf{x}|\theta)$ das observações em uma amostra aleatória é considerada como uma função de $\theta$ para valores dados de $x_1, \dots, x_n$, ela é chamada de \textit{função de verossimilhança}.
+
+\vspace{\baselineskip}
+
+Considere, primeiro, o caso em que o vetor observado $\textbf{x}$ veio de uma distribuição discreta. Se uma estimativa de $\theta$ deve ser selecionada, nós certamente não selecionaríamos qualquer valor de $\theta \in \Omega$ para o qual seria impossível obter o vetor $\textbf{x}$ que foi realmente observado. Além disso, suponha que a probabilidade $f_n(\textbf{x}|\theta)$ de obter o vetor observado real $\textbf{x}$ é muito alta quando $\theta$ tem um valor particular, digamos, $\theta = \theta_0$, e é muito pequena para todo outro valor de $\theta \in \Omega$. Nós então naturalmente estimaríamos o valor de $\theta$ como sendo $\theta_0$ (a menos que tivéssemos forte informação prévia que superasse a evidência da amostra e apontasse para algum outro valor). Quando a amostra vem de uma distribuição contínua, seria novamente natural tentar encontrar um valor de $\theta$ para o qual a densidade de probabilidade $f_n(\textbf{x}|\theta)$ é grande e usar este valor como uma estimativa de $\theta$. Para cada vetor observado $\textbf{x}$, somos levados por este raciocínio a considerar um valor de $\theta$ para o qual a função de verossimilhança $f_n(\textbf{x}|\theta)$ é máxima e usar este valor como uma estimativa de $\theta$. Este conceito é formalizado na seguinte definição.
+
+\vspace{\baselineskip}
+
+\textbf{Definição 7.5.2: Estimador/Estimativa de Máxima Verossimilhança.} Para cada vetor observado possível $\textbf{x}$, seja $\delta(\textbf{x}) \in \Omega$ um valor de $\theta \in \Omega$ para o qual a função de verossimilhança $f_n(\textbf{x}|\theta)$ é máxima, e seja $\delta(\textbf{X})$ o estimador de $\theta$ definido desta forma. O estimador $\delta(\textbf{X})$ é chamado de \textit{estimador de máxima verossimilhança} de $\theta$. Depois que $\textbf{X} = \textbf{x}$ é observado, o valor $\delta(\textbf{x})$ é chamado de \textit{estimativa de máxima verossimilhança} de $\theta$.
+
+\vspace{\baselineskip}
+
+As expressões \textit{estimador de máxima verossimilhança} e \textit{estimativa de máxima verossimilhança} são abreviadas como M.L.E. (do inglês, \textit{Maximum Likelihood Estimator/Estimate}). Deve-se confiar no contexto para determinar se a abreviação se refere a um estimador ou a uma estimativa. Note que o M.L.E. deve ser um elemento do espaço de parâmetros $\Omega$, ao contrário dos estimadores/estimativas gerais para os quais não existe tal requisito.
+
+\subsection*{Exemplos de Estimadores de Máxima Verossimilhança}
+\textbf{Exemplo 7.5.2: Tempo de Vida de Componentes Eletrônicos.} No Exemplo 7.3.11, os dados observados foram $X_1 = 3$, $X_2 = 1.5$ e $X_3 = 2.1$. As variáveis aleatórias foram modeladas como uma amostra aleatória de tamanho 3 da distribuição exponencial com parâmetro $\theta$. A função de verossimilhança é, para $\theta > 0$,
+$$f_3(\textbf{x}|\theta) = \theta^3 \exp(-6.6\theta),$$
+onde $\textbf{x} = (2, 1.5, 2.1)$. O valor de $\theta$ que maximiza a função de verossimilhança $f_3(\textbf{x}|\theta)$ será o mesmo que o valor de $\theta$ que maximiza $\log f_3(\textbf{x}|\theta)$, uma vez que o logaritmo é uma função crescente. Portanto, será conveniente determinar o M.L.E. encontrando o valor de $\theta$ que maximiza
+$$L(\theta) = \log f_3(\textbf{x}|\theta) = 3 \log(\theta) - 6.6\theta.$$
+Tomando a derivada $dL(\theta)/d\theta$, igualando a derivada a 0, e resolvendo para $\theta$ resulta em $\theta = 3/6.6 = 0.455$. A segunda derivada é negativa neste valor de $\theta$, então ele fornece um máximo. A estimativa de máxima verossimilhança é então 0.455.
+
+\vspace{\baselineskip}
+
+Deve ser notado que em alguns problemas, para certos vetores observados $\textbf{x}$, o valor máximo de $f_n(\textbf{x}|\theta)$ pode não ser de fato alcançado para nenhum ponto $\theta \in \Omega$. Em tal caso, um M.L.E. de $\theta$ não existe. Para certos outros vetores observados $\textbf{x}$, o valor máximo de $f_n(\textbf{x}|\theta)$ pode na verdade ser alcançado em mais de um ponto no espaço $\Omega$. Em tal caso, o M.L.E. não é unicamente definido, e qualquer um desses pontos pode ser escolhido como o valor do estimador $\hat{\theta}$. Em muitos problemas práticos, no entanto, o M.L.E. existe e é unicamente definido.
+
+Ilustraremos agora o método de máxima verossimilhança e essas várias possibilidades, considerando vários exemplos. Em cada exemplo, tentaremos determinar um M.L.E.
+
+\vspace{\baselineskip}
+
+\textbf{Exemplo 7.5.3: Teste para uma Doença.} Suponha que você está andando na rua e percebe que o Departamento de Saúde Pública está oferecendo um teste médico gratuito para uma certa doença. O teste é 90 por cento confiável no seguinte sentido: Se uma pessoa tem a doença, há uma probabilidade de 0.9 de que o teste dará uma resposta positiva; enquanto que, se uma pessoa não tem a doença, há uma probabilidade de apenas 0.1 de que o teste dará uma resposta positiva. Seja $X$ o resultado do teste, onde $X=1$ significa que o teste é positivo e $X=0$ significa que o teste é negativo. Seja o espaço de parâmetros $\Omega = \{0.1, 0.9\}$, onde $\theta = 0.1$ significa que a pessoa testada não tem a doença, e $\theta = 0.9$ significa que a pessoa tem a doença. Dado $\theta$, $X$ tem a distribuição de Bernoulli com parâmetro $\theta$. A função de verossimilhança é
+$$f(x|\theta) = \theta^x (1-\theta)^{1-x}.$$
+Se $x=0$ é observado, então
+$$ f(0|\theta) = \begin{cases} 0.9 & \text{se } \theta=0.1, \\ 0.1 & \text{se } \theta=0.9. \end{cases} $$
+Claramente, $\theta=0.1$ maximiza a verossimilhança quando $x=0$ é observado. Se $x=1$ é observado, então
+$$ f(1|\theta) = \begin{cases} 0.1 & \text{se } \theta=0.1, \\ 0.9 & \text{se } \theta=0.9. \end{cases} $$
+Claramente, $\theta=0.9$ maximiza a verossimilhança quando $x=1$ é observado. Portanto, temos que o M.L.E. é
+$$ \hat{\theta} = \begin{cases} 0.1 & \text{se } X=0, \\ 0.9 & \text{se } X=1. \end{cases} $$
+
+\vspace{\baselineskip}
+
+\textbf{Exemplo 7.5.4: Amostragem de uma Distribuição de Bernoulli.} Suponha que as variáveis aleatórias $X_1, \dots, X_n$ formam uma amostra aleatória de uma distribuição de Bernoulli com parâmetro $\theta$, que é desconhecido ($0 \le \theta \le 1$). Para todos os valores observados $x_1, \dots, x_n$, onde cada $x_i$ é 0 ou 1, a função de verossimilhança é
+$$f_n(\textbf{x}|\theta) = \prod_{i=1}^{n} \theta^{x_i}(1-\theta)^{1-x_i}. \quad (7.5.1)$$
+Em vez de maximizar a função de verossimilhança $f_n(\textbf{x}|\theta)$ diretamente, é novamente mais fácil maximizar $\log f_n(\textbf{x}|\theta)$:
+\begin{align*}
+L(\theta) &= \log f_n(\textbf{x}|\theta) = \sum_{i=1}^{n} [x_i \log \theta + (1-x_i) \log(1-\theta)] \\
+&= \left(\sum_{i=1}^{n} x_i \right) \log \theta + \left(n - \sum_{i=1}^{n} x_i \right) \log(1-\theta).
+\end{align*}
+Agora calcule a derivada $dL(\theta)/d\theta$, iguale esta derivada a 0, e resolva a equação resultante para $\theta$. Se $\sum_{i=1}^{n} x_i \notin \{0, n\}$, encontramos que a derivada é 0 em $\theta = \bar{x}_n$, e pode ser verificado (por exemplo, examinando a segunda derivada) que este valor de fato maximiza $L(\theta)$ e a função de verossimilhança definida pela Eq. (7.5.1). Se $\sum_{i=1}^{n} x_i = 0$, então $L(\theta)$ é uma função decrescente de $\theta$ para todo $\theta$, e portanto $L$ atinge seu máximo em $\theta=0$. Similarmente, se $\sum_{i=1}^{n} x_i = n$, $L$ é uma função crescente, e atinge seu máximo em $\theta=1$. Nestes dois últimos casos, note que o máximo da verossimilhança ocorre em $\theta = \bar{x}_n$. Portanto, segue-se que o M.L.E. de $\theta$ é $\hat{\theta} = \bar{X}_n$.
+
+\vspace{\baselineskip}
+
+Segue-se do Exemplo 7.5.4 que se $X_1, \dots, X_n$ são considerados como $n$ ensaios de Bernoulli e se o espaço de parâmetros é $\Omega = [0, 1]$, então o M.L.E. da probabilidade desconhecida de sucesso é simplesmente a proporção de sucessos observados nos $n$ ensaios. No Exemplo 7.5.3, temos $n=1$ ensaio de Bernoulli, mas o espaço de parâmetros é $\Omega=\{0.1, 0.9\}$ em vez de $[0, 1]$, e o M.L.E. difere da proporção de sucessos.
+
+\vspace{\baselineskip}
+
+\textbf{Exemplo 7.5.5: Amostragem de uma Distribuição Normal com Média Desconhecida.} Suponha que $X_1, \dots, X_n$ formam uma amostra aleatória de uma distribuição normal para a qual a média $\mu$ é desconhecida e a variância $\sigma^2$ é conhecida. Para todos os valores observados $x_1, \dots, x_n$, a função de verossimilhança $f_n(\textbf{x}|\mu)$ será
+$$f_n(\textbf{x}|\mu) = \frac{1}{(2\pi \sigma^2)^{n/2}} \exp \left[ -\frac{1}{2\sigma^2} \sum_{i=1}^{n} (x_i - \mu)^2 \right]. \quad (7.5.2)$$
+Pode ser visto da Eq. (7.5.2) que $f_n(\textbf{x}|\mu)$ será maximizada pelo valor de $\mu$ que minimiza
+$$Q(\mu) = \sum_{i=1}^{n} (x_i - \mu)^2 = \sum_{i=1}^{n} x_i^2 - 2\mu \sum_{i=1}^{n} x_i + n\mu^2.$$
+Vemos que $Q$ é uma quadrática em $\mu$ com coeficiente positivo em $\mu^2$. Segue-se que $Q$ será minimizado onde sua derivada é 0. Se agora calcularmos a derivada $dQ(\mu)/d\mu$, igualarmos esta derivada a 0, e resolvermos a equação resultante para $\mu$, encontramos que $\mu=\bar{x}_n$. Segue-se, portanto, que o M.L.E. de $\mu$ é $\hat{\mu} = \bar{X}_n$.
+
+\vspace{\baselineskip}
+
+Pode ser visto no Exemplo 7.5.5 que o estimador $\hat{\mu}$ não é afetado pelo valor da variância $\sigma^2$, que assumimos ser conhecida. O M.L.E. da média desconhecida $\mu$ é simplesmente a média amostral $\bar{X}_n$, independentemente do valor de $\sigma^2$. Veremos isso novamente no próximo exemplo, no qual tanto $\mu$ quanto $\sigma^2$ devem ser estimados.
+
+\vspace{\baselineskip}
+
+\textbf{Exemplo 7.5.6: Amostragem de uma Distribuição Normal com Média e Variância Desconhecidas.} Suponha novamente que $X_1, \dots, X_n$ formam uma amostra aleatória de uma distribuição normal, mas suponha agora que tanto a média $\mu$ quanto a variância $\sigma^2$ são desconhecidas. O parâmetro é então $\theta = (\mu, \sigma^2)$. Para todos os valores observados $x_1, \dots, x_n$, a função de verossimilhança $f_n(\textbf{x}|\mu, \sigma^2)$ será novamente dada pelo lado direito da Eq. (7.5.2). Esta função deve agora ser maximizada sobre todos os valores possíveis de $\mu$ e $\sigma^2$, onde $-\infty < \mu < \infty$ e $\sigma^2 > 0$. Em vez de maximizar a função de verossimilhança $f_n(\textbf{x}|\mu, \sigma^2)$ diretamente, é novamente mais fácil maximizar $\log f_n(\textbf{x}|\mu, \sigma^2)$. Temos
+$$L(\theta) = \log f_n(\textbf{x}|\mu, \sigma^2) = -\frac{n}{2} \log(2\pi) - \frac{n}{2} \log \sigma^2 - \frac{1}{2\sigma^2} \sum_{i=1}^{n} (x_i - \mu)^2. \quad (7.5.3)$$
+Nós encontraremos o valor de $\theta = (\mu, \sigma^2)$ para o qual $L(\theta)$ é máximo em três estágios. Primeiro, para cada $\sigma^2$ fixado, encontraremos o valor $\hat{\mu}(\sigma^2)$ que maximiza o lado direito de (7.5.3). Segundo, encontraremos o valor $\hat{\sigma}^2$ de $\sigma^2$ que maximiza $L(\theta')$ quando $\theta' = (\hat{\mu}(\sigma^2), \sigma^2)$. Finalmente, o M.L.E. de $\theta$ será o vetor aleatório cujo valor é $(\hat{\mu}(\hat{\sigma}^2), \hat{\sigma}^2)$. O primeiro estágio já foi resolvido no Exemplo 7.5.5. Lá, obtivemos $\hat{\mu}(\sigma^2) = \bar{x}_n$. Para o segundo estágio, definimos $\theta' = (\bar{x}_n, \sigma^2)$ e maximizamos
+$$L(\theta') = -\frac{n}{2} \log(2\pi) - \frac{n}{2} \log \sigma^2 - \frac{1}{2\sigma^2} \sum_{i=1}^{n} (x_i - \bar{x}_n)^2. \quad (7.5.4)$$
+Isso pode ser maximizado definindo sua derivada em relação a $\sigma^2$ igual a 0 e resolvendo para $\sigma^2$. A derivada é
+$$\frac{d}{d\sigma^2} L(\theta') = -\frac{n}{2\sigma^2} + \frac{1}{2(\sigma^2)^2} \sum_{i=1}^{n} (x_i - \bar{x}_n)^2.$$
+Igualar isso a 0 resulta em
+$$\sigma^2 = \frac{1}{n} \sum_{i=1}^{n} (x_i - \bar{x}_n)^2. \quad (7.5.5)$$
+A segunda derivada de (7.5.4) é negativa no valor de $\sigma^2$ em (7.5.5), então encontramos o máximo. Portanto, o M.L.E. de $\theta = (\mu, \sigma^2)$ é
+$$\hat{\theta} = (\hat{\mu}, \hat{\sigma}^2) = \left( \bar{X}_n, \frac{1}{n} \sum_{i=1}^{n} (X_i - \bar{X}_n)^2 \right). \quad (7.5.6)$$
+Note que a primeira coordenada do M.L.E. na Eq. (7.5.6) é chamada de \textit{média amostral} dos dados. Da mesma forma, chamamos a segunda coordenada deste M.L.E. de \textit{variância amostral}. Não é difícil ver que o valor observado da variância amostral é a variância de uma distribuição que atribui probabilidade $1/n$ a cada um dos $n$ valores observados $x_1, \dots, x_n$ na amostra.
+
+\vspace{\baselineskip}
+
+\textbf{Exemplo 7.5.7: Amostragem de uma Distribuição Uniforme.} Suponha que $X_1, \dots, X_n$ formam uma amostra aleatória da distribuição uniforme no intervalo $[0, \theta]$, onde o valor do parâmetro $\theta$ é desconhecido ($\theta>0$). A f.d.p. $f(x|\theta)$ de cada observação tem a seguinte forma:
+$$f(x|\theta) = \begin{cases} \frac{1}{\theta} & \text{para } 0 \le x \le \theta, \\ 0 & \text{caso contrário}. \end{cases} \quad (7.5.7)$$
+Portanto, a f.d.p. conjunta $f_n(\textbf{x}|\theta)$ de $X_1, \dots, X_n$ tem a forma
+$$f_n(\textbf{x}|\theta) = \begin{cases} \frac{1}{\theta^n} & \text{para } 0 \le x_i \le \theta \text{ (para } i=1, \dots, n), \\ 0 & \text{caso contrário}. \end{cases} \quad (7.5.8)$$
+Pode ser visto da Eq. (7.5.8) que o M.L.E. de $\theta$ deve ser um valor de $\theta$ para o qual $\theta \ge x_i$ para $i=1, \dots, n$ e que maximiza $1/\theta^n$ entre todos esses valores. Como $1/\theta^n$ é uma função decrescente de $\theta$, a estimativa será o menor valor de $\theta$ tal que $\theta \ge x_i$ para $i=1, \dots, n$. Como este valor é $\theta = \max\{x_1, \dots, x_n\}$, o M.L.E. de $\theta$ é $\hat{\theta} = \max\{X_1, \dots, X_n\}$.
+\subsection*{Limitações da Estimação de Máxima Verossimilhança}
+Apesar de seu apelo intuitivo, o método de máxima verossimilhança não é necessariamente apropriado em todos os problemas. Por exemplo, no Exemplo 7.5.7, o M.L.E. $\hat{\theta}$ não parece ser um estimador adequado de $\theta$. Como $\max\{X_1, \dots, X_n\} \le \theta$ com probabilidade 1, segue-se que $\hat{\theta}$ certamente subestima o valor de $\theta$. De fato, se qualquer distribuição a priori for atribuída a $\theta$, então o estimador de Bayes de $\theta$ será seguramente maior que $\hat{\theta}$. O valor real pelo qual o estimador de Bayes excederá $\hat{\theta}$ irá, é claro, depender da distribuição a priori particular que é usada e dos valores observados de $X_1, \dots, X_n$. O Exemplo 7.5.7 também levanta outra dificuldade com a máxima verossimilhança, como ilustramos no Exemplo 7.5.8.
+
+\vspace{\baselineskip}
+
+\textbf{Exemplo 7.5.8: Inexistência de um M.L.E.} Suponha que $X_1, \dots, X_n$ formam uma amostra aleatória da distribuição uniforme no intervalo $[0, \theta]$. No entanto, suponha agora que, em vez de escrevermos a f.d.p. $f(x|\theta)$ da distribuição uniforme na forma dada na Eq. (7.5.7), nós a escrevemos na seguinte forma:
+$$ f(x|\theta) = \begin{cases} \frac{1}{\theta} & \text{para } 0 < x < \theta, \\ 0 & \text{caso contrário}. \end{cases} \quad (7.5.9) $$
+A única diferença entre a Eq. (7.5.7) e a Eq. (7.5.9) é que o valor da f.d.p. em cada um dos pontos extremos 0 e $\theta$ foi alterado, substituindo as desigualdades fracas na Eq. (7.5.7) por desigualdades estritas na Eq. (7.5.9). Portanto, qualquer uma das equações poderia ser usada como a f.d.p. da distribuição uniforme. No entanto, se a Eq. (7.5.9) for usada como f.d.p., então um M.L.E. de $\theta$ será um valor de $\theta$ para o qual $\theta > x_i$ para $i=1, \dots, n$ e que maximiza $1/\theta^n$ entre todos esses valores. Deve-se notar que os valores possíveis de $\theta$ não incluem mais o valor $\theta = \max\{x_1, \dots, x_n\}$, porque $\theta$ deve ser \textit{estritamente} maior que cada valor observado $x_i$ ($i=1, \dots, n$). Como $\theta$ pode ser escolhido arbitrariamente próximo ao valor $\max\{x_1, \dots, x_n\}$, mas não pode ser igual a este valor, segue-se que o M.L.E. de $\theta$ não existe.
+
+\vspace{\baselineskip}
+
+Em todas as nossas discussões anteriores sobre f.d.p.'s, enfatizamos o fato de que é irrelevante se a f.d.p. da distribuição uniforme é escolhida para ser igual a $1/\theta$ no intervalo aberto $0 < x < \theta$ ou no intervalo fechado $0 \le x \le \theta$. Agora, no entanto, vemos que a existência de um M.L.E. depende dessa escolha irrelevante e sem importância. Essa dificuldade é facilmente evitada no Exemplo 7.5.8 usando a f.d.p. dada pela Eq. (7.5.7) em vez daquela dada pela Eq. (7.5.9). Em muitos outros problemas também, uma dificuldade deste tipo pode ser evitada simplesmente escolhendo uma versão particular apropriada da f.d.p. para representar a distribuição. No entanto, como veremos no Exemplo 7.5.10, a dificuldade nem sempre pode ser evitada.
+
+\vspace{\baselineskip}
+
+\textbf{Exemplo 7.5.9: Não-unicidade de um M.L.E.} Suponha que $X_1, \dots, X_n$ formam uma amostra aleatória da distribuição uniforme no intervalo $[\theta, \theta+1]$, onde o valor do parâmetro $\theta$ é desconhecido $(-\infty < \theta < \infty)$. Neste exemplo, a f.d.p. conjunta $f_n(\textbf{x}|\theta)$ tem a forma
+$$ f_n(\textbf{x}|\theta) = \begin{cases} 1 & \text{para } \theta \le x_i \le \theta+1 \text{ (para } i=1, \dots, n), \\ 0 & \text{caso contrário}. \end{cases} \quad (7.5.10) $$
+A condição de que $\theta \le x_i$ para $i=1, \dots, n$ é equivalente à condição de que $\theta \le \min\{x_1, \dots, x_n\}$. Similarmente, a condição de que $x_i \le \theta+1$ para $i=1, \dots, n$ é equivalente à condição de que $\theta \ge \max\{x_1, \dots, x_n\} - 1$. Portanto, em vez de escrever $f_n(\textbf{x}|\theta)$ na forma dada na Eq. (7.5.10), podemos usar a seguinte forma:
+$$ f_n(\textbf{x}|\theta) = \begin{cases} 1 & \text{para } \max\{x_1, \dots, x_n\} - 1 \le \theta \le \min\{x_1, \dots, x_n\}, \\ 0 & \text{caso contrário}. \end{cases} \quad (7.5.11) $$
+Assim, é possível selecionar como um M.L.E. qualquer valor de $\theta$ no intervalo
+$$ \max\{x_1, \dots, x_n\} - 1 \le \theta \le \min\{x_1, \dots, x_n\}. \quad (7.5.12) $$
+Neste exemplo, o M.L.E. não é unicamente especificado. De fato, o método de máxima verossimilhança fornece muito pouca ajuda na escolha de uma estimativa de $\theta$. A verossimilhança de cada valor de $\theta$ fora do intervalo (7.5.12) é na verdade 0. Nenhum valor $\theta$ fora deste intervalo seria estimado, e todos os valores dentro do intervalo são M.L.E.'s.
+
+\vspace{\baselineskip}
+
+\textbf{Exemplo 7.5.10: Amostragem de uma Mistura de Duas Distribuições.} Considere uma variável aleatória $X$ que pode vir com igual probabilidade da distribuição normal com média 0 e variância 1 ou de outra distribuição normal com média $\mu$ e variância $\sigma^2$, onde tanto $\mu$ quanto $\sigma^2$ são desconhecidos. Sob essas condições, a f.d.p. de $X$ será a média das f.d.p.'s das duas distribuições normais. Assim, a f.d.p. $f(x|\mu, \sigma^2)$ de $X$ será
+$$ f(x|\mu, \sigma^2) = \frac{1}{2} \frac{1}{(2\pi)^{1/2}} \exp\left(-\frac{x^2}{2}\right) + \frac{1}{2} \frac{1}{(2\pi)^{1/2}\sigma} \exp\left[-\frac{(x-\mu)^2}{2\sigma^2}\right]. \quad (7.5.13) $$
+Suponha agora que $X_1, \dots, X_n$ formam uma amostra aleatória da distribuição para a qual a f.d.p. é dada pela Eq. (7.5.13). Como de costume, a função de verossimilhança $f_n(\textbf{x}|\mu, \sigma^2)$ tem a forma
+$$ f_n(\textbf{x}|\mu, \sigma^2) = \prod_{i=1}^{n} f(x_i|\mu, \sigma^2). \quad (7.5.14) $$
+Para encontrar o M.L.E. de $\theta = (\mu, \sigma^2)$, devemos encontrar os valores de $\mu$ e $\sigma^2$ para os quais $f_n(\textbf{x}|\mu, \sigma^2)$ é maximizada. Seja $x_k$ um dos valores observados $x_1, \dots, x_n$. Se fizermos $\mu=x_k$ e deixarmos $\sigma^2 \to 0$, então o fator $f(x_k|\mu, \sigma^2)$ no lado direito da Eq. (7.5.14) crescerá sem limite, enquanto cada fator $f(x_i|\mu, \sigma^2)$ para $x_i \ne x_k$ se aproximará do valor
+$$ \frac{1}{2(2\pi)^{1/2}} \exp\left(-\frac{x_i^2}{2}\right). $$
+Portanto, quando $\mu=x_k$ e $\sigma^2 \to 0$, descobrimos que $f_n(\textbf{x}|\mu, \sigma^2) \to \infty$. O valor 0 não é uma estimativa permissível de $\sigma^2$, porque sabemos de antemão que $\sigma^2 > 0$. Como a função de verossimilhança pode ser tornada arbitrariamente grande escolhendo $\mu=x_k$ e escolhendo $\sigma^2$ arbitrariamente próximo de 0, segue-se que o M.L.E. não existe.
+
+Se tentarmos corrigir essa dificuldade permitindo que o valor 0 seja uma estimativa permissível de $\sigma^2$, então descobrimos que existem $n$ M.L.E.'s diferentes de $\mu$ e $\sigma^2$; a saber,
+$$ \hat{\theta}_k = (\hat{\mu}, \hat{\sigma}^2) = (X_k, 0) \text{ para } k=1, \dots, n. $$
+Nenhum desses estimadores parece apropriado. Considere novamente a descrição, dada no início deste exemplo, das duas distribuições normais das quais cada observação pode ter vindo. Suponha, por exemplo, que $n=1000$ e usamos o estimador $\hat{\theta}_3 = (X_3, 0)$. Então, estaríamos estimando o valor da variância desconhecida como sendo 0; também, estaríamos efetivamente nos comportando como se exatamente uma das $X_i$'s (a saber, $X_3$) viesse da distribuição normal desconhecida, enquanto todas as outras 999 observações viessem da distribuição normal com média 0 e variância 1. De fato, no entanto, como cada observação tinha a mesma probabilidade de vir de qualquer uma das duas distribuições, é muito mais provável que centenas de observações, em vez de apenas uma, tenham vindo da distribuição normal desconhecida. Neste exemplo, o método de máxima verossimilhança é obviamente insatisfatório. Uma solução Bayesiana para este problema é delineada no Exercício 10 da Seção 12.5.
+
+\vspace{\baselineskip}
+
+Finalmente, devemos mencionar um ponto referente à interpretação do M.L.E. O M.L.E. é o valor de $\theta$ que maximiza a f.p. ou f.d.p. condicional dos dados $X$ dado $\theta$. Portanto, a estimativa de máxima verossimilhança é o valor de $\theta$ que atribuiu a maior probabilidade de ver os dados observados. Não é necessariamente o valor do parâmetro que parece ser o mais provável, dados os dados. Para dizer quão prováveis são os diferentes valores do parâmetro, seria necessária uma distribuição de probabilidade para o parâmetro. É claro que a distribuição a posteriori do parâmetro (Seção 7.2) serviria a esse propósito, mas nenhuma distribuição a posteriori está envolvida no cálculo do M.L.E. Portanto, não é legítimo interpretar o M.L.E. como o valor mais provável do parâmetro depois de ver os dados.
+
+Por exemplo, considere uma situação coberta pelo Exemplo 7.5.4. Suponha que vamos lançar uma moeda algumas vezes, e estamos preocupados se ela tem um leve viés para cara ou para coroa. Seja $X_i=1$ se o $i$-ésimo lançamento for cara e $X_i=0$ se não. Se obtivermos quatro caras e uma coroa nos primeiros cinco lançamentos, o valor observado do M.L.E. será 0.8. Mas seria difícil imaginar uma situação em que sentiríamos que o valor mais provável de $\theta$, a probabilidade de caras, é tão grande quanto 0.8 com base em apenas cinco lançamentos do que parecia a priori ser uma moeda típica. Tratar o M.L.E. como se fosse o valor mais provável do parâmetro é muito parecido com ignorar a informação prévia sobre a doença rara no teste médico dos Exemplos 2.3.1 e 2.3.3. Se o teste é positivo nesses exemplos, descobrimos (no Exemplo 7.5.3) que o M.L.E. assume o valor $\hat{\theta}=0.9$, que corresponde a ter a doença. No entanto, se a probabilidade a priori de você ter a doença é tão pequena quanto no Exemplo 2.3.1, a probabilidade a posteriori de que você tenha a doença ($\theta=0.9$) ainda é pequena mesmo após o resultado positivo do teste. O teste não é preciso o suficiente para superar completamente a informação prévia. O mesmo acontece com o lançamento da moeda; cinco lançamentos não são informação suficiente para superar as crenças anteriores sobre a moeda ser típica. Somente quando os dados contêm muito mais informação do que está disponível a priori será aproximadamente correto pensar no M.L.E. como o valor próximo do qual acreditamos que o parâmetro tem maior probabilidade de estar. Isso pode acontecer quando o M.L.E. é baseado em muitos dados ou quando há muito pouca informação a priori.
+
+\subsection*{Resumo}
+A estimativa de máxima verossimilhança de um parâmetro $\theta$ é aquele valor de $\theta$ que fornece o maior valor da função de verossimilhança $f_n(\textbf{x}|\theta)$ para um dado $\textbf{x}$ fixo. Se $\delta(\textbf{x})$ denota a estimativa de máxima verossimilhança, então $\hat{\theta} = \delta(\textbf{X})$ é o estimador de máxima verossimilhança (M.L.E.). Calculamos o M.L.E. quando os dados compreendem uma amostra aleatória de uma distribuição de Bernoulli, uma distribuição normal com variância conhecida, uma distribuição normal com ambos os parâmetros desconhecidos, ou a distribuição uniforme no intervalo $[0, \theta]$ ou no intervalo $[\theta, \theta+1]$.
+
+\section*{Exercícios}
+\begin{enumerate}
+    \item Sejam $x_1, \dots, x_n$ números distintos. Seja $Y$ uma variável aleatória discreta com a seguinte f.p.:
+    $$ f(y) = \begin{cases} \frac{1}{n} & \text{se } y \in \{x_1, \dots, x_n\}, \\ 0 & \text{caso contrário}. \end{cases} $$
+    Prove que $\text{Var}(Y)$ é dada pela Eq. (7.5.5).
+
+    \item Não se sabe qual proporção $p$ das compras de uma certa marca de cereal matinal é feita por mulheres e qual proporção é feita por homens. Em uma amostra aleatória de 70 compras deste cereal, verificou-se que 58 foram feitas por mulheres e 12 foram feitas por homens. Encontre o M.L.E. de $p$.
+
+    \item Considere as condições no Exercício 2, mas suponha que se saiba que $\frac{1}{2} \le p \le \frac{2}{3}$. Se as observações na amostra aleatória de 70 compras são como as dadas no Exercício 2, qual é o M.L.E. de $p$?
+
+    \item Suponha que $X_1, \dots, X_n$ formam uma amostra aleatória da distribuição de Bernoulli com parâmetro $\theta$, que é desconhecido, mas sabe-se que $\theta$ está no intervalo aberto $0 < \theta < 1$. Mostre que o M.L.E. de $\theta$ não existe se cada valor observado for 0 ou se cada valor observado for 1.
+
+    \item Suponha que $X_1, \dots, X_n$ formam uma amostra aleatória de uma distribuição de Poisson para a qual a média $\theta$ é desconhecida ($\theta > 0$).
+    \begin{enumerate}
+        \item Determine o M.L.E. de $\theta$, assumindo que pelo menos um dos valores observados é diferente de 0.
+        \item Mostre que o M.L.E. de $\theta$ não existe se cada valor observado for 0.
+    \end{enumerate}
+
+    \item Suponha que $X_1, \dots, X_n$ formam uma amostra aleatória de uma distribuição normal para a qual a média $\mu$ é conhecida, mas a variância $\sigma^2$ é desconhecida. Encontre o M.L.E. de $\sigma^2$.
+
+    \item Suponha que $X_1, \dots, X_n$ formam uma amostra aleatória de uma distribuição exponencial para a qual o valor do parâmetro $\beta$ é desconhecido ($\beta > 0$). Encontre o M.L.E. de $\beta$.
+
+    \item Suponha que $X_1, \dots, X_n$ formam uma amostra aleatória de uma distribuição para a qual a f.d.p. $f(x|\theta)$ é a seguinte:
+    $$ f(x|\theta) = \begin{cases} e^{\theta - x} & \text{para } x > \theta, \\ 0 & \text{para } x \le \theta. \end{cases} $$
+    Suponha também que o valor de $\theta$ é desconhecido $(-\infty < \theta < \infty)$.
+    \begin{enumerate}
+        \item Mostre que o M.L.E. de $\theta$ não existe.
+        \item Determine outra versão da f.d.p. desta mesma distribuição para a qual o M.L.E. de $\theta$ existirá, e encontre este estimador.
+    \end{enumerate}
+
+    \item Suponha que $X_1, \dots, X_n$ formam uma amostra aleatória de uma distribuição para a qual a f.d.p. $f(x|\theta)$ é a seguinte:
+    $$ f(x|\theta) = \begin{cases} \theta x^{\theta-1} & \text{para } 0 < x < 1, \\ 0 & \text{caso contrário}. \end{cases} $$
+    Suponha também que o valor de $\theta$ é desconhecido ($\theta > 0$). Encontre o M.L.E. de $\theta$.
+    
+    \item[11.] Suponha que $X_1, \dots, X_n$ formam uma amostra aleatória da distribuição uniforme no intervalo $[\theta_1, \theta_2]$, onde tanto $\theta_1$ quanto $\theta_2$ são desconhecidos $(-\infty < \theta_1 < \theta_2 < \infty)$. Encontre os M.L.E.'s de $\theta_1$ e $\theta_2$.
+
+    \item[12.] Suponha que uma certa população grande contém $k$ tipos diferentes de indivíduos ($k \ge 2$), e seja $\theta_i$ a proporção de indivíduos do tipo $i$, para $i=1, \dots, k$. Aqui, $0 \le \theta_i \le 1$ e $\theta_1 + \dots + \theta_k = 1$. Suponha também que em uma amostra aleatória de $n$ indivíduos desta população, exatamente $n_i$ indivíduos são do tipo $i$, onde $n_1 + \dots + n_k = n$. Encontre os M.L.E.'s de $\theta_1, \dots, \theta_k$.
+
+    \item[13.] Suponha que os vetores bidimensionais $(X_1, Y_1), (X_2, Y_2), \dots, (X_n, Y_n)$ formam uma amostra aleatória de uma distribuição normal bivariada para a qual as médias de $X$ e $Y$ são desconhecidas, mas as variâncias de $X$ e $Y$ e a correlação entre $X$ e $Y$ são conhecidas. Encontre os M.L.E.'s das médias.
+\end{enumerate}
