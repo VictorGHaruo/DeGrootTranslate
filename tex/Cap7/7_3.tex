@@ -218,18 +218,17 @@ Prioris impróprias foram introduzidas para casos em que os dados observados con
 
 \subsection*{Resumo}
 Para cada uma das várias famílias diferentes de modelos estatísticos, para dados de uma determinada família, encontramos uma família conjugada de distribuições para o parâmetro. Essas famílias têm a propriedade de que, se a distribuição a priori for escolhida da família, então a distribuição a posteriori é um membro da família. Para dados com distribuições relacionadas à Bernoulli, como binomial, geométrica e binomial negativa, a família conjugada para o parâmetro de sucesso é a família de distribuições beta. Para dados com distribuições relacionadas ao processo de Poisson, como Poisson e gama (com primeiro parâmetro conhecido), e exponencial, a família conjugada para o parâmetro de taxa é a família de distribuições gama. Para dados com uma distribuição normal com variância conhecida, a família conjugada para a média é a família normal. Também descrevemos o uso de prioris impróprias. Prioris impróprias não são distribuições de probabilidade, mas se fingirmos que são, podemos calcular distribuições a posteriori que se aproximam daquelas que teríamos obtido usando prioris conjugadas apropriadas com valores extremos dos hiperparâmetros a priori.
-
 \section*{Exercícios}
 \begin{enumerate}
-    \item Considere novamente a situação descrita no Exemplo 7.3.10. Uma vez mais, suponha que a distribuição a priori de $\theta$ seja uma distribuição normal com média 0, mas desta vez seja a variância a priori $\nu_0^2 > 0$. Se a média a posteriori de $\theta$ for 0.12, que valor de $\nu_0^2$ foi usado?
+    \item Considere novamente a situação descrita no Exemplo 7.3.10. Mais uma vez, suponha que a distribuição a priori de $\theta$ seja uma distribuição normal com média 0, mas desta vez, seja a variância a priori $\nu^2 > 0$. Se a média a posteriori de $\theta$ for 0.12, que valor de $\nu^2$ foi usado?
     
-    \item Mostre que no Exemplo 7.3.2 deve-se ter $V \le 0.01$ depois que 22 itens tiverem sido selecionados. Mostre também que $V > 0.01$ até que pelo menos sete itens tenham sido selecionados.
+    \item Mostre que no Exemplo 7.3.2 deve ser verdade que $V \le 0.01$ depois que 22 itens tiverem sido selecionados. Mostre também que $V > 0.01$ até que pelo menos sete itens tenham sido selecionados.
     
-    \item Suponha que a proporção $\theta$ de itens defeituosos em um grande lote seja desconhecida e que a distribuição a priori de $\theta$ seja a distribuição beta com parâmetros 2 e 200. Se 100 itens forem selecionados aleatoriamente do lote e três deles forem defeituosos, qual é a distribuição a posteriori de $\theta$?
+    \item Suponha que a proporção $\theta$ de itens defeituosos em um grande lote seja desconhecida e que a distribuição a priori de $\theta$ seja a distribuição beta com parâmetros 2 e 200. Se 100 itens forem selecionados aleatoriamente do lote e três desses itens forem encontrados como defeituosos, qual é a distribuição a posteriori de $\theta$?
     
-    \item Considere novamente as condições do Exercício 3. Suponha que, depois de observar três itens defeituosos entre os 100 itens selecionados, a distribuição a posteriori de $\theta$ que um estatístico atribui seja uma distribuição beta para a qual a média é 2/51 e a variância é $98/(51^2(103))$. Que distribuição a priori o estatístico atribuiu a $\theta$?
+    \item Considere novamente as condições do Exercício 3. Suponha que, depois que um certo estatístico observou que havia três itens defeituosos entre os 100 itens selecionados aleatoriamente, a distribuição a posteriori que ele atribui a $\theta$ seja uma distribuição beta para a qual a média é 2/51 e a variância é $98/[(51)^2(103)]$. Qual distribuição a priori o estatístico atribuiu a $\theta$?
     
-    \item Suponha que o número de defeitos em um rolo de 1200 pés de fita magnética tenha uma distribuição de Poisson para a qual o valor da média $\theta$ é desconhecido, e a distribuição a priori de $\theta$ seja a distribuição gama com parâmetros $\alpha=3$ e $\beta=1$. Quando cinco rolos desta fita são selecionados e inspecionados, o número de defeitos encontrados neles são 2, 2, 6, 0 e 3. Determine a distribuição a posteriori de $\theta$.
+    \item Suponha que o número de defeitos em um rolo de 1200 pés de fita de gravação magnética tenha uma distribuição de Poisson para a qual o valor da média $\theta$ é desconhecido e que a distribuição a priori de $\theta$ seja a distribuição gama com parâmetros $\alpha=3$ e $\beta=1$. Quando cinco rolos desta fita são selecionados aleatoriamente e inspecionados, o número de defeitos encontrados nos rolos são 2, 2, 6, 0 e 3. Determine a distribuição a posteriori de $\theta$.
     
     \item Seja $\theta$ o número médio de defeitos por 100 pés de um certo tipo de fita magnética. Suponha que o valor de $\theta$ seja desconhecido e que a distribuição a priori de $\theta$ seja a distribuição gama com parâmetros $\alpha=2$ e $\beta=10$. Quando um rolo de 1200 pés desta fita é inspecionado, exatamente quatro defeitos são encontrados. Determine a distribuição a posteriori de $\theta$.
     
@@ -237,24 +236,24 @@ Para cada uma das várias famílias diferentes de modelos estatísticos, para da
     
     \item Considere novamente o problema descrito no Exercício 7.
     \begin{enumerate}[label=(\alph*)]
-        \item Qual intervalo de 1 polegada de comprimento tem a maior probabilidade a priori de conter o valor de $\theta$?
+        \item Qual intervalo de 1 polegada de comprimento tinha a maior probabilidade a priori de conter o valor de $\theta$?
         \item Qual intervalo de 1 polegada de comprimento tem a maior probabilidade a posteriori de conter o valor de $\theta$?
-        \item Encontre as probabilidades dos intervalos nas partes (a) e (b).
+        \item Encontre os valores das probabilidades nas partes (a) e (b).
     \end{enumerate}
+
+    \item Suponha que uma amostra aleatória de 20 observações seja retirada de uma distribuição normal para a qual o valor da média $\theta$ é desconhecido e a variância é 1. Após os valores da amostra terem sido observados, descobre-se que $\bar{X}_n=10$, e que a distribuição a posteriori de $\theta$ é uma distribuição normal para a qual a média é 8 e a variância é 1/25. Qual foi a distribuição a priori de $\theta$?
     
-    \item Suponha que uma amostra aleatória de 20 observações seja retirada de uma distribuição normal para a qual o valor da média $\theta$ é desconhecido e a variância é 1. Depois que os valores tiverem sido observados, descobre-se que $\bar{x}_n=10$, e que a distribuição a posteriori de $\theta$ é uma distribuição normal para a qual a média é 8 e a variância é 1/25. Qual foi a distribuição a priori de $\theta$?
-    
-    \item Suponha que uma amostra aleatória deva ser retirada de uma distribuição normal para a qual o valor da média $\theta$ é desconhecido e o desvio padrão é 2, e a distribuição a priori de $\theta$ seja uma distribuição normal com o desvio padrão 1. Qual é o menor número de observações que devem ser incluídas na amostra para reduzir o desvio padrão da distribuição a posteriori de $\theta$ para o valor 0.1?
+    \item Suponha que uma amostra aleatória deva ser retirada de uma distribuição normal para a qual o valor da média $\theta$ é desconhecido e o desvio padrão é 2, e a distribuição a priori de $\theta$ é uma distribuição normal para a qual o desvio padrão é 1. Qual é o menor número de observações que devem ser incluídas na amostra para reduzir o desvio padrão da distribuição a posteriori de $\theta$ para o valor 0.1?
     
     \item Suponha que uma amostra aleatória de 100 observações deva ser retirada de uma distribuição normal para a qual o valor da média $\theta$ é desconhecido e o desvio padrão é 2, e a distribuição a priori de $\theta$ seja uma distribuição normal. Mostre que, não importa quão grande seja o desvio padrão da distribuição a priori, o desvio padrão da distribuição a posteriori será menor que 1/5.
     
-    \item Suponha que o tempo em minutos necessário para servir um cliente em um caixa de banco tenha uma distribuição exponencial para a qual o valor do parâmetro $\beta$ é desconhecido, e a distribuição a priori de $\beta$ seja uma distribuição gama para a qual a média é 0.2 e o desvio padrão é 1. Se o tempo médio necessário para servir uma amostra aleatória de 20 clientes for de 3.8 minutos, qual é a distribuição a posteriori de $\beta$?
+    \item Suponha que o tempo em minutos necessário para servir um cliente em uma determinada instalação tenha uma distribuição exponencial para a qual o valor do parâmetro $\theta$ é desconhecido e que a distribuição a priori de $\theta$ seja uma distribuição gama para a qual a média é 0.2 e o desvio padrão é 1. Se o tempo médio necessário para servir uma amostra aleatória de 20 clientes for observado como 3.8 minutos, qual é a distribuição a posteriori de $\theta$?
     
-    \item Para uma distribuição com média $\mu \ne 0$ e desvio padrão $\sigma>0$, o \textit{coeficiente de variação} da distribuição é definido como $\sigma/|\mu|$. Considere novamente o problema descrito no Exercício 12, e suponha que o coeficiente de variação da distribuição gama a priori de $\beta$ seja 2. Qual é o menor número de clientes que devem ser observados para reduzir o coeficiente de variação da distribuição a posteriori para 0.1?
+    \item Para uma distribuição com média $\mu \ne 0$ e desvio padrão $\sigma>0$, o \textit{coeficiente de variação} da distribuição é definido como $\sigma/|\mu|$. Considere novamente o problema descrito no Exercício 12, e suponha que o coeficiente de variação da distribuição gama a priori de $\theta$ seja 2. Qual é o menor número de clientes que devem ser observados para reduzir o coeficiente de variação da distribuição a posteriori para 0.1?
     
-    \item Mostre que a família de distribuições beta é uma família conjugada de distribuições a priori para amostras de uma distribuição binomial negativa com um valor conhecido do parâmetro $r$ e um valor desconhecido do parâmetro $p \, (0<p<1)$.
+    \item Mostre que a família de distribuições beta é uma família conjugada de distribuições a priori para amostras de uma distribuição binomial negativa com um valor conhecido do parâmetro $r$ e um valor desconhecido do parâmetro $p$ ($0<p<1$).
     
-    \item Seja $\xi(\theta)$ uma f.d.p. definida da seguinte forma para constantes $\alpha > 0$ e $\beta > 0$:
+    \item Seja $\xi(\theta)$ uma f.d.p. que é definida da seguinte forma para constantes $\alpha > 0$ e $\beta > 0$:
     $$ \xi(\theta) = 
     \begin{cases}
         \frac{\beta^\alpha}{\Gamma(\alpha)}\theta^{-(\alpha+1)}e^{-\beta/\theta} & \text{para } \theta>0, \\
@@ -264,10 +263,10 @@ Para cada uma das várias famílias diferentes de modelos estatísticos, para da
     Uma distribuição com esta f.d.p. é chamada de \textit{distribuição gama inversa}.
     \begin{enumerate}[label=(\alph*)]
         \item Verifique se $\xi(\theta)$ é realmente uma f.d.p. verificando que $\int_0^\infty \xi(\theta)d\theta = 1$.
-        \item Considere a família de distribuições de probabilidade que pode ser representada por uma f.d.p. $\xi(\theta)$ tendo a forma geral dada para todos os pares de constantes $\alpha>0$ e $\beta>0$ possíveis. Mostre que esta família é uma família conjugada de distribuições a priori para amostras de uma distribuição normal com um valor conhecido da média $\mu$ e um valor desconhecido da variância $\theta$.
+        \item Considere a família de distribuições de probabilidade que pode ser representada por uma f.d.p. $\xi(\theta)$ tendo a forma dada para todos os pares de constantes $\alpha>0$ e $\beta>0$ possíveis. Mostre que esta família é uma família conjugada de distribuições a priori para amostras de uma distribuição normal com um valor conhecido da média $\mu$ e um valor desconhecido da variância $\theta$.
     \end{enumerate}
     
-    \item No Exercício 15, o parâmetro é considerado o desvio padrão em vez da variância. Determine uma família conjugada de distribuições a priori para amostras de uma distribuição normal com um valor conhecido da média $\mu$ e um valor desconhecido do desvio padrão $\sigma$.
+    \item Suponha que no Exercício 15 o parâmetro seja considerado o desvio padrão da distribuição normal, em vez da variância. Determine uma família conjugada de distribuições a priori para amostras de uma distribuição normal com um valor conhecido da média $\mu$ e um valor desconhecido do desvio padrão $\sigma$.
     
     \item Suponha que o número de minutos que uma pessoa deve esperar por um ônibus a cada manhã tenha a distribuição uniforme no intervalo $[0, \theta]$, onde o valor do ponto final $\theta$ é desconhecido. Suponha também que a f.d.p. a priori de $\theta$ seja a seguinte:
     $$ \xi(\theta) = 
@@ -278,7 +277,7 @@ Para cada uma das várias famílias diferentes de modelos estatísticos, para da
     $$
     Se os tempos de espera observados em três manhãs sucessivas forem 5, 3 e 8 minutos, qual é a f.d.p. a posteriori de $\theta$?
     
-    \item A distribuição de Pareto com parâmetros $x_0$ e $\alpha \, (x_0>0$ e $\alpha>0)$ é definida no Exercício 16 da Seção 5.7. Mostre que a família de distribuições de Pareto é uma família conjugada de distribuições a priori para amostras de uma distribuição uniforme no intervalo $[0, \theta]$, onde o valor do ponto final $\theta$ é desconhecido.
+    \item A distribuição de Pareto com parâmetros $x_0 > 0$ e $\alpha > 0$ é definida no Exercício 16 da Seção 5.7. Mostre que a família de distribuições de Pareto é uma família conjugada de distribuições a priori para amostras de uma distribuição uniforme no intervalo $[0, \theta]$, onde o valor do ponto final $\theta$ é desconhecido.
     
     \item Suponha que $X_1, \dots, X_n$ formem uma amostra aleatória de uma distribuição para a qual a f.d.p. $f(x|\theta)$ é a seguinte:
     $$ f(x|\theta) = 
@@ -287,40 +286,41 @@ Para cada uma das várias famílias diferentes de modelos estatísticos, para da
         0 & \text{caso contrário.}
     \end{cases}
     $$
-    Suponha também que o valor do parâmetro $\theta$ seja desconhecido $(\theta>0)$, e a distribuição a priori de $\theta$ seja uma distribuição gama com parâmetros $\alpha$ e $\beta \, (\alpha>0$ e $\beta>0)$. Determine a média e a variância da distribuição a posteriori de $\theta$.
+    Suponha também que o valor do parâmetro $\theta$ seja desconhecido ($\theta>0$), e a distribuição a priori de $\theta$ seja a distribuição gama com parâmetros $\alpha > 0$ e $\beta > 0$. Determine a média e a variância da distribuição a posteriori de $\theta$.
     
-    \item Suponha que modelamos os tempos de vida (em meses) de componentes eletrônicos como variáveis aleatórias exponenciais independentes com parâmetro desconhecido $\beta$. Modelamos $\beta$ como tendo uma distribuição gama com parâmetros $a$ e $b$. Acreditamos que o tempo de vida médio é de quatro meses, com um desvio padrão de seis meses. Também observamos 10 componentes com uma vida útil média observada de cinco meses. Determine a média e o desvio padrão da vida útil média, dado que observamos os 10 componentes. Dica: use o Exercício 21 da Seção 5.7.
+    \item Suponha que modelamos os tempos de vida (em meses) de componentes eletrônicos como variáveis aleatórias exponenciais independentes com parâmetro desconhecido $\beta$. Modelamos $\beta$ como tendo a distribuição gama com parâmetros $a$ e $b$. Acreditamos que o tempo de vida médio é de quatro meses. Se fôssemos observar 10 componentes com uma vida útil média observada de seis meses, então reivindicaríamos que o tempo de vida médio é de cinco meses. Determine $a$ e $b$. \textit{Dica:} Use o Exercício 21 da Seção 5.7.
     
-    \item Suponha que $X_1, \dots, X_n$ formem uma amostra aleatória de uma distribuição exponencial com parâmetro $\theta$. Seja a priori para $\theta$ imprópria com "f.d.p." $\xi(\theta) = 1/\theta$ para $\theta>0$. Encontre a distribuição a posteriori de $\theta$ e mostre que a média a posteriori de $\theta$ é $1/\bar{x}_n$.
+    \item Suponha que $X_1, \dots, X_n$ formem uma amostra aleatória da distribuição exponencial com parâmetro $\theta$. Seja a distribuição a priori de $\theta$ imprópria com "f.d.p." $1/\theta$ para $\theta > 0$. Encontre a distribuição a posteriori de $\theta$ e mostre que a média a posteriori de $\theta$ é $1/\bar{x}_n$.
     
-    \item Considere os dados no Exemplo 7.3.10. Desta vez, suponha que usemos a priori imprópria "f.d.p." $\xi(\theta) = 1$ para todo $\theta$. Encontre a distribuição a posteriori de $\theta$ e a probabilidade a posteriori de que $\theta>1$.
+    \item Considere os dados no Exemplo 7.3.10. Desta vez, suponha que usemos a priori imprópria com "f.d.p." $\xi(\theta) = 1$ (para todo $\theta$). Encontre a distribuição a posteriori de $\theta$ e a probabilidade a posteriori de que $\theta>1$.
     
-    \item Considere uma distribuição para a qual a f.d.p. ou f.p. $f(x|\theta)$ é tal que $\theta$ pertence a algum espaço de parâmetros $\Omega$. É dito que uma família de distribuições obtidas deixando $\theta$ variar em $\Omega$ é uma \textit{família exponencial}, ou uma \textit{família de Koopman-Darmois}, se $f(x|\theta)$ pode ser escrito da seguinte forma para $\theta \in \Omega$ e todos os valores de $x$:
+    \item Considere uma distribuição para a qual a f.d.p. ou f.p. é $f(x|\theta)$, onde $\theta$ pertence a algum espaço de parâmetros $\Omega$. É dito que a família de distribuições obtidas deixando $\theta$ variar sobre todos os valores em $\Omega$ é uma \textit{família exponencial}, ou uma \textit{família de Koopman-Darmois}, se $f(x|\theta)$ pode ser escrito da seguinte forma para $\theta \in \Omega$ e todos os valores de $x$:
     $$ f(x|\theta) = a(\theta)b(x)\exp[c(\theta)d(x)]. $$
-    Aqui $a(\theta)$ e $c(\theta)$ são funções arbitrárias de $\theta$, e $b(x)$ e $d(x)$ são funções arbitrárias de $x$.
-    Para cada um $(a, \beta) \in H$, seja
-    $$ \xi_{a, \beta}(\theta) = \frac{[a(\theta)]^\beta \exp[\alpha c(\theta)]}{\int_H [a(\eta)]^\beta \exp[\alpha c(\eta)] d\eta}. $$
-    Seja $\Psi$ o conjunto de todas as distribuições de probabilidade que têm f.d.p.s da forma $\xi_{a, \beta}(\theta)$ para alguns $(a, \beta) \in H$.
+    Aqui $a(\theta)$ e $c(\theta)$ são funções arbitrárias de $\theta$, e $b(x)$ e $d(x)$ são funções arbitrárias de $x$. Seja
+    $$ H = \left\{(\alpha, \beta) : \int_{\Omega} a(\theta)^\alpha \exp[c(\theta)\beta]d\theta < \infty \right\}. $$
+    Para cada $(\alpha, \beta) \in H$, seja
+    $$ \xi_{\alpha, \beta}(\theta) = \frac{a(\theta)^\alpha \exp[c(\theta)\beta]}{\int_{\Omega} a(\eta)^\alpha \exp[c(\eta)\beta]d\eta}, $$
+    e seja $\Psi$ o conjunto de todas as distribuições de probabilidade que têm f.d.p.s da forma $\xi_{\alpha, \beta}(\theta)$ para alguns $(\alpha, \beta) \in H$.
     \begin{enumerate}[label=(\alph*)]
-        \item Mostre que $\Psi$ é uma família conjugada de distribuições a priori para amostras de $\Psi$.
-        \item Suponha que observamos uma amostra aleatória de tamanho $n$ da distribuição com f.d.p. $f(x|\theta)$. Se a f.d.p. a priori de $\theta$ for $\xi_{\alpha_0, \beta_0}$, mostre que os hiperparâmetros a posteriori são
-        $$ \alpha_1 = \alpha_0+n, \beta_1 = \beta_0 + \sum_{i=1}^{n}d(x_i). $$
+        \item Mostre que $\Psi$ é uma família conjugada de distribuições a priori para amostras de $f(x|\theta)$.
+        \item Suponha que observemos uma amostra aleatória de tamanho $n$ da distribuição com f.d.p. $f(x|\theta)$. Se a f.d.p. a priori de $\theta$ for $\xi_{\alpha_0, \beta_0}$, mostre que os hiperparâmetros a posteriori são
+        $$ \alpha_1 = \alpha_0+n, \quad \beta_1 = \beta_0 + \sum_{i=1}^{n}d(x_i). $$
     \end{enumerate}
     
-    \item Mostre que cada uma das seguintes famílias de distribuições é uma família exponencial, como definido no Exercício 23.
+    \item Mostre que cada uma das seguintes famílias de distribuições é uma família exponencial, como definido no Exercício 23:
     \begin{enumerate}[label=(\alph*)]
-        \item A família de distribuições de Bernoulli com um valor desconhecido do parâmetro $p$.
+        \item A família de distribuições de Bernoulli com um parâmetro desconhecido $p$.
         \item A família de distribuições de Poisson com uma média desconhecida.
         \item A família de distribuições binomiais negativas para as quais o valor de $r$ é conhecido e o valor de $p$ é desconhecido.
         \item A família de distribuições normais com uma média desconhecida e uma variância conhecida.
         \item A família de distribuições normais com uma variância desconhecida e uma média conhecida.
+        \item A família de distribuições gama para as quais o valor de $\alpha$ é desconhecido e o valor de $\beta$ é conhecido.
         \item A família de distribuições gama para as quais o valor de $\alpha$ é conhecido e o valor de $\beta$ é desconhecido.
-        \item A família de distribuições gama para as quais o valor de $\beta$ é conhecido e o valor de $\alpha$ é desconhecido.
+        \item A família de distribuições beta para as quais o valor de $\alpha$ é desconhecido e o valor de $\beta$ é conhecido.
         \item A família de distribuições beta para as quais o valor de $\alpha$ é conhecido e o valor de $\beta$ é desconhecido.
     \end{enumerate}
-
-    \item Mostre que a família de distribuições uniformes nos intervalos $[0, \theta]$ para $\theta>0$ não é uma família exponencial, como definido no Exercício 23. Olhe para o suporte de cada distribuição.
     
-    \item Mostre que a família de distribuições uniformes discretas nos conjuntos $\{0, 1, \dots, \theta\}$ para um inteiro não negativo $\theta$ não é uma família exponencial, como definido no Exercício 23.
-
+    \item Mostre que a família de distribuições uniformes nos intervalos $[0, \theta]$ para $\theta>0$ não é uma família exponencial como definido no Exercício 23. \textit{Dica:} Olhe para o suporte de cada distribuição uniforme.
+    
+    \item Mostre que a família de distribuições uniformes discretas nos conjuntos de inteiros $\{0, 1, \dots, \theta\}$ para $\theta$ um inteiro não negativo não é uma família exponencial como definido no Exercício 23.
 \end{enumerate}
