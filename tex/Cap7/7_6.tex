@@ -1,0 +1,354 @@
+\section*{7.6 Propriedades dos Estimadores de Máxima Verossimilhança}
+
+Nesta seção, exploramos várias propriedades dos E.M.V.'s (Estimadores de Máxima Verossimilhança), incluindo:
+\begin{itemize}
+    \item \textit{A relação entre o E.M.V. de um parâmetro e o E.M.V. de uma função daquele parâmetro}
+    \item \textit{A necessidade de algoritmos computacionais}
+    \item \textit{O comportamento do E.M.V. à medida que o tamanho da amostra aumenta}
+    \item \textit{A falta de dependência do E.M.V. no plano de amostragem}
+\end{itemize}
+
+Também introduzimos um método alternativo popular de estimação (método dos momentos) que às vezes concorda com a máxima verossimilhança, mas pode ser computacionalmente mais simples.
+
+\subsection*{Invariância}
+
+\textbf{Exemplo 7.6.1 Tempos de Vida de Componentes Eletrônicos.} No Exemplo 7.1.1, o parâmetro $\theta$ foi interpretado como a taxa de falha de componentes eletrônicos. No Exemplo 7.4.8, encontramos uma estimativa de Bayes de $\psi = 1/\theta$, o tempo de vida médio. Existe um método correspondente para calcular o E.M.V. de $\psi$?
+
+Suponha que $X_1, \dots, X_n$ formam uma amostra aleatória de uma distribuição para a qual a f.p. (função de probabilidade) ou a f.d.p. (função densidade de probabilidade) é $f(x|\theta)$, onde o valor do parâmetro $\theta$ é desconhecido. O parâmetro pode ser unidimensional ou um vetor de parâmetros. Seja $\hat{\theta}$ o E.M.V. de $\theta$. Assim, para todos os valores observados $x_1, \dots, x_n$, a função de verossimilhança $f_n(\mathbf{x}|\theta)$ é maximizada quando $\theta = \hat{\theta}$.
+
+Suponha agora que mudamos o parâmetro na distribuição da seguinte forma: Em vez de expressar a f.p. ou a f.d.p. $f(x|\theta)$ em termos do parâmetro $\theta$, vamos expressá-la em termos de um novo parâmetro $\psi = g(\theta)$, onde $g$ é uma função um-para-um de $\theta$. Existe uma relação entre o E.M.V. de $\theta$ e o E.M.V. de $\psi$?
+
+\textbf{Teorema 7.6.1 Propriedade de Invariância dos E.M.V.'s.} Se $\hat{\theta}$ é o estimador de máxima verossimilhança de $\theta$ e se $g$ é uma função um-para-um, então $g(\hat{\theta})$ é o estimador de máxima verossimilhança de $g(\theta)$.
+
+\textbf{Prova} O novo espaço de parâmetros é $\Gamma$, a imagem de $\Omega$ sob a função $g$. Deixaremos $\theta = h(\psi)$ denotar a função inversa. Então, expressa em termos do novo parâmetro $\psi$, a f.p. ou f.d.p. de cada valor observado será $f[x|h(\psi)]$, e a função de verossimilhança será $f_n[\mathbf{x}|h(\psi)]$. O E.M.V. $\hat{\psi}$ de $\psi$ será igual ao valor de $\psi$ para o qual $f_n[\mathbf{x}|h(\psi)]$ é maximizado. Como $f_n(\mathbf{x}|\theta)$ é maximizado quando $\theta = \hat{\theta}$, segue-se que $f_n[\mathbf{x}|h(\psi)]$ é maximizado quando $h(\psi) = \hat{\theta}$. Portanto, o E.M.V. $\hat{\psi}$ deve satisfazer a relação $h(\hat{\psi}) = \hat{\theta}$ ou, equivalentemente, $\hat{\psi} = g(\hat{\theta})$. $\blacksquare$
+
+\textbf{Exemplo 7.6.2 Tempos de Vida de Componentes Eletrônicos.} De acordo com o Teorema 7.6.1, o E.M.V. de $\psi$ é um sobre o E.M.V. de $\theta$. No Exemplo 7.5.2, calculamos o valor observado de $\hat{\theta} = 0.455$. O valor observado de $\hat{\psi}$ seria então $1/0.455 = 2.2$. Isso é um pouco menor do que a estimativa de Bayes usando a perda de erro quadrático de 2.867 encontrada no Exemplo 7.4.8. $\blacktriangle$
+
+A propriedade de invariância pode ser estendida para funções que não são um-para-um. Por exemplo, suponha que desejamos estimar a média $\mu$ de uma distribuição normal quando tanto a média quanto a variância são desconhecidas. Então $\mu$ não é uma função um-para-um do parâmetro $\theta = (\mu, \sigma^2)$. Nesse caso, a função que desejamos estimar é $g(\theta) = \mu$. Existe uma maneira de definir o E.M.V. de uma função de $\theta$ que não é necessariamente um-para-um. Uma maneira popular é a seguinte.
+
+\textbf{Definição 7.6.1 E.M.V. de uma função.} Seja $g(\theta)$ uma função arbitrária do parâmetro, e seja $G$ a imagem de $\Omega$ sob a função $g$. Para cada $t \in G$, defina $G_t = \{\theta : g(\theta) = t\}$ e defina
+$$ L^*(t) = \max_{\theta \in G_t} \log f_n(\mathbf{x}|\theta). $$
+Finalmente, defina o E.M.V. de $g(\theta)$ como sendo $\hat{t}$ onde
+$$ L^*(\hat{t}) = \max_{t \in G} L^*(t). \quad (7.6.1) $$
+
+O resultado a seguir mostra como encontrar o E.M.V. de $g(\theta)$ com base na Definição 7.6.1.
+
+\textbf{Teorema 7.6.2} Seja $\hat{\theta}$ um E.M.V. de $\theta$, e seja $g(\theta)$ uma função de $\theta$. Então um E.M.V. de $g(\theta)$ é $g(\hat{\theta})$.
+
+\textbf{Prova} Provaremos que $\hat{t} = g(\hat{\theta})$ satisfaz (7.6.1). Como $L^*(t)$ é o máximo de $\log f_n(\mathbf{x}|\theta)$ sobre $\theta$ em um subconjunto de $\Omega$, e como $\log f_n(\mathbf{x}|\hat{\theta})$ é o máximo sobre todo $\theta$, sabemos que $L^*(t) \le \log f_n(\mathbf{x}|\hat{\theta})$ para todo $t \in G$. Seja $\hat{t} = g(\hat{\theta})$. Terminamos se pudermos mostrar que $L^*(\hat{t}) = \log f_n(\mathbf{x}|\hat{\theta})$. Note que $\hat{\theta} \in G_{\hat{t}}$. Como $\hat{\theta}$ maximiza $f_n(\mathbf{x}|\theta)$ sobre todo $\theta$, ele também maximiza $f_n(\mathbf{x}|\theta)$ sobre $\theta \in G_{\hat{t}}$. Portanto, $L^*(\hat{t}) = \log f_n(\mathbf{x}|\hat{\theta})$ e $\hat{t} = g(\hat{\theta})$ é um E.M.V. de $g(\theta)$. $\blacksquare$
+
+\textbf{Exemplo 7.6.3 Estimando o Desvio Padrão e o Segundo Momento.} Suponha que $X_1, \dots, X_n$ formem uma amostra aleatória de uma distribuição normal para a qual tanto a média $\mu$ quanto a variância $\sigma^2$ são desconhecidas. Determinaremos o E.M.V. do desvio padrão $\sigma$ e o E.M.V. do segundo momento da distribuição normal $E(X^2)$. Foi encontrado no Exemplo 7.5.6 que o E.M.V. de $\theta = (\mu, \sigma^2)$ é $\hat{\theta} = (\hat{\mu}, \hat{\sigma}^2)$. A partir da propriedade de invariância, podemos concluir que o E.M.V. $\hat{\sigma}$ do desvio padrão é simplesmente a raiz quadrada da variância amostral. Em símbolos, $\hat{\sigma} = (\hat{\sigma}^2)^{1/2}$. Além disso, como $E(X^2) = \sigma^2 + \mu^2$, o E.M.V. de $E(X^2)$ será $\hat{\sigma}^2 + \hat{\mu}^2$. $\blacktriangle$
+
+\subsection*{Consistência}
+
+Considere um problema de estimação no qual uma amostra aleatória deve ser retirada de uma distribuição envolvendo um parâmetro $\theta$. Suponha que para todo tamanho de amostra $n$ suficientemente grande, isto é, para todo valor de $n$ maior que um certo número mínimo, exista um único E.M.V. de $\theta$. Então, sob certas condições, que são tipicamente satisfeitas em problemas práticos, a sequência de E.M.V.'s é uma sequência consistente de estimadores de $\theta$. Em outras palavras, em tais problemas, a sequência de E.M.V.'s converge em probabilidade para o valor desconhecido de $\theta$ quando $n \to \infty$.
+
+Observamos na Seção 7.4 que, sob certas condições gerais, a sequência de estimadores de Bayes de um parâmetro $\theta$ também é uma sequência consistente de estimadores. Portanto, para uma dada distribuição a priori e um tamanho de amostra $n$ suficientemente grande, o estimador de Bayes e o E.M.V. de $\theta$ serão tipicamente muito próximos um do outro, e ambos estarão muito próximos do valor desconhecido de $\theta$.
+
+Não apresentaremos quaisquer detalhes formais das condições necessárias para provar este resultado. (Detalhes podem ser encontrados no capítulo 7 de Schervish, 1995.) Iremos, no entanto, ilustrar o resultado considerando novamente uma amostra aleatória $X_1, \dots, X_n$ da distribuição de Bernoulli com parâmetro $\theta$, que é desconhecido ($0 \le \theta \le 1$). Foi mostrado na Seção 7.4 que se a distribuição a priori de $\theta$ for uma distribuição beta, então a diferença entre o estimador de Bayes de $\theta$ e a média amostral $\bar{X}_n$ converge para 0 quando $n \to \infty$. Além disso, foi mostrado no Exemplo 7.5.4 que o E.M.V. de $\theta$ é $\bar{X}_n$. Assim, quando $n \to \infty$, a diferença entre o estimador de Bayes e o E.M.V. convergirá para 0. Finalmente, a lei dos grandes números (Teorema 6.2.4) diz que a média amostral $\bar{X}_n$ converge em probabilidade para $\theta$ quando $n \to \infty$. Portanto, tanto a sequência de estimadores de Bayes quanto a sequência de E.M.V.'s são sequências consistentes.
+
+\subsection*{Cálculo Numérico}
+
+Em muitos problemas, existe um E.M.V. (Estimador de Máxima Verossimilhança) único $\hat{\theta}$ de um dado parâmetro $\theta$, mas este E.M.V. não pode ser expresso em forma fechada como uma função das observações na amostra. Em tal problema, para um dado conjunto de valores observados, é necessário determinar o valor de $\hat{\theta}$ por cálculo numérico. Ilustraremos esta situação com dois exemplos.
+
+\textbf{Exemplo 7.6.4 Amostragem de uma Distribuição Gama.} Suponha que $X_1, \dots, X_n$ formem uma amostra aleatória da distribuição gama para a qual a f.d.p. (função densidade de probabilidade) é a seguinte:
+$$ f(x|\alpha) = \frac{1}{\Gamma(\alpha)} x^{\alpha-1} e^{-x} \quad \text{para } x > 0. \quad (7.6.2) $$
+Suponha também que o valor de $\alpha$ é desconhecido ($\alpha > 0$) e deve ser estimado. A função de verossimilhança é
+$$ f_n(\mathbf{x}|\alpha) = \frac{1}{\Gamma^n(\alpha)} \left( \prod_{i=1}^{n} x_i \right)^{\alpha-1} \exp \left( -\sum_{i=1}^{n} x_i \right). \quad (7.6.3) $$
+O E.M.V. de $\alpha$ será o valor de $\alpha$ que satisfaz a equação
+$$ \frac{\partial \log f_n(\mathbf{x}|\alpha)}{\partial \alpha} = 0. \quad (7.6.4) $$
+Quando aplicamos a Eq. (7.6.4) neste exemplo, obtemos a seguinte equação:
+$$ \frac{\Gamma'(\alpha)}{\Gamma(\alpha)} = \frac{1}{n} \sum_{i=1}^{n} \log x_i. \quad (7.6.5) $$
+Tabelas da função $\Gamma'(\alpha)/\Gamma(\alpha)$, que é chamada de \textit{função digama}, estão incluídas em várias coleções publicadas de tabelas matemáticas. A função digama também está disponível em diversos pacotes de software matemático. Para todos os valores dados de $x_1, \dots, x_n$, o valor único de $\alpha$ que satisfaz a Eq. (7.6.5) deve ser determinado ou consultando essas tabelas ou realizando uma análise numérica da função digama. Este valor será o E.M.V. de $\alpha$. $\blacktriangle$
+
+\textbf{Exemplo 7.6.5 Amostragem de uma Distribuição de Cauchy.} Suponha que $X_1, \dots, X_n$ formem uma amostra aleatória de uma distribuição de Cauchy centrada em um ponto desconhecido $\theta$ ($-\infty < \theta < \infty$), para a qual a f.d.p. é a seguinte:
+$$ f(x|\theta) = \frac{1}{\pi [1+(x-\theta)^2]} \quad \text{para } -\infty < x < \infty. \quad (7.6.6) $$
+Suponha também que o valor de $\theta$ deve ser estimado. A função de verossimilhança é
+$$ f_n(\mathbf{x}|\theta) = \frac{1}{\pi^n \prod_{i=1}^{n} [1+(x_i-\theta)^2]}. \quad (7.6.7) $$
+Portanto, o E.M.V. de $\theta$ será o valor que minimiza
+$$ \prod_{i=1}^{n} [1+(x_i-\theta)^2]. \quad (7.6.8) $$
+Para a maioria dos valores de $x_1, \dots, x_n$, o valor de $\theta$ que minimiza a expressão (7.6.8) deve ser determinado por um cálculo numérico. $\blacktriangle$
+
+Uma alternativa para a solução exata da Eq. (7.6.4) é começar com um estimador heurístico de $\alpha$ e então aplicar o método de Newton.
+
+\textbf{Definição 7.6.2 Método de Newton.} Seja $f(\theta)$ uma função de valor real de uma variável real, e suponha que desejamos resolver a equação $f(\theta)=0$. Seja $\theta_0$ uma estimativa inicial da solução. O \textit{método de Newton} substitui a estimativa inicial pela estimativa atualizada
+$$ \theta_1 = \theta_0 - \frac{f(\theta_0)}{f'(\theta_0)}. $$
+A lógica por trás do método de Newton é ilustrada na Fig. 7.7. A função $f(\theta)$ é a curva sólida. O método de Newton aproxima a curva por uma reta tangente à curva, ou seja, a linha tracejada que passa pelo ponto $(\theta_0, f(\theta_0))$, indicado pelo círculo. A reta de aproximação cruza o eixo horizontal na estimativa revisada $\theta_1$. Tipicamente, substitui-se a estimativa inicial pela estimativa revisada e itera-se o método de Newton até que os resultados se estabilizem.
+
+\textbf{Figura 7.7} Método de Newton para aproximar a solução de $f(\theta)=0$. A estimativa inicial é $\theta_0$, e a estimativa revisada é $\theta_1$.
+
+\textbf{Exemplo 7.6.6 Amostragem de uma Distribuição Gama.} No Exemplo 7.6.4, suponha que observemos $n=20$ variáveis aleatórias gama $X_1, \dots, X_{20}$ com parâmetros $\alpha$ e 1. Suponha que os valores observados sejam tais que $\frac{1}{20} \sum_{i=1}^{20} \log(x_i) = 1.220$ e $\frac{1}{20} \sum_{i=1}^{20} x_i = 3.679$. Desejamos usar o método de Newton para aproximar o E.M.V. Uma estimativa inicial razoável baseia-se no fato de que $E(X_i) = \alpha$. Isso sugere usar $\alpha_0 = 3.679$, a média amostral. A função $f(\alpha)$ é $\psi(\alpha) - 1.220$, onde $\psi$ é a função digama. A derivada $f'(\alpha)$ é $\psi'(\alpha)$, que é conhecida como a função trigama. O método de Newton atualiza a estimativa inicial $\alpha_0$ para
+$$ \alpha_1 = \alpha_0 - \frac{\psi(\alpha_0) - 1.220}{\psi'(\alpha_0)} = 3.679 - \frac{1.1607 - 1.220}{0.3120} = 3.871. $$
+Aqui, usamos um software estatístico que calcula tanto a função digama quanto a trigama. Após mais duas iterações, a aproximação se estabiliza em 3.876. $\blacktriangle$
+
+O método de Newton pode falhar terrivelmente se $f'(\theta)/f(\theta)$ se aproximar de 0 entre $\theta_0$ e a solução real de $f(\theta)=0$. Existe uma versão multidimensional do método de Newton, que não apresentaremos aqui. Existem também muitos outros métodos numéricos para maximizar funções. Qualquer texto sobre otimização numérica, como Nocedal e Wright (2006), descreverá alguns deles.
+
+\subsection*{Método dos Momentos}
+
+\textbf{Exemplo 7.6.7 Amostragem de uma Distribuição Gama.} Suponha que $X_1, \dots, X_n$ formem uma amostra aleatória da distribuição gama com parâmetros $\alpha$ e $\beta$. No Exemplo 7.6.4, explicamos como se poderia encontrar o E.M.V. (Estimador de Máxima Verossimilhança) de $\alpha$ se $\beta$ fosse conhecido. O método envolvia a função digama, que não é familiar para muitas pessoas. Uma estimativa de Bayes também seria difícil de encontrar neste exemplo, porque teríamos que integrar uma função que inclui um fator de $1/\Gamma(\alpha)^n$. Não há outra maneira de estimar o parâmetro vetorial $\theta$ neste exemplo? $\blacktriangle$
+
+O método dos momentos é um método intuitivo para estimar parâmetros quando outros métodos, mais atraentes, podem ser muito difíceis. Ele também pode ser usado para obter uma estimativa inicial para aplicar o método de Newton.
+
+\textbf{Definição 7.6.3 Método dos Momentos.} Assuma que $X_1, \dots, X_n$ formem uma amostra aleatória de uma distribuição indexada por um parâmetro $k$-dimensional $\theta$ e que tenha pelo menos $k$ momentos finitos. Para $j = 1, \dots, k$, seja $\mu_j(\theta) = E(X_i^j|\theta)$. Suponha que a função $\mu(\theta) = (\mu_1(\theta), \dots, \mu_k(\theta))$ é uma função um-para-um de $\theta$. Seja $M(\mu_1, \dots, \mu_k)$ a função inversa, ou seja, para todo $\theta$,
+$$ \theta = M(\mu_1(\theta), \dots, \mu_k(\theta)). $$
+Defina os \textit{momentos amostrais} por $m_j = \frac{1}{n}\sum_{i=1}^n X_i^j$ para $j = 1, \dots, k$. O \textit{estimador pelo método dos momentos} de $\theta$ é $M(m_1, \dots, m_j)$.
+
+A maneira usual de implementar o método dos momentos é montar as $k$ equações $m_j = \mu_j(\theta)$ e então resolver para $\theta$.
+
+\textbf{Exemplo 7.6.8 Amostragem de uma Distribuição Gama.} No Exemplo 7.6.4, consideramos uma amostra de tamanho $n$ da distribuição gama com parâmetros $\alpha$ e 1. A média de cada uma dessas variáveis aleatórias é $\mu_1(\alpha) = \alpha$. O estimador pelo método dos momentos é então $\hat{\alpha} = m_1$, a média amostral. Essa foi a estimativa inicial usada para iniciar o método de Newton no Exemplo 7.6.6. $\blacktriangle$
+
+\textbf{Exemplo 7.6.9 Amostragem de uma Distribuição Gama com Ambos os Parâmetros Desconhecidos.} O Teorema 5.7.5 nos diz que os dois primeiros momentos da distribuição gama com parâmetros $\alpha$ e $\beta$ são
+$$ \mu_1(\theta) = \frac{\alpha}{\beta}, $$
+$$ \mu_2(\theta) = \frac{\alpha(\alpha+1)}{\beta^2}. $$
+O método dos momentos diz para igualar os momentos populacionais aos momentos amostrais e então resolver para $\alpha$ e $\beta$. Neste caso, obtemos
+$$ \hat{\alpha} = \frac{m_1^2}{m_2 - m_1^2}, $$
+$$ \hat{\beta} = \frac{m_1}{m_2 - m_1^2}, $$
+como os estimadores pelo método dos momentos. Note que $m_2 - m_1^2$ é apenas a variância amostral. $\blacktriangle$
+
+\textbf{Teorema 7.6.3} Suponha que $X_1, X_2, \dots$ são i.i.d. (independentes e identicamente distribuídas) com uma distribuição indexada by um vetor de parâmetros $k$-dimensional $\theta$. Suponha que os primeiros $k$ momentos dessa distribuição existem e são finitos para todo $\theta$. Suponha também que a função inversa $M$ na Definição 7.6.3 é contínua. Então, a sequência de estimadores pelo método dos momentos baseada em $X_1, \dots, X_n$ é uma sequência consistente de estimadores de $\theta$.
+
+\textbf{Prova} A lei dos grandes números diz que os momentos amostrais convergem em probabilidade para os momentos $\mu_1(\theta), \dots, \mu_k(\theta)$. A generalização do Teorema 6.2.5 para funções de $k$ variáveis implica que $M$ avaliado nos momentos amostrais (ou seja, o estimador pelo método dos momentos) converge em probabilidade para $\theta$. $\blacksquare$
+
+\textbf{Exemplo 7.6.10 Amostragem de uma Distribuição Uniforme.} Suponha que $X_1, \dots, X_n$ formem uma amostra aleatória da distribuição uniforme no intervalo $[\theta, \theta+1]$. Nesse exemplo, descobrimos que o E.M.V. não é único e há um intervalo de E.M.V.'s
+$$ \max\{x_1, \dots, x_n\} - 1 \le \theta \le \min\{x_1, \dots, x_n\}. \quad (7.6.9) $$
+Este intervalo contém todos os valores possíveis de $\theta$ que são consistentes com os dados observados. Aplicaremos agora o método dos momentos, que produzirá um único estimador. A média de cada $X_i$ é $\theta + 1/2$, então o estimador pelo método dos momentos é $\bar{X}_n - 1/2$. Tipicamente, seria de se esperar que o valor observado do estimador pelo método dos momentos fosse um número no intervalo (7.6.9). No entanto, nem sempre é o caso. Por exemplo, se $n=3$ e $X_1=0.2, X_2=0.99, X_3=0.01$ são observados, então (7.6.9) é o intervalo $[-0.01, 0.01]$, enquanto $\bar{X}_3 = 0.4$. A estimativa pelo método dos momentos é então $-0.1$, que não poderia ser o valor verdadeiro de $\theta$. $\blacktriangle$
+
+Existem vários exemplos em que os estimadores pelo método dos momentos também são E.M.V.'s. Alguns destes são temas de exercícios no final desta seção.
+
+Apesar de problemas ocasionais como o do Exemplo 7.6.10, os estimadores pelo método dos momentos serão tipicamente consistentes no sentido da Definição 7.4.6.
+
+\subsection*{E.M.V.'s e Estimadores de Bayes}
+
+Estimadores de Bayes e E.M.V.'s (Estimadores de Máxima Verossimilhança) dependem dos dados unicamente através da função de verossimilhança. Eles usam a função de verossimilhança de maneiras diferentes, mas em muitos problemas eles serão muito semelhantes. Quando a função $f(\mathbf{x}|\theta)$ satisfaz certas condições de suavidade (como uma função de $\theta$), pode ser mostrado que a função de verossimilhança tenderá a parecer cada vez mais com uma f.d.p. normal à medida que o tamanho da amostra aumenta. Mais especificamente, à medida que $n$ aumenta, a função de verossimilhança começa a parecer uma constante (não dependendo de $\theta$, mas possivelmente dependendo dos dados) vezes
+$$ \exp\left[-\frac{1}{2V_n(\theta)/n}(\theta - \hat{\theta})^2\right], \quad (7.6.10) $$
+onde $\hat{\theta}$ é o E.M.V. e $V_n(\theta)$ é uma sequência de variáveis aleatórias que tipicamente converge quando $n \to \infty$ para um limite que chamaremos de $v_\infty(\theta)$. Quando $n$ é grande, a função em (7.6.10) sobe rapidamente para seu pico à medida que $\theta$ se aproxima de $\hat{\theta}$ e então cai igualmente rápido à medida que $\theta$ se afasta de $\hat{\theta}$. Sob essas condições, desde que a f.d.p. a priori de $\theta$ seja relativamente plana em comparação com a função de verossimilhança acentuadamente pontiaguda, a f.d.p. a posteriori se parecerá muito com a verossimilhança multiplicada pela constante necessária para transformá-la em uma f.d.p. A média posterior de $\theta$ será então aproximadamente $\hat{\theta}$. De fato, a distribuição a posteriori de $\theta$ será aproximadamente a distribuição normal com média $\hat{\theta}$ e variância $V_n(\hat{\theta})/n$. De maneira similar, a distribuição do estimador de máxima verossimilhança (dado $\theta$) será aproximadamente a distribuição normal com média $\theta$ e variância $v_\infty(\theta)/n$. As condições e provas para tornar essas afirmações precisas estão além do escopo deste texto, mas podem ser encontradas no capítulo 7 de Schervish (1995).
+
+\textbf{Exemplo 7.6.11 Amostragem de uma Distribuição Exponencial.} Suponha que $X_1, X_2, \dots$ são i.i.d. (independentes e identicamente distribuídas) tendo a distribuição exponencial com parâmetro $\theta$. Seja $T_n = \sum_{i=1}^{n} X_i$. Então o E.M.V. de $\theta$ é $\hat{\theta}_n = n/T_n$. (Isso foi encontrado no Exercício 7 da Seção 7.5.) Como $1/\hat{\theta}_n$ é uma média de variáveis aleatórias i.i.d. com variância finita, o teorema central do limite nos diz que a distribuição de $1/\hat{\theta}_n$ é aproximadamente normal. A média e a variância, neste caso, dessa distribuição normal aproximada são, respectivamente, $1/\theta$ e $1/(n\theta^2)$. O método delta (Teorema 6.3.2) diz que $\hat{\theta}$ tem então aproximadamente a distribuição normal com média $\theta$ e variância $\theta^2/n$. Na notação acima, temos $V_n(\theta) = \theta^2$.
+A seguir, seja a distribuição a priori de $\theta$ a distribuição gama com parâmetros $\alpha$ e $\beta$. O Teorema 7.3.4 diz que a distribuição a posteriori de $\theta$ será a distribuição gama com parâmetros $\alpha+n$ e $\beta+t_n$. Concluímos mostrando que esta distribuição gama é aproximadamente uma distribuição normal. Assuma por simplicidade que $\alpha$ é um inteiro. Então a distribuição a posteriori de $\theta$ é a mesma que a distribuição da soma de $\alpha+n$ variáveis aleatórias exponenciais i.i.d. com parâmetro $\beta+t_n$. Tal soma tem aproximadamente a distribuição normal com média $(\alpha+n)/(\beta+t_n)$ e variância $(\alpha+n)/(\beta+t_n)^2$. Se $\alpha$ e $\beta$ são pequenos, a média aproximada é então quase $n/t_n = \hat{\theta}$, e a variância aproximada é então quase $n^2/t_n^2 = \hat{\theta}^2/n = V_n(\hat{\theta})/n$. $\blacktriangle$
+
+\textbf{Exemplo 7.6.12 Mortes no Exército Prussiano.} No Exemplo 7.3.14, encontramos a distribuição a posteriori de $\theta$, o número médio de mortes por ano por coice de cavalo em unidades do exército prussiano, com base em uma amostra de 280 observações. A distribuição posterior encontrada foi a distribuição gama com parâmetros 196 e 280. Pelo mesmo argumento usado no Exemplo 7.6.11, esta distribuição gama é aproximadamente a distribuição da soma de 196 i.i.d. variáveis aleatórias exponenciais com parâmetro 280. A distribuição desta soma é aproximadamente a distribuição normal com média $196/280$ e variância $196/280^2$.
+Usando os mesmos dados do Exemplo 7.3.14, podemos encontrar o E.M.V. de $\theta$, que é a média das 280 observações (de acordo com o Exercício 5 da Seção 7.5). A distribuição da média de 280 i.i.d. variáveis aleatórias de Poisson com média $\theta$ é aproximadamente a distribuição normal com média $\theta$ e variância $\theta/280$ de acordo com o teorema central do limite. Temos então $V_n(\theta) = \theta$ na notação anterior. O estimador de máxima verossimilhança com os dados observados é $\hat{\theta} = 196/280$, a média da distribuição posterior. A variância da distribuição posterior também é $V_n(\hat{\theta})/n = \hat{\theta}/280$. $\blacktriangle$
+
+\textbf{Figura 7.8} F.d.p. a posteriori junto com a f.d.p. do E.M.V. e a f.d.p. normal aproximada no Exemplo 7.6.13. Para a f.d.p. do E.M.V., o valor de $\theta=3/6.6$ é usado para tornar as f.d.p.'s tão semelhantes quanto possível.
+
+Existem duas situações comuns nas quais as distribuições a posteriori e as distribuições de E.M.V.'s não são semelhantes às distribuições normais como na discussão precedente. Uma é quando o tamanho da amostra não é muito grande, e a outra é quando a função de verossimilhança não é suave. Um exemplo com tamanho de amostra pequeno é o nosso exemplo de componentes eletrônicos.
+
+\textbf{Exemplo 7.6.13 Tempos de Vida de Componentes Eletrônicos.} No Exemplo 7.3.12, temos uma amostra de $n=3$ variáveis aleatórias exponenciais com parâmetro $\theta$. A distribuição a posteriori encontrada lá foi a distribuição gama com parâmetros 4 e 8.6. O E.M.V. é $\hat{\theta} = 3/(X_1+X_2+X_3)$, que tem a distribuição de 1 sobre uma variável aleatória gama com parâmetros 3 e $3\theta$. A Figura 7.8 mostra a f.d.p. a posteriori junto com a f.d.p. do E.M.V. assumindo que $\theta=3/6.6$, o valor observado do E.M.V. As duas f.d.p.'s, embora semelhantes, ainda são diferentes. Além disso, ambas as f.d.p.'s são semelhantes, mas ainda diferentes, da f.d.p. normal com a mesma média e variância que a posterior, que também aparece no gráfico. $\blacktriangle$
+
+Um exemplo de uma função de verossimilhança não suave envolve a distribuição uniforme no intervalo $[0, \theta]$.
+
+\textbf{Exemplo 7.6.14 Amostragem de uma Distribuição Uniforme.} No Exemplo 7.5.7, encontramos o E.M.V. de $\theta$ com base em uma amostra de tamanho $n$ da distribuição uniforme no intervalo $[0, \theta]$. O E.M.V. é $\hat{\theta} = \max\{X_1, \dots, X_n\}$. Podemos encontrar a distribuição exata de $\hat{\theta}$ usando o resultado do Exemplo 3.9.6. A f.d.p. de $Y=\hat{\theta}$ é
+$$ g_n(y|\theta) = n[F(y|\theta)]^{n-1}f(y|\theta), \quad (7.6.11) $$
+onde $f(\cdot|\theta)$ é a f.d.p. da distribuição uniforme em $[0, \theta]$ e $F(\cdot|\theta)$ é a c.d.f. (função de distribuição acumulada) correspondente. Substituindo essas funções bem conhecidas na Eq. (7.6.11) resulta na f.d.p. de $Y=\hat{\theta}$:
+$$ g_n(y|\theta) = n\left[\frac{y}{\theta}\right]^{n-1}\frac{1}{\theta} = \frac{ny^{n-1}}{\theta^n}, $$
+para $0 < y < \theta$. Esta f.d.p. não é nem um pouco parecida com uma f.d.p. normal. É muito assimétrica e tem seu máximo no maior valor possível do E.M.V. De fato, pode-se calcular a média e a variância de $\hat{\theta}$, respectivamente, como
+$$ E(\hat{\theta}) = \frac{n}{n+1}\theta, $$
+$$ Var(\hat{\theta}) = \frac{n}{(n+1)^2(n+2)}\theta^2. $$
+A variância diminui como $1/n^2$ em vez de como $1/n$ nos exemplos aproximadamente normais que vimos anteriormente.
+Se $n$ é grande, a distribuição a posteriori de $\theta$ terá uma f.d.p. que é aproximadamente a função de verossimilhança vezes a constante necessária para torná-la uma f.d.p. A verossimilhança está na Eq. (7.5.8). Integrar essa função sobre $\theta$ para obter a constante necessária leva à seguinte f.d.p. a posteriori aproximada de $\theta$:
+$$ \xi(\theta|\mathbf{x}) \approx \begin{cases} \frac{(n-1)\hat{\theta}^{n-1}}{\theta^n} & \text{para } \theta > \hat{\theta}, \\ 0 & \text{caso contrário}. \end{cases} $$
+A média e a variância desta distribuição posterior aproximada são, respectivamente, $(n-1)\hat{\theta}/(n-2)$ e $(n-1)\hat{\theta}^2/[(n-2)^2(n-3)]$. A média posterior ainda é quase igual ao E.M.V. (mas um pouco maior), e a variância posterior diminui a uma taxa como $1/n^2$, assim como a variância do E.M.V. Mas a distribuição posterior não é nem um pouco normal, já que a f.d.p. tem seu máximo no menor valor possível de $\theta$ e decresce a partir daí. $\blacktriangle$
+
+\subsection*{O Algoritmo EM}
+
+Há uma série de situações complicadas nas quais é difícil calcular o E.M.V. (Estimador de Máxima Verossimilhança). Muitas dessas situações envolvem formas de dados faltantes. O termo "dados faltantes" pode se referir a vários tipos diferentes de informação. O mais óbvio seriam as observações que planejamos ou esperávamos observar, mas que não foram observadas. Por exemplo, imagine que planejamos coletar as alturas e os pesos de uma amostra de atletas. Por razões que podem estar além do nosso controle, é possível que tenhamos observado tanto as alturas quanto os pesos para a maioria dos atletas, mas apenas as alturas para um subconjunto de atletas e apenas os pesos para outro subconjunto. Se modelarmos as alturas e os pesos como tendo uma distribuição normal bivariada, podemos querer calcular o E.M.V. dos parâmetros dessa distribuição. Para uma coleção completa de pares, o Exercício 24 desta seção fornece fórmulas para o E.M.V. Não é difícil ver o quão mais complicado seria calcular o E.M.V. na situação descrita acima com dados faltantes.
+
+O \textit{algoritmo EM} é um método iterativo para aproximar E.M.V.'s quando dados faltantes estão dificultando encontrar o E.M.V. em forma fechada. Começa-se (como na maioria dos procedimentos iterativos) no estágio 0 com um vetor de parâmetros inicial $\theta^{(0)}$. Para passar do estágio $j$ para o estágio $j+1$, primeiro escreve-se a \textit{log-verossimilhança de dados completos}, que é o logaritmo da função de verossimilhança que teríamos se tivéssemos observado os dados faltantes. Os valores dos dados faltantes aparecem na log-verossimilhança de dados completos como variáveis aleatórias em vez de valores observados. O passo "E" do algoritmo EM é o seguinte: Calcule a distribuição condicional dos dados faltantes, dados os dados observados se o parâmetro $\theta$ fosse igual a $\theta^{(j)}$, e então calcule a média condicional da log-verossimilhança de dados completos tratando $\theta$ como uma constante e os dados faltantes como variáveis aleatórias. O passo E se livra das variáveis aleatórias não observadas da log-verossimilhança de dados completos e deixa $\theta$ onde estava. Para o passo "M", escolha $\theta^{(j+1)}$ para maximizar o valor esperado da log-verossimilhança de dados completos que você acabou de calcular. O passo M leva você para o estágio $j+1$. Idealmente, o passo de maximização não é mais difícil do que seria se os dados faltantes tivessem sido realmente observados.
+
+\textbf{Exemplo 7.6.15 Alturas e Pesos.} Suponha que tentemos observar $n=6$ pares de alturas e pesos, mas obtemos apenas três vetores completos, mais um peso e duas alturas. Modelamos os pares como vetores aleatórios normais bivariados e queremos encontrar o E.M.V. do vetor de parâmetros $(\mu_1, \mu_2, \sigma_1^2, \sigma_2^2, \rho)$. (Este exemplo é apenas para fins ilustrativos. Não se pode obter uma boa estimativa de um vetor de parâmetros de cinco dimensões com apenas nove observações e nenhuma informação a priori.) Os dados estão na Tabela 7.1. Os dados faltantes são a altura $X_{4,1}$, o peso $X_{5,2}$ e a altura $X_{6,1}$. A log-verossimilhança de dados completos é a soma dos logaritmos de seis expressões da forma da Eq. (5.10.2) com cada uma das linhas da Tabela 7.1 substituída pelas variáveis fictícias $(x_1, x_2)$. Por exemplo, o termo correspondente à quarta linha da Tabela 7.1 é
+
+\begin{equation}
+\begin{split}
+& -\log(2\pi\sigma_1\sigma_2) - \frac{1}{2}\log(1-\rho^2) \\
+& \quad - \frac{1}{2(1-\rho^2)}\left[ \left(\frac{68-\mu_1}{\sigma_1}\right)^2 - 2\rho\left(\frac{68-\mu_1}{\sigma_1}\right)\left(\frac{X_{4,2}-\mu_2}{\sigma_2}\right) \right. \\
+& \qquad \left. + \left(\frac{X_{4,2}-\mu_2}{\sigma_2}\right)^2 \right].
+\end{split}
+\tag{7.6.12}
+\end{equation}
+
+Como um vetor de parâmetros inicial, escolhemos uma estimativa ingênua calculada a partir dos dados observados:
+$$ \theta^{(0)} = (\mu_1^{(0)}, \mu_2^{(0)}, \sigma_1^{2(0)}, \sigma_2^{2(0)}, \rho^{(0)}) = (69.60, 194.75, 2.87, 14.82, 0.1764). $$
+Isso consiste nos E.M.V.'s baseados nas distribuições marginais das duas coordenadas, juntamente com a correlação amostral calculada a partir das três observações completas.
+
+\begin{table}[h]
+\centering
+\caption{Alturas e pesos para o Exemplo 7.6.15. Os valores faltantes recebem nomes de variáveis aleatórias.}
+\begin{tabular}{|c|c|}
+\hline
+\textbf{Altura} & \textbf{Peso} \\
+\hline
+72 & 197 \\
+70 & 204 \\
+73 & 208 \\
+68 & $X_{4,2}$ \\
+65 & $X_{5,2}$ \\
+$X_{6,1}$ & 170 \\
+\hline
+\end{tabular}
+\label{tab:height_weight}
+\end{table}
+
+O passo E finge que $\theta = \theta^{(0)}$ e calcula a média condicional da log-verossimilhança de dados completos, dados os dados observados. Para a quarta linha da Tabela 7.1, a distribuição condicional de $X_{4,2}$ dados os dados observados e $\theta=\theta^{(0)}$ pode ser encontrada a partir do Teorema 5.10.4 como sendo a distribuição normal com média
+$$ 194.75 + 0.1764 \times (14.82)^{1/2} \left( \frac{68-69.60}{2.87^{1/2}} \right) = 193.3 $$
+e variância $(1-0.1764^2)14.82^2=212.8$. A média condicional de $(X_{4,2}-\mu_2)^2$ seria então $212.8 + (193.3 - \mu_2)^2$. A média condicional da expressão em (7.6.12) seria então
+\begin{equation}
+\begin{split}
+& -\log(2\pi\sigma_1\sigma_2) - \frac{1}{2}\log(1-\rho^2) \\
+& \quad - \frac{1}{2(1-\rho^2)}\left[ \left(\frac{68-\mu_1}{\sigma_1}\right)^2 - 2\rho\left(\frac{68-\mu_1}{\sigma_1}\right)\left(\frac{193.3-\mu_2}{\sigma_2}\right) \right. \\
+& \qquad \left. + \frac{(193.3-\mu_2)^2}{\sigma_2^2} + \frac{212.8}{\sigma_2^2} \right].
+\end{split}
+\end{equation}
+O ponto a notar sobre esta última expressão é que, exceto pelo último termo $212.8/\sigma_2^2$, é exatamente a contribuição para a log-verossimilhança que teríamos obtido se $X_{4,2}$ tivesse sido igual a $193.3$, sua média condicional. Cálculos semelhantes podem ser feitos para as outras duas observações com coordenadas faltantes. Cada uma produzirá uma contribuição para a log-verossimilhança que é a variância condicional da coordenada faltante dividida por sua variância mais o que a log-verossimilhança teria sido se o valor faltante tivesse sido igual à sua média condicional. Isso torna o passo M quase idêntico a encontrar o E.M.V. para um conjunto de dados completamente observado. A única diferença das fórmulas no Exercício 24 é a seguinte: Para cada observação que está faltando $X$, adicione a variância condicional de $X$ dado $Y$ a $\sum_{i=1}^{n}(X_i - \bar{X}_n)^2$ tanto na fórmula para $\hat{\sigma}_1^2$ quanto na para $\hat{\rho}$. Da mesma forma, para cada observação que está faltando $Y$, adicione a variância condicional de $Y$ dado $X$ a $\sum_{i=1}^{n}(Y_i - \bar{Y}_n)^2$ na fórmula para $\hat{\sigma}_2^2$ e $\hat{\rho}$.
+
+Agora ilustramos a primeira iteração do algoritmo EM com os dados deste exemplo. Já temos $\theta^{(0)}$, e podemos calcular a função de log-verossimilhança a partir dos dados observados em $\theta^{(0)}$ como sendo $-31.359$. Para iniciar o algoritmo, já calculamos a média condicional e a variância da segunda coordenada faltante da quarta linha da Tabela 7.1. As médias e variâncias condicionais correspondentes para a quinta e sexta linhas são $190.6$ e $212.8$ para a quinta linha e $68.76$ e $7.98$ para a sexta linha. Para o passo E, substituímos os dados faltantes por suas médias condicionais e adicionamos as variâncias condicionais às somas dos desvios quadrados. Para o passo M, inserimos os valores recém-calculados nas fórmulas do Exercício 24, conforme descrito acima. O novo vetor é
+$$ \theta^{(1)} = (69.46, 193.81, 2.88, 14.83, 0.3742), $$
+e a log-verossimilhança é $-31.03$. Após 32 iterações, a estimativa e a log-verossimilhança param de mudar. A estimativa final é
+$$ \theta^{(32)} = (68.86, 189.71, 3.15, 15.03, 0.8965), $$
+com log-verossimilhança $-29.66$. $\blacktriangle$
+
+\textbf{Exemplo 7.6.16 Mistura de Distribuições Normais.} Um uso muito popular do algoritmo EM é no ajuste de distribuições de mistura. Sejam $X_1, \dots, X_n$ variáveis aleatórias tais que cada uma é amostrada ou da distribuição normal com média $\mu_1$ e variância $\sigma^2$ (com probabilidade $p$) ou da distribuição normal com média $\mu_2$ e variância $\sigma^2$ (com probabilidade $1-p$), onde $\mu_1 < \mu_2$. A restrição $\mu_1 < \mu_2$ é feita para tornar o modelo identificável no seguinte sentido. Se $\mu_1 = \mu_2$ for permitido, então todo valor de $p$ leva à mesma distribuição conjunta dos dados observáveis. Além disso, se nenhuma das médias for restrita a estar abaixo da outra, então trocar as duas médias e mudar $p$ para $1-p$ produzirá a mesma distribuição conjunta para os dados observáveis. A restrição $\mu_1 < \mu_2$ garante que cada vetor de parâmetro distinto produza uma distribuição conjunta diferente para os dados observáveis. Os dados na Fig. 7.4 têm a aparência típica de uma distribuição que é uma mistura de duas normais com médias não muito distantes. Como assumimos que as variâncias das duas distribuições são as mesmas, não teremos o problema que surgiu no Exemplo 7.5.10.
+A função de verossimilhança das observações $X_1=x_1, \dots, X_n=x_n$ é
+$$ \prod_{i=1}^{n} \left[ \frac{p}{(2\pi)^{1/2}\sigma}\exp\left(\frac{-(x_i-\mu_1)^2}{2\sigma^2}\right) + \frac{1-p}{(2\pi)^{1/2}\sigma}\exp\left(\frac{-(x_i-\mu_2)^2}{2\sigma^2}\right) \right]. \quad (7.6.13) $$
+O vetor de parâmetros é $\theta = (\mu_1, \mu_2, \sigma^2, p)$, e maximizar a verossimilhança como está é um desafio. No entanto, podemos introduzir observações faltantes $Y_1, \dots, Y_n$ onde $Y_i=1$ se $X_i$ foi amostrado da distribuição com média $\mu_1$ e $Y_i=0$ se $X_i$ foi amostrado da distribuição com média $\mu_2$. A log-verossimilhança de dados completos pode ser escrita como a soma do logaritmo da f.p. marginal dos dados $Y$ ausentes mais o logaritmo da f.d.p. condicional dos dados $X$ observados, dados os dados $Y$. Ou seja,
+\begin{multline}
+\sum_{i=1}^{n} Y_i \log(p) + \left(n - \sum_{i=1}^{n} Y_i\right) \log(1-p) - \frac{n}{2}\log(2\pi\sigma^2) \\
+- \frac{1}{2\sigma^2}\sum_{i=1}^{n}\left[Y_i(x_i-\mu_1)^2+(1-Y_i)(x_i-\mu_2)^2\right]. \quad \tag{7.6.14}
+\end{multline}
+No estágio $j$ com estimativa $\theta^{(j)}$ de $\theta$, o passo E primeiro encontra a distribuição condicional de $Y_1, \dots, Y_n$ dados os dados observados e $\theta=\theta^{(j)}$. Como $(X_1, Y_1), \dots, (X_n, Y_n)$ são pares independentes, podemos encontrar a distribuição condicional separadamente para cada par. A distribuição conjunta de $(X_i, Y_i)$ é uma distribuição mista com f.p./f.d.p.
+\begin{equation}
+\begin{split}
+f(x_i, y_i|\theta^{(j)}) = {} & \frac{p^{y_i}(1-p)^{1-y_i}}{(2\pi)^{1/2}\sigma} \\
+& \times \exp\left(-\frac{1}{\sigma^{2(j)}}\left[y_i(x_i-\mu_1^{(j)})^2+(1-y_i)(x_i-\mu_2^{(j)})^2\right]\right).
+\end{split}
+\end{equation}
+A f.d.p. marginal de $X_i$ é o $i$-ésimo fator em (7.6.13). É direto determinar que a distribuição condicional de $Y_i$ dados os dados observados é a distribuição de Bernoulli com parâmetro
+$$ q_i^{(j)} = \frac{p^{(j)}\exp\left(-\frac{(x_i-\mu_1^{(j)})^2}{2\sigma^{2(j)}}\right)}{p^{(j)}\exp\left(-\frac{(x_i-\mu_1^{(j)})^2}{2\sigma^{2(j)}}\right) + (1-p^{(j)})\exp\left(-\frac{(x_i-\mu_2^{(j)})^2}{2\sigma^{2(j)}}\right)}. \quad (7.6.15) $$
+Como a log-verossimilhança de dados completos é uma função linear dos $Y_i$'s, o passo E simplesmente substitui cada $Y_i$ em (7.6.14) por $q_i^{(j)}$. O resultado é
+\begin{multline}
+\sum_{i=1}^{n} q_i^{(j)}\log(p) + \left(n - \sum_{i=1}^{n} q_i^{(j)}\right)\log(1-p) - \frac{n}{2}\log(2\pi\sigma^2) \\
+- \frac{1}{2\sigma^2}\sum_{i=1}^{n}\left[q_i^{(j)}(x_i-\mu_1)^2+(1-q_i^{(j)})(x_i-\mu_2)^2\right]. \quad \tag{7.6.16}
+\end{multline}
+Maximizar (7.6.16) é direto. Como $p$ aparece apenas nos dois primeiros termos, vemos que $p^{(j+1)}$ é apenas a média dos $q_i^{(j)}$'s. Além disso, $\mu_1^{(j+1)}$ é a média ponderada dos $x_i$'s com pesos $q_i^{(j)}$. Da mesma forma, $\mu_2^{(j+1)}$ é a média ponderada dos $x_i$'s com pesos $1-q_i^{(j)}$. Finalmente,
+$$ \sigma^{2(j+1)} = \frac{1}{n}\sum_{i=1}^{n}\left[q_i^{(j)}(x_i-\mu_1^{(j+1)})^2+(1-q_i^{(j)})(x_i-\mu_2^{(j+1)})^2\right]. \quad (7.6.17) $$
+Vamos ilustrar os primeiros passos E e M usando os dados do Exemplo 7.3.10. Para o vetor de parâmetros inicial $\theta^{(0)}$, vamos deixar $\mu_1^{(0)}$ ser a média das 10 menores observações e $\mu_2^{(0)}$ ser a média das 10 maiores observações. Definimos $p^{(0)}=1/2$, e $\sigma^{2(0)}$ é a média da variância amostral das 10 menores observações e da variância amostral das 10 maiores observações. Isso resulta em
+$$ \theta^{(0)} = (\mu_1^{(0)}, \mu_2^{(0)}, \sigma^{2(0)}, p^{(0)}) = (-7.65, 7.36, 46.28, 0.5). $$
+Para cada uma das 20 observações $x_i$, calculamos $q_i^{(0)}$. Por exemplo, $x_{10}=-4.0$. De acordo com (7.6.15),
+\begin{equation}
+q_{10}^{(0)} = \frac{0.5\exp\left(-\frac{(-4.0+7.65)^2}{2\times 46.28}\right)}{%
+\begin{aligned}
+ & 0.5\exp\left(-\frac{(-4.0+7.65)^2}{2\times 46.28}\right) \\
+ & \quad + 0.5\exp\left(-\frac{(-4.0-7.36)^2}{2\times 46.28}\right)
+\end{aligned}
+} = 0.7774.
+\end{equation}
+Um cálculo similar para $x_8=9.0$ resulta em $q_8^{(0)}=0.0489$. A log-verossimilhança inicial, calculada como o logaritmo de (7.6.13), é $-75.98$. A média dos 20 valores de $q_i^{(0)}$ é $p^{(1)}=0.4402$. A média ponderada dos valores dos dados usando os $q_i^{(0)}$'s como pesos é $\mu_1^{(1)}=-7.736$, e a média ponderada usando os $1-q_i^{(0)}$'s é $\mu_2^{(1)}=6.3068$. Usando (7.6.17), obtemos $\sigma^{2(1)}=56.5491$. A log-verossimilhança sobe para $-75.19$. Após 25 iterações, os resultados se estabilizam em $\theta^{(25)}=(-21.9715, 2.6802, 48.6864, 0.1037)$ com uma log-verossimilhança final de $-72.84$. O histograma da Fig. 7.4 é reproduzido na Fig. 7.9 juntamente com a f.d.p. de uma observação da distribuição de mistura ajustada, a saber,
+\begin{equation}
+\begin{split}
+f(x) = {} & \frac{0.1037}{(2\pi \times 48.6864)^{1/2}}\exp\left(-\frac{(x+21.9715)^2}{2\times 48.6864}\right) \\
+& + \frac{1-0.1037}{(2\pi \times 48.6864)^{1/2}}\exp\left(-\frac{(x-2.6802)^2}{2\times 48.6864}\right).
+\end{split}
+\end{equation}
+Além disso, a f.d.p. ajustada baseada em uma única distribuição normal também é mostrada na Fig. 7.9. A média e a variância dessa única distribuição normal são 0.1250 e 110.6809, respectivamente. $\blacktriangle$
+
+\textbf{Figura 7.9} Histograma dos dados do Exemplo 7.3.10 juntamente com a f.d.p. ajustada do Exemplo 7.6.16 (curva sólida). A f.d.p. foi escalada para corresponder ao fato de que o histograma fornece contagens em vez de uma f.d.p. estimada. Além disso, a curva tracejada fornece a f.d.p. estimada para uma única distribuição normal.
+
+Pode-se provar que a log-verossimilhança aumenta a cada iteração do algoritmo EM e que o algoritmo converge para um máximo local da função de verossimilhança. Assim como com outras rotinas de maximização numérica, é difícil garantir a convergência para um máximo global.
+
+\subsection*{Planos de Amostragem}
+
+Suponha que um experimentador deseje fazer observações de uma distribuição para a qual a f.p. (função de probabilidade) ou a f.d.p. (função densidade de probabilidade) é $f(x|\theta)$ a fim de obter informações sobre o valor do parâmetro $\theta$. O experimentador poderia simplesmente coletar uma amostra aleatória de um tamanho predeterminado. Em vez disso, no entanto, ele pode começar observando alguns valores aleatórios da distribuição e anotando o custo e o tempo gastos para fazer essas observações. Ele pode decidir observar mais alguns valores aleatórios da distribuição e estudar todos os valores obtidos até então. Em algum momento, o experimentador decidirá parar de fazer observações e estimará o valor de $\theta$ a partir de todos os valores observados que foram obtidos até aquele ponto. Ele pode decidir parar porque sente que tem informações suficientes para fazer uma boa estimativa de $\theta$ ou porque não pode mais arcar com o dinheiro ou o tempo para a amostragem.
+
+Neste experimento, o número $n$ de observações na amostra não é fixado de antemão. É uma variável aleatória cujo valor pode muito bem depender das magnitudes das observações à medida que são obtidas.
+
+Suponha que um experimentador contemple o uso de um plano de amostragem no qual, para cada $n$, a decisão de parar ou não a amostragem após a coleta de $n$ observações seja uma função das $n$ observações vistas até então. Independentemente de o experimentador escolher tal plano de amostragem ou decidir fixar o valor de $n$ antes que quaisquer observações sejam feitas, pode-se mostrar que a função de verossimilhança baseada nos valores observados é proporcional (como uma função de $\theta$) a
+$$ f(x_1|\theta) \cdots f(x_n|\theta). $$
+
+Em tal situação, o E.M.V. (Estimador de Máxima Verossimilhança) de $\theta$ dependerá apenas da função de verossimilhança e não do tipo de plano de amostragem utilizado. Em outras palavras, o valor de $\hat{\theta}$ depende apenas dos valores $x_1, \dots, x_n$ que são realmente observados e não depende do plano (se houver algum) que foi usado pelo experimentador para decidir quando parar a amostragem.
+
+Para ilustrar essa propriedade, suponha que os intervalos de tempo, em minutos, entre as chegadas de clientes sucessivos em uma determinada instalação de serviço sejam variáveis aleatórias i.i.d. (independentes e identicamente distribuídas). Suponha também que cada intervalo tenha a distribuição exponencial com o parâmetro $\theta$, e que um conjunto de intervalos observados $X_1, \dots, X_n$ forme uma amostra aleatória dessa distribuição. Segue-se do Exercício 7 da Seção 7.5 que o E.M.V. de $\theta$ será $\hat{\theta} = 1/\bar{X}_n$. Além disso, como a média $\mu$ da distribuição exponencial é $1/\theta$, segue-se da propriedade de invariância do E.M.V. que $\hat{\mu} = \bar{X}_n$. Em outras palavras, o E.M.V. da média é a média das observações na amostra.
+
+Considere agora os três seguintes planos de amostragem:
+\begin{enumerate}
+    \item Um experimentador decide de antemão coletar exatamente 20 observações, e a média dessas 20 observações acaba sendo 6. Então o E.M.V. de $\mu$ é $\hat{\mu}=6$.
+    \item Um experimentador decide coletar observações $X_1, X_2, \dots$ até que ela obtenha um valor maior que 10. Ela descobre que $X_i < 10$ para $i=1, \dots, 19$ e que $X_{20} > 10$. Portanto, a amostragem termina após 20 observações. Se a média dessas 20 observações for 6, então o E.M.V. é novamente $\hat{\mu}=6$.
+    \item Um experimentador coleta observações uma de cada vez, sem nenhum plano em particular, até que seja forçada a parar de amostrar ou se canse de amostrar. Ela tem certeza de que nenhuma dessas causas (ser forçada a parar ou se cansar) depende de forma alguma de $\mu$. Se, por qualquer uma dessas razões, ela parar assim que tiver coletado 20 observações e se a média dessas 20 observações for 6, então o E.M.V. é novamente $\hat{\mu}=6$.
+\end{enumerate}
+
+Às vezes, um experimento deste tipo deve ser encerrado durante um intervalo em que o experimentador está esperando o próximo cliente chegar. Se uma certa quantidade de tempo passou desde a chegada do último cliente, esse tempo deve ser omitido da amostra de dados, embora o intervalo completo até a chegada do próximo cliente não tenha sido observado. Suponha, por exemplo, que a média das primeiras 20 observações seja 6, o experimentador espere mais 15 minutos, mas nenhum outro cliente chegue, e então ela encerre o experimento. Neste caso, sabemos que o E.M.V. de $\mu$ teria que ser maior que 6, já que o valor da 21ª observação deve ser maior que 15, mesmo que seu valor exato seja desconhecido. O novo E.M.V. pode ser obtido multiplicando a função de verossimilhança para as primeiras 20 observações pela probabilidade de a 21ª observação ser maior que 15, a saber, $\exp(-15\theta)$, e encontrando o valor de $\theta$ que maximiza esta nova função de verossimilhança (ver Exercício 15).
+
+Lembre-se que o E.M.V. é determinado pela função de verossimilhança. A única maneira pela qual o E.M.V. pode depender do plano de amostragem é através da função de verossimilhança. Se a decisão sobre quando parar de observar os dados for baseada unicamente nas observações vistas até o momento, então essa informação já foi incluída na função de verossimilhança. Se a decisão de parar for baseada em outra coisa, é preciso avaliar a probabilidade de que "outra coisa" ocorra, dado cada valor possível de $\theta$, e incluir essa probabilidade na verossimilhança.
+
+Outras propriedades dos E.M.V.'s serão discutidas posteriormente neste capítulo e no Capítulo 8.
+
+\begin{enumerate}
+    \item Suponha que $X_1, \dots, X_n$ formem uma amostra aleatória de uma distribuição com a f.d.p. (função densidade de probabilidade) dada no Exercício 10 da Seção 7.5. Encontre o E.M.V. (Estimador de Máxima Verossimilhança) de $e^{-1/\theta}$.
+    
+    \item Suponha que $X_1, \dots, X_n$ formem uma amostra aleatória de uma distribuição de Poisson para a qual a média é desconhecida. Determine o E.M.V. do desvio padrão da distribuição.
+    
+    \item Suponha que $X_1, \dots, X_n$ formem uma amostra aleatória de uma distribuição exponencial para a qual o valor do parâmetro $\beta$ é desconhecido. Determine o E.M.V. da mediana da distribuição.
+    
+    \item Suponha que o tempo de vida de um certo tipo de lâmpada tenha uma distribuição exponencial para a qual o valor do parâmetro $\beta$ é desconhecido. Uma amostra aleatória de $n$ lâmpadas deste tipo é testada por um período de $T$ horas e o número $X$ de lâmpadas que falham durante este período é observado, mas os momentos em que as falhas ocorreram não são anotados. Determine o E.M.V. de $\beta$ com base no valor observado de $X$.
+    
+    \item Suponha que $X_1, \dots, X_n$ formem uma amostra aleatória da distribuição uniforme no intervalo $[a, b]$, onde ambos os extremos $a$ e $b$ são desconhecidos. Encontre o E.M.V. da média da distribuição.
+    
+    \item Suponha que $X_1, \dots, X_n$ formem uma amostra aleatória de uma distribuição normal para a qual tanto a média quanto a variância são desconhecidas. Encontre o E.M.V. do quantil 0.95 da distribuição, ou seja, do ponto $\theta$ tal que $\Pr(X < \theta) = 0.95$.
+    
+    \item Para as condições do Exercício 6, encontre o E.M.V. de $v = \Pr(X > 2)$.
+    
+    \item Suponha que $X_1, \dots, X_n$ formem uma amostra aleatória de uma distribuição gama para a qual a f.d.p. é dada pela Eq. (7.6.2). Encontre o E.M.V. de $\Gamma'(\alpha)/\Gamma(\alpha)$.
+    
+    \item Suponha que $X_1, \dots, X_n$ formem uma amostra aleatória de uma distribuição gama para a qual ambos os parâmetros $\alpha$ e $\beta$ são desconhecidos. Encontre o E.M.V. de $\alpha/\beta$.
+    
+    \item Suponha que $X_1, \dots, X_n$ formem uma amostra aleatória de uma distribuição beta para a qual ambos os parâmetros $\alpha$ e $\beta$ são desconhecidos. Mostre que os E.M.V.'s de $\alpha$ e $\beta$ satisfazem a seguinte equação:
+    $$ \frac{\Gamma'(\hat{\alpha}) - \Gamma'(\hat{\beta})}{\Gamma(\hat{\alpha})\Gamma(\hat{\beta})} = \frac{1}{n}\sum_{i=1}^{n} \log\frac{X_i}{1-X_i}. $$
+    
+    \item Suponha que $X_1, \dots, X_n$ formem uma amostra aleatória de tamanho $n$ da distribuição uniforme no intervalo $[0, \theta]$, onde o valor de $\theta$ é desconhecido. Mostre que a sequência de E.M.V.'s de $\theta$ é uma sequência consistente.
+    
+    \item Suponha que $X_1, \dots, X_n$ formem uma amostra aleatória de uma distribuição exponencial para a qual o valor do parâmetro $\beta$ é desconhecido. Mostre que a sequência de E.M.V.'s de $\beta$ é uma sequência consistente.
+    
+    \item Suponha que $X_1, \dots, X_n$ formem uma amostra aleatória de uma distribuição para a qual a f.d.p. é como especificado no Exercício 9 da Seção 7.5. Mostre que a sequência de E.M.V.'s de $\theta$ é uma sequência consistente.
+    
+    \item Suponha que um cientista deseje estimar a proporção $p$ de borboletas-monarca que possuem um tipo especial de marcação em suas asas.
+    \begin{enumerate}
+        \item Suponha que ele capture borboletas-monarca uma de cada vez até encontrar cinco que tenham essa marcação especial. Se ele precisar capturar um total de 43 borboletas, qual é o E.M.V. de $p$?
+        \item Suponha que, ao final de um dia, o cientista tenha capturado 58 borboletas-monarca e tenha encontrado apenas três com a marcação especial. Qual é o E.M.V. de $p$?
+    \end{enumerate}
+    
+    \item Suponha que 21 observações sejam coletadas aleatoriamente de uma distribuição exponencial para a qual a média $\mu$ é desconhecida ($\mu > 0$). A média de 20 dessas observações é 6 e, embora o valor exato da outra observação não pôde ser determinado, sabia-se que era maior que 15. Determine o E.M.V. de $\mu$.
+    
+    \item Suponha que cada um de dois estatísticos, A e B, deva estimar um certo parâmetro $\theta$ cujo valor é desconhecido ($\theta > 0$). O estatístico A pode observar o valor de uma variável aleatória $X$, que tem a distribuição gama com parâmetros $\alpha$ e $\beta$, onde $\alpha=3$ e $\beta=\theta$; o estatístico B pode observar o valor de uma variável aleatória $Y$, que tem a distribuição de Poisson com média $2\theta$. Suponha que o valor observado pelo estatístico A é $X=2$ e o valor observado pelo estatístico B é $Y=3$. Mostre que as funções de verossimilhança determinadas por esses valores observados são proporcionais e encontre o valor comum do E.M.V. de $\theta$ obtido por cada estatístico.
+    
+    \item Suponha que cada um de dois estatísticos, A e B, deva estimar um certo parâmetro $p$ cujo valor é desconhecido ($0 < p < 1$). O estatístico A pode observar o valor de uma variável aleatória $X$, que tem a distribuição binomial com parâmetros $n=10$ e $p$; o estatístico B pode observar o valor de uma variável aleatória $Y$, que tem a distribuição binomial negativa com parâmetros $r=4$ e $p$. Suponha que o valor observado pelo estatístico A é $X=4$ e o valor observado pelo estatístico B é $Y=6$. Mostre que as funções de verossimilhança determinadas por esses valores observados são proporcionais e encontre o valor comum do E.M.V. de $p$ obtido por cada estatístico.
+    
+    \item Prove que o estimador pelo método dos momentos para o parâmetro de uma distribuição de Bernoulli é o E.M.V.
+    
+    \item Prove que o estimador pelo método dos momentos para o parâmetro de uma distribuição exponencial é o E.M.V.
+    
+    \item Prove que o estimador pelo método dos momentos da média de uma distribuição de Poisson é o E.M.V.
+    
+    \item Prove que os estimadores pelo método dos momentos da média e da variância de uma distribuição normal também são os E.M.V.'s.
+    
+    \item Seja $X_1, \dots, X_n$ uma amostra aleatória da distribuição uniforme no intervalo $[0, \theta]$.
+    \begin{enumerate}
+        \item Encontre o estimador pelo método dos momentos de $\theta$.
+        \item Mostre que o estimador pelo método dos momentos não é o E.M.V.
+    \end{enumerate}
+    
+    \item Suponha que $X_1, \dots, X_n$ formem uma amostra aleatória da distribuição beta com parâmetros $\alpha$ e $\beta$. Seja $\theta=(\alpha, \beta)$ o vetor de parâmetros.
+    \begin{enumerate}
+        \item Encontre o estimador pelo método dos momentos para $\theta$.
+        \item Mostre que o estimador pelo método dos momentos não é o E.M.V.
+    \end{enumerate}
+    
+    \item Suponha que os vetores bidimensionais $(X_1, Y_1), (X_2, Y_2), \dots, (X_n, Y_n)$ formem uma amostra aleatória de uma distribuição normal bivariada para a qual as médias de $X$ e $Y$, as variâncias de $X$ e $Y$, e a correlação entre $X$ e $Y$ são desconhecidas. Mostre que os E.M.V.'s desses cinco parâmetros são os seguintes:
+    $$ \hat{\mu}_1 = \bar{X}_n \quad \text{e} \quad \hat{\mu}_2 = \bar{Y}_n, $$
+    $$ \hat{\sigma}_1^2 = \frac{1}{n}\sum_{i=1}^{n}(X_i - \bar{X}_n)^2 \quad \text{e} \quad \hat{\sigma}_2^2 = \frac{1}{n}\sum_{i=1}^{n}(Y_i - \bar{Y}_n)^2, $$
+    $$ \hat{\rho} = \frac{\sum_{i=1}^{n}(X_i - \bar{X}_n)(Y_i - \bar{Y}_n)}{\left[\sum_{i=1}^{n}(X_i - \bar{X}_n)^2\right]^{1/2}\left[\sum_{i=1}^{n}(Y_i - \bar{Y}_n)^2\right]^{1/2}}. $$
+    \textit{Dica:} Primeiro, reescreva a f.d.p. conjunta de cada par $(X_i, Y_i)$ como o produto da f.d.p. marginal de $X_i$ e da f.d.p. condicional de $Y_i$ dado $X_i$. Segundo, transforme os parâmetros para $\mu_1, \sigma_1^2$ e
+    $$ \alpha = \mu_2 - \frac{\rho\sigma_2}{\sigma_1}\mu_1, $$
+    $$ \beta = \frac{\rho\sigma_2}{\sigma_1}, $$
+    $$ \sigma_{2.1}^2 = (1-\rho^2)\sigma_2^2. $$
+    Terceiro, maximize a função de verossimilhança como uma função dos novos parâmetros. Finalmente, aplique a propriedade de invariância dos E.M.V.'s para encontrar os E.M.V.'s dos parâmetros originais. A transformação acima simplifica muito a maximização da verossimilhança.
+    
+    \item Considere novamente a situação descrita no Exercício 24. Desta vez, suponha que, por razões não relacionadas aos valores dos parâmetros, não podemos observar os valores de $Y_{n-k+1}, \dots, Y_n$. Ou seja, seremos capazes de observar todos os $X_1, \dots, X_n$ e $Y_1, \dots, Y_{n-k}$, mas não os últimos $k$ valores de $Y$. Usando a dica do Exercício 24, encontre os E.M.V.'s de $\mu_1, \mu_2, \sigma_1^2, \sigma_2^2$ e $\rho$.
+\end{enumerate}
