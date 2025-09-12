@@ -105,7 +105,7 @@ $$ \hat{\alpha} = \frac{m_1^2}{m_2 - m_1^2}, $$
 $$ \hat{\beta} = \frac{m_1}{m_2 - m_1^2}, $$
 como os estimadores pelo método dos momentos. Note que $m_2 - m_1^2$ é apenas a variância amostral. $\blacktriangle$
 
-\textbf{Teorema 7.6.3} Suponha que $X_1, X_2, \dots$ são i.i.d. (independentes e identicamente distribuídas) com uma distribuição indexada by um vetor de parâmetros $k$-dimensional $\theta$. Suponha que os primeiros $k$ momentos dessa distribuição existem e são finitos para todo $\theta$. Suponha também que a função inversa $M$ na Definição 7.6.3 é contínua. Então, a sequência de estimadores pelo método dos momentos baseada em $X_1, \dots, X_n$ é uma sequência consistente de estimadores de $\theta$.
+\textbf{Teorema 7.6.3} Suponha que $X_1, X_2, \dots$ são i.i.d. (independentes e identicamente distribuídas) com uma distribuição indexada por um vetor de parâmetros $k$-dimensional $\theta$. Suponha que os primeiros $k$ momentos dessa distribuição existem e são finitos para todo $\theta$. Suponha também que a função inversa $M$ na Definição 7.6.3 é contínua. Então, a sequência de estimadores pelo método dos momentos baseada em $X_1, \dots, X_n$ é uma sequência consistente de estimadores de $\theta$.
 
 \textbf{Prova} A lei dos grandes números diz que os momentos amostrais convergem em probabilidade para os momentos $\mu_1(\theta), \dots, \mu_k(\theta)$. A generalização do Teorema 6.2.5 para funções de $k$ variáveis implica que $M$ avaliado nos momentos amostrais (ou seja, o estimador pelo método dos momentos) converge em probabilidade para $\theta$. $\blacksquare$
 
@@ -300,7 +300,8 @@ Outras propriedades dos E.M.V.'s serão discutidas posteriormente neste capítul
     \item Suponha que $X_1, \dots, X_n$ formem uma amostra aleatória de uma distribuição gama para a qual ambos os parâmetros $\alpha$ e $\beta$ são desconhecidos. Encontre o E.M.V. de $\alpha/\beta$.
     
     \item Suponha que $X_1, \dots, X_n$ formem uma amostra aleatória de uma distribuição beta para a qual ambos os parâmetros $\alpha$ e $\beta$ são desconhecidos. Mostre que os E.M.V.'s de $\alpha$ e $\beta$ satisfazem a seguinte equação:
-    $$ \frac{\Gamma'(\hat{\alpha}) - \Gamma'(\hat{\beta})}{\Gamma(\hat{\alpha})\Gamma(\hat{\beta})} = \frac{1}{n}\sum_{i=1}^{n} \log\frac{X_i}{1-X_i}. $$
+    
+    $$ \frac{\Gamma'(\hat{\alpha})}{\Gamma(\hat{\alpha})} - \frac{\Gamma'(\hat{\beta})}{\Gamma(\hat{\beta})} = \frac{1}{n}\sum_{i=1}^{n} \log\frac{X_i}{1-X_i}. $$
     
     \item Suponha que $X_1, \dots, X_n$ formem uma amostra aleatória de tamanho $n$ da distribuição uniforme no intervalo $[0, \theta]$, onde o valor de $\theta$ é desconhecido. Mostre que a sequência de E.M.V.'s de $\theta$ é uma sequência consistente.
     
