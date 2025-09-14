@@ -1,0 +1,204 @@
+\section*{7.7 Estatísticas Suficientes}
+
+Nas primeiras seis seções deste capítulo, apresentamos alguns métodos de inferência que se baseiam na distribuição a posteriori do parâmetro ou apenas na função de verossimilhança. Existem outros métodos de inferência que não se baseiam nem na distribuição a posteriori nem na função de verossimilhança. Esses métodos baseiam-se nas distribuições condicionais de várias funções dos dados (ou seja, estatísticas), dado o parâmetro. Existem muitas estatísticas disponíveis em um determinado problema, algumas mais úteis do que outras. As estatísticas suficientes acabam por ser as mais úteis em algum sentido.
+
+\subsection*{Definição de uma Estatística Suficiente}
+
+\textbf{Exemplo 7.7.1 Vida Útil de Componentes Eletrônicos.} Nos Exemplos 7.4.8 e 7.5.2, calculamos estimativas do tempo médio de vida para componentes eletrônicos com base em uma amostra de tamanho três da distribuição de tempos de vida. As duas estimativas que calculamos foram uma estimativa de Bayes (Exemplo 7.4.8) e uma E.M.V. (Exemplo 7.5.2). Ambas as estimativas fizeram uso dos dados observados apenas através do valor da estatística $X_1 + X_2 + X_3$. Existe algo especial sobre esta estatística e, em caso afirmativo, existem tais estatísticas em outros problemas?
+
+Em muitos problemas em que um parâmetro $\theta$ deve ser estimado, é possível encontrar uma E.M.V. ou um estimador de Bayes que seja adequado. Em alguns problemas, no entanto, nenhum desses estimadores pode ser adequado ou estar disponível. Pode não haver nenhuma E.M.V., ou pode haver mais de uma. Mesmo quando uma E.M.V. é única, pode não ser um estimador adequado, como no Exemplo 7.5.7, onde a E.M.V. sempre subestima o valor de $\theta$. As razões pelas quais pode não haver um estimador de Bayes adequado foram apresentadas no final da Seção 7.4. Em tais problemas, a busca por um bom estimador deve ser estendida para além dos métodos que foram introduzidos até agora. Nesta seção, definiremos o conceito de uma estatística suficiente, que foi introduzido por R. A. Fisher em 1922, e mostraremos como esse conceito pode ser usado para simplificar a busca por um bom estimador em muitos problemas.
+
+Suponha que, em um problema de estimação específico, dois estatísticos A e B devam estimar o valor do parâmetro $\theta$. O estatístico A pode observar os valores das observações $X_1, \dots, X_n$ em uma amostra aleatória, e o estatístico B não pode observar os valores individuais de $X_1, \dots, X_n$, mas pode saber o valor de uma certa estatística $T = r(X_1, \dots, X_n)$. Neste caso, o estatístico A pode escolher qualquer função das observações $X_1, \dots, X_n$ como um estimador de $\theta$ (incluindo uma função de $T$). Mas o estatístico B pode usar apenas uma função de $T$. Conclui-se que A geralmente será capaz de encontrar um estimador melhor do que B.
+
+Em alguns problemas, no entanto, B será capaz de se sair tão bem quanto A. Em tal problema, a única função $T=r(X_1, \dots, X_n)$ irá, em certo sentido, resumir todas as informações contidas na amostra aleatória, e o conhecimento dos valores individuais de $X_1, \dots, X_n$ será irrelevante na busca por um bom estimador de $\theta$. Uma estatística $T$ com esta propriedade é chamada de \textit{estatística suficiente}. A definição formal de uma estatística suficiente baseia-se na seguinte condição. Suponha que se pudesse aprender $T$ e então simular variáveis aleatórias $X'_1, \dots, X'_n$ tais que, para todo $\theta$, a distribuição conjunta de $X'_1, \dots, X'_n$ fosse exatamente a mesma que a distribuição conjunta de $X_1, \dots, X_n$. Tal estatística $T$ é suficiente no sentido de que se poderia, se sentisse necessidade, usar $X'_1, \dots, X'_n$ da mesma forma que se teria usado $X_1, \dots, X_n$. O processo de simulação de $X'_1, \dots, X'_n$ é chamado de \textit{aleatorização auxiliar}.
+
+\noindent\textbf{Definição 7.7.1} \textit{Estatística Suficiente.} Sejam $X_1, \dots, X_n$ uma amostra aleatória de uma distribuição indexada por um parâmetro $\theta$. Seja $T$ uma estatística. Suponha que, para cada $y$ e cada valor possível t de $T$, a distribuição conjunta condicional de $X_1, \dots, X_n$ dado que $T=t$ (e $\theta$) depende apenas de t, mas não de $\theta$. Ou seja, para cada t, a distribuição condicional de $X_1, \dots, X_n$ dado $T=t$ e $\theta$ é a mesma para todo $\theta$. Então, dizemos que $T$ é uma \textit{estatística suficiente} para o parâmetro $\theta$.
+
+\vspace{\baselineskip}
+
+Retornemos agora à intuição introduzida logo antes da Definição 7.7.1. Quando se simula $X'_1, \dots, X'_n$ de acordo com a distribuição conjunta condicional de $X_1, \dots, X_n$ dado $T=t$, segue-se que para cada valor dado de $\theta \in \Omega$, a distribuição conjunta de $T, X'_1, \dots, X'_n$ será a mesma que a distribuição conjunta de $T, X_1, \dots, X_n$. Ao integrar (ou somar) $T$ da distribuição conjunta, vemos que a distribuição conjunta de $X'_1, \dots, X'_n$ é a mesma que a distribuição conjunta de $X_1, \dots, X_n$. Portanto, se a estatística B pode observar o valor de uma estatística suficiente $T$, então ela pode gerar $n$ variáveis aleatórias $X'_1, \dots, X'_n$ que têm a mesma distribuição conjunta que a amostra aleatória original $X_1, \dots, X_n$. A propriedade que distingue uma estatística suficiente $T$ de uma estatística que não é suficiente pode ser descrita da seguinte forma: A aleatorização auxiliar usada para gerar as variáveis aleatórias $X'_1, \dots, X'_n$ depois que a estatística suficiente $T$ foi observada não requer nenhum conhecimento sobre o valor de $\theta$, uma vez que a distribuição conjunta condicional de $X_1, \dots, X_n$ quando $T$ é dado não depende do valor de $\theta$. Se a estatística $T$ não fosse suficiente, essa aleatorização auxiliar não poderia ser realizada, porque a distribuição conjunta condicional de $X_1, \dots, X_n$ para um dado valor de $T$ envolveria o valor de $\theta$, e esse valor é desconhecido.
+
+\vspace{\baselineskip}
+
+Se a estatística B está preocupada apenas com a distribuição do estimador que ela usa, podemos agora ver por que ela pode estimar $\theta$ tão bem quanto a estatística A, que observa os valores de $X_1, \dots, X_n$. Suponha que A planeja usar um estimador particular $\delta(X_1, \dots, X_n)$ para estimar $\theta$, e B observa o valor de $T$ e gera $X'_1, \dots, X'_n$ que têm a mesma distribuição conjunta que $X_1, \dots, X_n$. Se B usa o estimador $\delta(X'_1, \dots, X'_n)$, então se segue que a distribuição de probabilidade do estimador de B será a mesma que a distribuição de probabilidade do estimador de A. Esta discussão ilustra por que, ao procurar por um bom estimador, um estatístico pode restringir a busca a estimadores que são funções de uma estatística suficiente $T$. Retornaremos a este ponto na Seção 7.9.
+
+\vspace{\baselineskip}
+
+Por outro lado, se a estatística B está interessada em basear seu estimador na distribuição a posteriori de $\theta$, ainda não mostramos por que ela pode se sair tão bem quanto a estatística A. O próximo resultado (o critério de fatorização) mostra por que até mesmo isso é verdade. Uma estatística suficiente é suficiente para ser capaz de calcular a função de verossimilhança e, portanto, é suficiente para realizar qualquer inferência que dependa dos dados apenas através da função de verossimilhança. Os E.M.V.'s e qualquer coisa baseada em distribuições a posteriori dependem dos dados apenas através da função de verossimilhança.
+
+\section*{O Critério de Fatorização}
+
+Imediatamente após o Exemplo 7.2.7 e os Teoremas 7.3.2 e 7.3.3, apontamos que uma estatística particular foi usada para calcular a distribuição a posteriori em discussão. Todas essas estatísticas tinham a propriedade de que eram tudo o que era necessário dos dados para poder calcular a função de verossimilhança. Esta propriedade é outra maneira de caracterizar estatísticas suficientes. Apresentaremos agora um método simples para encontrar uma estatística suficiente que pode ser aplicado em muitos problemas. Este método é baseado no seguinte resultado, que foi desenvolvido com generalidade crescente por R. A. Fisher em 1922, J. Neyman em 1935, e P. R. Halmos e L. J. Savage em 1949.
+
+\noindent\textbf{Teorema 7.7.1} \quad \textit{Critério de Fatorização.} Sejam $X_1, \dots, X_n$ uma amostra aleatória de uma distribuição contínua ou discreta para a qual a f.d.p. ou a f.p. é $f(x|\theta)$, onde o valor de $\theta$ é desconhecido e pertence a um dado espaço de parâmetros $\Omega$. Uma estatística $T = r(X_1, \dots, X_n)$ é uma estatística suficiente para $\theta$ se, e somente se, a f.d.p. conjunta ou a f.p. conjunta $f_n(\mathbf{x}|\theta)$ de $X_1, \dots, X_n$ puder ser fatorada da seguinte forma para todos os valores de $\mathbf{x}=(x_1, \dots, x_n) \in \mathbb{R}^n$ e todos os valores de $\theta \in \Omega$:
+\begin{equation}
+f_n(\mathbf{x}|\theta) = u(\mathbf{x})v[r(\mathbf{x}), \theta]. \tag{7.7.1}
+\end{equation}
+Aqui, as funções $u$ e $v$ são não-negativas, a função $u$ pode depender de $\mathbf{x}$ mas não depende de $\theta$, e a função $v$ dependerá de $\theta$ mas depende do valor observado $\mathbf{x}$ apenas através do valor da estatística $r(\mathbf{x})$.
+
+\vspace{\baselineskip}
+
+\noindent\textbf{Prova} \quad Daremos a prova apenas para o caso em que o vetor aleatório $\mathbf{X}=(X_1, \dots, X_n)$ tem uma distribuição discreta, nesse caso
+$$ f_n(\mathbf{x}|\theta) = \Pr(\mathbf{X}=\mathbf{x}|\theta). $$
+Suponha primeiro que $f_n(\mathbf{x}|\theta)$ possa ser fatorada como na Eq. (7.7.1) para todos os valores de $\mathbf{x} \in \mathbb{R}^n$ e $\theta \in \Omega$. Para cada valor possível $t$ de $T$, seja $A(t)$ o conjunto de todos os pontos $\mathbf{x} \in \mathbb{R}^n$ tais que $r(\mathbf{x})=t$. Para cada valor dado de $\theta \in \Omega$, determinaremos a distribuição condicional de $\mathbf{X}$ dado que $T=t$. Para cada ponto $\mathbf{x} \in A(t)$,
+$$ \Pr(\mathbf{X}=\mathbf{x}|T=t, \theta) = \frac{\Pr(\mathbf{X}=\mathbf{x}|\theta)}{\Pr(T=t|\theta)} = \frac{f_n(\mathbf{x}|\theta)}{\sum_{\mathbf{y} \in A(t)} f_n(\mathbf{y}|\theta)}. $$
+Como $r(\mathbf{y})=t$ para cada ponto $\mathbf{y} \in A(t)$, e como $\mathbf{x} \in A(t)$, segue da Eq. (7.7.1) que
+\begin{equation}
+\Pr(\mathbf{X}=\mathbf{x}|T=t, \theta) = \frac{u(\mathbf{x})}{\sum_{\mathbf{y} \in A(t)} u(\mathbf{y})}. \tag{7.7.2}
+\end{equation}
+Finalmente, para cada ponto $\mathbf{x}$ que não pertence a $A(t)$,
+\begin{equation}
+\Pr(\mathbf{X}=\mathbf{x}|T=t, \theta) = 0. \tag{7.7.3}
+\end{equation}
+Pode-se ver das Eqs. (7.7.2) e (7.7.3) que a distribuição condicional de $\mathbf{X}$ não depende de $\theta$. Portanto, $T$ é uma estatística suficiente.
+
+Reciprocamente, suponha que $T$ é uma estatística suficiente. Então, para cada valor dado $t$ de $T$, cada ponto $\mathbf{x} \in A(t)$, e cada valor de $\theta \in \Omega$, a probabilidade condicional $\Pr(\mathbf{X}=\mathbf{x}|T=t, \theta)$ não dependerá de $\theta$ e terá, portanto, a forma
+$$ \Pr(\mathbf{X}=\mathbf{x}|T=t, \theta) = u(\mathbf{x}). $$
+Se fizermos $v(t, \theta) = \Pr(T=t|\theta)$, segue que
+\begin{align*}
+f_n(\mathbf{x}|\theta) &= \Pr(\mathbf{X}=\mathbf{x}|\theta) = \Pr(\mathbf{X}=\mathbf{x}|T=t, \theta)\Pr(T=t|\theta) \\
+&= u(\mathbf{x})v(t, \theta).
+\end{align*}
+Portanto, $f_n(\mathbf{x}|\theta)$ foi fatorada na forma especificada na Eq. (7.7.1).
+
+A prova para uma amostra aleatória $X_1, \dots, X_n$ de uma distribuição contínua requer métodos um pouco diferentes e não será aqui apresentada. \hfill $\blacksquare$
+
+Uma forma de ler o Teorema 7.7.1 é que $T = r(\mathbf{X})$ é suficiente se, e somente se, a função de verossimilhança é proporcional (como uma função de $\theta$) a uma função que depende dos dados apenas através de $r(\mathbf{x})$. Essa função seria $v[r(\mathbf{x}), \theta]$. Ao usar a função de verossimilhança para encontrar distribuições a posteriori, vimos que qualquer fator que não dependa de $\theta$ (tal como $u(\mathbf{x})$ na Eq. (7.7.1)) pode ser removido da verossimilhança sem afetar o cálculo da distribuição a posteriori. Assim, temos o seguinte corolário para o Teorema 7.7.1.
+
+\vspace{\baselineskip}
+\hrule
+\vspace{\baselineskip}
+
+\noindent \textbf{Corolário 7.7.1} \\
+\textit{Uma estatística $T=r(\mathbf{X})$ é suficiente se, e somente se, não importa qual distribuição a priori usemos, a distribuição a posteriori de $\theta$ depende dos dados apenas através do valor de $T$.} \hfill $\blacksquare$
+
+\vspace{\baselineskip}
+Para cada valor de $\mathbf{x}$ para o qual $f_n(\mathbf{x}|\theta)=0$ para todos os valores de $\theta \in \Omega$, o valor da função $u(\mathbf{x})$ na Eq. (7.7.1) pode ser escolhido como 0. Portanto, quando o critério de fatorização está sendo aplicado, é suficiente verificar que uma fatorização da forma dada na Eq. (7.7.1) é satisfeita para cada valor de $\mathbf{x}$ tal que $f_n(\mathbf{x}|\theta) > 0$ para pelo menos um valor de $\theta \in \Omega$.
+
+Vamos agora ilustrar o uso do critério de fatorização, apresentando quatro exemplos.
+
+\vspace{\baselineskip}
+
+\noindent \textbf{Exemplo 7.7.2} \\
+\textit{Amostragem de uma Distribuição de Poisson.} Suponha que $\mathbf{X}=(X_1, \dots, X_n)$ forme uma amostra aleatória de uma distribuição de Poisson para a qual o valor da média $\theta$ é desconhecido ($\theta>0$). Seja $r(\mathbf{x}) = \sum_{i=1}^{n} x_i$. Mostraremos que $T=r(\mathbf{X}) = \sum_{i=1}^{n} X_i$ é uma estatística suficiente para $\theta$.
+
+Para cada conjunto de inteiros não-negativos $x_1, \dots, x_n$, a f.p. conjunta $f_n(\mathbf{x}|\theta)$ de $X_1, \dots, X_n$ é a seguinte:
+$$ f_n(\mathbf{x}|\theta) = \prod_{i=1}^{n} \frac{e^{-\theta}\theta^{x_i}}{x_i!} = \left(\prod_{i=1}^{n} \frac{1}{x_i!}\right) e^{-n\theta}\theta^{r(\mathbf{x})}. $$
+Seja $u(\mathbf{x}) = \prod_{i=1}^{n}(1/x_i!)$ e $v(t, \theta)=e^{-n\theta}\theta^t$. Vemos agora que $f_n(\mathbf{x}|\theta)$ foi fatorada como na Eq. (7.7.1). Segue-se que $T=\sum_{i=1}^{n} X_i$ é uma estatística suficiente para $\theta$.
+
+
+\noindent\textbf{Exemplo 7.7.3} \\
+\textit{Aplicação do Critério de Fatorização a uma Distribuição Contínua.} Suponha que $\mathbf{X}=(X_1, \dots, X_n)$ forme uma amostra aleatória de uma distribuição contínua com a seguinte f.d.p.:
+\[
+f(x|\theta) =
+\begin{cases}
+    \theta x^{\theta-1} & \text{para } 0 < x < 1, \\
+    0 & \text{caso contrário.}
+\end{cases}
+\]
+Assume-se que o valor do parâmetro $\theta$ é desconhecido ($\theta > 0$). Seja $r(\mathbf{X}) = \prod_{i=1}^{n} X_i$. Mostraremos que $T=r(\mathbf{X}) = \prod_{i=1}^{n} X_i$ é uma estatística suficiente para $\theta$.
+
+Para $0 < x_i < 1$ ($i=1, \dots, n$), a f.d.p. conjunta $f_n(\mathbf{x}|\theta)$ de $X_1, \dots, X_n$ é a seguinte:
+\begin{equation}
+f_n(\mathbf{x}|\theta) = \theta^n \left( \prod_{i=1}^{n} x_i \right)^{\theta-1} = \theta^n [r(\mathbf{x})]^{\theta-1}. \tag{7.7.4}
+\end{equation}
+Além disso, se pelo menos um valor de $x_i$ está fora do intervalo $0 < x < 1$, então $f_n(\mathbf{x}|\theta)=0$ para todo valor de $\theta \in \Omega$. O lado direito da Eq. (7.7.4) depende de $\mathbf{x}$ apenas através do valor de $r(\mathbf{x})$. Portanto, se fizermos $u(\mathbf{x})=1$ e $v(t, \theta)=\theta^n t^{\theta-1}$, então $f_n(\mathbf{x}|\theta)$ na Eq. (7.7.4) pode ser considerada fatorada na forma especificada na Eq. (7.7.1). Segue-se do critério de fatorização que a estatística $T = \prod_{i=1}^{n} X_i$ é uma estatística suficiente para $\theta$.
+
+\vspace{\baselineskip}
+
+\noindent\textbf{Exemplo 7.7.4} \\
+\textit{Amostragem de uma Distribuição Normal.} Suponha que $\mathbf{X}=(X_1, \dots, X_n)$ forme uma amostra aleatória de uma distribuição normal para a qual a média $\mu$ é desconhecida e a variância $\sigma^2$ é conhecida. Seja $r(\mathbf{x})=\sum_{i=1}^{n} x_i$. Mostraremos que $T=r(\mathbf{X}) = \sum_{i=1}^{n} X_i$ é uma estatística suficiente para $\mu$.
+
+\vspace{\baselineskip}
+
+Para $-\infty < x_i < \infty$ ($i=1, \dots, n$), a f.d.p. conjunta de $\mathbf{X}$ é a seguinte:
+\begin{equation}
+f_n(\mathbf{x}|\mu) = \prod_{i=1}^{n} \frac{1}{(2\pi)^{1/2}\sigma} \exp\left[ -\frac{(x_i - \mu)^2}{2\sigma^2} \right]. \tag{7.7.5}
+\end{equation}
+Esta equação pode ser reescrita na forma
+\begin{equation}
+f_n(\mathbf{x}|\mu) = \frac{1}{(2\pi)^{n/2}\sigma^n} \exp\left(-\frac{1}{2\sigma^2}\sum_{i=1}^{n} x_i^2\right) \exp\left(\frac{\mu}{\sigma^2}\sum_{i=1}^{n} x_i - \frac{n\mu^2}{2\sigma^2}\right). \tag{7.7.6}
+\end{equation}
+Seja $u(\mathbf{x})$ o fator constante e o primeiro fator exponencial na Eq. (7.7.6). Seja $v(t, \mu) = \exp(\mu t / \sigma^2 - n\mu^2/\sigma^2)$. Então $f_n(\mathbf{x}|\mu)$ foi agora fatorada como na Eq. (7.7.1). Segue-se do critério de fatorização que $T = \sum_{i=1}^{n} X_i$ é uma estatística suficiente para $\mu$.
+
+Como $\sum_{i=1}^{n} x_i = n\bar{x}_n$, podemos afirmar equivalentemente que o fator final na Eq. (7.7.6) depende de $x_1, \dots, x_n$ apenas através do valor de $\bar{x}_n$. Portanto, no Exemplo 7.7.4, a estatística $\bar{X}_n$ também é uma estatística suficiente para $\mu$. De forma mais geral (ver Exercício 13 no final desta seção), toda função um-para-um de uma estatística suficiente é também uma estatística suficiente.
+\noindent\textbf{Exemplo 7.7.5} \\
+\textit{Amostragem de uma Distribuição Uniforme.} Suponha que $\mathbf{X}=(X_1, \dots, X_n)$ forme uma amostra aleatória de uma distribuição uniforme no intervalo $[0, \theta]$, onde o valor do parâmetro $\theta$ é desconhecido ($\theta > 0$). Seja $r(\mathbf{x}) = \max\{x_1, \dots, x_n\}$. Mostraremos que $T=r(\mathbf{X})$ é uma estatística suficiente para $\theta$.
+
+A f.d.p. $f(x|\theta)$ de cada observação individual $X_i$ é
+\[ f(x|\theta) = 
+\begin{cases} 
+\frac{1}{\theta} & \text{para } 0 \le x \le \theta, \\ 
+0 & \text{caso contrário.} 
+\end{cases} \]
+Portanto, a f.d.p. conjunta $f_n(\mathbf{x}|\theta)$ de $X_1, \dots, X_n$ é
+\[ f_n(\mathbf{x}|\theta) = 
+\begin{cases} 
+\frac{1}{\theta^n} & \text{para } 0 \le x_i \le \theta, (i=1, \dots, n), \\ 
+0 & \text{caso contrário.} 
+\end{cases} \]
+Pode-se ver que se $x_i < 0$ para pelo menos um valor de $i$ ($i=1, \dots, n$), então $f_n(\mathbf{x}|\theta) = 0$ para todo valor de $\theta > 0$. Portanto, é apenas necessário considerar a fatorização de $f_n(\mathbf{x}|\theta)$ para valores de $x_i \ge 0$ ($i=1, \dots, n$).
+
+Seja $v[t, \theta]$ definido da seguinte forma:
+\[ v[t, \theta] = 
+\begin{cases} 
+\frac{1}{\theta^n} & \text{se } t \le \theta, \\ 
+0 & \text{se } t > \theta. 
+\end{cases} \]
+Note que $x_i \le \theta$ para $i=1, \dots, n$ se e somente se $\max\{x_1, \dots, x_n\} \le \theta$. Portanto, para $x_i \ge 0$ ($i=1, \dots, n$), podemos reescrever $f_n(\mathbf{x}|\theta)$ da seguinte forma:
+\begin{equation}
+f_n(\mathbf{x}|\theta) = v[r(\mathbf{x}), \theta]. \tag{7.7.7}
+\end{equation}
+Fazendo $u(\mathbf{x})=1$, vemos que o lado direito da Eq. (7.7.7) está na forma da Eq. (7.7.1). Segue-se que $T=\max\{X_1, \dots, X_n\}$ é uma estatística suficiente para $\theta$.
+
+\subsection*{Resumo}
+
+Uma estatística $T=r(\mathbf{X})$ é suficiente se, para cada $t$, a distribuição condicional de $\mathbf{X}$ dado $T=t$ e $\theta$ for a mesma para todos os valores de $\theta$. Assim, se $T$ é suficiente, e se observa apenas $T$ em vez de $\mathbf{X}$, pode-se, em princípio, simular variáveis aleatórias $\mathbf{X}'$ com a mesma distribuição conjunta que $\mathbf{X}$. Neste sentido, $T$ é suficiente para obter tanta informação sobre $\theta$ quanto se poderia obter a partir dos dados $\mathbf{X}$. O critério de fatorização diz que $T=r(\mathbf{X})$ é suficiente se e somente se a f.p. ou f.d.p. conjunta pode ser fatorada como $f(\mathbf{x}|\theta) = u(\mathbf{x})v[r(\mathbf{x}), \theta]$ para algumas funções $u$ e $v$. Esta é a maneira mais conveniente de identificar se uma estatística é ou não suficiente.
+
+
+\section*{Exercícios}
+
+\noindent\textit{Instruções para os Exercícios 1 a 10: Em cada um destes exercícios, assuma que as variáveis aleatórias $X_1, \dots, X_n$ formam uma amostra aleatória de tamanho $n$ da distribuição especificada naquele exercício, e mostre que a estatística $T$ especificada no exercício é uma estatística suficiente para o parâmetro.}
+
+\begin{enumerate}
+    \item A distribuição de Bernoulli com parâmetro $p$, que é desconhecido ($0 < p < 1$); $T = \sum_{i=1}^{n} X_i$.
+
+    \item A distribuição geométrica com parâmetro $p$, que é desconhecido ($0 < p < 1$); $T = \sum_{i=1}^{n} X_i$.
+
+    \item A distribuição binomial negativa com parâmetros $r$ e $p$, onde $r$ é conhecido e $p$ é desconhecido ($0 < p < 1$); $T = \sum_{i=1}^{n} X_i$.
+
+    \item A distribuição normal para a qual a média $\mu$ é conhecida e a variância $\sigma^2 > 0$ é desconhecida; $T = \sum_{i=1}^{n} (X_i - \mu)^2$.
+
+    \item A distribuição gama com parâmetros $\alpha$ e $\beta$, onde o valor de $\alpha$ é conhecido e o valor de $\beta$ é desconhecido ($\beta > 0$); $T = \bar{X}_n$.
+
+    \item A distribuição gama com parâmetros $\alpha$ e $\beta$, onde o valor de $\beta$ é conhecido e o valor de $\alpha$ é desconhecido ($\alpha > 0$); $T = \prod_{i=1}^{n} X_i$.
+
+    \item A distribuição beta com parâmetros $\alpha$ e $\beta$, onde o valor de $\beta$ é conhecido e o valor de $\alpha$ é desconhecido ($\alpha > 0$); $T = \prod_{i=1}^{n} X_i$.
+    
+    \item A distribuição uniforme nos inteiros $1, 2, \dots, \theta$, como definido na Seção 3.1, onde o valor de $\theta$ é desconhecido ($\theta = 1, 2, \dots$); $T = \max\{X_1, \dots, X_n\}$.
+    
+    \item A distribuição uniforme no intervalo $[a, b]$, onde o valor de $a$ é conhecido e o valor de $b$ é desconhecido ($b > a$); $T = \max\{X_1, \dots, X_n\}$.
+
+    \item A distribuição uniforme no intervalo $[a, b]$, onde o valor de $b$ é conhecido e o valor de $a$ é desconhecido ($a < b$); $T = \min\{X_1, \dots, X_n\}$.
+
+    \item Assuma que $X_1, \dots, X_n$ formam uma amostra aleatória de uma distribuição que pertence a uma família exponencial de distribuições, conforme definido no Exercício 23 da Seção 7.3. Prove que $T = \sum_{i=1}^{n} d(X_i)$ é uma estatística suficiente para $\theta$.
+    
+    \item Suponha que uma amostra aleatória $X_1, \dots, X_n$ seja extraída da distribuição de Pareto com parâmetros $x_0$ e $\alpha$. (Ver Exercício 16 na Seção 5.7.)
+    \begin{enumerate}
+        \item[a.] Se $x_0$ é conhecido e $\alpha > 0$ é desconhecido, encontre uma estatística suficiente.
+        \item[b.] Se $\alpha$ é conhecido e $x_0$ é desconhecido, encontre uma estatística suficiente.
+    \end{enumerate}
+
+    \item Suponha que $X_1, \dots, X_n$ formem uma amostra aleatória de uma distribuição para a qual a f.d.p. é $f(x|\theta)$, onde o valor do parâmetro $\theta$ pertence a um dado espaço de parâmetros $\Omega$. Suponha que $T = r(X_1, \dots, X_n)$ e $T' = r'(X_1, \dots, X_n)$ sejam duas estatísticas tais que $T'$ é uma função um-para-um de $T$; isto é, o valor de $T'$ pode ser determinado a partir do valor de $T$ sem conhecer os valores de $X_1, \dots, X_n$, e o valor de $T$ pode ser determinado a partir do valor de $T'$ sem conhecer os valores de $X_1, \dots, X_n$. Mostre que $T'$ é uma estatística suficiente para $\theta$ se, e somente se, $T$ é uma estatística suficiente para $\theta$.
+
+    \item Suponha que $X_1, \dots, X_n$ formem uma amostra aleatória da distribuição gama especificada no Exercício 6. Mostre que a estatística $T = \sum_{i=1}^{n} \log X_i$ é uma estatística suficiente para o parâmetro $\alpha$.
+
+        \item Suponha que $X_1, \dots, X_n$ formem uma amostra aleatória da distribuição beta com parâmetros $\alpha$ e $\beta$, onde o valor de $\alpha$ é conhecido e o valor de $\beta$ é desconhecido ($\beta > 0$). Mostre que a seguinte estatística $T$ é uma estatística suficiente para $\beta$:
+    \[ T = \frac{1}{n}\left(\sum_{i=1}^{n} \log\frac{1}{1-X_i}\right)^4. \]
+
+    \item Seja $\theta$ um parâmetro com espaço de parâmetros $\Omega$ igual a um intervalo de números reais (possivelmente ilimitado). Seja $\mathbf{X}$ com f.d.p. ou f.p. $f_n(\mathbf{x}|\theta)$ condicional a $\theta$. Seja $T=r(\mathbf{X})$ uma estatística. Assuma que $T$ é suficiente. Prove que, para toda f.d.p. a priori possível para $\theta$, a f.d.p. a posteriori de $\theta$ dado $\mathbf{X}=\mathbf{x}$ depende de $\mathbf{x}$ apenas através de $r(\mathbf{x})$.
+
+    \item Seja $\theta$ um parâmetro, e seja $\mathbf{X}$ discreto com f.p. $f_n(\mathbf{x}|\theta)$ condicional a $\theta$. Seja $T=r(\mathbf{X})$ uma estatística. Prove que $T$ é suficiente se, e somente se, para todo $t$ e todo $\mathbf{x}$ tal que $t=r(\mathbf{x})$, a função de verossimilhança da observação $T=t$ é proporcional à função de verossimilhança da observação $\mathbf{X}=\mathbf{x}$.
+
+
+\end{enumerate}

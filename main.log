@@ -1,4 +1,4 @@
-This is LuaHBTeX, Version 1.14.0 (TeX Live 2022/dev/Debian)  (format=lualatex 2025.6.10)  12 SEP 2025 18:52
+This is LuaHBTeX, Version 1.14.0 (TeX Live 2022/dev/Debian)  (format=lualatex 2025.6.10)  14 SEP 2025 14:53
  system commands enabled.
 **/home/taylor/Documents/FGV/Fourth/InferênciaEstatística/Translate/main
 (/home/taylor/Documents/FGV/Fourth/InferênciaEstatística/Translate/main.tex
@@ -269,6 +269,17 @@ Package: fancyhdr 2021/01/28 v4.0.1 Extensive control of page headers and footer
 \f@nch@O@orf=\skip61
 ) (/usr/share/texlive/texmf-dist/tex/latex/lastpage/lastpage.sty
 Package: lastpage 2021/09/03 v1.2n Refers to last page's name (HMM; JPG)
+) (/usr/share/texlive/texmf-dist/tex/latex/amscls/amsthm.sty
+Package: amsthm 2020/05/29 v2.20.6
+\thm@style=\toks27
+\thm@bodyfont=\toks28
+\thm@headfont=\toks29
+\thm@notefont=\toks30
+\thm@headpunct=\toks31
+\thm@preskip=\skip62
+\thm@postskip=\skip63
+\thm@headsep=\skip64
+\dth@everypar=\toks32
 ) (/usr/share/texlive/texmf-dist/tex/latex/l3backend/l3backend-luatex.def
 File: l3backend-luatex.def 2022-01-12 L3 backend support: PDF output (LuaTeX)
 \l__color_backend_stack_int=\count273
@@ -276,26 +287,26 @@ File: l3backend-luatex.def 2022-01-12 L3 backend support: PDF output (LuaTeX)
 ) (./main.aux)
 \openout1 = main.aux
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 27.
-LaTeX Font Info:    ... okay on input line 27.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 27.
-LaTeX Font Info:    ... okay on input line 27.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 27.
-LaTeX Font Info:    ... okay on input line 27.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 27.
-LaTeX Font Info:    ... okay on input line 27.
-LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 27.
-LaTeX Font Info:    Trying to load font information for TS1+cmr on input line 27.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 28.
+LaTeX Font Info:    ... okay on input line 28.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 28.
+LaTeX Font Info:    ... okay on input line 28.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 28.
+LaTeX Font Info:    ... okay on input line 28.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 28.
+LaTeX Font Info:    ... okay on input line 28.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 28.
+LaTeX Font Info:    Trying to load font information for TS1+cmr on input line 28.
  (/usr/share/texlive/texmf-dist/tex/latex/base/ts1cmr.fd
 File: ts1cmr.fd 2019/12/16 v2.5j Standard LaTeX font definitions
 )
-LaTeX Font Info:    ... okay on input line 27.
-LaTeX Font Info:    Checking defaults for TU/lmr/m/n on input line 27.
-LaTeX Font Info:    ... okay on input line 27.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 27.
-LaTeX Font Info:    ... okay on input line 27.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 27.
-LaTeX Font Info:    ... okay on input line 27.
+LaTeX Font Info:    ... okay on input line 28.
+LaTeX Font Info:    Checking defaults for TU/lmr/m/n on input line 28.
+LaTeX Font Info:    ... okay on input line 28.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 28.
+LaTeX Font Info:    ... okay on input line 28.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 28.
+LaTeX Font Info:    ... okay on input line 28.
  (/usr/share/texlive/texmf-dist/tex/context/base/mkii/supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
 \scratchcounter=\count274
@@ -303,12 +314,12 @@ LaTeX Font Info:    ... okay on input line 27.
 \scratchbox=\box56
 \nofMPsegments=\count275
 \nofMParguments=\count276
-\everyMPshowfont=\toks27
+\everyMPshowfont=\toks33
 \MPscratchCnt=\count277
 \MPscratchDim=\dimen152
 \MPnumerator=\count278
 \makeMPintoPDFobject=\count279
-\everyMPtoPDFconversion=\toks28
+\everyMPtoPDFconversion=\toks34
 ) (/usr/share/texlive/texmf-dist/tex/latex/epstopdf-pkg/epstopdf-base.sty
 Package: epstopdf-base 2020-01-24 v2.11 Base part for package epstopdf
 Package epstopdf-base Info: Redefining graphics rule for `.eps' on input line 485.
@@ -317,7 +328,7 @@ File: epstopdf-sys.cfg 2010/07/13 v1.3 Configuration of (r)epstopdf for TeX Live
 ))
 Package lastpage Info: Please have a look at the pageslts package at
 (lastpage)             https://www.ctan.org/pkg/pageslts
-(lastpage)             ! on input line 27.
+(lastpage)             ! on input line 28.
  (./tex/cape.tex
 <img/fgv.png, id=1, 249.93375pt x 44.165pt>
 File: img/fgv.png Graphic file (type png)
@@ -830,28 +841,76 @@ File: img/emap.png Graphic file (type png)
 <use img/emap.png>
 Package luatex.def Info: img/emap.png  used on input line 355.
 (luatex.def)             Requested size: 67.5949pt x 8.2511pt.
- [86]) 
+ [86]) (./tex/Cap7/7_7.tex
+File: img/emap.png Graphic file (type png)
+<use img/emap.png>
+Package luatex.def Info: img/emap.png  used on input line 12.
+(luatex.def)             Requested size: 67.5949pt x 8.2511pt.
+ [87]
+Overfull \hbox (8.73999pt too wide) in paragraph at lines 19--20
+[]\TU/lmr/m/n/10 Re-tor-ne-mos agora à in-tui-ção in-tro-du-zida logo an-tes da De-fi-ni-ção 7.7.1. Quando
+ []
+
+File: img/emap.png Graphic file (type png)
+<use img/emap.png>
+Package luatex.def Info: img/emap.png  used on input line 24.
+(luatex.def)             Requested size: 67.5949pt x 8.2511pt.
+[88]
+File: img/emap.png Graphic file (type png)
+<use img/emap.png>
+Package luatex.def Info: img/emap.png  used on input line 44.
+(luatex.def)             Requested size: 67.5949pt x 8.2511pt.
+ [89]
+File: img/emap.png Graphic file (type png)
+<use img/emap.png>
+Package luatex.def Info: img/emap.png  used on input line 77.
+(luatex.def)             Requested size: 67.5949pt x 8.2511pt.
+ [90]
+File: img/emap.png Graphic file (type png)
+<use img/emap.png>
+Package luatex.def Info: img/emap.png  used on input line 111.
+(luatex.def)             Requested size: 67.5949pt x 8.2511pt.
+ [91]
+Overfull \hbox (6.65077pt too wide) in paragraph at lines 124--127
+\TU/lmr/m/n/10 onde o va-lor do pa-râ-me-tro $\OML/cmm/m/it/10 $ \TU/lmr/m/n/10 é des-co-nhe-cido ($\OML/cmm/m/it/10  > \OT1/cmr/m/n/10 0$\TU/lmr/m/n/10 ). Seja $\OML/cmm/m/it/10 r\OT1/cmr/m/n/10 (\OT1/cmr/bx/n/10 x\OT1/cmr/m/n/10 ) = []\OMS/cmsy/m/n/10 f\OML/cmm/m/it/10 x[]; [] ; x[]\OMS/cmsy/m/n/10 g$\TU/lmr/m/n/10 .
+ []
+
+File: img/emap.png Graphic file (type png)
+<use img/emap.png>
+Package luatex.def Info: img/emap.png  used on input line 153.
+(luatex.def)             Requested size: 67.5949pt x 8.2511pt.
+[92]
+File: img/emap.png Graphic file (type png)
+<use img/emap.png>
+Package luatex.def Info: img/emap.png  used on input line 181.
+(luatex.def)             Requested size: 67.5949pt x 8.2511pt.
+ [93]
+File: img/emap.png Graphic file (type png)
+<use img/emap.png>
+Package luatex.def Info: img/emap.png  used on input line 202.
+(luatex.def)             Requested size: 67.5949pt x 8.2511pt.
+ [94]) 
 AED: lastpage setting LastPage
 File: img/emap.png Graphic file (type png)
 <use img/emap.png>
-Package luatex.def Info: img/emap.png  used on input line 40.
+Package luatex.def Info: img/emap.png  used on input line 42.
 (luatex.def)             Requested size: 67.5949pt x 8.2511pt.
-[87] (./main.aux))
+[95] (./main.aux))
 
 Here is how much of LuaTeX's memory you used:
- 5198 strings out of 477805
+ 5345 strings out of 477805
  100000,460012 words of node,token memory allocated
- 1743 words of node memory still in use:
-   7 hlist, 2 vlist, 2 rule, 2 glue, 4 kern, 1 glyph, 421 attribute, 53 glue_spec, 212 attribute_list, 2 write nodes
-   avail lists: 2:751,3:177,4:53,5:428,6:42,7:9049,8:105,9:956,10:29,11:1134
- 25101 multiletter control sequences out of 65536+600000
+ 1886 words of node memory still in use:
+   7 hlist, 2 vlist, 2 rule, 2 glue, 4 kern, 1 glyph, 467 attribute, 54 glue_spec, 235 attribute_list, 2 write nodes
+   avail lists: 2:787,3:194,4:53,5:433,6:42,7:9049,8:105,9:956,10:29,11:1134
+ 25182 multiletter control sequences out of 65536+600000
  46 fonts using 3343103 bytes
  55i,19n,59p,2101b,613s stack positions out of 5000i,500n,10000p,200000b,80000s
-</usr/share/texmf/fonts/opentype/public/lm/lmroman10-italic.otf></usr/share/texmf/fonts/opentype/public/lm/lmroman10-bold.otf></usr/share/texmf/fonts/opentype/public/lm/lmroman12-bold.otf></usr/share/texmf/fonts/opentype/public/lm/lmroman10-regular.otf></usr/share/texmf/fonts/opentype/public/lm/lmroman12-regular.otf></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi5.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi7.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr5.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy5.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy7.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/symbols/msam10.pfb>
-Output written on main.pdf (88 pages, 593673 bytes).
+</usr/share/texmf/fonts/opentype/public/lm/lmroman10-italic.otf></usr/share/texmf/fonts/opentype/public/lm/lmroman10-bold.otf></usr/share/texmf/fonts/opentype/public/lm/lmroman12-bold.otf></usr/share/texmf/fonts/opentype/public/lm/lmroman10-regular.otf></usr/share/texmf/fonts/opentype/public/lm/lmroman12-regular.otf></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx7.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi5.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi7.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr5.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy5.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy7.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/symbols/msam10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb>
+Output written on main.pdf (96 pages, 644157 bytes).
 
-PDF statistics: 379 PDF objects out of 1000 (max. 8388607)
- 243 compressed objects within 3 object streams
+PDF statistics: 412 PDF objects out of 1000 (max. 8388607)
+ 266 compressed objects within 3 object streams
  0 named destinations out of 1000 (max. 131072)
  1 words of extra memory for PDF output out of 10000 (max. 100000000)
 
