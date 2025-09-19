@@ -1,0 +1,180 @@
+\section*{$\star$ 7.9 Melhorando um Estimador}
+
+Nesta seção, mostramos como melhorar um estimador que não é uma função de uma estatística suficiente, usando um estimador que é uma função da estatística suficiente.
+
+\subsection*{O Erro Quadrático Médio de um Estimador}
+
+\noindent\textbf{Exemplo 7.9.1} \quad \textit{Chegadas de Clientes.} O dono de uma loja está interessado na probabilidade $p$ de que exatamente um cliente chegue durante uma hora típica. Ele modela as chegadas de clientes como um processo de Poisson com taxa $\theta$ por hora e observa quantos clientes chegam durante cada uma de $n$ horas, $X_1, \dots, X_n$. Ele converte cada $X_i$ para $Y_i = 1$ se $X_i=1$ e $Y_i=0$ se $X_i \neq 1$. Então $Y_1, \dots, Y_n$ é uma amostra aleatória da distribuição de Bernoulli com parâmetro $p$. O dono da loja então estima $p$ por $\bar{Y}_n = \sum_{i=1}^{n} Y_i/n$. Este é um bom estimador? Em particular, se o dono da loja quiser minimizar o erro quadrático médio, existe outro estimador que podemos mostrar que é melhor? \hfill $\blacktriangle$
+
+\vspace{\baselineskip}
+
+Em geral, suponha que $\mathbf{X}=(X_1, \dots, X_n)$ forme uma amostra aleatória de uma distribuição para a qual a f.d.p. ou a f.p. é $f(x|\theta)$, onde o parâmetro $\theta$ deve pertencer a algum espaço de parâmetros $\Omega$. Nesta seção, $\theta$ pode ser um parâmetro unidimensional ou um vetor de parâmetros. Para cada variável aleatória $Z=g(X_1, \dots, X_n)$, denotaremos por $E_\theta(Z)$ a esperança de $Z$ calculada em relação à f.d.p. ou f.p. conjunta $f_n(\mathbf{x}|\theta)$. Se estamos pensando em $\theta$ como uma variável aleatória, então $E_\theta(Z)$ é $E(Z|\theta)$. Por exemplo, se $f_n(\mathbf{x}|\theta)$ é uma f.d.p., então
+\[ E_\theta(Z) = \int_{-\infty}^{\infty} \dots \int_{-\infty}^{\infty} g(\mathbf{x})f_n(\mathbf{x}|\theta)dx_1 \dots dx_n. \]
+Vamos supor que o valor de $\theta$ é desconhecido e que queremos estimar alguma função $h(\theta)$. Se $\theta$ é um vetor, $h(\theta)$ pode ser uma das coordenadas ou uma função de todas as coordenadas, e assim por diante. Vamos assumir que a perda por erro quadrático deve ser usada. Além disso, para cada estimador $\delta(\mathbf{X})$ e cada valor dado de $\theta \in \Omega$, denotaremos por $R(\theta, \delta)$ o E.Q.M. (Erro Quadrático Médio) de $\delta$ calculado em relação ao valor dado de $\theta$. Assim,
+\begin{equation}
+R(\theta, \delta) = E_\theta([\delta(\mathbf{X}) - h(\theta)]^2). \tag{7.9.1}
+\end{equation}
+Se não atribuirmos uma distribuição a priori a $\theta$, então se deseja encontrar um estimador $\delta$ para o qual o E.Q.M., $R(\theta, \delta)$, seja pequeno para todo valor de $\theta \in \Omega$, ou, pelo menos, para uma ampla gama de valores de $\theta$.
+
+Suponha agora que $\mathbf{T}$ é um vetor de estatísticas conjuntamente suficientes para $\theta$. No restante desta seção, vamos nos referir a $\mathbf{T}$ simplesmente como a estatística suficiente $T$. Considere um estatístico $A$ que planeja usar um estimador particular $\delta(\mathbf{X})$. Na Seção 7.7, observamos que outro estatístico $B$ que conhece apenas o valor da estatística suficiente $T$ pode gerar uma amostra $\mathbf{X}'$ por meio de uma aleatorização auxiliar, e a estimação que será baseada em $\delta(\mathbf{X}')$ terá exatamente a mesma distribuição que $\delta(\mathbf{X})$ e, em particular, terá o mesmo erro quadrático médio que $\delta(\mathbf{X})$ para todo valor de $\theta \in \Omega$. Mostraremos agora que, mesmo sem usar uma aleatorização auxiliar, o estatístico $B$ pode encontrar um estimador $\delta_0$ que depende das observações $\mathbf{X}$ apenas através da estatística suficiente $T$ e é pelo menos tão bom quanto o estimador $\delta$ no sentido de que $R(\theta, \delta_0) \le R(\theta, \delta)$, para todo valor de $\theta \in \Omega$.
+
+\subsection*{Esperança Condicional Quando uma Estatística Suficiente é Conhecida}
+
+Definiremos o estimador $\delta_0(\mathbf{T})$ pela seguinte esperança condicional:
+\begin{equation}
+\delta_0(\mathbf{T}) = E_\theta[\delta(\mathbf{X})|\mathbf{T}]. \tag{7.9.2}
+\end{equation}
+Como $\mathbf{T}$ é uma estatística suficiente, a distribuição conjunta condicional de $X_1, \dots, X_n$ para cada valor dado de $\mathbf{T}$ é a mesma para todo valor de $\theta \in \Omega$. Portanto, para qualquer valor dado de $\mathbf{T}$, a esperança condicional da função $\delta(\mathbf{X})$ será a mesma para todo valor de $\theta \in \Omega$. Segue-se que a esperança condicional na Eq. (7.9.2) dependerá do valor de $\mathbf{T}$, mas na verdade não dependerá do valor de $\theta$. Em outras palavras, a função $\delta_0(\mathbf{T})$ é de fato um estimador de $\theta$ porque depende apenas das observações $\mathbf{X}$ e não depende do valor desconhecido de $\theta$. Por essa razão, podemos omitir o subscrito $\theta$ no símbolo de esperança $E$ na Eq. (7.9.2), e podemos escrever a relação da seguinte forma:
+\begin{equation}
+\delta_0(\mathbf{T}) = E[\delta(\mathbf{X})|\mathbf{T}]. \tag{7.9.3}
+\end{equation}
+Podemos agora provar o seguinte teorema, que foi estabelecido independentemente por D. Blackwell e C. R. Rao no final da década de 1940.
+
+
+\noindent\textbf{Teorema 7.9.1} \\
+\textit{Seja $\delta(\mathbf{X})$ um estimador, seja $\mathbf{T}$ uma estatística suficiente para $\theta$, e seja o estimador $\delta_0(\mathbf{T})$ definido como na Eq. (7.9.3). Então, para todo valor de $\theta \in \Omega$,}
+\begin{equation}
+    R(\theta, \delta_0) \le R(\theta, \delta). \tag{7.9.4}
+\end{equation}
+\textit{Além disso, se $R(\theta, \delta) < \infty$, há desigualdade estrita em (7.9.4) a menos que $\delta(\mathbf{X})$ seja uma função de $\mathbf{T}$.}
+
+\vspace{\baselineskip}
+
+\noindent\textbf{Prova} \\
+Se o E.Q.M. (Erro Quadrático Médio) $R(\theta, \delta)$ é infinito para um dado valor de $\theta \in \Omega$, então a relação (7.9.4) é automaticamente satisfeita. Assumiremos, portanto, que $R(\theta, \delta) < \infty$. Segue-se da parte (a) do Exercício 4 na Seção 4.4 que
+\[
+E_\theta([\delta(\mathbf{X}) - \theta]^2) \ge (E_\theta[\delta(\mathbf{X})] - \theta)^2,
+\]
+e pode-se mostrar que essa mesma relação também deve ser válida se as esperanças forem substituídas por esperanças condicionais dado $\mathbf{T}$. Portanto,
+\begin{equation}
+E_\theta([\delta(\mathbf{X}) - \theta]^2|\mathbf{T}) \ge (E_\theta[\delta(\mathbf{X})|\mathbf{T}] - \theta)^2 = [\delta_0(\mathbf{T}) - \theta]^2. \tag{7.9.5}
+\end{equation}
+Agora, segue-se da relação (7.9.5) que
+\begin{align*}
+R(\theta, \delta_0) &= E_\theta\{[\delta_0(\mathbf{T}) - \theta]^2\} \le E_\theta\{E_\theta([\delta(\mathbf{X}) - \theta]^2|\mathbf{T})\} \\
+&= E_\theta[[\delta(\mathbf{X}) - \theta]^2] = R(\theta, \delta),
+\end{align*}
+onde a penúltima igualdade segue-se do Teorema 4.7.1, a lei da esperança total. Portanto, $R(\theta, \delta_0) \le R(\theta, \delta)$ para todo valor de $\theta \in \Omega$.
+
+Finalmente, suponha que $R(\theta, \delta) < \infty$ e que $\delta(\mathbf{X})$ não é uma função de $\mathbf{T}$. Ou seja, não há função $g(\mathbf{T})$ tal que $\Pr(\delta(\mathbf{X}) = g(\mathbf{T}))=1$. Então a parte (b) do Exercício 4 na Seção 4.4 (condicional a $\mathbf{T}$) diz que há desigualdade estrita em (7.9.4). \hfill $\blacksquare$
+
+
+\noindent\textbf{Exemplo 7.9.2} \quad \textit{Chegadas de Clientes.} Retornemos agora ao Exemplo 7.9.1. Seja $\theta$ a taxa de chegadas de clientes por hora. Então $X_i$ forma uma amostra aleatória da distribuição de Poisson com média $\theta$. O Exemplo 7.7.2 nos mostra que uma estatística suficiente é $T = \sum_{i=1}^{n} X_i$. A distribuição de $T$ é a distribuição de Poisson com média $n\theta$. Vamos agora calcular
+\[ \delta_0(T) = E[\delta(\mathbf{X})|T], \]
+onde $\delta(\mathbf{X})=\sum_{j=1}^{n} Y_j/n$ foi definido no Exemplo 7.9.1. (Lembre-se que $Y_i=1$ se $X_i=1$ e $Y_i=0$ se $X_i \neq 1$ de modo que $\delta(\mathbf{X})$ é a proporção de horas em que exatamente um cliente chega.) Para cada $i$ e cada valor possível $t$ de $T$, é fácil ver que
+\[ E(Y_i|T=t) = \Pr(Y_i=1|T=t) = \frac{\Pr(X_i=1, T=t)}{\Pr(T=t)} = \frac{\Pr(X_i=1, \sum_{j \neq i} X_j=t-1)}{\Pr(T=t)}. \]
+
+Para $t=0$, $\Pr(X_i=1|T=0)=0$ trivialmente. Para $t>0$, vemos que
+\[ \Pr(T=t) = \frac{e^{-n\theta}(n\theta)^t}{t!}, \]
+\[ \Pr\left(X_i=1, \sum_{j \neq i} X_j=t-1\right) = e^{-\theta}\theta \times \frac{e^{-(n-1)\theta}[(n-1)\theta]^{t-1}}{(t-1)!} = \frac{e^{-n\theta} n^t \theta^t}{t!} \frac{t}{n} \left(1-\frac{1}{n}\right)^{t-1}. \]
+A razão dessas duas probabilidades é
+\begin{equation}
+E(Y_i|T=t) = \frac{t}{n}\left(1-\frac{1}{n}\right)^{t-1}. \tag{7.9.6}
+\end{equation}
+Segue-se que
+\[ \delta_0(t) = E[\delta_0(\mathbf{X})|T=t] = E\left[\frac{1}{n}\sum_{i=1}^{n} Y_i \Big| T=t \right] = \frac{1}{n}\sum_{i=1}^{n} E(Y_i|T=t). \]
+De acordo com a Eq. (7.9.6), todos os $E(Y_i|T=t)$ são iguais, então $\delta_0(t)$ é o lado direito da Eq. (7.9.6). Que $\delta_0(T)$ é melhor que $\delta(\mathbf{X})$ sob a perda por erro quadrático decorre do Teorema 7.9.1. \hfill $\blacktriangle$
+
+\vspace{\baselineskip}
+Um resultado semelhante ao Teorema 7.9.1 é válido se $R(\theta, \delta)$ for definido como o E.A.M. (Erro Absoluto Médio) de um estimador para um dado valor de $\theta \in \Omega$ em vez do E.Q.M. (Erro Quadrático Médio) de $\delta$. Em outras palavras, suponha que $R(\theta, \delta)$ seja definido como:
+\begin{equation}
+R(\theta, \delta) = E_\theta(|\delta(\mathbf{X}) - \theta|). \tag{7.9.7}
+\end{equation}
+Então pode-se mostrar (ver Exercício 10 no final desta seção) que o Teorema 7.9.1 ainda é verdadeiro.
+
+\noindent\textbf{Definição 7.9.1} \\
+\textit{Inadmissível/Admissível/Domina.} Suponha que $R(\theta, \delta)$ seja definido pela Eq. (7.9.1) ou pela Eq. (7.9.7). Diz-se que um estimador $\delta$ é \textit{inadmissível} se existe outro estimador $\delta_0$ tal que $R(\theta, \delta_0) \le R(\theta, \delta)$ para todo valor de $\theta \in \Omega$ e há desigualdade estrita nesta relação para pelo menos um valor de $\theta \in \Omega$. Sob essas condições, também se diz que o estimador $\delta_0$ \textit{domina} o estimador $\delta$. Um estimador $\delta_0$ é \textit{admissível} se não houver outro estimador que domine $\delta_0$.
+
+\vspace{\baselineskip}
+
+Na terminologia da Definição 7.9.1, o Teorema 7.9.1 pode ser resumido da seguinte forma: Um estimador $\delta$ que não é uma função apenas da estatística suficiente $\mathbf{T}$ deve ser inadmissível. O Teorema 7.9.1 também identifica explicitamente um estimador $\delta_0 = E(\delta(\mathbf{X})|\mathbf{T})$ que domina $\delta$. No entanto, esta parte do teorema é um tanto menos útil em um problema prático, porque geralmente é muito difícil calcular a esperança condicional $E(\delta(\mathbf{X})|\mathbf{T})$. O Teorema 7.9.1 é valioso principalmente porque fornece forte evidência de que podemos restringir nossa busca por um bom estimador de $\theta$ àqueles estimadores que dependem das observações apenas através de uma estatística suficiente.
+
+\noindent\textbf{Exemplo 7.9.3} \\
+\textit{Estimando a Média de uma Distribuição Normal.} Suponha que $X_1, \dots, X_n$ formem uma amostra aleatória de uma distribuição normal para a qual a média $\mu$ é desconhecida e a variância é conhecida, e seja $Y_1 \le \dots \le Y_n$ as estatísticas de ordem da amostra, como definido na Seção 7.8. Se $n$ é um número ímpar, então a observação do meio $Y_{(n+1)/2}$ é chamada de \textit{mediana amostral}. Se $n$ é um número par, então cada valor entre as duas observações do meio $Y_{n/2}$ e $Y_{(n/2)+1}$ é uma \textit{mediana amostral}, mas o valor particular $\frac{1}{2}[Y_{n/2} + Y_{(n/2)+1}]$ é frequentemente referido como \textit{a mediana amostral}.
+
+\vspace{\baselineskip}
+
+Como a distribuição normal da qual a amostra é extraída é simétrica em relação ao ponto $\mu$, a mediana da distribuição normal é $\mu$. Portanto, poderíamos considerar o uso da mediana amostral, ou uma função simples da mediana amostral, como um estimador de $\mu$. No entanto, foi mostrado no Exemplo 7.7.4 que a média amostral $\bar{X}_n$ é uma estatística suficiente para $\mu$. Segue-se do Teorema 7.9.1 que toda função da mediana amostral que possa ser usada como um estimador de $\mu$ será dominada por alguma outra função de $\bar{X}_n$. Ao procurar por um estimador de $\mu$, precisamos considerar apenas funções de $\bar{X}_n$.
+
+
+\noindent\textbf{Exemplo 7.9.4} \\
+\textit{Estimando o Desvio Padrão de uma Distribuição Normal.} Suponha que $X_1, \dots, X_n$ formem uma amostra aleatória de uma distribuição normal para a qual tanto a média $\mu$ quanto a variância $\sigma^2$ são desconhecidas, e novamente, seja $Y_1 \le \dots \le Y_n$ as estatísticas de ordem da amostra. A diferença $Y_n - Y_1$ é chamada de \textit{amplitude} da amostra, e podemos considerar o uso de alguma função simples da amplitude como um estimador do desvio padrão $\sigma$. No entanto, foi mostrado no Exemplo 7.8.2 que as estatísticas $\sum_{i=1}^{n} X_i$ e $\sum_{i=1}^{n} X_i^2$ são conjuntamente suficientes para os parâmetros $\mu$ e $\sigma^2$. Portanto, toda função da amplitude que possa ser usada como um estimador de $\sigma$ será dominada por uma função de $\sum_{i=1}^{n} X_i$ e $\sum_{i=1}^{n} X_i^2$.
+
+\vspace{\baselineskip}
+
+\noindent\textbf{Exemplo 7.9.5} \\
+\textit{Tempos de Falha de Rolamentos de Esferas.} Suponha que desejamos estimar o tempo médio de falha dos rolamentos de esferas descrito no Exemplo 5.6.9 com base na amostra de 23 tempos de falha observados. Sejam $Y_1, \dots, Y_{23}$ os tempos de falha observados (não os logaritmos). Poderíamos considerar o uso da média $\bar{Y}_n = \frac{1}{23}\sum_{i=1}^{23} Y_i$ como um estimador. Suponha que continuemos a modelar os logaritmos $X_i = \log(Y_i)$ como variáveis aleatórias normais com média $\theta$ e variância 0.25. Então $Y_i$ tem a distribuição lognormal com parâmetros $\theta$ e 0.25. Da Eq. (5.6.15), a média de $Y_i$ é $\exp(\theta + 0.125)$, o tempo médio de falha. No entanto, sabemos que $\bar{X}_n$ é suficiente. Como $\bar{Y}_n$ não é uma função de $\bar{X}_n$, existe uma função de $\bar{X}_n$ que melhora $\bar{Y}_n$ como um estimador do tempo médio de falha. Podemos de fato encontrar qual é essa função. Primeiro, escreva
+\begin{equation}
+E(\bar{Y}_n|\bar{X}_n) = \frac{1}{n}\sum_{i=1}^{n} E(Y_i|\bar{X}_n). \tag{7.9.8}
+\end{equation}
+No Exercício 15 da Seção 5.10, você provou que a distribuição condicional de $X_i$ dado $\bar{X}_n = \bar{x}_n$ é a distribuição normal com média $\bar{x}_n$ e variância $0.25(1-1/n)$ para todo $i$. Segue-se que, para cada $i$, a distribuição condicional de $Y_i$ dado $\bar{X}_n$ é a distribuição lognormal com parâmetros $\bar{x}_n$ e $0.25(1-1/n)$. Portanto, segue-se da Eq. (5.6.15) que a média condicional de $Y_i$ dado $\bar{X}_n$ é $\exp[\bar{X}_n + 0.125(1-1/n)]$ para todo $i$, e a Eq. (7.9.8) é igual a $\exp[\bar{X}_n + 0.125(1-1/n)]$ também.
+
+
+\subsection*{Limitação do Uso de Estatísticas Suficientes}
+
+Quando a teoria precedente de estatísticas suficientes é aplicada em um problema estatístico, é importante ter em mente a seguinte limitação. A existência e a forma de uma estatística suficiente em um problema particular dependem criticamente da forma da função assumida para a f.d.p. ou a f.p. Uma estatística que é suficiente quando se assume que a f.d.p. é $f(x|\theta)$ pode não ser uma estatística suficiente quando se assume que a f.d.p. é $g(x|\theta)$, mesmo que $g(x|\theta)$ possa ser bastante semelhante a $f(x|\theta)$ para todo valor de $\theta \in \Omega$. Suponha que um estatístico em um problema específico presuma, por conveniência, que a f.d.p. é $f(x|\theta)$; suponha também que a estatística $\mathbf{T}$ seja uma estatística suficiente sob essa suposição. Por causa da incerteza do estatístico sobre a forma exata da f.d.p., ele pode desejar usar um estimador de $\theta$ que tenha um desempenho razoavelmente bom para uma ampla variedade de f.d.p.'s possíveis, mesmo que o estimador selecionado possa não atender ao requisito de que dependa das observações apenas através da estatística $\mathbf{T}$.
+
+\vspace{\baselineskip}
+
+Um estimador que tem um desempenho razoavelmente bom para uma ampla variedade de f.d.p.'s possíveis, mesmo que não seja necessariamente o melhor estimador disponível para qualquer família particular de f.d.p.'s, é frequentemente chamado de um \textit{estimador robusto}. Consideraremos estimadores robustos mais detalhadamente no Capítulo 10.
+
+\vspace{\baselineskip}
+
+A discussão precedente também levanta outro ponto útil a ser lembrado. Na Seção 7.2, introduzimos a \textit{análise de sensibilidade} como uma forma de estudar o efeito da escolha da distribuição a priori em uma inferência. A mesma ideia pode ser aplicada a qualquer característica de um modelo estatístico escolhido por um estatístico. Em particular, a distribuição para as observações dados os parâmetros, definida através de $f(x|\theta)$, é frequentemente escolhida por conveniência em vez de através de uma análise cuidadosa. Pode-se realizar uma inferência repetidamente usando diferentes distribuições para os dados observáveis. A comparação das inferências resultantes de cada escolha é outra forma de análise de sensibilidade.
+
+\subsection*{Resumo}
+
+Suponha que $\mathbf{T}$ é uma estatística suficiente, e estamos tentando estimar um parâmetro com perda por erro quadrático. Suponha que um estimador $\delta(\mathbf{X})$ não é uma função de $\mathbf{T}$. Então $\delta$ pode ser melhorado usando-se $\delta_0(\mathbf{T})$, a média condicional de $\delta(\mathbf{X})$ dado $\mathbf{T}$. Como $\delta_0(\mathbf{T})$ tem a mesma média que $\delta(\mathbf{X})$ e sua variância não é maior, segue-se que $\delta_0(\mathbf{T})$ tem um E.Q.M. (Erro Quadrático Médio) que não é maior que o de $\delta(\mathbf{X})$.
+
+\section*{Exercícios}
+
+\begin{enumerate}
+    \item Suponha que as variáveis aleatórias $X_1, \dots, X_n$ formem uma amostra aleatória de tamanho $n$ ($n \ge 2$) da distribuição normal com média 0 e variância desconhecida $\theta$. Suponha também que para todo estimador $\delta(X_1, \dots, X_n)$, o E.Q.M. $R(\theta, \delta)$ seja definido pela Eq. (7.9.1). Explique por que a variância amostral é um estimador inadmissível de $\theta$.
+
+    \item Suponha que as variáveis aleatórias $X_1, \dots, X_n$ formem uma amostra aleatória de tamanho $n$ ($n \ge 2$) da distribuição uniforme no intervalo $[0, \theta]$, onde o valor do parâmetro $\theta$ é desconhecido ($\theta > 0$) e deve ser estimado. Suponha também que para todo estimador $\delta(X_1, \dots, X_n)$, o E.Q.M. $R(\theta, \delta)$ seja definido pela Eq. (7.9.1). Explique por que o estimador $\delta_1(X_1, \dots, X_n) = 2\bar{X}_n$ é inadmissível.
+
+    \item Considere novamente as condições do Exercício 2, e seja o estimador $\delta_1$ definido naquele exercício. Determine o valor do E.Q.M. $R(\theta, \delta_1)$ para $\theta > 0$.
+
+    \item Considere novamente as condições do Exercício 2. Seja $Y_n = \max\{X_1, \dots, X_n\}$ e considere o estimador $\delta_2(X_1, \dots, X_n) = Y_n$.
+    \begin{enumerate}
+        \item[a.] Determine o E.Q.M. $R(\theta, \delta_2)$ para $\theta > 0$.
+        \item[b.] Mostre que para $n=2$, $R(\theta, \delta_2) = R(\theta, \delta_1)$ para $\theta > 0$.
+        \item[c.] Mostre que para $n \ge 3$, o estimador $\delta_2$ domina o estimador $\delta_1$.
+    \end{enumerate}
+
+    \item Considere novamente as condições dos Exercícios 2 e 4. Mostre que existe uma constante $c^*$ tal que o estimador $c^*Y_n$ domina todo outro estimador que tenha a forma $cY_n$ para $c \ne c^*$.
+
+    \item Suponha que $X_1, \dots, X_n$ formem uma amostra aleatória de tamanho $n$ ($n \ge 2$) da distribuição gama com parâmetros $\alpha$ e $\beta$, onde o valor de $\alpha$ é desconhecido ($\alpha > 0$) e o valor de $\beta$ é conhecido. Explique por que $\bar{X}_n$ é um estimador inadmissível da média desta distribuição quando a função de perda por erro quadrático é usada.
+
+    \item Suponha que $X_1, \dots, X_n$ formem uma amostra aleatória de uma distribuição exponencial para a qual o valor do parâmetro $\beta$ é desconhecido ($\beta > 0$) e deve ser estimado usando a função de perda por erro quadrático. Seja $\delta$ o estimador tal que $\delta(X_1, \dots, X_n)=3$ para todos os valores possíveis de $X_1, \dots, X_n$.
+    \begin{enumerate}
+        \item[a.] Determine o valor do E.Q.M. $R(\beta, \delta)$ para $\beta > 0$.
+        \item[b.] Explique por que o estimador $\delta$ deve ser admissível.
+    \end{enumerate}
+
+    \item Suponha que uma amostra aleatória de $n$ observações seja retirada de uma distribuição de Poisson para a qual o valor da média $\theta$ é desconhecido ($\theta > 0$), e o valor de $\beta = e^{-\theta}$ deve ser estimado usando a função de perda por erro quadrático. Como $\beta$ é igual à probabilidade de que uma observação desta distribuição de Poisson tenha o valor 0, um estimador natural de $\beta$ é a proporção $\hat{\beta}$ de observações na amostra aleatória que têm o valor 0. Explique por que $\hat{\beta}$ é um estimador inadmissível de $\beta$.
+
+    \item Para toda variável aleatória $X$, mostre que $|E(X)| \le E(|X|)$.
+
+    \item Sejam $X_1, \dots, X_n$ uma amostra aleatória de uma distribuição para a qual a f.d.p. ou a f.p. é $f(x|\theta)$, onde $\theta \in \Omega$. Suponha que o valor de $\theta$ deva ser estimado, e que $T$ seja uma estatística suficiente para $\theta$. Seja $\delta$ um estimador arbitrário de $\theta$, e seja $\delta_0$ outro estimador definido pela relação $\delta_0 = E(\delta|T)$. Mostre que para todo valor de $\theta \in \Omega$,
+    \[ E_\theta(|\delta_0 - \theta|) \le E_\theta(|\delta - \theta|). \]
+
+    \item Suponha que as variáveis $X_1, \dots, X_n$ formem uma amostra aleatória de uma distribuição para a qual a f.d.p. ou a f.p. é $f(x|\theta)$, onde $\theta \in \Omega$, e seja $\hat{\theta}$ o E.M.V. de $\theta$. Suponha também que a estatística $T$ seja uma estatística suficiente para $\theta$, e seja o estimador $\delta_0$ definido pela relação $\delta_0 = E(\hat{\theta}|T)$. Compare os estimadores $\hat{\theta}$ e $\delta_0$.
+
+        \item Suponha que $X_1, \dots, X_n$ formem uma sequência de $n$ ensaios de Bernoulli para os quais a probabilidade $p$ de sucesso em qualquer ensaio é desconhecida ($0 \le p \le 1$), e seja $T = \sum_{i=1}^{n} X_i$. Determine a forma do estimador $E(X_1|T)$.
+
+    \item Suponha que $X_1, \dots, X_n$ formem uma amostra aleatória de uma distribuição de Poisson para a qual o valor da média $\theta$ é desconhecido ($\theta > 0$). Seja $T = \sum_{i=1}^{n} X_i$, e para $i=1, \dots, n$, seja a estatística $Y_i$ definida da seguinte forma:
+    \[ Y_i = 
+    \begin{cases} 
+    1 & \text{se } X_i = 0, \\ 
+    0 & \text{se } X_i > 0. 
+    \end{cases} \]
+    Determine a forma do estimador $E(Y_i|T)$.
+
+    \item Considere novamente as condições do Exercício 8. Determine a forma do estimador $E(\hat{\beta}|T)$. Você pode querer usar os resultados obtidos ao resolver o Exercício 13.
+
+    \item Encontre o E.M.V. de $\exp(\theta + 0.125)$ no Exemplo 7.9.5. Tanto o E.M.V. quanto o estimador no Exemplo 7.9.5 têm a forma $\exp(\bar{X}_n + c)$ para alguma constante $c$. Encontre o valor $c$ tal que o estimador $\exp(\bar{X}_n + c)$ tenha o menor E.Q.M. possível.
+
+    \item No Exemplo 7.9.1, encontre a fórmula para $p$ em termos de $\theta$, a média de cada $X_i$. Encontre também o E.M.V. de $p$ e mostre que o estimador $\delta_0(T)$ no Exemplo 7.9.2 é quase o mesmo que o E.M.V. se $n$ for grande.
+
+\end{enumerate}
