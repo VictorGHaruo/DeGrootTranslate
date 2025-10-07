@@ -1,0 +1,141 @@
+\setcounter{section}{0}
+\renewcommand{\thesection}{8.\arabic{section}}
+
+\section{A Distribuição Amostral de uma Estatística}
+
+Uma estatística é uma função de algumas variáveis aleatórias observáveis e, portanto, é ela mesma uma variável aleatória com uma distribuição. Essa distribuição é a sua distribuição amostral, e nos diz quais valores a estatística provavelmente assumirá e quão provável é que ela assuma esses valores antes de observarmos nossos dados. Quando a distribuição dos dados observáveis é indexada por um parâmetro, a distribuição amostral é especificada como a distribuição da estatística para um dado valor do parâmetro.
+
+\vspace{1em}
+\noindent\textbf{Exemplo 8.1.1 (Estatísticas e Estimadores)}
+\begin{quote}
+    Um Ensaio Clínico. No ensaio clínico introduzido pela primeira vez no Exemplo 2.1.4, seja $\theta$ a proporção de pacientes que não têm recaída entre todos os possíveis pacientes de imipramina. Poderíamos usar a proporção observada de pacientes sem recaída no grupo de imipramina para estimar $\theta$. Antes de observar os dados, a proporção de pacientes amostrados sem recaída é uma variável aleatória $T$ que possui uma distribuição e não será exatamente igual ao parâmetro $\theta$. No entanto, esperamos que $T$ esteja próximo de $\theta$ com alta probabilidade. Por exemplo, poderíamos tentar calcular a probabilidade de que $|T - \theta| < 0.1$. Tais cálculos exigem que conheçamos a distribuição da variável aleatória $T$. No ensaio clínico, modelamos as respostas dos 40 pacientes no grupo de imipramina como sendo condicionalmente (dado $\theta$) variáveis aleatórias de Bernoulli i.i.d. com parâmetro $\theta$. Segue-se que a distribuição condicional de $40T$ dado $\theta$ é a distribuição binomial com parâmetros 40 e $\theta$. A distribuição de $T$ pode ser derivada facilmente a partir disso. De fato, $T$ tem a seguinte f.p. (função de probabilidade) dado $\theta$:
+    $$
+    f(t|\theta) = \binom{40}{40t} \theta^{40t} (1-\theta)^{40(1-t)}, \quad \text{para } t = 0, \frac{1}{40}, \dots, \frac{39}{40}, 1,
+    $$
+    e $f(t|\theta) = 0$ caso contrário.
+\end{quote}
+\vspace{1em} 
+
+A distribuição no final do Exemplo 8.1.1 é chamada de \textit{distribuição amostral} da estatística $T$, e podemos usá-la para ajudar a responder a questões como o quão próximo esperamos que $T$ esteja de $\theta$ antes de observar os dados. Também podemos usar a distribuição amostral de $T$ para ajudar a determinar o quanto aprenderemos sobre $\theta$ ao observar $T$. Se estivermos tentando decidir qual de duas estatísticas diferentes usar como um estimador, suas distribuições amostrais podem ser úteis para nos ajudar a compará-las. O conceito de distribuição amostral se aplica a uma classe maior de variáveis aleatórias do que apenas estatísticas.
+
+\vspace{1em}
+\noindent\textbf{Definição 8.1.1 (Distribuição Amostral)}
+\begin{quote}
+    Suponha que as variáveis aleatórias $X = (X_1, \dots, X_n)$ formem uma amostra aleatória de uma distribuição envolvendo um parâmetro $\theta$ cujo valor é desconhecido. Seja $T$ uma função de $X$ e possivelmente $\theta$. Isto é, $T = r(X_1, \dots, X_n, \theta)$. A distribuição de $T$ (dado $\theta$) é chamada de \textit{distribuição amostral} de $T$. Usaremos a notação $E_\theta(T)$ para denotar a média de $T$ calculada a partir de sua distribuição amostral.
+\end{quote}
+\vspace{1em}
+
+O nome “distribuição amostral” vem do fato de que $T$ depende de uma amostra aleatória e, portanto, sua distribuição é derivada da distribuição da amostra.
+
+Muitas vezes, a variável aleatória $T$ na Definição 8.1.1 não dependerá de $\theta$, e portanto será uma estatística como definido na Definição 7.1.4. Em particular, se $T$ é um estimador de $\theta$ (como definido na Definição 7.4.1), então $T$ também é uma estatística porque é uma função de $X$. Portanto, em princípio, é possível derivar a distribuição amostral de cada estimador de $\theta$. De fato, as distribuições de muitos estimadores e estatísticas já foram encontradas em partes anteriores deste livro.
+
+\vspace{1em}
+\noindent\textbf{Exemplo 8.1.2 (Distribuição Amostral do E.M.V. da Média de uma Distribuição Normal)}
+\begin{quote}
+    Suponha que $X_1, \dots, X_n$ formem uma amostra aleatória de uma distribuição normal com média $\mu$ e variância $\sigma^2$. Encontramos nos Exemplos 7.5.5 e 7.5.6 que a média amostral $\bar{X}_n$ é o E.M.V. (Estimador de Máxima Verossimilhança) de $\mu$. Além disso, foi encontrado no Corolário 5.6.2 que a distribuição de $\bar{X}_n$ é a distribuição normal com média $\mu$ e variância $\sigma^2/n$.
+\end{quote}
+\vspace{1em}
+
+Neste capítulo, iremos derivar, para amostras aleatórias de uma distribuição normal, a distribuição da variância amostral e as distribuições de várias funções da média amostral e da variância amostral. Essas derivações nos levarão às definições de algumas novas distribuições que desempenham papéis importantes em problemas de inferência estatística. Adicionalmente, estudaremos certas propriedades gerais de estimadores e suas distribuições amostrais.
+
+\subsection*{Propósito da Distribuição Amostral}
+
+\vspace{1em}
+\noindent\textbf{Exemplo 8.1.3 (Tempos de Vida de Componentes Eletrônicos)}
+\begin{quote}
+    Considere a empresa do Exemplo 7.1.1 que vende componentes eletrônicos. Eles modelam os tempos de vida desses componentes como variáveis aleatórias exponenciais i.i.d. com parâmetro $\theta$, condicionais a $\theta$. Eles modelam $\theta$ como tendo a distribuição gama com parâmetros 1 e 2. Agora, suponha que eles estão prestes a observar $n=3$ tempos de vida, e que usarão a média a posteriori de $\theta$ como um estimador. De acordo com o Teorema 7.3.4, a distribuição a posteriori de $\theta$ será a distribuição gama com parâmetros $1+3=4$ e $2+\sum_{i=1}^3 X_i$. A média a posteriori será então $\hat{\theta} = 4/(2+\sum_{i=1}^3 X_i)$.
+
+    Antes de observar os três tempos de vida, a empresa pode querer saber quão provável é que $\hat{\theta}$ esteja próximo de $\theta$. Por exemplo, eles podem querer computar $\text{Pr}(|\hat{\theta} - \theta| < 0.1)$. Além disso, outras partes interessadas, como clientes, podem estar interessadas no quão próximo o estimador estará de $\theta$. Mas esses outros podem não desejar atribuir a mesma distribuição a priori para $\theta$. De fato, alguns deles podem desejar não atribuir nenhuma distribuição a priori. Veremos em breve que todas essas pessoas acharão útil determinar a distribuição amostral de $\hat{\theta}$. O que eles farão com essa distribuição amostral irá diferir, mas todos eles serão capazes de fazer uso da distribuição amostral.
+\end{quote}
+\vspace{1em}
+
+No Exemplo 8.1.3, depois que a empresa observa os três tempos de vida, eles estarão interessados apenas na distribuição a posteriori de $\theta$. Eles poderiam então computar a probabilidade a posteriori de que $|\hat{\theta} - \theta| < 0.1$. No entanto, antes que a amostra seja coletada, tanto $\hat{\theta}$ quanto $\theta$ são aleatórios e $\text{Pr}(|\hat{\theta} - \theta| < 0.1)$ envolve a distribuição conjunta de $\hat{\theta}$ e $\theta$. A distribuição amostral é meramente a distribuição condicional de $\hat{\theta}$ dado $\theta$. Portanto, a lei da probabilidade total diz que
+$$
+\text{Pr}(|\hat{\theta} - \theta| < 0.1) = E\left[ \text{Pr}(|\hat{\theta} - \theta| < 0.1 | \theta) \right].
+$$
+
+Dessa forma, a empresa faz uso da distribuição amostral de $\hat{\theta}$ como um cálculo intermediário no caminho para computar $\text{Pr}(|\hat{\theta} - \theta| < 0.1)$.
+
+\vspace{1em}
+\noindent\textbf{Exemplo 8.1.4 (Tempos de Vida de Componentes Eletrônicos)}
+\begin{quote}
+    No Exemplo 8.1.3, a distribuição amostral de $\hat{\theta}$ não tem um nome, mas é fácil ver que $\hat{\theta}$ é uma função monotônica da estatística $T = \sum_{i=1}^3 X_i$, que tem a distribuição gama com parâmetros 3 e $\theta$ (condicional a $\theta$). Assim, podemos computar a f.d.a. (função de distribuição acumulada) $F(\cdot|\theta)$ para a distribuição amostral de $\hat{\theta}$ a partir da f.d.a. $G(\cdot|\theta)$ da distribuição de $T$. Argumenta-se como se segue. Para $t > 0$,
+    \begin{align*}
+        F(t|\theta) &= \text{Pr}(\hat{\theta} \le t | \theta) \\
+        &= \text{Pr}\left(\frac{4}{2+T} \le t \bigg| \theta\right) \\
+        &= \text{Pr}\left(T \ge \frac{4}{t} - 2 \bigg| \theta\right) \\
+        &= 1 - G\left(\frac{4}{t} - 2 \bigg| \theta\right).
+    \end{align*}
+    Para $t \le 0$, $F(t|\theta) = 0$. A maioria dos pacotes estatísticos computacionais inclui a função $G$, que é a f.d.a. de uma distribuição gama. A empresa pode agora computar, para cada $\theta$,
+    \begin{equation} \label{eq:8.1.1}
+        \text{Pr}(|\hat{\theta} - \theta| < 0.1 | \theta) = F(\theta+0.1|\theta) - F(\theta-0.1|\theta).
+    \end{equation}
+\end{quote}
+\vspace{1em}
+
+A Figura 8.1 mostra um gráfico dessa probabilidade como uma função de $\theta$. Para completar o cálculo de $\text{Pr}(|\hat{\theta} - \theta| < 0.1)$, devemos integrar a Equação (\ref{eq:8.1.1}) com respeito à distribuição de $\theta$, ou seja, a distribuição gama com parâmetros 1 e 2. Essa integral não pode ser resolvida de forma fechada e requer uma aproximação numérica. Uma tal aproximação seria uma simulação, que será discutida no Capítulo 12. Neste exemplo, a aproximação resulta em $\text{Pr}(|\hat{\theta}-\theta| < 0.1) \approx 0.478$.
+
+Também incluído na Fig. 8.1 está o cálculo de $\text{Pr}(|\hat{\theta} - \theta| \le 0.1 | \theta)$ usando $\hat{\theta}=3/T$, o E.M.V. de $\theta$. A distribuição amostral do E.M.V. pode ser derivada no Exercício 9 no final desta seção. Note que a média a posteriori tem maior probabilidade de estar próxima de $\theta$ do que o E.M.V. quando $\theta$ está próximo da média da distribuição a priori. Quando $\theta$ está longe da média a priori, o E.M.V. tem maior probabilidade de estar próximo de $\theta$.
+
+Outro caso em que a distribuição amostral de um estimador é necessária é quando o estatístico deve decidir qual de dois ou mais experimentos disponíveis deve ser realizado a fim de obter o melhor estimador de $\theta$. Por exemplo, se ela tiver que escolher o tamanho da amostra a ser usado em um experimento, ela tipicamente baseará sua decisão nas distribuições amostrais dos diferentes estimadores que poderiam ser usados para cada tamanho de amostra.
+
+Como mencionado no final do Exemplo 8.1.3, existem estatísticos que não desejam atribuir uma distribuição a priori para $\theta$. Esses estatísticos não seriam capazes de calcular uma distribuição a posteriori para $\theta$. Em vez disso, eles baseariam todas as suas inferências estatísticas na distribuição amostral de quaisquer estimadores que escolhessem. Por exemplo, um estatístico que escolhesse usar o E.M.V. de $\theta$ no Exemplo 8.1.4 precisaria lidar com toda a curva na Fig. 8.1 correspondente ao E.M.V. a fim de decidir quão provável é que o E.M.V. esteja mais próximo de $\theta$ do que 0.1. Alternativamente, ela poderia escolher uma medida diferente de quão próximo o E.M.V. está de $\theta$.
+
+\vspace{1em}
+\noindent\textbf{Exemplo 8.1.5 (Tempos de Vida de Componentes Eletrônicos)}
+\begin{quote}
+    Suponha que uma estatística escolha estimar $\theta$ pelo E.M.V., $\hat{\theta} = 3/T$, em vez da média a posteriori do Exemplo 8.1.4. Esta estatística pode não achar o gráfico da Fig. 8.1 muito útil, a menos que consiga decidir quais valores de $\theta$ são mais importantes a considerar. Em vez de calcular $\text{Pr}(|\hat{\theta} - \theta| < 0.1|\theta)$, ela poderia computar
+    \begin{equation} \label{eq:8.1.2}
+        \text{Pr}\left(\left|\frac{\hat{\theta}}{\theta} - 1\right| < 0.1 \bigg| \theta\right).
+    \end{equation}
+\end{quote}
+\vspace{1em}
+
+Esta é a probabilidade de que $\hat{\theta}$ esteja a menos de 10\% do valor de $\theta$. A probabilidade em (\ref{eq:8.1.2}) poderia ser computada a partir da distribuição amostral do E.M.V. Alternativamente, pode-se notar que $\hat{\theta}/\theta = 3/(\theta T)$, e a distribuição de $\theta T$ é a distribuição gama com parâmetros 3 e 1. Portanto, $\hat{\theta}/\theta$ tem uma distribuição que não depende de $\theta$. Segue-se que $\text{Pr}(|\hat{\theta}/\theta - 1| < 0.1|\theta)$ é o mesmo número para todo $\theta$. Na notação do Exemplo 8.1.4, a f.d.a. de $\theta T$ é $G(\cdot|1)$, e portanto
+\begin{align*}
+    \text{Pr}\left(\left|\frac{\hat{\theta}}{\theta} - 1\right| < 0.1 \bigg| \theta\right) &= \text{Pr}\left(\left|\frac{3}{\theta T} - 1\right| < 0.1 \bigg| \theta\right) \\
+    &= \text{Pr}\left(0.9 < \frac{3}{\theta T} < 1.1 \bigg| \theta\right) \\
+    &= \text{Pr}(2.73 < \theta T < 3.33 | \theta) \\
+    &= G(3.33|1) - G(2.73|1) = 0.134.
+\end{align*}
+
+A estatística pode agora afirmar que a probabilidade de o E.M.V. de $\theta$ estar a menos de 10\% do valor de $\theta$ é 0.134, não importa qual seja o valor de $\theta$.
+
+\vspace{1em}
+A variável aleatória $\hat{\theta}/\theta$ no Exemplo 8.1.5 é um exemplo de uma \textit{quantidade pivotal}, que será definida e usada extensivamente na Seção 8.5.
+
+\vspace{1em}
+\noindent\textbf{Exemplo 8.1.6 (Um Ensaio Clínico)}
+\begin{quote}
+    No Exemplo 8.1.1, encontramos a distribuição amostral de $T$, a proporção de pacientes sem recaída no grupo de imipramina. Usando essa distribuição, podemos desenhar um gráfico similar ao da Fig. 8.1. Isto é, para cada $\theta$, podemos computar $\text{Pr}(|T-\theta|<0.1|\theta)$. O gráfico aparece na Fig. 8.2. Os saltos e a natureza cíclica do gráfico são devidos à natureza discreta da distribuição de $T$. A menor probabilidade é 0.7318 em $\theta = 0.5$. (Os pontos isolados que aparecem abaixo da parte principal do gráfico em $\theta$ igual a cada múltiplo de 1/40 apareceriam igualmente distantes acima da parte principal do gráfico, se tivéssemos plotado $\text{Pr}(|T-\theta|\le 0.1|\theta)$ em vez de $\text{Pr}(|T-\theta|<0.1|\theta)$.)
+\end{quote}
+\vspace{1em}
+
+\subsection*{Resumo}
+
+A distribuição amostral de um estimador $\hat{\theta}$ é a distribuição condicional do estimador dado o parâmetro. A distribuição amostral pode ser usada como um cálculo intermediário na avaliação das propriedades de um estimador de Bayes antes da observação dos dados. Mais comumente, a distribuição amostral é usada por aqueles estatísticos que preferem não usar distribuições a priori e a posteriori. Por exemplo, antes da amostra ser coletada, o estatístico pode usar a distribuição amostral de $\hat{\theta}$ para calcular a probabilidade de que $\hat{\theta}$ estará próximo de $\theta$. Se essa probabilidade for alta para todo valor possível de $\theta$, então o estatístico pode se sentir confiante de que o valor observado de $\hat{\theta}$ estará próximo de $\theta$. Depois que os dados são observados e uma estimativa particular é obtida, o estatístico gostaria de continuar se sentindo confiante de que a estimativa particular tem probabilidade de estar próxima de $\theta$, mesmo que probabilidades a posteriori explícitas não possam ser dadas. Não é sempre seguro tirar tal conclusão, no entanto, como ilustraremos ao final do Exemplo 8.5.11.
+
+\section*{Exercícios}
+
+\begin{enumerate}
+    \item Suponha que uma amostra aleatória $X_1, \dots, X_n$ seja retirada de uma distribuição uniforme no intervalo $[0, \theta]$ e que $\theta$ seja desconhecido. Quão grande deve ser a amostra aleatória para que
+    $$ \text{Pr}(|\max\{X_1, \dots, X_n\} - \theta| \le 0.1\theta) \ge 0.95, $$
+    para todo $\theta$ possível?
+
+    \item Suponha que uma amostra aleatória seja retirada de uma distribuição normal com média desconhecida $\theta$ e desvio padrão 2. Quão grande deve ser a amostra aleatória para que $E_\theta(|\bar{X}_n - \theta|^2) \le 0.1$ para todo valor possível de $\theta$?
+
+    \item Para as condições do Exercício 2, quão grande deve ser a amostra aleatória para que $E_\theta(|\bar{X}_n - \theta|) \le 0.1$ para todo valor possível de $\theta$?
+
+    \item Para as condições do Exercício 2, quão grande deve ser a amostra aleatória para que $\text{Pr}(|\bar{X}_n - \theta| \le 0.1) \ge 0.95$ para todo valor possível de $\theta$?
+
+    \item Suponha que uma amostra aleatória seja retirada da distribuição de Bernoulli com parâmetro desconhecido $p$. Suponha também que se acredita que o valor de $p$ está na vizinhança de 0.2. Quão grande deve ser a amostra aleatória para que $\text{Pr}(|\bar{X}_n - p| \le 0.1) \ge 0.75$ quando $p=0.2$?
+
+    \item Para as condições do Exercício 5, use o teorema do limite central da Seção 6.3 para encontrar aproximadamente o tamanho de uma amostra aleatória que deve ser retirada para que $\text{Pr}(|\bar{X}_n - p| \le 0.1) \ge 0.95$ quando $p=0.2$.
+
+    \item Para as condições do Exercício 5, quão grande deve ser a amostra aleatória para que $E_p(|\bar{X}_n - p|^2) \le 0.01$ quando $p=0.2$?
+
+    \item Para as condições do Exercício 5, quão grande deve ser a amostra aleatória para que $E_p(|\bar{X}_n - p|^2) \le 0.01$ para todo valor possível de $p$ ($0 \le p \le 1$)?
+
+    \item Seja $X_1, \dots, X_n$ uma amostra aleatória da distribuição exponencial com parâmetro $\theta$. Encontre a f.d.a. para a distribuição amostral do E.M.V. de $\theta$. (O próprio E.M.V. foi encontrado no Exercício 7 da Seção 7.5.)
+
+\end{enumerate}
