@@ -1,0 +1,160 @@
+\section{As Distribuições Qui-Quadrado}
+
+A família de distribuições qui-quadrado ($\chi^2$) é uma subcoleção da família de distribuições gama. Essas distribuições gama especiais surgem como distribuições amostrais de estimadores de variância baseados em amostras aleatórias de uma distribuição normal.
+
+\subsection*{Definição das Distribuições}
+
+\vspace{1em}
+\noindent\textbf{Exemplo 8.2.1 (E.M.V. da Variância de uma Distribuição Normal)}
+\begin{quote}
+    Suponha que $X_1, \dots, X_n$ formem uma amostra aleatória de uma distribuição normal com média conhecida $\mu$ e variância desconhecida $\sigma^2$. O E.M.V. de $\sigma^2$ é encontrado no Exercício 6 da Seção 7.5. Ele é
+    $$
+    \hat{\sigma}_0^2 = \frac{1}{n} \sum_{i=1}^{n} (X_i - \mu)^2.
+    $$
+\end{quote}
+\vspace{1em}
+
+As distribuições de $\hat{\sigma}_0^2$ e $\hat{\sigma}_0^2/\sigma^2$ são úteis em vários problemas estatísticos, e nós as derivaremos nesta seção.
+
+Nesta seção, introduziremos e discutiremos uma classe particular de distribuições gama conhecidas como distribuições qui-quadrado ($\chi^2$). Essas distribuições, que estão intimamente relacionadas a amostras aleatórias de uma distribuição normal, são amplamente aplicadas no campo da estatística. No restante deste livro, veremos como elas são aplicadas em muitos problemas importantes de inferência estatística. Nesta seção, apresentaremos a definição das distribuições $\chi^2$ e algumas de suas propriedades matemáticas básicas.
+
+\vspace{1em}
+\noindent\textbf{Definição 8.2.1 (Distribuições $\chi^2$)}
+\begin{quote}
+    Para cada número positivo $m$, a distribuição gama com parâmetros $\alpha = m/2$ e $\beta=1/2$ é chamada de \textit{distribuição $\chi^2$ com $m$ graus de liberdade}. (Veja a Definição 5.7.2 para a definição da distribuição gama com parâmetros $\alpha$ e $\beta$.)
+\end{quote}
+\vspace{1em}
+
+É comum restringir os graus de liberdade $m$ na Definição 8.2.1 a um número inteiro. No entanto, existem situações em que será útil que os graus de liberdade não sejam inteiros, então não faremos essa restrição.
+
+Se uma variável aleatória $X$ tem a distribuição $\chi^2$ com $m$ graus de liberdade, segue da Eq. (5.7.13) que a f.d.p. de $X$ para $x>0$ é
+\begin{equation} \label{eq:8.2.1}
+    f(x) = \frac{1}{2^{m/2}\Gamma(m/2)} x^{(m/2)-1}e^{-x/2}.
+\end{equation}
+Além disso, $f(x)=0$ para $x \le 0$.
+
+Uma pequena tabela de quantis para a distribuição $\chi^2$ para vários valores de $p$ e vários graus de liberdade é fornecida no final deste livro. A maioria dos pacotes de software estatístico inclui funções para calcular a f.d.a. e a função de quantil de uma distribuição $\chi^2$ arbitrária.
+
+Segue-se da Definição 8.2.1, e pode ser visto na Eq. (\ref{eq:8.2.1}), que a distribuição $\chi^2$ com dois graus de liberdade é a distribuição exponencial com parâmetro 1/2 ou, equivalentemente, a distribuição exponencial para a qual a média é 2. Assim, as três distribuições a seguir são todas a mesma: a distribuição gama com parâmetros $\alpha=1$ e $\beta=1/2$, a distribuição $\chi^2$ com dois graus de liberdade, e a distribuição exponencial para a qual a média é 2.
+
+\subsection*{Propriedades das Distribuições}
+
+As médias e variâncias das distribuições $\chi^2$ seguem imediatamente do Teorema 5.7.5, e são dadas aqui sem prova.
+
+\vspace{1em}
+\noindent\textbf{Teorema 8.2.1 (Média e Variância)}
+\begin{quote}
+    Se uma variável aleatória $X$ tem a distribuição $\chi^2$ com $m$ graus de liberdade, então $E(X)=m$ e $\text{Var}(X)=2m$.
+\end{quote}
+\vspace{1em}
+
+Além disso, segue da função geradora de momentos dada na Eq. (5.7.15) que a f.g.m. de $X$ é
+$$
+\psi(t) = \left(\frac{1}{1-2t}\right)^{m/2} \quad \text{para } t < \frac{1}{2}.
+$$
+
+A propriedade da aditividade da distribuição $\chi^2$, que é apresentada sem prova no próximo teorema, segue diretamente do Teorema 5.7.7.
+
+\vspace{1em}
+\noindent\textbf{Teorema 8.2.2}
+\begin{quote}
+    Se as variáveis aleatórias $X_1, \dots, X_k$ são independentes e se $X_i$ tem a distribuição $\chi^2$ com $m_i$ graus de liberdade ($i=1, \dots, k$), então a soma $X_1 + \dots + X_k$ tem a distribuição $\chi^2$ com $m_1 + \dots + m_k$ graus de liberdade.
+\end{quote}
+\vspace{1em}
+
+Vamos agora estabelecer a relação básica entre as distribuições $\chi^2$ e a distribuição normal padrão.
+
+\vspace{1em}
+\noindent\textbf{Teorema 8.2.3}
+\begin{quote}
+    Seja $X$ uma variável aleatória com a distribuição normal padrão. Então a variável aleatória $Y = X^2$ tem a distribuição $\chi^2$ com um grau de liberdade.
+\end{quote}
+\vspace{1em}
+
+\noindent\textit{Prova.} Sejam $f(y)$ e $F(y)$ denotando, respectivamente, a f.d.p. e a f.d.a. de $Y$. Além disso, como $X$ tem a distribuição normal padrão, vamos denotar por $\phi(x)$ e $\Phi(x)$ a f.d.p. e a f.d.a. de $X$. Então, para $y > 0$,
+\begin{align*}
+    F(y) &= \text{Pr}(Y \le y) = \text{Pr}(X^2 \le y) = \text{Pr}(-y^{1/2} \le X \le y^{1/2}) \\
+    &= \Phi(y^{1/2}) - \Phi(-y^{1/2}).
+\end{align*}
+Como $f(y) = F'(y)$ e $\phi(x) = \Phi'(x)$, segue-se da regra da cadeia para derivadas que
+$$
+f(y) = \phi(y^{1/2})\left(\frac{1}{2}y^{-1/2}\right) + \phi(-y^{1/2})\left(\frac{1}{2}y^{-1/2}\right).
+$$
+Além disso, como $\phi(y^{1/2}) = \phi(-y^{1/2}) = (2\pi)^{-1/2}e^{-y/2}$, segue-se agora que
+$$
+f(y) = \frac{1}{(2\pi)^{1/2}}y^{-1/2}e^{-y/2} \quad \text{para } y > 0.
+$$
+Comparando esta equação com a Eq. (8.2.1), vê-se que a f.d.p. de $Y$ é de fato a f.d.p. da distribuição $\chi^2$ com um grau de liberdade. \hfill $\blacksquare$
+
+\vspace{1em}
+Podemos agora combinar o Teorema 8.2.3 com o Teorema 8.2.2 para obter o seguinte resultado, que fornece a principal razão pela qual a distribuição $\chi^2$ é importante em estatística.
+\vspace{1em}
+
+\noindent\textbf{Corolário 8.2.1}
+\begin{quote}
+    Se as variáveis aleatórias $X_1, \dots, X_m$ são i.i.d. com a distribuição normal padrão, então a soma dos quadrados $X_1^2 + \dots + X_m^2$ tem a distribuição $\chi^2$ com $m$ graus de liberdade. \hfill $\blacksquare$
+\end{quote}
+
+\vspace{1em}
+\noindent\textbf{Exemplo 8.2.2 (E.M.V. da Variância de uma Distribuição Normal)}
+\begin{quote}
+    No Exemplo 8.2.1, as variáveis aleatórias $Z_i = (X_i - \mu)/\sigma$ para $i=1, \dots, n$ formam uma amostra aleatória da distribuição normal padrão. Segue-se do Corolário 8.2.1 que a distribuição de $\sum_{i=1}^n Z_i^2$ é a distribuição $\chi^2$ com $n$ graus de liberdade. É fácil ver que $\sum_{i=1}^n Z_i^2$ é precisamente o mesmo que $n\hat{\sigma}_0^2/\sigma^2$, que aparece no Exemplo 8.2.1. Portanto, a distribuição de $n\hat{\sigma}_0^2/\sigma^2$ é a distribuição $\chi^2$ com $n$ graus de liberdade. O leitor também deve ser capaz de ver que a distribuição de $\hat{\sigma}_0^2$ em si é a distribuição gama com parâmetros $n/2$ e $n/(2\sigma^2)$ (Exercício 13).
+\end{quote}
+\vspace{1em}
+
+\vspace{1em}
+\noindent\textbf{Exemplo 8.2.3 (Concentração de Ácido em Queijo)}
+\begin{quote}
+    Moore e McCabe (1999, p. D-1) descrevem um experimento conduzido na Austrália para estudar a relação entre o sabor e a composição química do queijo. Um químico cuja concentração pode afetar o sabor é o ácido lático. Fabricantes de queijo que desejam uma base de clientes leais gostariam que o sabor fosse aproximadamente o mesmo cada vez que um cliente compra o queijo. A variação nas concentrações de químicos como o ácido lático pode levar à variação no sabor do queijo. Suponha que modelemos a concentração de ácido lático em vários pedaços de queijo como variáveis aleatórias normais independentes com média $\mu$ e variância $\sigma^2$. Estamos interessados em o quanto essas concentrações diferem do valor médio $\mu$. Sejam $X_1, \dots, X_k$ as concentrações em $k$ pedaços, e seja $Z_i = (X_i - \mu)/\sigma$. Então
+    $$
+    Y = \frac{1}{k}\sum_{i=1}^{k} |X_i - \mu|^2 = \frac{\sigma^2}{k}\sum_{i=1}^{k} Z_i^2
+    $$
+    é uma medida de o quanto as $k$ concentrações diferem de $\mu$. Suponha que uma diferença de $u$ ou mais na concentração de ácido lático seja suficiente para causar uma diferença perceptível no sabor. Podemos então desejar calcular $\text{Pr}(Y \le u^2)$. De acordo com o Corolário 8.2.1, a distribuição de $W = kY/\sigma^2$ é $\chi^2$ com $k$ graus de liberdade. Portanto, $\text{Pr}(Y \le u^2) = \text{Pr}(W \le ku^2/\sigma^2)$.
+
+    Por exemplo, suponha que $\sigma^2=0.09$, e estamos interessados em $k=10$ pedaços de queijo. Além disso, suponha que $u=0.3$ é a diferença crítica de interesse. Podemos escrever
+    \begin{equation}
+        \text{Pr}(Y \le 0.3^2) = \text{Pr}\left(W \le \frac{10 \times 0.09}{0.09}\right) = \text{Pr}(W \le 10).
+    \end{equation}
+\end{quote}
+\vspace{1em}
+
+Usando a tabela de quantis da distribuição $\chi^2$ com 10 graus de liberdade, vemos que 10 está entre os quantis 0.5 e 0.6. De fato, a probabilidade na Eq. (8.2.2) pode ser encontrada por software de computador como sendo igual a 0.56, então há uma chance de 44 por cento de que a diferença quadrática média entre a concentração de ácido lático e a concentração média em 10 pedaços seja maior do que a quantidade desejada. Se essa probabilidade for muito grande, o fabricante pode desejar investir algum esforço na redução da variância da concentração de ácido lático.
+
+\subsection*{Resumo}
+
+A distribuição qui-quadrado com $m$ graus de liberdade é a mesma que a distribuição gama com parâmetros $m/2$ e 1/2. É a distribuição da soma dos quadrados de uma amostra de $m$ variáveis aleatórias normais padrão independentes. A média da distribuição $\chi^2$ com $m$ graus de liberdade é $m$, e a variância é $2m$.
+
+\section*{Exercícios}
+
+\begin{enumerate}
+    \item Suponha que amostremos 20 pedaços de queijo no Exemplo 8.2.3. Seja $T = \sum_{i=1}^{20}(X_i - \mu)^2 / 20$, onde $X_i$ é a concentração de ácido lático no $i$-ésimo pedaço. Suponha que $\sigma^2 = 0.09$. Qual número $c$ satisfaz $\text{Pr}(T \le c) = 0.9$?
+
+    \item Encontre a moda da distribuição $\chi^2$ com $m$ graus de liberdade ($m=1, 2, \dots$).
+
+    \item Esboce a f.d.p. da distribuição $\chi^2$ com $m$ graus de liberdade para cada um dos seguintes valores de $m$. Localize a média, a mediana e a moda em cada esboço. \textbf{(a)} $m=1$; \textbf{(b)} $m=2$; \textbf{(c)} $m=3$; \textbf{(d)} $m=4$.
+
+    \item Suponha que um ponto $(X, Y)$ seja escolhido ao acaso no plano $xy$, onde $X$ e $Y$ são variáveis aleatórias independentes e cada uma tem a distribuição normal padrão. Se um círculo for desenhado no plano $xy$ com seu centro na origem, qual é o raio do menor círculo que pode ser escolhido para que haja uma probabilidade de 0.99 de que o ponto $(X, Y)$ esteja dentro do círculo?
+
+    \item Suponha que um ponto $(X, Y, Z)$ seja escolhido ao acaso no espaço tridimensional, onde $X$, $Y$ e $Z$ são variáveis aleatórias independentes e cada uma tem a distribuição normal padrão. Qual é a probabilidade de que a distância da origem ao ponto seja menor que 1 unidade?
+
+    \item Quando o movimento de uma partícula microscópica em um líquido ou gás é observado, percebe-se que o movimento é irregular porque a partícula colide frequentemente com outras partículas. O modelo de probabilidade para esse movimento, que é chamado de \textit{movimento Browniano}, é o seguinte: Um sistema de coordenadas é escolhido no líquido ou gás. Suponha que a partícula esteja na origem deste sistema de coordenadas no tempo $t=0$, e sejam $(X, Y, Z)$ as coordenadas da partícula em qualquer tempo $t > 0$. As variáveis aleatórias $X$, $Y$ e $Z$ são i.i.d., e cada uma delas tem a distribuição normal com média 0 e variância $\sigma^2 t$. Encontre a probabilidade de que no tempo $t=2$ a partícula esteja dentro de uma esfera cujo centro está na origem e cujo raio é $4\sigma$.
+
+    \item Suponha que as variáveis aleatórias $X_1, \dots, X_n$ são independentes, e cada variável aleatória $X_i$ tem uma f.d.a. contínua $F_i$. Além disso, seja a variável aleatória $Y$ definida pela relação $Y = -2\sum_{i=1}^{n} \log F_i(X_i)$. Mostre que $Y$ tem a distribuição $\chi^2$ com $2n$ graus de liberdade.
+
+    \item Suponha que $X_1, \dots, X_n$ formem uma amostra aleatória da distribuição uniforme no intervalo $[0, 1]$, e seja $W$ a amplitude da amostra, como definido no Exemplo 3.9.7. Além disso, seja $g_n(x)$ a f.d.p. da variável aleatória $2n(1-W)$, e seja $g(x)$ a f.d.p. da distribuição $\chi^2$ com quatro graus de liberdade. Mostre que
+    $$ \lim_{n \to \infty} g_n(x) = g(x) \quad \text{para } x > 0. $$
+
+    \item Suponha que $X_1, \dots, X_n$ formem uma amostra aleatória da distribuição normal com média $\mu$ e variância $\sigma^2$. Encontre a distribuição de
+    $$ \frac{n(\bar{X}_n - \mu)^2}{\sigma^2}. $$
+
+    \item Suponha que seis variáveis aleatórias $X_1, \dots, X_6$ formem uma amostra aleatória da distribuição normal padrão, e seja
+    $$ Y = (X_1+X_2+X_3)^2 + (X_4+X_5+X_6)^2. $$
+    Determine um valor de $c$ tal que a variável aleatória $cY$ terá uma distribuição $\chi^2$.
+
+    \item Se uma variável aleatória $X$ tem a distribuição $\chi^2$ com $m$ graus de liberdade, então a distribuição de $X^{1/2}$ é chamada de \textit{distribuição qui ($\chi$)} com $m$ graus de liberdade. Determine a média desta distribuição.
+    
+    \item Considere novamente a situação descrita no Exemplo 8.2.3. Quão pequeno precisaria ser $\sigma^2$ para que $\text{Pr}(Y \le 0.09) \ge 0.9$?
+
+    \item Prove que a distribuição de $\hat{\sigma}_0^2$ nos Exemplos 8.2.1 e 8.2.2 é a distribuição gama com parâmetros $n/2$ e $n/(2\sigma^2)$.
+
+\end{enumerate}
