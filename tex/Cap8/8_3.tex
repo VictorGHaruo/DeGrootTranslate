@@ -1,0 +1,237 @@
+\section{Distribuição Conjunta da Média Amostral e Variância Amostral}
+
+Suponha que nossos dados formem uma amostra aleatória de uma distribuição normal. A média amostral $\hat{\mu}$ e a variância amostral $\hat{\sigma}^2$ são estatísticas importantes que são calculadas a fim de estimar os parâmetros da distribuição normal. Suas distribuições marginais nos ajudam a entender quão bom cada um deles é como um estimador do parâmetro correspondente. No entanto, a distribuição marginal de $\hat{\mu}$ depende de $\sigma$. A distribuição conjunta de $\hat{\mu}$ e $\hat{\sigma}^2$ nos permitirá fazer inferências sobre $\mu$ sem referência a $\sigma$.
+
+Suponha que $X_1, \dots, X_n$ formem uma amostra aleatória de uma distribuição normal com média desconhecida $\mu$ e variância desconhecida $\sigma^2$. Então, como foi mostrado no Exemplo 7.5.6, os E.M.V.'s de $\mu$ e $\sigma^2$ são a média amostral $\bar{X}_n$ e a variância amostral $(1/n)\sum_{i=1}^n (X_i - \bar{X}_n)^2$. Nesta seção, derivaremos a distribuição conjunta desses dois estimadores.
+
+Já sabemos, pelo Corolário 5.6.2, que a média amostral em si tem a distribuição normal com média $\mu$ e variância $\sigma^2/n$. Estabeleceremos a propriedade notável de que a média amostral e a variância amostral são variáveis aleatórias independentes, embora ambas sejam funções das mesmas variáveis aleatórias $X_1, \dots, X_n$. Além disso, mostraremos que, exceto por um fator de escala, a variância amostral tem a distribuição $\chi^2$ com $n-1$ graus de liberdade. Mais precisamente, mostraremos que a variável aleatória $\sum_{i=1}^n(X_i - \bar{X}_n)^2/\sigma^2$ tem a distribuição $\chi^2$ com $n-1$ graus de liberdade. Este resultado é também uma propriedade bastante surpreendente de amostras aleatórias de uma distribuição normal, como indica a discussão a seguir.
+
+Como as variáveis aleatórias $X_1, \dots, X_n$ são independentes, e como cada uma tem a distribuição normal com média $\mu$ e variância $\sigma^2$, as variáveis aleatórias $(X_1-\mu)/\sigma, \dots, (X_n-\mu)/\sigma$ também são independentes, e cada uma dessas variáveis tem a distribuição normal padrão. Segue-se do Corolário 8.2.1 que a soma de seus quadrados $\sum_{i=1}^n(X_i-\mu)^2/\sigma^2$ tem a distribuição $\chi^2$ com $n$ graus de liberdade. Portanto, a propriedade surpreendente mencionada no parágrafo anterior é que, se a média populacional $\mu$ for substituída pela média amostral $\bar{X}_n$ nesta soma de quadrados, o efeito é simplesmente reduzir os graus de liberdade na distribuição $\chi^2$ de $n$ para $n-1$. Em resumo, estabeleceremos o seguinte teorema.
+
+\subsection*{Independência da Média Amostral e da Variância Amostral}
+
+\vspace{1em}
+\noindent\textbf{Exemplo 8.3.1 (Chuva de Nuvens Semeadas)}
+\begin{quote}
+    Simpson, Olsen e Eden (1975) descrevem um experimento no qual uma amostra aleatória de 26 nuvens foi semeada com nitrato de prata para ver se elas produziam mais chuva do que nuvens não semeadas. Suponha que, em uma escala logarítmica, as nuvens não semeadas produziam tipicamente uma chuva média de 4. Ao comparar a média das nuvens semeadas com a média não semeada, pode-se naturalmente ver o quão distante a precipitação logarítmica média das nuvens semeadas, $\hat{\mu}$, está de 4. Mas a variação na precipitação dentro da amostra também é importante. Por exemplo, se alguém comparasse duas amostras diferentes de nuvens semeadas, esperaria que as precipitações médias nas duas amostras fossem diferentes apenas devido à variação entre as nuvens. Para ter confiança de que a semeadura das nuvens realmente produziu mais chuva, gostaríamos que a precipitação logarítmica média excedesse 4 por uma grande quantidade em comparação com a variação entre as amostras, que está intimamente relacionada à variação dentro das amostras. Como não conhecemos a variância para nuvens semeadas, calculamos a variância amostral $\hat{\sigma}^2$. Comparar $\hat{\mu}-4$ com $\hat{\sigma}^2$ requer que consideremos a distribuição conjunta da média amostral e da variância amostral.
+\end{quote}
+\vspace{1em}
+
+\vspace{1em}
+\noindent\textbf{Teorema 8.3.1}
+\begin{quote}
+    Suponha que $X_1, \dots, X_n$ formem uma amostra aleatória de uma distribuição normal com média $\mu$ e variância $\sigma^2$. Então a média amostral $\bar{X}_n$ e a variância amostral $(1/n)\sum_{i=1}^{n}(X_i - \bar{X}_n)^2$ são variáveis aleatórias independentes, $\bar{X}_n$ tem a distribuição normal com média $\mu$ e variância $\sigma^2/n$, e $\sum_{i=1}^{n}(X_i - \bar{X}_n)^2/\sigma^2$ tem a distribuição $\chi^2$ com $n-1$ graus de liberdade.
+\end{quote}
+\vspace{1em}
+
+Além disso, pode-se mostrar que a média amostral e a variância amostral são independentes \textit{apenas} quando a amostra aleatória é retirada de uma distribuição normal. Não consideraremos este resultado adiante neste livro. No entanto, ele enfatiza o fato de que a independência da média amostral e da variância amostral é de fato uma propriedade notável de amostras de uma distribuição normal.
+
+A prova do Teorema 8.3.1 faz uso de transformações de várias variáveis, como descrito na Seção 3.9, e das propriedades de matrizes ortogonais. A prova aparece no final desta seção.
+
+\vspace{1em}
+\noindent\textbf{Exemplo 8.3.2 (Chuva de Nuvens Semeadas)}
+\begin{quote}
+    A Figura 8.3 é um histograma dos logaritmos das precipitações das nuvens semeadas no Exemplo 8.3.1. Suponha que esses logaritmos $X_1, \dots, X_{26}$ sejam modelados como variáveis aleatórias normais i.i.d. com média $\mu$ e variância $\sigma^2$. Se estivermos interessados em quanta variação existe na precipitação entre as nuvens semeadas, podemos calcular a variância amostral $\hat{\sigma}^2 = \sum_{i=1}^{26}(X_i - \bar{X}_n)^2/26$. A distribuição de $U = 26\hat{\sigma}^2/\sigma^2$ é a distribuição $\chi^2$ com 25 graus de liberdade. Podemos usar essa distribuição para nos dizer quão provável é que $\hat{\sigma}^2$ superestime ou subestime $\sigma^2$ em várias quantidades. Por exemplo, a tabela de $\chi^2$ neste livro diz que o quantil 0.25 da distribuição $\chi^2$ com 25 graus de liberdade é 19.94, então $\text{Pr}(U \le 19.94) = 0.25$.
+\end{quote}
+\vspace{1em}
+
+Segue-se que
+\begin{equation}
+    0.25 = \text{Pr}\left(\frac{\hat{\sigma}^2}{\sigma^2} \le \frac{19.94}{26}\right) = \text{Pr}(\hat{\sigma}^2 \le 0.77\sigma^2).
+\end{equation}
+
+Isto é, há uma probabilidade de 0.25 de que $\hat{\sigma}^2$ subestime $\sigma^2$ em 23 por cento ou mais. O valor observado de $\hat{\sigma}^2$ é 2.460 neste exemplo. A probabilidade calculada na Eq. (8.3.1) não tem nada a ver com o quão longe 2.460 está de $\sigma^2$. A Eq. (8.3.1) nos diz a probabilidade (antes de observar os dados) de que $\hat{\sigma}^2$ estaria pelo menos 23\% abaixo de $\sigma^2$.
+
+\subsection*{Estimação da Média e do Desvio Padrão}
+
+Assumiremos que $X_1, \dots, X_n$ formam uma amostra aleatória de uma distribuição normal com média desconhecida $\mu$ e desvio padrão desconhecido $\sigma$. Além disso, como de costume, denotaremos os E.M.V.'s de $\mu$ e $\sigma$ por $\hat{\mu}$ e $\hat{\sigma}$. Assim,
+$$
+\hat{\mu} = \bar{X}_n \quad \text{e} \quad \hat{\sigma} = \left(\frac{1}{n}\sum_{i=1}^n(X_i - \bar{X}_n)^2\right)^{1/2}.
+$$
+Note que $\hat{\sigma}^2 = \hat{\sigma^2}$, o E.M.V. de $\sigma^2$. No restante deste livro, ao nos referirmos ao E.M.V. de $\sigma^2$, usaremos o que for mais conveniente, $\hat{\sigma}^2$ ou $\hat{\sigma^2}$. Como uma ilustração da aplicação do Teorema 8.3.1, vamos agora determinar o menor tamanho de amostra possível $n$ tal que a seguinte relação será satisfeita:
+\begin{equation}
+    \text{Pr}\left(|\hat{\mu} - \mu| \le \frac{1}{5}\sigma \quad \text{e} \quad |\hat{\sigma} - \sigma| \le \frac{1}{5}\sigma\right) \ge \frac{1}{2}.
+\end{equation}
+Em outras palavras, determinaremos o tamanho mínimo de amostra $n$ para o qual a probabilidade será de pelo menos 1/2 de que nem $\hat{\mu}$ nem $\hat{\sigma}$ difiram do valor desconhecido que está estimando por mais de $(1/5)\sigma$.
+
+Devido à independência de $\hat{\mu}$ e $\hat{\sigma}$, a relação (8.3.2) pode ser reescrita da seguinte forma:
+\begin{equation}
+    \text{Pr}\left(|\hat{\mu} - \mu| < \frac{1}{5}\sigma\right) \text{Pr}\left(|\hat{\sigma} - \sigma| < \frac{1}{5}\sigma\right) \ge \frac{1}{2}.
+\end{equation}
+
+Se denotarmos por $p_1$ a primeira probabilidade do lado esquerdo da relação (8.3.3), e seja $U$ uma variável aleatória com a distribuição normal padrão, essa probabilidade pode ser escrita da seguinte forma:
+$$
+p_1 = \text{Pr}\left(\frac{\sqrt{n}|\hat{\mu}-\mu|}{\sigma} < \frac{1}{5}\sqrt{n}\right) = \text{Pr}\left(|U| < \frac{1}{5}\sqrt{n}\right).
+$$
+Similarmente, se denotarmos por $p_2$ a segunda probabilidade do lado esquerdo da relação (8.3.3), e seja $V = n\hat{\sigma}^2/\sigma^2$, esta probabilidade pode ser escrita da seguinte forma:
+\begin{align*}
+    p_2 &= \text{Pr}\left(0.8 < \frac{\hat{\sigma}}{\sigma} < 1.2\right) = \text{Pr}\left(0.64n < \frac{n\hat{\sigma}^2}{\sigma^2} < 1.44n\right) \\
+    &= \text{Pr}(0.64n < V < 1.44n).
+\end{align*}
+Pelo Teorema 8.3.1, a variável aleatória $V$ tem a distribuição $\chi^2$ com $n-1$ graus de liberdade.
+
+Para cada valor específico de $n$, os valores de $p_1$ e $p_2$ podem ser encontrados, pelo menos aproximadamente, a partir da tabela da distribuição normal padrão e da tabela da distribuição $\chi^2$ fornecidas no final deste livro. Em particular, depois de vários valores de $n$ terem sido tentados, será encontrado que para $n=21$ os valores de $p_1$ e $p_2$ são $p_1 = 0.64$ e $p_2 = 0.78$. Portanto, $p_1 p_2 = 0.50$, e segue-se que a relação (8.3.2) será satisfeita para $n=21$.
+
+\subsection*{Prova do Teorema 8.3.1}
+
+Já sabíamos, pelo Corolário 5.6.2, que a distribuição da média amostral é a indicada no Teorema 8.3.1. O que resta provar é a distribuição declarada da variância amostral e a independência da média amostral e da variância amostral.
+
+\subsubsection*{Matrizes Ortogonais}
+Começamos com algumas propriedades de matrizes ortogonais que são essenciais para a prova.
+
+\vspace{1em}
+\noindent\textbf{Definição 8.3.1 (Matriz Ortogonal)}
+\begin{quote}
+    Diz-se que uma matriz $n \times n$ $A$ é \textit{ortogonal} se $A^{-1} = A'$, onde $A'$ é a transposta de $A$.
+\end{quote}
+\vspace{1em}
+
+Em outras palavras, uma matriz $A$ é ortogonal se e somente se $AA' = A'A = I$, onde $I$ é a matriz identidade $n \times n$. Segue-se desta propriedade que uma matriz é ortogonal se e somente se a soma dos quadrados dos elementos em cada linha é 1 e a soma dos produtos dos elementos correspondentes em cada par de linhas distintas é 0. Alternativamente, uma matriz é ortogonal se e somente se a soma dos quadrados dos elementos em cada coluna é 1 e a soma dos produtos dos elementos correspondentes em cada par de colunas distintas é 0.
+
+\paragraph{Propriedades das Matrizes Ortogonais} Vamos agora derivar duas propriedades importantes de matrizes ortogonais.
+
+\vspace{1em}
+\noindent\textbf{Teorema 8.3.2}
+\begin{quote}
+    O determinante é 1. Se $A$ é ortogonal, então $|\det A|=1$.
+\end{quote}
+\vspace{1em}
+\noindent\textit{Prova.} Para provar este resultado, deve-se recordar que $\det A = \det A'$ para toda matriz quadrada $A$. Recorde-se também que $\det(AB) = (\det A)(\det B)$ para matrizes quadradas $A$ e $B$. Portanto,
+$$
+\det(AA') = (\det A)(\det A') = (\det A)^2.
+$$
+Além disso, se $A$ é ortogonal, então $AA'=I$, e segue que
+$$
+\det(AA') = \det I = 1.
+$$
+Logo, $(\det A)^2 = 1$ ou, equivalentemente, $|\det A|=1$. \hfill $\blacksquare$
+
+\vspace{1em}
+\noindent\textbf{Teorema 8.3.3}
+\begin{quote}
+    O Comprimento ao Quadrado é Preservado. Considere dois vetores aleatórios $n$-dimensionais
+    $$
+    X = \begin{bmatrix} X_1 \\ \vdots \\ X_n \end{bmatrix} \quad \text{e} \quad Y = \begin{bmatrix} Y_1 \\ \vdots \\ Y_n \end{bmatrix},
+    $$
+    e suponha que $Y=AX$, onde $A$ é uma matriz ortogonal. Então
+    $$
+    \sum_{i=1}^{n} Y_i^2 = \sum_{i=1}^{n} X_i^2.
+    $$
+\end{quote}
+\vspace{1em}
+\noindent\textit{Prova.} Este resultado segue do fato de que $A'A=I$, porque
+$$
+\sum_{i=1}^{N} Y_i^2 = Y'Y = (X'A')AX = X'X = \sum_{i=1}^{n} X_i^2. \quad \blacksquare
+$$
+
+A multiplicação de um vetor $X$ por uma matriz ortogonal $A$ corresponde a uma rotação de $X$ no espaço $n$-dimensional, possivelmente seguida pela troca dos sinais de algumas coordenadas. Nenhuma dessas operações pode alterar o comprimento do vetor original $X$, e esse comprimento é igual a $(\sum_{i=1}^n X_i^2)^{1/2}$.
+
+Juntas, essas duas propriedades de matrizes ortogonais implicam que se um vetor aleatório $Y$ é obtido de um vetor aleatório $X$ por uma transformação linear \textit{ortogonal} $Y=AX$, então o valor absoluto do Jacobiano da transformação é 1 e $\sum_{i=1}^n Y_i^2 = \sum_{i=1}^n X_i^2$. Combinamos os Teoremas 8.3.2 e 8.3.3 para obter um fato útil sobre transformações ortogonais de uma amostra aleatória de variáveis aleatórias normais padrão.
+
+\vspace{1em}
+\noindent\textbf{Teorema 8.3.4}
+\begin{quote}
+    Suponha que as variáveis aleatórias $X_1, \dots, X_n$ sejam i.i.d. e cada uma tenha a distribuição normal padrão. Suponha também que $A$ seja uma matriz ortogonal $n \times n$, e $Y=AX$. Então as variáveis aleatórias $Y_1, \dots, Y_n$ também são i.i.d., cada uma também tem a distribuição normal padrão, e $\sum_{i=1}^n X_i^2 = \sum_{i=1}^n Y_i^2$.
+\end{quote}
+\vspace{1em}
+\noindent\textit{Prova.} A f.d.p. conjunta de $X_1, \dots, X_n$ é a seguinte, para $-\infty < x_i < \infty$ ($i=1, \dots, n$):
+$$
+f_n(\mathbf{x}) = \frac{1}{(2\pi)^{n/2}}\exp\left(-\frac{1}{2}\sum_{i=1}^n x_i^2\right).
+$$
+Se $A$ é uma matriz ortogonal $n \times n$, e as variáveis aleatórias $Y_1, \dots, Y_n$ são definidas pela relação $Y=AX$, onde os vetores $X$ e $Y$ são como especificado na Eq. (8.3.4), esta é uma transformação linear, então a f.d.p. conjunta de $Y_1, \dots, Y_n$ é obtida da Eq. (3.9.20) e é igual a
+$$
+g_n(\mathbf{y}) = \frac{1}{|\det A|}f_n(A^{-1}\mathbf{y}).
+$$
+Seja $\mathbf{x} = A^{-1}\mathbf{y}$. Como $A$ é ortogonal, $|\det A|=1$ e $\sum_{i=1}^n y_i^2 = \sum_{i=1}^n x_i^2$, como acabamos de provar. Então,
+$$
+g_n(\mathbf{y}) = \frac{1}{(2\pi)^{n/2}}\exp\left(-\frac{1}{2}\sum_{i=1}^n y_i^2\right).
+$$
+Pode-se ver pela Eq. (8.3.7) que a f.d.p. conjunta de $Y_1, \dots, Y_n$ é exatamente a mesma que a f.d.p. conjunta de $X_1, \dots, X_n$. \hfill $\blacksquare$
+
+\subsubsection*{Prova do Teorema 8.3.1}
+\paragraph{Amostras Aleatórias da Distribuição Normal Padrão}
+Começaremos provando o Teorema 8.3.1 sob a suposição de que $X_1, \dots, X_n$ formam uma amostra aleatória da distribuição normal padrão. Considere o vetor linha $n$-dimensional $\mathbf{u}$, no qual cada um dos $n$ componentes tem o valor $1/\sqrt{n}$:
+$$
+\mathbf{u} = \left[\frac{1}{\sqrt{n}} \dots \frac{1}{\sqrt{n}}\right].
+$$
+Como a soma dos quadrados dos $n$ componentes do vetor $\mathbf{u}$ é 1, é possível construir uma matriz ortogonal $A$ tal que os componentes do vetor $\mathbf{u}$ formem a primeira linha de $A$. Esta construção, chamada de \textit{método de Gram-Schmidt}, é descrita em livros didáticos sobre álgebra linear, como Cullen (1972), e não será discutida aqui. Assumiremos que tal matriz $A$ foi construída, e definiremos novamente as variáveis aleatórias $Y_1, \dots, Y_n$ pela transformação $Y=AX$.
+
+Como os componentes de $\mathbf{u}$ formam a primeira linha de $A$, segue que
+$$
+Y_1 = \mathbf{u}X = \sum_{i=1}^n \frac{1}{\sqrt{n}}X_i = \sqrt{n}\bar{X}_n.
+$$
+Além disso, pelo Teorema 8.3.4, $\sum_{i=1}^n X_i^2 = \sum_{i=1}^n Y_i^2$. Portanto,
+$$
+\sum_{i=2}^n Y_i^2 = \sum_{i=1}^n Y_i^2 - Y_1^2 = \sum_{i=1}^n X_i^2 - n\bar{X}_n^2 = \sum_{i=1}^n(X_i - \bar{X}_n)^2.
+$$
+Obtivemos assim a relação
+$$
+\sum_{i=2}^n Y_i^2 = \sum_{i=1}^n(X_i - \bar{X}_n)^2.
+$$
+Sabe-se do Teorema 8.3.4 que as variáveis aleatórias $Y_1, \dots, Y_n$ são independentes. Portanto, as duas variáveis aleatórias $Y_1$ e $\sum_{i=2}^n Y_i^2$ são independentes, e segue-se das Eqs. (8.3.9) e (8.3.10) que $\bar{X}_n$ e $\sum_{i=1}^n(X_i - \bar{X}_n)^2$ são independentes. Além disso, sabe-se do Teorema 8.3.4 que as $n-1$ variáveis aleatórias $Y_2, \dots, Y_n$ são i.i.d., e que cada uma dessas variáveis aleatórias tem a distribuição normal padrão. Portanto, pelo Corolário 8.2.1, a variável aleatória $\sum_{i=2}^n Y_i^2$ tem a distribuição $\chi^2$ com $n-1$ graus de liberdade. Segue-se da Eq. (8.3.10) que $\sum_{i=1}^n(X_i - \bar{X}_n)^2$ também tem a distribuição $\chi^2$ com $n-1$ graus de liberdade.
+
+\paragraph{Amostras Aleatórias de uma Distribuição Normal Arbitrária}
+Até agora, na prova do Teorema 8.3.1, consideramos apenas amostras aleatórias da distribuição normal padrão. Suponha agora que as variáveis aleatórias $X_1, \dots, X_n$ formem uma amostra aleatória de uma distribuição normal arbitrária com média $\mu$ e variância $\sigma^2$.
+
+Se definirmos $Z_i = (X_i - \mu)/\sigma$ para $i=1, \dots, n$, então as variáveis aleatórias $Z_1, \dots, Z_n$ são independentes, e cada uma tem a distribuição normal padrão. Em outras palavras, a distribuição conjunta de $Z_1, \dots, Z_n$ é a mesma que a distribuição conjunta de uma amostra aleatória da distribuição normal padrão. Segue-se dos resultados que acabamos de obter que $\bar{Z}_n$ e $\sum_{i=1}^n(Z_i - \bar{Z}_n)^2$ são independentes, e $\sum_{i=1}^n(Z_i - \bar{Z}_n)^2$ tem a distribuição $\chi^2$ com $n-1$ graus de liberdade. No entanto, $\bar{Z}_n = (\bar{X}_n - \mu)/\sigma$ e
+$$
+\sum_{i=1}^n (Z_i - \bar{Z}_n)^2 = \frac{1}{\sigma^2}\sum_{i=1}^n(X_i - \bar{X}_n)^2.
+$$
+Concluímos agora que a média amostral $\bar{X}_n$ e a variância amostral $(1/n)\sum_{i=1}^n(X_i - \bar{X}_n)^2$ são independentes, e que a variável aleatória no lado direito da Eq. (8.3.11) tem a distribuição $\chi^2$ com $n-1$ graus de liberdade. Todos os resultados declarados no Teorema 8.3.1 foram agora estabelecidos.
+
+\subsection*{Resumo}
+
+Seja $X_1, \dots, X_n$ uma amostra aleatória da distribuição normal com média $\mu$ e variância $\sigma^2$. Então a média amostral $\hat{\mu} = \bar{X}_n = \frac{1}{n}\sum_{i=1}^n X_i$ e a variância amostral $\hat{\sigma}^2 = \frac{1}{n}\sum_{i=1}^n(X_i - \bar{X}_n)^2$ são variáveis aleatórias independentes. Além disso, $\hat{\mu}$ tem a distribuição normal com média $\mu$ e variância $\sigma^2/n$, e $n\hat{\sigma}^2/\sigma^2$ tem uma distribuição qui-quadrado com $n-1$ graus de liberdade.
+
+\section*{Exercícios}
+
+\begin{enumerate}
+    \item Assuma que $X_1, \dots, X_n$ formam uma amostra aleatória de uma distribuição normal com média $\mu$ e variância $\sigma^2$. Mostre que $\hat{\sigma}^2$ tem a distribuição gama com parâmetros $(n-1)/2$ e $n/(2\sigma^2)$.
+
+    \item Determine se cada uma das cinco matrizes a seguir é ortogonal ou não:
+    
+    \textbf{a.} $\begin{bmatrix} 0 & 1 & 0 \\ 0 & 0 & 1 \\ 1 & 0 & 0 \end{bmatrix}$
+    \quad
+    \textbf{b.} $\begin{bmatrix} 0.8 & 0 & 0.6 \\ -0.6 & 0 & 0.8 \\ 0 & -1 & 0 \end{bmatrix}$
+    \quad
+    \textbf{c.} $\begin{bmatrix} 0.8 & 0 & 0.6 \\ -0.6 & 0 & 0.8 \\ 0 & 0.5 & 0 \end{bmatrix}$
+    
+    \textbf{d.} $\begin{bmatrix} -1/\sqrt{3} & 1/\sqrt{3} & 1/\sqrt{3} \\ 1/\sqrt{3} & -1/\sqrt{3} & 1/\sqrt{3} \\ 1/\sqrt{3} & 1/\sqrt{3} & -1/\sqrt{3} \end{bmatrix}$
+    \quad
+    \textbf{e.} $\begin{bmatrix} 1/2 & 1/2 & 1/2 & 1/2 \\ -1/2 & -1/2 & 1/2 & 1/2 \\ -1/2 & 1/2 & -1/2 & 1/2 \\ -1/2 & 1/2 & 1/2 & -1/2 \end{bmatrix}$
+
+    \item 
+    \begin{enumerate}
+        \item[\textbf{a.}] Construa uma matriz ortogonal $2 \times 2$ para a qual a primeira linha é a seguinte:
+        $$ \begin{bmatrix} 1/\sqrt{2} & 1/\sqrt{2} \end{bmatrix}. $$
+        \item[\textbf{b.}] Construa uma matriz ortogonal $3 \times 3$ para a qual a primeira linha é a seguinte:
+        $$ \begin{bmatrix} 1/\sqrt{3} & 1/\sqrt{3} & 1/\sqrt{3} \end{bmatrix}. $$
+    \end{enumerate}
+
+    \item Suponha que as variáveis aleatórias $X_1, X_2$ e $X_3$ sejam i.i.d., e que cada uma tenha a distribuição normal padrão. Além disso, suponha que
+    \begin{align*}
+        Y_1 &= 0.8X_1 + 0.6X_2, \\
+        Y_2 &= \sqrt{2}(0.3X_1 - 0.4X_2 - 0.5X_3), \\
+        Y_3 &= \sqrt{2}(0.3X_1 - 0.4X_2 + 0.5X_3).
+    \end{align*}
+    Encontre a distribuição conjunta de $Y_1, Y_2$ e $Y_3$.
+
+    \item Suponha que as variáveis aleatórias $X_1$ e $X_2$ são independentes, e que cada uma tem a distribuição normal com média $\mu$ e variância $\sigma^2$. Prove que as variáveis aleatórias $X_1 + X_2$ e $X_1 - X_2$ são independentes.
+
+    \item Suponha que $X_1, \dots, X_n$ formem uma amostra aleatória da distribuição normal com média $\mu$ e variância $\sigma^2$. Assumindo que o tamanho da amostra $n$ é 16, determine os valores das seguintes probabilidades:
+    \begin{enumerate}
+        \item[\textbf{a.}] $\text{Pr}\left[\frac{1}{2}\sigma^2 \le \frac{1}{n}\sum_{i=1}^{n}(X_i - \mu)^2 \le 2\sigma^2\right]$
+        \item[\textbf{b.}] $\text{Pr}\left[\frac{1}{2}\sigma^2 \le \frac{1}{n}\sum_{i=1}^{n}(X_i - \bar{X}_n)^2 \le 2\sigma^2\right]$
+    \end{enumerate}
+
+    \item Suponha que $X_1, \dots, X_n$ formem uma amostra aleatória da distribuição normal com média $\mu$ e variância $\sigma^2$, e seja $\hat{\sigma}^2$ a variância amostral. Determine os menores valores de $n$ para os quais as seguintes relações são satisfeitas:
+    \begin{enumerate}
+        \item[\textbf{a.}] $\text{Pr}\left(\frac{\hat{\sigma}^2}{\sigma^2} \le 1.5\right) \ge 0.95$
+        \item[\textbf{b.}] $\text{Pr}\left(|\hat{\sigma}^2 - \sigma^2| \le \frac{1}{2}\sigma^2\right) \ge 0.8$
+    \end{enumerate}
+
+    \item Suponha que $X$ tenha a distribuição $\chi^2$ com 200 graus de liberdade. Explique por que o teorema do limite central pode ser usado para determinar o valor aproximado de $\text{Pr}(160 < X < 240)$ e encontre este valor aproximado.
+
+    \item Suponha que cada um de dois estatísticos, $A$ e $B$, independentemente, colete uma amostra aleatória de 20 observações de uma distribuição normal com média desconhecida $\mu$ e variância conhecida 4. Suponha também que o estatístico $A$ encontre a variância amostral em sua amostra aleatória como sendo 3.8, e o estatístico $B$ encontre a variância amostral em sua amostra aleatória como sendo 9.4. Para qual amostra aleatória a média amostral tem maior probabilidade de estar mais próxima do valor desconhecido de $\mu$?
+
+\end{enumerate}
