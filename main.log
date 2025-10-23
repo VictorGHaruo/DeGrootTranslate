@@ -1,4 +1,4 @@
-This is LuaHBTeX, Version 1.14.0 (TeX Live 2022/dev/Debian)  (format=lualatex 2025.6.10)  15 OCT 2025 13:13
+This is LuaHBTeX, Version 1.14.0 (TeX Live 2022/dev/Debian)  (format=lualatex 2025.6.10)  23 OCT 2025 15:55
  system commands enabled.
 **/home/taylor/Documents/FGV/Fourth/InferênciaEstatística/Translate/main
 (/home/taylor/Documents/FGV/Fourth/InferênciaEstatística/Translate/main.tex
@@ -1049,28 +1049,62 @@ File: img/emap.png Graphic file (type png)
 <use img/emap.png>
 Package luatex.def Info: img/emap.png  used on input line 216.
 (luatex.def)             Requested size: 67.5949pt x 8.2511pt.
-[121]) 
+[121]) (./tex/Cap8/8_4.tex
+File: img/emap.png Graphic file (type png)
+<use img/emap.png>
+Package luatex.def Info: img/emap.png  used on input line 5.
+(luatex.def)             Requested size: 67.5949pt x 8.2511pt.
+ [122]
+File: img/emap.png Graphic file (type png)
+<use img/emap.png>
+Package luatex.def Info: img/emap.png  used on input line 39.
+(luatex.def)             Requested size: 67.5949pt x 8.2511pt.
+ [123]
+Overfull \hbox (0.28793pt too wide) in paragraph at lines 47--47
+[]\TU/lmr/bx/n/12 Re-la-ção com Amos-tras Ale-a-tó-rias de uma Dis-tri-bui-ção Nor-
+ []
+
+File: img/emap.png Graphic file (type png)
+<use img/emap.png>
+Package luatex.def Info: img/emap.png  used on input line 70.
+(luatex.def)             Requested size: 67.5949pt x 8.2511pt.
+[124]
+File: img/emap.png Graphic file (type png)
+<use img/emap.png>
+Package luatex.def Info: img/emap.png  used on input line 96.
+(luatex.def)             Requested size: 67.5949pt x 8.2511pt.
+ [125]
+File: img/emap.png Graphic file (type png)
+<use img/emap.png>
+Package luatex.def Info: img/emap.png  used on input line 113.
+(luatex.def)             Requested size: 67.5949pt x 8.2511pt.
+ [126]
+File: img/emap.png Graphic file (type png)
+<use img/emap.png>
+Package luatex.def Info: img/emap.png  used on input line 148.
+(luatex.def)             Requested size: 67.5949pt x 8.2511pt.
+ [127]) 
 AED: lastpage setting LastPage
 File: img/emap.png Graphic file (type png)
 <use img/emap.png>
-Package luatex.def Info: img/emap.png  used on input line 47.
+Package luatex.def Info: img/emap.png  used on input line 49.
 (luatex.def)             Requested size: 67.5949pt x 8.2511pt.
-[122] (./main.aux))
+[128] (./main.aux))
 
 Here is how much of LuaTeX's memory you used:
- 5561 strings out of 477805
+ 5618 strings out of 477805
  100000,460012 words of node,token memory allocated
- 2420 words of node memory still in use:
-   7 hlist, 2 vlist, 2 rule, 2 glue, 4 kern, 1 glyph, 645 attribute, 54 glue_spec, 324 attribute_list, 2 write nodes
-   avail lists: 2:1199,3:197,4:53,5:464,6:42,7:9051,8:105,9:970,10:29,11:1134
- 25200 multiletter control sequences out of 65536+600000
- 53 fonts using 3777367 bytes
+ 2552 words of node memory still in use:
+   7 hlist, 2 vlist, 2 rule, 2 glue, 4 kern, 1 glyph, 689 attribute, 54 glue_spec, 346 attribute_list, 2 write nodes
+   avail lists: 2:1133,3:197,4:53,5:471,6:42,7:9051,8:105,9:970,10:29,11:1134
+ 25212 multiletter control sequences out of 65536+600000
+ 55 fonts using 4040743 bytes
  55i,19n,59p,2101b,613s stack positions out of 5000i,500n,10000p,200000b,80000s
-</usr/share/texmf/fonts/opentype/public/lm/lmroman10-italic.otf></usr/share/texmf/fonts/opentype/public/lm/lmroman10-bold.otf></usr/share/texmf/fonts/opentype/public/lm/lmroman12-bold.otf></usr/share/texmf/fonts/opentype/public/lm/lmroman10-regular.otf></usr/share/texmf/fonts/opentype/public/lm/lmroman12-regular.otf></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx7.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi12.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi5.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi7.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr5.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy5.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy7.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/symbols/msam10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb>
-Output written on main.pdf (123 pages, 779363 bytes).
+</usr/share/texmf/fonts/opentype/public/lm/lmroman10-bolditalic.otf></usr/share/texmf/fonts/opentype/public/lm/lmroman10-italic.otf></usr/share/texmf/fonts/opentype/public/lm/lmroman10-bold.otf></usr/share/texmf/fonts/opentype/public/lm/lmroman12-bold.otf></usr/share/texmf/fonts/opentype/public/lm/lmroman10-regular.otf></usr/share/texmf/fonts/opentype/public/lm/lmroman12-regular.otf></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx7.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi12.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi5.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi7.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr5.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy5.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy7.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/symbols/msam10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb>
+Output written on main.pdf (129 pages, 808694 bytes).
 
-PDF statistics: 503 PDF objects out of 1000 (max. 8388607)
- 328 compressed objects within 4 object streams
+PDF statistics: 528 PDF objects out of 1000 (max. 8388607)
+ 344 compressed objects within 4 object streams
  0 named destinations out of 1000 (max. 131072)
  1 words of extra memory for PDF output out of 10000 (max. 100000000)
 

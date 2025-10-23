@@ -1,0 +1,171 @@
+\section{As Distribuições t}
+
+Quando nossos dados são uma amostra da distribuição normal com média $\mu$ e variância $\sigma^2$, a distribuição de $Z = n^{1/2}(\hat{\mu} - \mu)/\sigma$ é a distribuição normal padrão, onde $\hat{\mu}$ é a média amostral. Se $\sigma^2$ é desconhecido, podemos substituir $\sigma$ por um estimador (similar ao E.M.V.) na fórmula para $Z$. A variável aleatória resultante tem a distribuição \textit{t} com $n-1$ graus de liberdade e é útil para fazer inferências apenas sobre $\mu$ mesmo quando ambos $\mu$ e $\sigma^2$ são desconhecidos.
+
+\subsection*{Definição das Distribuições}
+
+\vspace{1em}
+\noindent\textbf{Exemplo 8.4.1 (Chuva de Nuvens Semeadas)}
+\begin{quote}
+    Considere a mesma amostra de medições de log-precipitação de 26 nuvens semeadas do Exemplo 8.3.2. Suponha agora que estamos interessados em quão longe a média amostral $\bar{X}_n$ dessas medições está da média $\mu$. Sabemos que $n^{1/2}(\bar{X}_n - \mu)/\sigma$ tem a distribuição normal padrão, mas não conhecemos $\sigma$. Se substituirmos $\sigma$ por um estimador $\hat{\sigma}$, como o E.M.V., ou algo similar, qual é a distribuição de $n^{1/2}(\bar{X}_n - \mu)/\hat{\sigma}$, e como podemos usar essa variável aleatória para fazer inferências sobre $\mu$?
+\end{quote}
+\vspace{1em}
+
+Nesta seção, introduziremos e discutiremos outra família de distribuições, chamadas de distribuições \textit{t}, que estão intimamente relacionadas a amostras aleatórias de uma distribuição normal. As distribuições \textit{t}, assim como as distribuições $\chi^2$, têm sido amplamente aplicadas em importantes problemas de inferência estatística. As distribuições \textit{t} também são conhecidas como distribuições de Student (ver Student, 1908), em homenagem a W. S. Gosset, que publicou seus estudos desta distribuição em 1908 sob o pseudônimo de "Student". As distribuições são definidas da seguinte forma.
+
+\vspace{1em}
+\noindent\textbf{Definição 8.4.1 (Distribuições \textit{t})}
+\begin{quote}
+    Considere duas variáveis aleatórias independentes $Y$ e $Z$, tais que $Y$ tem a distribuição $\chi^2$ com $m$ graus de liberdade e $Z$ tem a distribuição normal padrão. Suponha que uma variável aleatória $X$ é definida pela equação
+    \begin{equation} \label{eq:8.4.1}
+        X = \frac{Z}{(Y/m)^{1/2}}.
+    \end{equation}
+    Então a distribuição de $X$ é chamada de \textit{distribuição t} com $m$ graus de liberdade.
+\end{quote}
+\vspace{1em}
+
+A derivação da f.d.p. (função densidade de probabilidade) da distribuição \textit{t} com $m$ graus de liberdade faz uso dos métodos da Seção 3.9 e será dada no final desta seção. Mas enunciamos o resultado aqui.
+
+\vspace{1em}
+\noindent\textbf{Teorema 8.4.1 (Função Densidade de Probabilidade)}
+\begin{quote}
+    A f.d.p. da distribuição \textit{t} com $m$ graus de liberdade é
+    \begin{equation} \label{eq:8.4.2}
+        \frac{\Gamma\left(\frac{m+1}{2}\right)}{(m\pi)^{1/2}\Gamma\left(\frac{m}{2}\right)} \left(1 + \frac{x^2}{m}\right)^{-(m+1)/2} \quad \text{para } -\infty < x < \infty.
+    \end{equation}
+\end{quote}
+\vspace{1em}
+
+\subsection*{Momentos das Distribuições \textit{t}}
+
+Embora a média da distribuição \textit{t} não exista quando $m \le 1$, a média existe para todo valor de $m > 1$. Obviamente, sempre que a média existe, seu valor é 0 por causa da simetria da distribuição \textit{t}.
+
+Em geral, se uma variável aleatória $X$ tem a distribuição \textit{t} com $m$ graus de liberdade ($m > 1$), então pode-se mostrar que $E(|X|^k) < \infty$ para $k < m$ e que $E(|X|^k) = \infty$ para $k \ge m$. Se $m$ é um inteiro, os primeiros $m-1$ momentos de $X$ existem, mas nenhum momento de ordem superior existe. Segue-se, portanto, que a f.g.m. (função geradora de momentos) de $X$ não existe.
+
+Pode-se mostrar (veja o Exercício 1 no final desta seção) que se $X$ tem a distribuição \textit{t} com $m$ graus de liberdade ($m > 2$), então $\text{Var}(X) = m/(m-2)$.
+
+\subsection*{Relação com Amostras Aleatórias de uma Distribuição Normal}
+
+\vspace{1em}
+\noindent\textbf{Exemplo 8.4.2 (Chuva de Nuvens Semeadas)}
+\begin{quote}
+    Retorne ao Exemplo 8.4.1. Já vimos que $Z = n^{1/2}(\bar{X}_n - \mu)/\sigma$ tem a distribuição normal padrão. Além disso, o Teorema 8.3.1 diz que $\bar{X}_n$ (e, portanto, $Z$) é independente de $Y = n\hat{\sigma}^2/\sigma^2$, que tem a distribuição $\chi^2$ com $n-1$ graus de liberdade. Segue-se que $Z/(Y/[n-1])^{1/2}$ tem a distribuição \textit{t} com $n-1$ graus de liberdade. Mostraremos como usar este fato após enunciar a versão geral deste resultado.
+\end{quote}
+\vspace{1em}
+
+\vspace{1em}
+\noindent\textbf{Teorema 8.4.2}
+\begin{quote}
+    Suponha que $X_1, \dots, X_n$ formem uma amostra aleatória de uma distribuição normal com média $\mu$ e variância $\sigma^2$. Seja $\bar{X}_n$ a média amostral, e defina
+    \begin{equation} \label{eq:8.4.3}
+        \sigma' = \left[\frac{\sum_{i=1}^{n}(X_i - \bar{X}_n)^2}{n-1}\right]^{1/2}.
+    \end{equation}
+    Então $n^{1/2}(\bar{X}_n - \mu)/\sigma'$ tem a distribuição \textit{t} com $n-1$ graus de liberdade.
+\end{quote}
+\vspace{1em}
+
+\noindent\textit{Prova.} Defina $S_n^2 = \sum_{i=1}^{n}(X_i - \bar{X}_n)^2$. Em seguida, defina $Z = n^{1/2}(\bar{X}_n - \mu)/\sigma$ e $Y = S_n^2/\sigma^2$. Segue-se do Teorema 8.3.1 que $Y$ e $Z$ são independentes, $Y$ tem a distribuição $\chi^2$ com $n-1$ graus de liberdade, e $Z$ tem a distribuição normal padrão. Finalmente, defina $U$ por
+$$
+U = \frac{Z}{\left(\frac{Y}{n-1}\right)^{1/2}}.
+$$
+Segue-se da definição da distribuição \textit{t} que $U$ tem a distribuição \textit{t} com $n-1$ graus de liberdade. É facilmente visto que $U$ pode ser reescrito como
+$$
+U = \frac{n^{1/2}(\bar{X}_n - \mu)}{\left(\frac{S_n^2}{n-1}\right)^{1/2}}.
+$$
+O denominador da expressão do lado direito da Eq. (8.4.4) é facilmente reconhecido como $\sigma'$ definido na Eq. (8.4.3). \hfill $\blacksquare$
+
+\vspace{1em}
+A primeira prova rigorosa do Teorema 8.4.2 foi dada por R. A. Fisher em 1923.
+
+Um aspecto importante da Eq. (8.4.4) é que nem o valor de $U$ nem a distribuição de $U$ dependem do valor da variância $\sigma^2$. No Exemplo 8.4.1, tentamos substituir $\sigma$ na variável aleatória $Z = n^{1/2}(\bar{X}_n - \mu)/\sigma$ por $\hat{\sigma}$. Em vez disso, o Teorema 8.4.2 sugere que devemos substituir $\sigma$ por $\sigma'$ definido na Eq. (8.4.3). Se substituirmos $\sigma$ por $\sigma'$, produzimos a variável aleatória $U$ na Eq. (8.4.4) que não envolve $\sigma$ e também tem uma distribuição que não depende de $\sigma$.
+
+O leitor deve notar que $\sigma'$ difere do E.M.V. $\hat{\sigma}$ de $\sigma$ por um fator constante,
+\begin{equation}
+    \sigma' = \left[\frac{S_n^2}{n-1}\right]^{1/2} = \left(\frac{n}{n-1}\right)^{1/2} \hat{\sigma}.
+\end{equation}
+Pode-se ver da Eq. (8.4.5) que para grandes valores de $n$ os estimadores $\sigma'$ e $\hat{\sigma}$ estarão muito próximos um do outro. O estimador $\sigma'$ será discutido adiante na Seção 8.7.
+
+Se o tamanho da amostra $n$ é grande, a probabilidade de que o estimador $\sigma'$ esteja próximo de $\sigma$ é alta. Portanto, substituir $\sigma$ por $\sigma'$ na variável aleatória $Z$ não alterará muito a distribuição normal padrão de $Z$. Por essa razão, é plausível que a distribuição \textit{t} com $n-1$ graus de liberdade deva estar próxima da distribuição normal padrão se $n$ for grande. Retornaremos a este ponto formalmente mais adiante nesta seção.
+
+\vspace{1em}
+\noindent\textbf{Exemplo 8.4.3 (Chuva de Nuvens Semeadas)}
+\begin{quote}
+    Retorne ao Exemplo 8.4.2. Sob a suposição de que as observações $X_1, \dots, X_n$ (log-precipitações) são independentes com uma distribuição normal comum, a distribuição de $U' = n^{1/2}(\bar{X}_n - \mu)/\sigma'$ é a distribuição \textit{t} com $n-1$ graus de liberdade. Com $n=26$, a tabela da distribuição \textit{t} nos diz que o quantil 0.9 da distribuição \textit{t} com 25 graus de liberdade é 1.316, então $\text{Pr}(U \le 1.316) = 0.9$. Segue-se que
+    $$
+    \text{Pr}(\bar{X}_n \le \mu + 0.2581\sigma') = 0.9,
+    $$
+    porque $1.316/(26)^{1/2} = 0.2581$. Isto é, a probabilidade é $0.9$ de que $\bar{X}_n$ não será mais do que $0.2581$ vezes $\sigma'$ acima de $\mu$. Claro, $\sigma'$ é uma variável aleatória assim como $\bar{X}_n$, então este resultado não é tão informativo quanto poderíamos ter esperado. Nas Seções 8.5 e 8.6, mostraremos como fazer uso da distribuição \textit{t} para fazer algumas inferências padrão sobre a média desconhecida $\mu$.
+\end{quote}
+\vspace{1em}
+
+\subsection*{Relação com a Distribuição de Cauchy e com a Distribuição Normal Padrão}
+
+Pode ser visto da Eq. (8.4.2) (e Fig. 8.4) que a f.d.p. $g(x)$ é uma função simétrica, em forma de sino, com seu valor máximo em $x=0$. Assim, sua forma geral é similar à da f.d.p. de uma distribuição normal com média 0. No entanto, à medida que $x \to \infty$ ou $x \to -\infty$, as caudas da f.d.p. $g(x)$ se aproximam de 0 muito mais lentamente do que as caudas da f.d.p. de uma distribuição normal. De fato, pode ser visto da Eq. (8.4.2) que a distribuição \textit{t} com um grau de liberdade é a distribuição de Cauchy, que foi definida no Exemplo 4.1.8. A f.d.p. da distribuição de Cauchy foi esboçada na Fig. 4.3. Foi mostrado no Exemplo 4.1.8 que a média da distribuição de Cauchy não existe, porque a integral que especifica o valor da média não é absolutamente convergente. Segue-se que, embora a f.d.p. da distribuição \textit{t} com um grau de liberdade seja simétrica em relação ao ponto $x=0$, a média desta distribuição não existe.
+
+Também pode ser mostrado da Eq. (8.4.2) que, à medida que $n \to \infty$, a f.d.p. $g(x)$ converge para a f.d.p. $\phi(x)$ da distribuição normal padrão para todo valor de $x$ ($-\infty < x < \infty$). Isso segue do Teorema 5.3.3 e do seguinte resultado:
+\begin{equation} \label{eq:8.4.6}
+    \lim_{m \to \infty} \frac{\Gamma\left(m + \frac{1}{2}\right)}{\Gamma(m)m^{1/2}} = 1.
+\end{equation}
+(Veja o Exercício 7 para uma forma de provar o resultado acima.) Portanto, quando $n$ é grande, a distribuição \textit{t} com $n$ graus de liberdade pode ser aproximada pela distribuição normal padrão. A Figura 8.4 mostra a f.d.p. da distribuição normal padrão juntamente com as f.d.p.'s das distribuições \textit{t} com 1, 5 e 20 graus de liberdade, para que o leitor possa ver como as distribuições \textit{t} se aproximam da normal à medida que os graus de liberdade aumentam.
+
+Uma pequena tabela de quantis $p$ para a distribuição \textit{t} com $m$ graus de liberdade para vários valores de $p$ e $m$ é fornecida no final deste livro. As probabilidades na primeira linha da tabela, correspondentes a $m=1$, são aquelas para a distribuição de Cauchy. As probabilidades na última linha da tabela, correspondentes a $m = \infty$, são aquelas para a distribuição normal padrão. A maioria dos pacotes estatísticos inclui uma função para calcular a f.d.a. e a função de quantil de uma distribuição \textit{t} arbitrária.
+
+\subsection*{Derivação da f.d.p.}
+
+Suponha que a distribuição conjunta de $Y$ e $Z$ seja como especificado na Definição 8.4.1. Então, como $Y$ e $Z$ são independentes, a sua f.d.p. conjunta é igual ao produto $f_1(y)f_2(z)$, onde $f_1(y)$ é a f.d.p. da distribuição $\chi^2$ com $m$ graus de liberdade e $f_2(z)$ é a f.d.p. da distribuição normal padrão. Seja $X$ definido pela Eq. (8.4.1) e, como um artifício conveniente, seja $W=Y$. Determinaremos primeiro a f.d.p. conjunta de $X$ e $W$.
+Das definições de $X$ e $W$,
+\begin{equation} \label{eq:8.4.7}
+    Z = X \left(\frac{W}{m}\right)^{1/2} \quad \text{e} \quad Y = W.
+\end{equation}
+O Jacobiano da transformação (8.4.7) de $X$ e $W$ para $Y$ e $Z$ é $(W/m)^{1/2}$. A f.d.p. conjunta $f(x, w)$ de $X$ e $W$ pode ser obtida a partir da f.d.p. conjunta $f_1(y)f_2(z)$ substituindo $y$ e $z$ pelas expressões dadas em (8.4.7) e, em seguida, multiplicando pelo Jacobiano $(w/m)^{1/2}$. Descobre-se então que o valor de $f(x, w)$ é o seguinte, para $-\infty < x < \infty$ e $w > 0$:
+\begin{align} \label{eq:8.4.8}
+    f(x, w) &= f_1(w) f_2\left(x\left[\frac{w}{m}\right]^{1/2}\right) \left(\frac{w}{m}\right)^{1/2} \\
+    &= c w^{(m+1)/2 - 1} \exp\left[-\frac{1}{2}\left(1 + \frac{x^2}{m}\right)w\right], \nonumber
+\end{align}
+onde
+$$
+c = \left[2^{(m+1)/2}(m\pi)^{1/2}\Gamma\left(\frac{m}{2}\right)\right]^{-1}.
+$$
+A f.d.p. marginal $g(x)$ de $X$ pode ser obtida da Eq. (8.4.8) usando a relação
+\begin{align*}
+    g(x) &= \int f(x, w) \, dw \\
+    &= c \int_{0}^{\infty} w^{(m+1)/2 - 1} \exp[-w h(x)] \, dw,
+\end{align*}
+onde $h(x) = [1+x^2/m]/2$. Segue-se da Eq. (5.7.10) que
+$$
+g(x) = c \frac{\Gamma((m+1)/2)}{h(x)^{(m+1)/2}}.
+$$
+Substituir a fórmula de $c$ nisso resulta na função em (8.4.2).
+
+\subsection*{Resumo}
+
+Seja $X_1, \dots, X_n$ uma amostra aleatória da distribuição normal com média $\mu$ e variância $\sigma^2$. Seja $\bar{X}_n = \frac{1}{n}\sum_{i=1}^n X_i$ e $\sigma' = \left(\frac{1}{n-1}\sum_{i=1}^n(X_i - \bar{X}_n)^2\right)^{1/2}$. Então a distribuição de $n^{1/2}(\bar{X}_n - \mu)/\sigma'$ é a distribuição \textit{t} com $n-1$ graus de liberdade.
+
+\section*{Exercícios}
+
+\begin{enumerate}
+    \item Suponha que $X$ tenha a distribuição \textit{t} com $m$ graus de liberdade ($m > 2$). Mostre que $\text{Var}(X) = m/(m-2)$. \textit{Dica}: Para avaliar $E(X^2)$, restrinja a integral à metade positiva da reta real e mude a variável de $x$ para
+    $$ y = \frac{x^2/m}{1 + x^2/m}. $$
+    Compare a integral com a f.d.p. de uma distribuição beta. Alternativamente, use o Exercício 21 da Seção 5.7.
+
+    \item Suponha que $X_1, \dots, X_n$ formem uma amostra aleatória de uma distribuição normal com média desconhecida $\mu$ e desvio padrão desconhecido $\sigma$, e sejam $\hat{\mu}$ e $\hat{\sigma}$ os E.M.V.'s de $\mu$ e $\sigma$. Para o tamanho de amostra $n=17$, encontre um valor de $k$ tal que $\text{Pr}(\hat{\mu} > \mu + k\hat{\sigma}) = 0.95$.
+    
+    \item Suponha que as cinco variáveis aleatórias $X_1, \dots, X_5$ são i.i.d. e que cada uma tem a distribuição normal padrão. Determine uma constante $c$ tal que a variável aleatória
+    $$ \frac{c(X_1 + X_2)}{(X_3^2 + X_4^2 + X_5^2)^{1/2}} $$
+    terá uma distribuição \textit{t}.
+
+    \item Usando a tabela da distribuição \textit{t} fornecida no final deste livro, determine o valor da integral
+    $$ \int_{-\infty}^{2.5} \frac{dx}{(12 + x^2)^2}. $$
+    
+    \item Suponha que as variáveis aleatórias $X_1$ e $X_2$ são independentes e que cada uma tem a distribuição normal com média 0 e variância $\sigma^2$. Determine o valor de
+    $$ \text{Pr}\left[\frac{(X_1 + X_2)^2}{(X_1 - X_2)^2} < 4\right]. $$
+    \textit{Dica}:
+    $$ (X_1 - X_2)^2 = 2\left[ \left(X_1 - \frac{X_1 + X_2}{2}\right)^2 + \left(X_2 - \frac{X_1 + X_2}{2}\right)^2 \right]. $$
+    
+    \item No Exemplo 8.2.3, suponha que observaremos $n=20$ pedaços de queijo com concentrações de ácido lático $X_1, \dots, X_{20}$. Encontre um número $c$ tal que $\text{Pr}(\bar{X}_{20} \le \mu + c\sigma') = 0.95$.
+    
+    \item Prove a fórmula limite da Eq. (8.4.6). \textit{Dica}: Use o Teorema 5.7.4.
+    
+    \item Seja $X$ uma variável aleatória com a distribuição normal padrão, e seja $Y$ uma variável aleatória com a distribuição \textit{t} com cinco graus de liberdade. Explique por que $c=1.63$ fornece o maior valor da diferença $\text{Pr}(-c < X < c) - \text{Pr}(-c < Y < c)$. \textit{Dica}: Comece olhando para a Fig. 8.4.
+
+\end{enumerate}
