@@ -1,0 +1,362 @@
+\section{Intervalos de Confiança}
+
+Intervalos de confiança fornecem um método de adicionar mais informação a um estimador $\hat{\theta}$ quando desejamos estimar um parâmetro desconhecido $\theta$. Podemos encontrar um intervalo $(A, B)$ que achamos ter alta probabilidade de conter $\theta$. O comprimento de tal intervalo nos dá uma ideia de quão proximamente podemos estimar $\theta$.
+
+\subsection*{Intervalos de Confiança para a Média de uma Distribuição Normal}
+
+\vspace{1em}
+\noindent\textbf{Exemplo 8.5.1 (Chuva de Nuvens Semeadas)}
+\begin{quote}
+    No Exemplo 8.3.2, a média das $n=26$ log-precipitações das nuvens semeadas é $\bar{X}_n$. Este pode ser um estimador sensato de $\mu$, a média da log-precipitação de uma nuvem semeada, mas não dá nenhuma ideia de quanta confiança devemos depositar no estimador. O desvio padrão de $\bar{X}_n$ é $\sigma/(26)^{1/2}$, e poderíamos estimar $\sigma$ por um estimador como $\sigma'$ da Eq. (8.4.3). Existe uma maneira sensata de combinar esses dois estimadores em uma inferência que nos diga tanto o que devemos estimar para $\mu$ quanto quanta confiança devemos depositar no estimador?
+\end{quote}
+\vspace{1em}
+
+Assuma que $X_1, \dots, X_n$ formam uma amostra aleatória da distribuição normal com média $\mu$ e variância $\sigma^2$. Construa os estimadores $\bar{X}_n$ de $\mu$ e $\sigma'$ de $\sigma$. Mostraremos agora como fazer uso da variável aleatória
+\begin{equation} \label{eq:8.5.1}
+    U = \frac{n^{1/2}(\bar{X}_n - \mu)}{\sigma'}
+\end{equation}
+da Eq. (8.4.4) para abordar a questão no final do Exemplo 8.5.1. Sabemos que $U$ tem a distribuição \textit{t} com $n-1$ graus de liberdade. Portanto, podemos calcular a f.d.a. (função de distribuição acumulada) de $U$ e/ou quantis de $U$ usando software estatístico ou tabelas como as no final deste livro. Em particular, podemos calcular $\text{Pr}(-c < U < c)$ para todo $c > 0$. As desigualdades $-c < U < c$ podem ser traduzidas em desigualdades envolvendo $\mu$ fazendo uso da fórmula para $U$ na Eq. (8.5.1). Álgebra simples mostra que $-c < U < c$ é equivalente a
+\begin{equation} \label{eq:8.5.2}
+    \bar{X}_n - \frac{c\sigma'}{n^{1/2}} < \mu < \bar{X}_n + \frac{c\sigma'}{n^{1/2}}.
+\end{equation}
+Qualquer probabilidade que possamos atribuir ao evento $\{-c < U < c\}$ também podemos atribuir ao evento que a Eq. (8.5.2) se verifica. Por exemplo, se $\text{Pr}(-c < U < c) = \gamma$, então
+\begin{equation} \label{eq:8.5.3}
+    \text{Pr}\left(\bar{X}_n - \frac{c\sigma'}{n^{1/2}} < \mu < \bar{X}_n + \frac{c\sigma'}{n^{1/2}}\right) = \gamma.
+\end{equation}
+Deve-se ter cuidado para entender a declaração de probabilidade na Eq. (8.5.3) como sendo uma declaração sobre a distribuição conjunta das variáveis aleatórias $\bar{X}_n$ e $\sigma'$ para valores fixos de $\mu$ e $\sigma$. Ou seja, é uma declaração sobre a distribuição amostral de $\bar{X}_n$ e $\sigma'$, e é condicional em $\mu$ e $\sigma$. Em particular, \textit{não} é uma declaração sobre $\mu$, mesmo se tratarmos $\mu$ como uma variável aleatória.
+
+A versão mais popular do cálculo acima é escolher $\gamma$ e então descobrir qual deve ser o valor de $c$ para tornar (8.5.3) verdadeira. Ou seja, qual valor de $c$ faz $\text{Pr}(-c < U < c) = \gamma$? Seja $T_{n-1}$ a f.d.a. da distribuição \textit{t} com $n-1$ graus de liberdade. Então
+$$
+\gamma = \text{Pr}(-c < U < c) = T_{n-1}(c) - T_{n-1}(-c).
+$$
+Como as distribuições \textit{t} são simétricas em torno de 0, $T_{n-1}(-c) = 1 - T_{n-1}(c)$, então $\gamma = 2T_{n-1}(c) - 1$ ou, equivalentemente, $c = T_{n-1}^{-1}([1+\gamma]/2)$. Ou seja, $c$ deve ser o quantil $(1+\gamma)/2$ da distribuição \textit{t} com $n-1$ graus de liberdade.
+
+\vspace{1em}
+\noindent\textbf{Exemplo 8.5.2 (Chuva de Nuvens Semeadas)}
+\begin{quote}
+    No Exemplo 8.3.2, temos $n=26$. Se queremos $\gamma = 0.95$ na Eq. (8.5.3), então precisamos que $c$ seja o quantil $1.95/2 = 0.975$ da distribuição \textit{t} com 25 graus de liberdade. Isso pode ser encontrado na tabela de quantis da distribuição \textit{t} no final do livro, sendo $c = 2.060$. Podemos substituir este valor na Eq. (8.5.3) e combinar as constantes $c/n^{1/2} = 2.060/26^{1/2} = 0.404$. Então a Eq. (8.5.3) afirma que, independentemente dos valores desconhecidos de $\mu$ e $\sigma$, a probabilidade é 0.95 de que as duas variáveis aleatórias $A = \bar{X}_n - 0.404\sigma'$ e $B = \bar{X}_n + 0.404\sigma'$ estarão em lados opostos de $\mu$.
+\end{quote}
+\vspace{1em}
+
+O intervalo $(A, B)$, cujos extremos foram calculados no final do Exemplo 8.5.2, é chamado de \textit{intervalo de confiança}.
+
+\vspace{1em}
+\noindent\textbf{Definição 8.5.1 (Intervalo de Confiança)}
+\begin{quote}
+    Seja $\mathbf{X} = (X_1, \dots, X_n)$ uma amostra aleatória de uma distribuição que depende de um parâmetro (ou vetor de parâmetros) $\theta$. Seja $g(\theta)$ uma função de valor real de $\theta$. Sejam $A \le B$ duas estatísticas que têm a propriedade de que para todos os valores de $\theta$,
+    \begin{equation} \label{eq:8.5.4}
+        \text{Pr}(A < g(\theta) < B) \ge \gamma.
+    \end{equation}
+    Então o intervalo aleatório $(A, B)$ é chamado de um \textit{intervalo de confiança com coeficiente $\gamma$} para $g(\theta)$ ou um \textit{intervalo de confiança de 100$\gamma$ por cento} para $g(\theta)$. Se a desigualdade "$\ge \gamma$" na Eq. (\ref{eq:8.5.4}) é uma igualdade para todo $\theta$, o intervalo de confiança é chamado de \textit{exato}. Após os valores das variáveis aleatórias $X_1, \dots, X_n$ na amostra aleatória terem sido observados, os valores de $A=a$ e $B=b$ são computados, e o intervalo $(a, b)$ é chamado de o \textit{valor observado} do intervalo de confiança.
+\end{quote}
+\vspace{1em}
+
+No Exemplo 8.5.2, $\theta = (\mu, \sigma^2)$, e o intervalo $(A, B)$ encontrado naquele exemplo é um intervalo de confiança exato de 95\% para $g(\theta) = \mu$.
+
+Com base na discussão que precede a Definição 8.5.1, estabelecemos o seguinte.\vspace{1em}
+\noindent\textbf{Teorema 8.5.1}
+\begin{quote}
+    Intervalo de Confiança para a Média de uma Distribuição Normal. Seja $X_1, \dots, X_n$ uma amostra aleatória da distribuição normal com média $\mu$ e variância $\sigma^2$. Para cada $0 < \gamma < 1$, o intervalo $(A, B)$ com os seguintes extremos é um intervalo de confiança exato com coeficiente $\gamma$ para $\mu$:
+    \begin{align*}
+        A &= \bar{X}_n - T_{n-1}^{-1}\left(\frac{1+\gamma}{2}\right) \frac{\sigma'}{n^{1/2}}, \\
+        B &= \bar{X}_n + T_{n-1}^{-1}\left(\frac{1+\gamma}{2}\right) \frac{\sigma'}{n^{1/2}}.
+    \end{align*}
+\hfill $\blacksquare$
+\end{quote}
+\vspace{1em}
+
+\vspace{1em}
+\noindent\textbf{Exemplo 8.5.3 (Chuva de Nuvens Semeadas)}
+\begin{quote}
+    No Exemplo 8.5.2, a média das 26 log-precipitações das nuvens semeadas é $\bar{X}_n = 5.134$. O valor observado de $\sigma'$ é $1.600$. Os valores observados de $A$ e $B$ são, respectivamente, $a = 5.134 - 0.404 \times 1.600 = 4.488$ e $b = 5.134 + 0.404 \times 1.600 = 5.780$. O valor observado do intervalo de confiança de 95\% é então $(4.488, 5.780)$. Para comparação, o nível médio não semeado de 4 está um pouco abaixo do extremo inferior deste intervalo.
+\end{quote}
+\vspace{1em}
+
+\subsection*{Interpretação de Intervalos de Confiança}
+
+A interpretação do intervalo de confiança $(A, B)$ definido na Definição 8.5.1 é direta, desde que se lembre que $\text{Pr}(A < g(\theta) < B) = \gamma$ é uma declaração de probabilidade sobre a distribuição conjunta das duas variáveis aleatórias $A$ e $B$ dado um valor particular de $\theta$. Uma vez que computamos os valores observados $a$ e $b$, o intervalo observado $(a, b)$ não é tão fácil de interpretar. Por exemplo, algumas pessoas gostariam de interpretar o intervalo no Exemplo 8.5.3 como significando que estamos 95\% confiantes de que $\mu$ está entre 4.488 e 5.780. Mais adiante nesta seção, mostraremos por que tal interpretação não é segura em geral. Antes de observar os dados, podemos estar 95\% confiantes de que o intervalo aleatório $(A, B)$ conterá $\mu$, mas após observar os dados, a interpretação mais segura é que $(a, b)$ é simplesmente o valor observado do intervalo aleatório $(A, B)$. Uma maneira de pensar sobre o intervalo aleatório $(A, B)$ é imaginar que a amostra que observamos é uma das muitas amostras possíveis que poderíamos ter observado (ou que ainda poderemos observar no futuro). Cada uma dessas amostras nos permitiria computar um intervalo observado. Antes de observar as amostras, esperaríamos que 95\% dos intervalos contivessem $\mu$. Mesmo se observássemos muitos desses intervalos, não saberíamos quais contêm $\mu$ e quais não contêm. A Figura 8.5 contém um gráfico de 100 valores observados de intervalos de confiança, cada um calculado a partir de uma amostra de tamanho $n=26$ de uma distribuição normal com média $\mu=5.1$ e desvio padrão $\sigma=1.6$. Neste exemplo, 94 dos 100 intervalos contêm o valor de $\mu$.
+
+\vspace{1em}
+\noindent\textbf{Exemplo 8.5.4 (Concentração de Ácido em Queijo)}
+\begin{quote}
+    No Exemplo 8.2.3, discutimos uma amostra aleatória de 10 medições de ácido lático de queijo. Suponha que desejamos calcular um intervalo de confiança de 90\% para $\mu$, a média desconhecida da concentração de ácido lático. O número $c$ que precisamos na Eq. (8.5.3) quando $n=10$ e $\gamma=0.9$ é o quantil $(1+0.9)/2 = 0.95$ da distribuição \textit{t} com nove graus de liberdade, $c = 1.833$. De acordo com a Eq. (8.5.3), os extremos serão $\bar{X}_n$ mais e menos $1.833\sigma'/(10)^{1/2}$. Suponha que observamos as seguintes 10 concentrações de ácido lático conforme relatado por Moore e McCabe (1999, p. D-1):
+    \begin{center}
+        0.86, 1.53, 1.57, 1.81, 0.99, 1.09, 1.29, 1.78, 1.29, 1.58.
+    \end{center}
+    A média desses 10 valores é $\bar{X}_n = 1.379$, e o valor de $\sigma'$ é $0.3277$. Os extremos do valor observado do nosso intervalo de confiança de 90\% são então $1.379 - 1.833 \times 0.3277/(10)^{1/2} = 1.189$ e $1.379 + 1.833 \times 0.3277/(10)^{1/2} = 1.569$.
+\end{quote}
+\vspace{1em}
+
+\noindent\textbf{Nota: Definições Alternativas de Intervalo de Confiança.} Muitos autores definem intervalos de confiança precisamente como fizemos aqui. Alguns outros definem o intervalo de confiança como sendo o que chamamos de valor observado do intervalo de confiança, ou seja, $(a, b)$, e eles precisam de outro nome para o intervalo aleatório $(A, B)$. Ao longo deste livro, manteremos a definição que demos, mas o leitor que estudar estatística mais a fundo pode encontrar a outra definição em uma data posterior. Além disso, alguns autores definem intervalos de confiança como sendo intervalos fechados em vez de intervalos abertos.
+
+\subsection*{Intervalos de Confiança Unilaterais}
+
+\vspace{1em}
+\noindent\textbf{Exemplo 8.5.5 (Chuva de Nuvens Semeadas)}
+\begin{quote}
+    Suponha que estejamos interessados apenas em obter um limite inferior para $\mu$, a média da log-precipitação de nuvens semeadas. No espírito dos intervalos de confiança, poderíamos então procurar uma variável aleatória $A$ tal que $\text{Pr}(A < \mu) = \gamma$. Se fizermos $B = \infty$ na Definição 8.5.1, vemos que $(A, \infty)$ é então um intervalo de confiança com coeficiente $\gamma$ para $\mu$.
+\end{quote}
+\vspace{1em}
+
+Para um dado coeficiente de confiança $\gamma$, é possível construir muitos intervalos de confiança diferentes para $\mu$. Por exemplo, sejam $\gamma_2 > \gamma_1$ dois números tais que $\gamma_2 - \gamma_1 = \gamma$, e seja $U$ como na Eq. (8.5.1). Então
+$$
+\text{Pr}(T_{n-1}^{-1}(\gamma_1) < U < T_{n-1}^{-1}(\gamma_2)) = \gamma,
+$$
+e as seguintes estatísticas são os extremos de um intervalo de confiança com coeficiente $\gamma$ para $\mu$:
+$$
+A = \bar{X}_n + T_{n-1}^{-1}(\gamma_1) \frac{\sigma'}{n^{1/2}} \quad \text{e} \quad B = \bar{X}_n + T_{n-1}^{-1}(\gamma_2) \frac{\sigma'}{n^{1/2}}.
+$$
+
+Entre todos esses intervalos de confiança com coeficiente $\gamma$, o intervalo simétrico com $\gamma_1 = 1 - \gamma_2$ é o mais curto.
+
+No entanto, existem casos, como o Exemplo 8.5.5, nos quais um intervalo de confiança assimétrico é útil. Em geral, é uma questão simples estender a Definição 8.5.1 para permitir $A = -\infty$ ou $B = \infty$, de modo que o intervalo de confiança tenha a forma $(-\infty, B)$ ou $(A, \infty)$.
+
+\vspace{1em}
+\noindent\textbf{Definição 8.5.2 (Intervalos/Limites de Confiança Unilaterais)}
+\begin{quote}
+    Seja $\mathbf{X} = (X_1, \dots, X_n)$ uma amostra aleatória de uma distribuição que depende de um parâmetro (ou vetor de parâmetros) $\theta$. Seja $g(\theta)$ uma função de valor real de $\theta$. Seja $A$ uma estatística que tenha a propriedade de que para todos os valores de $\theta$,
+    \begin{equation} \label{eq:8.5.5}
+        \text{Pr}(A < g(\theta)) \ge \gamma.
+    \end{equation}
+    Então o intervalo aleatório $(A, \infty)$ é chamado de um \textit{intervalo de confiança unilateral com coeficiente $\gamma$} para $g(\theta)$ ou um \textit{intervalo de confiança unilateral de 100$\gamma$ por cento} para $g(\theta)$. Além disso, $A$ é chamado de um \textit{limite de confiança inferior com coeficiente $\gamma$} para $g(\theta)$ ou um \textit{limite de confiança inferior de 100$\gamma$ por cento} para $g(\theta)$. Similarmente, se $B$ é uma estatística tal que
+    \begin{equation} \label{eq:8.5.6}
+        \text{Pr}(g(\theta) < B) \ge \gamma,
+    \end{equation}
+    então $(-\infty, B)$ é um \textit{intervalo de confiança unilateral com coeficiente $\gamma$} para $g(\theta)$ ou um \textit{intervalo de confiança unilateral de 100$\gamma$ por cento} para $g(\theta)$ e $B$ é um \textit{limite de confiança superior com coeficiente $\gamma$} para $g(\theta)$ ou um \textit{limite de confiança superior de 100$\gamma$ por cento} para $g(\theta)$. Se a desigualdade "$\ge \gamma$" em qualquer uma das Eqs. (\ref{eq:8.5.5}) ou (\ref{eq:8.5.6}) for uma igualdade para todo $\theta$, o intervalo de confiança e o limite de confiança correspondentes são chamados de \textit{exatos}.
+\end{quote}
+\vspace{1em}
+
+O resultado a seguir segue de maneira muito semelhante ao Teorema 8.5.1.
+
+\vspace{1em}
+\noindent\textbf{Teorema 8.5.2}
+\begin{quote}
+    Intervalos de Confiança Unilaterais para a Média de uma Distribuição Normal. Seja $X_1, \dots, X_n$ uma amostra aleatória da distribuição normal com média $\mu$ e variância $\sigma^2$. Para cada $0 < \gamma < 1$, as seguintes estatísticas são, respectivamente, limites de confiança $\gamma$ exatos, inferior e superior, para $\mu$:
+    \begin{align*}
+        A &= \bar{X}_n - T_{n-1}^{-1}(\gamma) \frac{\sigma'}{n^{1/2}}, \\
+        B &= \bar{X}_n + T_{n-1}^{-1}(\gamma) \frac{\sigma'}{n^{1/2}}.
+    \end{align*}
+\hfill $\blacksquare$
+\end{quote}
+\vspace{1em}
+
+\noindent\textbf{Exemplo 8.5.6 (Chuva de Nuvens Semeadas)}
+\begin{quote}
+    No Exemplo 8.5.5, suponha que queiramos um limite de confiança inferior de 90\% para $\mu$. Encontramos $T_{25}^{-1}(0.9) = 1.316$. Usando os dados observados do Exemplo 8.5.3, calculamos o limite de confiança inferior observado como
+    $$
+    a = 5.134 - 1.316 \frac{1.600}{26^{1/2}} = 4.727.
+    $$
+\end{quote}
+\vspace{1em}
+
+\subsection*{Intervalos de Confiança para Outros Parâmetros}
+
+\vspace{1em}
+\noindent\textbf{Exemplo 8.5.7 (Tempos de Vida de Componentes Eletrônicos)}
+\begin{quote}
+    Lembre-se da empresa do Exemplo 8.1.3 que está estimando a taxa de falha $\theta$ de componentes eletrônicos com base em uma amostra de $n=3$ tempos de vida observados $X_1, X_2, X_3$. A estatística $T = \sum_{i=1}^3 X_i$ foi usada nos Exemplos 8.1.4 e 8.1.5 para fazer algumas inferências. Podemos usar a distribuição de $T$ para construir intervalos de confiança para $\theta$. Lembre-se do Exemplo 8.1.5 que $\theta T$ tem a distribuição gama com parâmetros 3 e 1 para todo $\theta$. Seja $G$ a f.d.a. (função de distribuição acumulada) desta distribuição gama. Então $\text{Pr}(\theta T < G^{-1}(\gamma)) = \gamma$ para todo $\theta$. Segue-se que $\text{Pr}(\theta < G^{-1}(\gamma)/T) = \gamma$ para todo $\theta$, e $G^{-1}(\gamma)/T$ é um limite de confiança superior exato com coeficiente $\gamma$ para $\theta$. Por exemplo, se a empresa gostaria de ter uma variável aleatória $B$ tal que eles possam estar 98\% confiantes de que a taxa de falha $\theta$ é limitada superiormente por $B$, eles podem encontrar $G^{-1}(0.98) = 7.516$. Então $B = 7.516/T$ é o limite de confiança superior desejado.
+\end{quote}
+\vspace{1em}
+
+No Exemplo 8.5.7, a variável aleatória $\theta T$ tem a propriedade de que sua distribuição é a mesma para todo $\theta$. A variável aleatória $U$ na Eq. (8.5.1) tem a propriedade de que sua distribuição é a mesma para todo $\mu$ e $\sigma$. Tais variáveis aleatórias facilitam muito a construção de intervalos de confiança.
+
+\vspace{1em}
+\noindent\textbf{Definição 8.5.3 (Pivotal)}
+\begin{quote}
+    Seja $\mathbf{X} = (X_1, \dots, X_n)$ uma amostra aleatória de uma distribuição que depende de um parâmetro (ou vetor de parâmetros) $\theta$. Seja $V(\mathbf{X}, \theta)$ uma variável aleatória cuja distribuição é a mesma para todo $\theta$. Então $V$ é chamada de uma \textit{quantidade pivotal} (ou simplesmente um \textit{pivotal}).
+\end{quote}
+\vspace{1em}
+
+Para ser capaz de usar um pivotal para construir um intervalo de confiança para $g(\theta)$, é preciso ser capaz de "inverter" o pivotal. Isto é, é necessária uma função $r(v, \mathbf{x})$ tal que
+\begin{equation} \label{eq:8.5.7}
+    r(V(\mathbf{X}, \theta), \mathbf{X}) = g(\theta).
+\end{equation}
+
+Se tal função existir, então pode-se usá-la para construir intervalos de confiança.
+
+\vspace{1em}
+\noindent\textbf{Teorema 8.5.3}
+\begin{quote}
+    Intervalo de Confiança a partir de um Pivotal. Seja $\mathbf{X} = (X_1, \dots, X_n)$ uma amostra aleatória de uma distribuição que depende de um parâmetro (ou vetor de parâmetros) $\theta$. Suponha que um pivotal $V$ exista. Seja $G$ a f.d.a. de $V$, e suponha que $G$ é contínua. Suponha que uma função $r$ exista como na Eq. (8.5.7), e suponha que $r(v, \mathbf{x})$ é estritamente crescente em $v$ para cada $\mathbf{x}$. Seja $0 < \gamma < 1$ e sejam $\gamma_2 > \gamma_1$ tais que $\gamma_2 - \gamma_1 = \gamma$. Então as seguintes estatísticas são os extremos de um intervalo de confiança exato com coeficiente $\gamma$ para $g(\theta)$:
+    \begin{align*}
+        A &= r(G^{-1}(\gamma_1), \mathbf{X}), \\
+        B &= r(G^{-1}(\gamma_2), \mathbf{X}).
+    \end{align*}
+    Se $r(v, \mathbf{x})$ é estritamente decrescente em $v$ para cada $\mathbf{x}$, então troque as definições de $A$ e $B$.
+\end{quote}
+\vspace{1em}
+
+\noindent\textit{Prova.} Se $r(v, \mathbf{x})$ é estritamente crescente em $v$ para cada $\mathbf{x}$, temos
+\begin{equation} \label{eq:8.5.8}
+V(\mathbf{X}, \theta) < c \quad \text{se e somente se} \quad g(\theta) < r(c, \mathbf{X}).
+\end{equation}
+Seja $c = G^{-1}(\gamma_i)$ na Eq. (\ref{eq:8.5.8}) para cada $i=1, 2$ para obter
+\begin{align} 
+    \text{Pr}(g(\theta) < A) &= \gamma_1. \nonumber \\
+    \text{Pr}(g(\theta) < B) &= \gamma_2. \label{eq:8.5.9}
+\end{align}
+Como $V$ tem uma distribuição contínua e $r$ é estritamente crescente,
+$$
+\text{Pr}(A = g(\theta)) = \text{Pr}(V(\mathbf{X}, \theta) = G^{-1}(\gamma_1)) = 0.
+$$
+Similarmente, $\text{Pr}(B = g(\theta)) = 0$. As duas equações em (\ref{eq:8.5.9}) combinam-se para fornecer $\text{Pr}(A < g(\theta) < B) = \gamma$. A prova quando $r$ é estritamente decrescente é similar e é deixada para o leitor. \hfill $\blacksquare$
+\vspace{1em}
+\noindent\textbf{Exemplo 8.5.8 (Pivotal para Estimar a Variância de uma Distribuição Normal)}
+\begin{quote}
+    Seja $X_1, \dots, X_n$ uma amostra aleatória da distribuição normal com média $\mu$ e variância $\sigma^2$. No Teorema 8.3.1, descobrimos que a variável aleatória $V(\mathbf{X}, \theta) = \frac{\sum_{i=1}^n(X_i - \bar{X}_n)^2}{\sigma^2}$ tem a distribuição $\chi^2$ com $n-1$ graus de liberdade para todo $\theta = (\mu, \sigma^2)$. Isso torna $V$ um pivotal. O leitor pode usar este pivotal no Exercício 5 desta seção para encontrar um intervalo de confiança para $g(\theta) = \sigma^2$.
+\end{quote}
+\vspace{1em}
+
+Às vezes, pivotais não existem. Isso é comum quando os dados têm uma distribuição discreta.
+
+\vspace{1em}
+\noindent\textbf{Exemplo 8.5.9 (Um Ensaio Clínico)}
+\begin{quote}
+    Considere o grupo de tratamento com imipramina no ensaio clínico do Exemplo 2.1.4. Seja $\theta$ a proporção de sucessos entre uma população muito grande de pacientes de imipramina. Suponha que os médicos desejem uma variável aleatória $A$ tal que, para todo $\theta$, $\text{Pr}(A < \theta) \ge 0.9$. Ou seja, eles querem ter 90\% de confiança de que a proporção de sucesso é pelo menos $A$. Os dados observáveis consistem no número $X$ de sucessos em uma amostra aleatória de $n=40$ pacientes. Não existe pivotal neste exemplo, e intervalos de confiança são mais difíceis de construir. No Exemplo 9.1.16, veremos um método que se aplica a este caso.
+\end{quote}
+\vspace{1em}
+
+Mesmo com dados discretos, se o tamanho da amostra for grande o suficiente para aplicar o teorema do limite central, pode-se encontrar intervalos de confiança aproximados.
+
+\vspace{1em}
+\noindent\textbf{Exemplo 8.5.10 (Intervalo de Confiança Aproximado para a Média de Poisson)}
+\begin{quote}
+    Suponha que $X_1, \dots, X_n$ tenham a distribuição de Poisson com média desconhecida $\theta$. Suponha que $n$ é grande o suficiente para que $\bar{X}_n$ tenha aproximadamente uma distribuição normal. No Exemplo 6.3.8 na página 365, descobrimos que
+    \begin{equation} \label{eq:8.5.10}
+        \text{Pr}(|2\bar{X}_n^{1/2} - 2\theta^{1/2}| < c) \approx 2\Phi(cn^{1/2}) - 1.
+    \end{equation}
+    Depois que observamos $\bar{X}_n = x$, a Eq. (8.5.10) diz que
+    \begin{equation} \label{eq:8.5.11}
+        (-c + 2x^{1/2}, c + 2x^{1/2})
+    \end{equation}
+    é o valor observado de um intervalo de confiança aproximado para $2\theta^{1/2}$ com coeficiente $2\Phi(cn^{1/2}) - 1$. Por exemplo, se $c = 0.196$ e $n=100$, então $2\Phi(cn^{1/2}) - 1 = 0.95$. A inversa de $g(\theta) = 2\theta^{1/2}$ é $g^{-1}(y) = y^2/4$, que é uma função crescente de $y$ para $y \ge 0$. Se ambos os extremos de (8.5.11) são não negativos, então sabemos que $2\theta^{1/2}$ está no intervalo (8.5.11) se e somente se $\theta$ está no intervalo
+    \begin{equation} \label{eq:8.5.12}
+        \left(\frac{1}{4}[-c + 2x^{1/2}]^2, \frac{1}{4}[c + 2x^{1/2}]^2\right).
+    \end{equation}
+    Se $-c + 2x^{1/2} < 0$, os extremos esquerdos de (8.5.11) e (8.5.12) devem ser substituídos por 0. Com esta modificação, (8.5.12) é o valor observado de um intervalo de confiança aproximado com coeficiente $2\Phi(cn^{1/2}) - 1$ para $\theta$.
+\end{quote}
+\vspace{1em}
+
+\subsection*{Deficiência dos Intervalos de Confiança}
+
+\paragraph{Interpretação de Intervalos de Confiança} Seja $(A, B)$ um intervalo de confiança com coeficiente $\gamma$ para um parâmetro $\theta$, e seja $(a, b)$ o valor observado do intervalo. É importante entender que \textit{não} é correto dizer que $\theta$ está no intervalo $(a, b)$ com \textit{probabilidade} $\gamma$. Explicaremos este ponto adiante aqui. \textit{Antes} que os valores das estatísticas $A(X_1, \dots, X_n)$ e $B(X_1, \dots, X_n)$ sejam observados, essas estatísticas são variáveis aleatórias. Segue-se, portanto, da Definição 8.5.1 que $\theta$ estará no intervalo aleatório com extremos $A(X_1, \dots, X_n)$ e $B(X_1, \dots, X_n)$ com probabilidade $\gamma$. \textit{Depois} que os valores específicos $A(X_1, \dots, X_n) = a$ e $B(X_1, \dots, X_n) = b$ foram observados, não é possível atribuir uma probabilidade ao evento de que $\theta$ esteja no intervalo específico $(a, b)$ sem considerar $\theta$ como uma variável aleatória, que ela própria tem uma distribuição de probabilidade. Para calcular a probabilidade de que $\theta$ esteja no intervalo $(a, b)$, é necessário primeiro atribuir uma distribuição a priori para $\theta$ e, em seguida, usar a distribuição a posteriori resultante. Em vez de atribuir uma distribuição a priori ao parâmetro $\theta$, muitos estatísticos preferem afirmar que há \textit{confiança} $\gamma$, em vez de probabilidade $\gamma$, de que $\theta$ esteja no intervalo $(a, b)$. Por causa dessa distinção entre confiança e probabilidade, o significado e a relevância dos intervalos de confiança na prática estatística são um tópico um tanto controverso.
+
+\paragraph{Informação Pode Ser Ignorada} De acordo com a explicação precedente, a interpretação de um coeficiente de confiança $\gamma$ para um intervalo de confiança é a seguinte: Antes de uma amostra ser coletada, há uma probabilidade $\gamma$ de que o intervalo que será construído a partir da amostra incluirá o valor desconhecido de $\theta$. Depois que os valores da amostra são observados, no entanto, pode haver informações adicionais sobre se o intervalo formado a partir desses valores particulares realmente inclui ou não $\theta$. Como ajustar o coeficiente de confiança $\gamma$ à luz dessa informação é outro tópico controverso.
+
+\vspace{1em}
+\noindent\textbf{Exemplo 8.5.11 (Uniformes em um Intervalo de Comprimento Um)}
+\begin{quote}
+    Suponha que duas observações $X_1$ e $X_2$ sejam retiradas ao acaso da distribuição uniforme no intervalo $[\theta - \frac{1}{2}, \theta + \frac{1}{2}]$, onde o valor de $\theta$ é desconhecido ($-\infty < \theta < \infty$). Se fizermos $Y_1 = \min(X_1, X_2)$ e $Y_2 = \max(X_1, X_2)$, então
+    \begin{align} \label{eq:8.5.13}
+        \text{Pr}(Y_1 < \theta < Y_2) &= \text{Pr}(X_1 < \theta < X_2) + \text{Pr}(X_2 < \theta < X_1) \nonumber \\
+        &= \text{Pr}(X_1 < \theta) \text{Pr}(X_2 > \theta) + \text{Pr}(X_2 < \theta) \text{Pr}(X_1 > \theta) \nonumber \\
+        &= (1/2)(1/2) + (1/2)(1/2) = 1/2.
+    \end{align}
+    Segue-se da Eq. (\ref{eq:8.5.13}) que $(Y_1, Y_2)$ é um intervalo de confiança para $\theta$ com coeficiente de confiança 1/2. No entanto, a análise pode ser levada adiante.
+
+    Como ambas as observações $X_1$ e $X_2$ devem ser pelo menos $\theta - \frac{1}{2}$, e ambas devem ser no máximo $\theta + \frac{1}{2}$, sabemos com certeza que $Y_1 \ge \theta - \frac{1}{2}$ e $Y_2 \le \theta + \frac{1}{2}$. Em outras palavras, sabemos com certeza que
+    \begin{equation} \label{eq:8.5.14}
+        Y_2 - \frac{1}{2} \le \theta \le Y_1 + \frac{1}{2}.
+    \end{equation}
+    Suponha agora que $Y_1 = y_1$ e $Y_2 = y_2$ são observados de tal forma que $(y_2 - y_1) > 1/2$. Então $y_1 < y_2 - \frac{1}{2}$, e segue-se da Eq. (\ref{eq:8.5.14}) que $y_1 < \theta$. Além disso, como $y_1 + \frac{1}{2} < y_2$, também segue-se da Eq. (\ref{eq:8.5.14}) que $\theta < y_2$. Assim, se $(y_2 - y_1) > 1/2$, então $y_1 < \theta < y_2$. Em outras palavras, se $(y_2 - y_1) > 1/2$, então sabemos com certeza que o valor observado $(y_1, y_2)$ do intervalo de confiança inclui o valor desconhecido de $\theta$, embora o coeficiente de confiança deste intervalo seja apenas 1/2.
+
+    De fato, mesmo quando $(y_2 - y_1) \le 1/2$, quanto mais próximo o valor de $(y_2 - y_1)$ está de 1/2, mais certos nos sentimos de que o intervalo $(y_1, y_2)$ inclui $\theta$. Além disso, quanto mais próximo o valor de $(y_2 - y_1)$ está de 0, mais certos nos sentimos de que o intervalo $(y_1, y_2)$ não inclui $\theta$. No entanto, o coeficiente de confiança permanece necessariamente 1/2 e não depende dos valores observados $y_1$ e $y_2$.
+
+    Este exemplo também ajuda a ilustrar a declaração de cautela feita no final da Seção 8.1. Neste problema, pode parecer natural estimar $\theta$ por $\bar{X}_2 = 0.5(X_1 + X_2)$. Usando os métodos da Seção 3.9, podemos encontrar a f.d.p. de $\bar{X}_2$:
+    \[
+    g(x) = \begin{cases}
+        4x - 4\theta + 2 & \text{se } \theta - \frac{1}{2} < x \le \theta, \\
+        4\theta + 2 - 4x & \text{se } \theta < x < \theta + \frac{1}{2}, \\
+        0 & \text{caso contrário}.
+    \end{cases}
+    \]
+\end{quote}
+\vspace{1em}
+
+A Figura 8.6 mostra a f.d.p. $g$, que é triangular. Isso torna razoavelmente simples calcular a probabilidade de que $\bar{X}_2$ esteja próximo de $\theta$:
+$$
+\text{Pr}(|\bar{X}_2 - \theta| < c) = 4c(1-c),
+$$
+para $0 < c < 1/2$, e a probabilidade é 1 para $c \ge 1/2$. Por exemplo, se $c = 0.3$, $\text{Pr}(|\bar{X}_2 - \theta| < 0.3) = 0.84$. No entanto, a variável aleatória $Z = Y_2 - Y_1$ contém informação útil que não é considerada neste cálculo. De fato, a distribuição condicional de $\bar{X}_2$ dado $Z = z$ é uniforme no intervalo $[\theta - \frac{1}{2}(1-z), \theta + \frac{1}{2}(1-z)]$. Vemos que quanto maior o valor observado de $z$, menor o intervalo de valores possíveis para $\bar{X}_2$. Em particular, a probabilidade condicional de que $\bar{X}_2$ esteja próximo de $\theta$ dado $Z=z$ é
+\begin{equation} \label{eq:8.5.15}
+    \text{Pr}(|\bar{X}_2 - \theta| < c | Z = z) = 
+    \begin{cases}
+        \frac{2c}{1-z} & \text{se } c \le (1-z)/2, \\
+        1 & \text{se } c > (1-z)/2.
+    \end{cases}
+\end{equation}
+
+Por exemplo, se $z = 0.1$, então $\text{Pr}(|\bar{X}_2 - \theta| < 0.3 | Z = 0.1) = 0.6667$, o que é um bocado menor do que a probabilidade marginal de $0.84$. Isso ilustra por que não é sempre seguro assumir que nossa estimativa está próxima do parâmetro apenas porque a distribuição amostral do estimador tinha alta probabilidade de estar próxima. Pode haver outra informação disponível que nos sugira que a estimativa não está tão próxima quanto a distribuição amostral sugere, ou que está mais próxima do que a distribuição amostral sugere. (O leitor deve calcular $\text{Pr}(|\bar{X}_2 - \theta| < 0.3 | Z = 0.9)$ para o outro extremo.)
+
+Na próxima seção, discutiremos métodos Bayesianos para analisar uma amostra aleatória de uma distribuição normal para a qual tanto a média $\mu$ quanto a variância $\sigma^2$ são desconhecidas. Atribuiremos uma distribuição a priori conjunta para $\mu$ e $\sigma^2$, e então calcularemos a probabilidade a posteriori de que $\mu$ pertença a qualquer intervalo dado $(a, b)$. Pode-se mostrar [veja, e.g., DeGroot (1970)] que se a f.d.p. a priori conjunta de $\mu$ e $\sigma^2$ for razoavelmente suave e não atribuir alta probabilidade a nenhum conjunto pequeno particular de valores de $\mu$ e $\sigma^2$, e se o tamanho da amostra $n$ for grande, então o coeficiente de confiança atribuído a um intervalo de confiança particular $(A, B)$ para a média $\mu$ será aproximadamente igual à probabilidade a posteriori de que $\mu$ esteja no intervalo observado $(a, b)$. Um exemplo dessa igualdade aproximada está incluído na próxima seção. Portanto, sob essas condições, as diferenças entre os resultados obtidos pela aplicação prática de métodos baseados em intervalos de confiança e métodos baseados em probabilidades a priori serão pequenas. No entanto, as interpretações desses métodos diferirão. Como um aparte, uma análise Bayesiana do Exemplo 8.5.11 levará necessariamente em conta a informação extra contida na variável aleatória $Z$. Veja o Exercício 10 para um exemplo.
+
+\subsection*{Resumo}
+
+Seja $X_1, \dots, X_n$ uma amostra aleatória de variáveis aleatórias independentes da distribuição normal com média $\mu$ e variância $\sigma^2$. Sejam os valores observados $x_1, \dots, x_n$. Seja $\bar{X}_n = \frac{1}{n}\sum_{i=1}^n X_i$ e $\sigma'^2 = \frac{1}{n-1}\sum_{i=1}^n(X_i - \bar{X}_n)^2$. O intervalo $\left(\bar{X}_n - c\sigma'/n^{1/2}, \bar{X}_n + c\sigma'/n^{1/2}\right)$ é um intervalo de confiança com coeficiente $\gamma$ para $\mu$, onde $c$ é o quantil $(1+\gamma)/2$ da distribuição \textit{t} com $n-1$ graus de liberdade.
+
+\section*{Exercícios}
+
+\begin{enumerate}
+    \item Suponha que $X_1, \dots, X_n$ formem uma amostra aleatória da distribuição normal com média desconhecida $\mu$ e variância \textit{conhecida} $\sigma^2$. Seja $\Phi$ a f.d.a. da distribuição normal padrão, e seja $\Phi^{-1}$ sua inversa. Mostre que o seguinte intervalo é um intervalo de confiança com coeficiente $\gamma$ para $\mu$ se $\bar{X}_n$ for a média observada dos valores dos dados:
+    $$ \left(\bar{X}_n - \Phi^{-1}\left(\frac{1+\gamma}{2}\right)\frac{\sigma}{n^{1/2}}, \bar{X}_n + \Phi^{-1}\left(\frac{1+\gamma}{2}\right)\frac{\sigma}{n^{1/2}}\right). $$
+
+    \item Suponha que uma amostra aleatória de oito observações seja retirada da distribuição normal com média desconhecida $\mu$ e variância desconhecida $\sigma^2$, e que os valores observados sejam 3.1, 3.5, 2.6, 3.4, 3.8, 3.0, 2.9, e 2.2. Encontre o intervalo de confiança mais curto para $\mu$ com cada um dos três coeficientes de confiança a seguir: \textbf{(a)} 0.90, \textbf{(b)} 0.95, e \textbf{(c)} 0.99.
+
+    \item Suponha que $X_1, \dots, X_n$ formem uma amostra aleatória da distribuição normal com média desconhecida $\mu$ e variância desconhecida $\sigma^2$, e seja $L$ a variável aleatória que denota o comprimento do intervalo de confiança mais curto para $\mu$ que pode ser construído a partir dos valores observados na amostra. Encontre o valor de $E(L^2)$ para os seguintes valores do tamanho da amostra $n$ e do coeficiente de confiança $\gamma$:
+    \begin{itemize}
+        \item[\textbf{a.}] $n=5, \gamma=0.95$
+        \item[\textbf{b.}] $n=10, \gamma=0.95$
+        \item[\textbf{c.}] $n=30, \gamma=0.95$
+        \item[\textbf{d.}] $n=8, \gamma=0.90$
+        \item[\textbf{e.}] $n=8, \gamma=0.95$
+        \item[\textbf{f.}] $n=8, \gamma=0.99$
+    \end{itemize}
+
+    \item Suponha que $X_1, \dots, X_n$ formem uma amostra aleatória da distribuição normal com média desconhecida $\mu$ e variância desconhecida $\sigma^2$. Quão grande deve ser a amostra aleatória para que exista um intervalo de confiança para $\mu$ com coeficiente de confiança 0.95 e comprimento inferior a $0.01\sigma$?
+\end{enumerate}
+
+\begin{enumerate}
+    \setcounter{enumi}{4} % Continua a numeração do exercício anterior
+    \item Suponha que $X_1, \dots, X_n$ formem uma amostra aleatória da distribuição normal com média desconhecida $\mu$ e variância desconhecida $\sigma^2$. Descreva um método para construir um intervalo de confiança para $\sigma^2$ com um coeficiente de confiança especificado $\gamma$ ($0 < \gamma < 1$). \textit{Dica}: Determine constantes $c_1$ e $c_2$ tais que
+    $$ \text{Pr}\left[c_1 < \frac{\sum_{i=1}^{n}(X_i - \bar{X}_n)^2}{\sigma^2} < c_2\right] = \gamma. $$
+
+    \item Suponha que $X_1, \dots, X_n$ formem uma amostra aleatória da distribuição exponencial com média desconhecida $\mu$. Descreva um método para construir um intervalo de confiança para $\mu$ com um coeficiente de confiança especificado $\gamma$ ($0 < \gamma < 1$). \textit{Dica}: Determine constantes $c_1$ e $c_2$ tais que $\text{Pr}[c_1 < (1/\mu)\sum_{i=1}^{n} X_i < c_2] = \gamma$.
+
+    \item Na edição de junho de 1986 da \textit{Consumer Reports}, são fornecidos alguns dados sobre o conteúdo calórico de cachorros-quentes de carne bovina. Aqui estão os números de calorias em 20 marcas diferentes de cachorro-quente:
+    \begin{center}
+        186, 181, 176, 149, 184, 190, 158, 139, 175, 148, \\
+        152, 111, 141, 153, 190, 157, 131, 149, 135, 132.
+    \end{center}
+    Suponha que esses números sejam os valores observados de uma amostra aleatória de vinte variáveis aleatórias normais independentes com média $\mu$ e variância $\sigma^2$, ambas desconhecidas. Encontre um intervalo de confiança de 90\% para o número médio de calorias $\mu$.
+\end{enumerate}
+
+\begin{enumerate}
+    \setcounter{enumi}{7} % Continua a numeração do exercício anterior
+    \item No final do Exemplo 8.5.11, calcule a probabilidade de que $|\bar{X}_2 - \theta| < 0.3$ dado $Z=0.9$. Por que ela é tão grande?
+
+    \item Na situação do Exemplo 8.5.11, suponha que observemos $X_1 = 4.7$ e $X_2 = 5.3$.
+    \begin{enumerate}
+        \item[\textbf{a.}] Encontre o intervalo de confiança de 50\% descrito no Exemplo 8.5.11.
+        \item[\textbf{b.}] Encontre o intervalo de valores possíveis de $\theta$ que são consistentes com os dados observados.
+        \item[\textbf{c.}] O intervalo de confiança de 50\% é maior ou menor que o conjunto de valores possíveis de $\theta$?
+        \item[\textbf{d.}] Calcule o valor da variável aleatória $Z = Y_2 - Y_1$ como descrito no Exemplo 8.5.11.
+        \item[\textbf{e.}] Use a Eq. (8.5.15) para calcular a probabilidade condicional de que $|\bar{X}_2 - \theta| < 0.1$ dado $Z$ igual ao valor calculado na parte (d).
+    \end{enumerate}
+\end{enumerate}
+
+\begin{enumerate}
+    \setcounter{enumi}{9} % Continua a numeração do exercício anterior
+    \item Na situação do Exercício 9, suponha que uma distribuição a priori seja usada para $\theta$ com f.d.p. $\xi(\theta) = 0.1 \exp(-0.1\theta)$ para $\theta > 0$. (Esta é a distribuição exponencial com parâmetro 0.1.)
+    \begin{enumerate}
+        \item[\textbf{a.}] Prove que a f.d.p. a posteriori de $\theta$ dados os dados observados no Exercício 9 é
+        $$ \xi(\theta|\mathbf{x}) = \begin{cases} 4.122 \exp(-0.1\theta) & \text{se } 4.8 < \theta < 5.2, \\ 0 & \text{caso contrário.} \end{cases} $$
+        \item[\textbf{b.}] Calcule a probabilidade a posteriori de que $|\theta - \bar{x}_2| < 0.1$, onde $\bar{x}_2$ é a média observada dos valores dos dados.
+        \item[\textbf{c.}] Calcule a probabilidade a posteriori de que $\theta$ esteja no intervalo de confiança encontrado na parte (a) do Exercício 9.
+        \item[\textbf{d.}] Você pode explicar por que a resposta da parte (b) é tão próxima da resposta da parte (e) do Exercício 9? \textit{Dica}: Compare a f.d.p. a posteriori na parte (a) com a função na Eq. (8.5.15).
+    \end{enumerate}
+
+    \item Suponha que $X_1, \dots, X_n$ formem uma amostra aleatória da distribuição de Bernoulli com parâmetro $p$. Seja $\bar{X}_n$ a média amostral. Use a transformação estabilizadora de variância encontrada no Exercício 5 da Seção 6.5 para construir um intervalo de confiança aproximado com coeficiente $\gamma$ para $p$.
+
+    \item Complete a prova do Teorema 8.5.3 tratando do caso em que $r(v, \mathbf{x})$ é estritamente decrescente em $v$ para cada $\mathbf{x}$.
+
+\end{enumerate}
