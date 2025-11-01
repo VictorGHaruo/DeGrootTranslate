@@ -1,0 +1,366 @@
+\section*{8.6 Análise Bayesiana de Amostras de uma Distribuição Normal}
+
+Quando estamos interessados em construir uma distribuição a priori para os parâmetros $\mu$ e $\sigma^2$ de uma distribuição normal, é mais conveniente trabalhar com $\tau = 1/\sigma^2$, chamada de precisão. Uma família conjugada de distribuições a priori é introduzida para $\mu$ e $\tau$, e a distribuição a posteriori é derivada. Estimativas intervalares de $\mu$ podem ser construídas a partir da a posteriori e estas são similares em forma aos intervalos de confiança, mas são interpretadas de forma diferente.
+
+\subsection*{A Precisão de uma Distribuição Normal}
+
+\vspace{1em}
+\noindent\textbf{Exemplo 8.6.1 (Chuva de Nuvens Semeadas)}
+\begin{quote}
+    No Exemplo 8.3.1, mencionamos que era de interesse saber se a média da log-precipitação $\mu$ de nuvens semeadas excedia a média da log-precipitação de nuvens não semeadas, a saber, 4. Embora tenhamos conseguido encontrar um estimador de $\mu$ e construir um intervalo de confiança para $\mu$, ainda não abordamos diretamente a questão de se $\mu > 4$ ou quão provável é que $\mu > 4$. Se construirmos uma distribuição a priori conjunta para $\mu$ e $\sigma^2$, podemos então encontrar a distribuição a posteriori de $\mu$ e, finalmente, fornecer respostas diretas a essas perguntas.
+\end{quote}
+\vspace{1em}
+
+Suponha que $X_1, \dots, X_n$ formem uma amostra aleatória da distribuição normal com média desconhecida $\mu$ e variância desconhecida $\sigma^2$. Nesta seção, consideraremos a atribuição de uma distribuição a priori conjunta aos parâmetros $\mu$ e $\sigma^2$ e estudaremos a distribuição a posteriori que é então derivada dos valores observados na amostra. Manipular distribuições a priori e a posteriori para os parâmetros de uma distribuição normal acaba sendo mais simples se reparametrizarmos de $\mu$ e $\sigma^2$ para $\mu$ e $\tau = 1/\sigma^2$.
+
+\vspace{1em}
+\noindent\textbf{Definição 8.6.1 (Precisão de uma Distribuição Normal)}
+\begin{quote}
+    A precisão $\tau$ de uma distribuição normal é definida como o recíproco da variância; isto é, $\tau = 1/\sigma^2$.
+\end{quote}
+\vspace{1em}
+
+Se uma variável aleatória tem a distribuição normal com média $\mu$ e precisão $\tau$, então sua f.d.p. $f(x|\mu, \tau)$ é especificada como se segue, para $-\infty < x < \infty$:
+\[
+f(x|\mu, \tau) = \left(\frac{\tau}{2\pi}\right)^{1/2} \exp\left[-\frac{1}{2}\tau(x-\mu)^2\right].
+\]
+Similarmente, se $X_1, \dots, X_n$ formam uma amostra aleatória da distribuição normal com média $\mu$ e precisão $\tau$, então sua f.d.p. conjunta $f_n(\mathbf{x}|\mu, \tau)$ é a seguinte, para $-\infty < x_i < \infty (i=1, \dots, n)$:
+\[
+f_n(\mathbf{x}|\mu, \tau) = \left(\frac{\tau}{2\pi}\right)^{n/2} \exp\left[-\frac{1}{2}\tau\sum_{i=1}^{n}(x_i - \mu)^2\right].
+\]
+
+\subsection*{Uma Família Conjugada de Distribuições a Priori}
+
+Descreveremos agora uma família conjugada de distribuições a priori conjuntas para $\mu$ e $\tau$. Especificaremos a distribuição conjunta de $\mu$ e $\tau$ especificando tanto a distribuição condicional de $\mu$ dado $\tau$ quanto a distribuição marginal de $\tau$. Em particular, assumiremos que a distribuição condicional de $\mu$ para cada valor dado de $\tau$ é uma distribuição normal para a qual a precisão é proporcional ao valor dado de $\tau$, e também que a distribuição marginal de $\tau$ é uma distribuição gama. A família de todas as distribuições conjuntas deste tipo é uma família conjugada de distribuições a priori conjuntas. Se a distribuição a priori conjunta de $\mu$ e $\tau$ pertence a esta família, então para cada conjunto possível de valores observados na amostra aleatória, a distribuição a posteriori conjunta de $\mu$ e $\tau$ também pertencerá à família. Este resultado é estabelecido no Teorema 8.6.1. Usaremos a seguinte notação no teorema e no restante desta seção:
+\[
+\bar{X}_n = \frac{1}{n}\sum_{i=1}^n x_i, \quad s_n^2 = \sum_{i=1}^n (x_i - \bar{X}_n)^2.
+\]
+
+\vspace{1em}
+\noindent\textbf{Teorema 8.6.1}
+\begin{quote}
+    Suponha que $X_1, \dots, X_n$ formem uma amostra aleatória da distribuição normal com média desconhecida $\mu$ e precisão desconhecida $\tau$ ($-\infty < \mu < \infty$ e $\tau > 0$). Suponha também que a distribuição a priori conjunta de $\mu$ e $\tau$ é a seguinte: A distribuição condicional de $\mu$ dado $\tau$ é a distribuição normal com média $\mu_0$ e precisão $\lambda_0\tau$ ($-\infty < \mu_0 < \infty$ e $\lambda_0 > 0$), e a distribuição marginal de $\tau$ é a distribuição gama com parâmetros $\alpha_0$ e $\beta_0$ ($\alpha_0 > 0$ e $\beta_0 > 0$). Então a distribuição a posteriori conjunta de $\mu$ e $\tau$, dado que $X_i = x_i$ para $i=1, \dots, n$, é a seguinte: A distribuição condicional de $\mu$ dado $\tau$ é a distribuição normal com média $\mu_1$ e precisão $\lambda_1\tau$, onde
+    \begin{equation} \label{eq:8.6.1}
+        \mu_1 = \frac{\lambda_0\mu_0 + n\bar{x}_n}{\lambda_0 + n} \quad \text{e} \quad \lambda_1 = \lambda_0 + n,
+    \end{equation}
+    e a distribuição marginal de $\tau$ é a distribuição gama com parâmetros $\alpha_1$ e $\beta_1$, onde
+    \begin{equation} \label{eq:8.6.2}
+        \alpha_1 = \alpha_0 + \frac{n}{2} \quad \text{e} \quad \beta_1 = \beta_0 + \frac{1}{2}s_n^2 + \frac{n\lambda_0(\bar{x}_n - \mu_0)^2}{2(\lambda_0 + n)}.
+    \end{equation}
+\end{quote}
+\vspace{1em}
+
+\noindent\textit{Prova.} A f.d.p. a priori conjunta $\xi(\mu, \tau)$ de $\mu$ e $\tau$ pode ser encontrada multiplicando a f.d.p. condicional $\xi_1(\mu|\tau)$ de $\mu$ dado $\tau$ pela f.d.p. marginal $\xi_2(\tau)$ de $\tau$. Pelas condições do teorema, temos, para $-\infty < \mu < \infty$ e $\tau > 0$,
+\[
+\xi_1(\mu|\tau) \propto \tau^{1/2} \exp\left[-\frac{1}{2}\lambda_0\tau(\mu - \mu_0)^2\right]
+\]
+e
+\[
+\xi_2(\tau) \propto \tau^{\alpha_0-1}e^{-\beta_0\tau}.
+\]
+Um fator constante envolvendo nem $\mu$ nem $\tau$ foi descartado do lado direito de cada uma dessas relações.
+
+A f.d.p. a posteriori conjunta $\xi(\mu, \tau | \mathbf{x})$ para $\mu$ e $\tau$ satisfaz a relação
+\begin{align} \label{eq:8.6.3}
+    \xi(\mu, \tau | \mathbf{x}) &\propto f_n(\mathbf{x}|\mu, \tau)\xi_1(\mu|\tau)\xi_2(\tau) \\
+    &\propto \tau^{\alpha_0+(n+1)/2 - 1} \exp\left[-\frac{\tau}{2}\left(\lambda_0[\mu-\mu_0]^2 + \sum_{i=1}^n(x_i - \mu)^2\right) - \beta_0\tau\right]. \nonumber
+\end{align}
+Adicionando e subtraindo $\bar{x}_n$ dentro dos termos $(x_i - \mu)^2$, podemos provar que
+\begin{equation} \label{eq:8.6.4}
+    \sum_{i=1}^n(x_i - \mu)^2 = s_n^2 + n(\bar{x}_n - \mu)^2.
+\end{equation}
+Em seguida, combine o último termo na Eq. (\ref{eq:8.6.4}) com o termo $\lambda_0(\mu-\mu_0)^2$ em (\ref{eq:8.6.3}) completando o quadrado (veja Exercício 24 na Seção 5.6) para obter
+\begin{equation} \label{eq:8.6.5}
+    n(\bar{x}_n - \mu)^2 + \lambda_0(\mu - \mu_0)^2 = (\lambda_0 + n)(\mu - \mu_1)^2 + \frac{n\lambda_0(\bar{x}_n - \mu_0)^2}{\lambda_0 + n},
+\end{equation}
+onde $\mu_1$ é definido na Eq. (\ref{eq:8.6.1}). Combinando (\ref{eq:8.6.4}) com (\ref{eq:8.6.5}) resulta
+\begin{equation} \label{eq:8.6.6}
+    \sum_{i=1}^n(x_i - \mu)^2 + \lambda_0(\mu - \mu_0)^2 = (\lambda_0 + n)(\mu - \mu_1)^2 + s_n^2 + \frac{n\lambda_0(\bar{x}_n - \mu_0)^2}{\lambda_0 + n}.
+\end{equation}
+Usando (\ref{eq:8.6.2}) e $\lambda_1 = \lambda_0 + n$ juntamente com (\ref{eq:8.6.6}) nos permite escrever a Eq. (\ref{eq:8.6.3}) na forma
+\begin{equation} \label{eq:8.6.7}
+    \xi(\mu, \tau | \mathbf{x}) \propto \left\{ \tau^{1/2} \exp\left[-\frac{1}{2}\lambda_1\tau(\mu - \mu_1)^2\right] \right\} \{\tau^{\alpha_1-1}e^{-\beta_1\tau}\},
+\end{equation}
+onde $\lambda_1$, $\alpha_1$, e $\beta_1$ são definidos pelas Eqs. (\ref{eq:8.6.1}) e (\ref{eq:8.6.2}).
+
+Quando a expressão dentro das chaves do lado direito da Eq. (\ref{eq:8.6.7}) é considerada como uma função de $\mu$ para um valor fixo de $\tau$, esta expressão pode ser reconhecida como sendo (exceto por um fator que não depende nem de $\mu$ nem de $\tau$) a f.d.p. da distribuição normal com média $\mu_1$ e precisão $\lambda_1\tau$. Como a variável $\mu$ não aparece em nenhum outro lugar no lado direito da Eq. (\ref{eq:8.6.7}), segue que esta f.d.p. deve ser a f.d.p. condicional a posteriori de $\mu$ dado $\tau$. Segue-se, por sua vez, que a expressão fora das chaves no lado direito da Eq. (\ref{eq:8.6.7}) deve ser proporcional à f.d.p. marginal a posteriori de $\tau$. Esta expressão pode ser reconhecida como sendo (exceto por um fator constante) a f.d.p. da distribuição gama com parâmetros $\alpha_1$ e $\beta_1$. Portanto, a distribuição a posteriori conjunta de $\mu$ e $\tau$ é como especificado no teorema. \hfill $\blacksquare$
+
+Daremos um nome à família de distribuições conjuntas descritas no Teorema 8.6.1.
+
+\vspace{1em}
+\noindent\textbf{Definição 8.6.2 (Família de Distribuições Normal-Gama)}
+\begin{quote}
+    Sejam $\mu$ e $\tau$ variáveis aleatórias. Suponha que a distribuição condicional de $\mu$ dado $\tau$ seja a distribuição normal com média $\mu_0$ e precisão $\lambda_0\tau$. Suponha também que a distribuição marginal de $\tau$ seja a distribuição gama com parâmetros $\alpha_0$ e $\beta_0$. Então dizemos que a distribuição conjunta de $\mu$ e $\tau$ é a \textit{distribuição normal-gama} com hiperparâmetros $\mu_0, \lambda_0, \alpha_0,$ e $\beta_0$.
+\end{quote}
+\vspace{1em}
+
+A distribuição a priori no Teorema 8.6.1 é a distribuição normal-gama com hiperparâmetros $\mu_0, \lambda_0, \alpha_0,$ e $\beta_0$. A distribuição a posteriori derivada nesse teorema é a distribuição normal-gama com hiperparâmetros $\mu_1, \lambda_1, \alpha_1,$ e $\beta_1$. Como na Seção 7.3, nos referiremos aos hiperparâmetros da distribuição a priori como \textit{hiperparâmetros a priori}, e nos referiremos aos hiperparâmetros da distribuição a posteriori como \textit{hiperparâmetros a posteriori}.
+
+Escolhendo valores apropriados dos hiperparâmetros a priori, geralmente é possível encontrar uma distribuição normal-gama particular que se aproxime bem da distribuição a priori real de um experimentador para $\mu$ e $\tau$. Deve ser enfatizado, no entanto, que se a distribuição conjunta de $\mu$ e $\tau$ é uma distribuição normal-gama, então $\mu$ e $\tau$ não são independentes. Assim, não é possível usar uma distribuição normal-gama como a distribuição a priori conjunta em um problema no qual o experimentador deseja que $\mu$ e $\tau$ sejam independentes a priori. Embora essa característica da família de distribuições normal-gama seja uma deficiência, não é uma deficiência importante, devido ao seguinte fato: mesmo que uma distribuição a priori em que $\mu$ e $\tau$ são independentes seja escolhida fora da família conjugada, será descoberto que, após apenas um único valor $X$ ter sido observado, $\mu$ e $\tau$ terão uma distribuição a posteriori sob a qual são dependentes. Em outras palavras, não é possível que $\mu$ e $\tau$ permaneçam independentes à luz de sequer uma observação da distribuição normal subjacente.
+
+\vspace{1em}
+\noindent\textbf{Exemplo 8.6.2 (Concentração de Ácido em Queijo)}
+\begin{quote}
+    Considere novamente o exemplo da concentração de ácido lático em queijo, conforme discutido no Exemplo 8.5.4. Suponha que as concentrações sejam variáveis aleatórias normais independentes com média $\mu$ e precisão $\tau$. Suponha que a opinião a priori dos experimentadores possa ser expressa como uma distribuição normal-gama com hiperparâmetros $\mu_0=1, \lambda_0=1, \alpha_0=0.5,$ e $\beta_0=0.5$. Podemos usar os dados da página 487 para encontrar a distribuição a posteriori de $\mu$ e $\tau$. Neste caso, $n=10, \bar{x}_n = 1.379,$ e $s_n^2 = 0.9663$. Aplicando as fórmulas do Teorema 8.6.1, obtemos
+    \begin{align*}
+        \mu_1 &= \frac{1 \times 1 + 10 \times 1.379}{1+10} = 1.345, \\
+        \lambda_1 &= 1 + 10 = 11, \\
+        \alpha_1 &= 0.5 + \frac{10}{2} = 5.5, \\
+        \beta_1 &= 0.5 + \frac{1}{2}0.9663 + \frac{10 \times 1 \times (1.379-1)^2}{2(1+10)} = 1.0484.
+    \end{align*}
+    Portanto, a distribuição a posteriori de $\mu$ e $\tau$ é a distribuição normal-gama com esses quatro hiperparâmetros. Em particular, podemos agora abordar a questão da variação na concentração de ácido lático mais diretamente. Por exemplo, podemos calcular a probabilidade a posteriori de que $\sigma = \tau^{-1/2}$ seja maior que algum valor, como 0.3:
+    \[
+    \text{Pr}(\sigma > 0.3|\mathbf{x}) = \text{Pr}(\tau < 11.11|\mathbf{x}) = 0.984.
+    \]
+    Isso pode ser encontrado usando qualquer programa de computador que calcule a f.d.a. de uma distribuição gama. Alternativamente, podemos usar a relação entre as distribuições gama e $\chi^2$ que nos permite dizer que a distribuição posterior de $U' = 2 \times 1.0484 \times \tau$ é a distribuição $\chi^2$ com $2 \times 5.5 = 11$ graus de liberdade. (Veja Exercício 1 na Seção 5.7.) Então $\text{Pr}(\tau < 11.11|\mathbf{x}) = \text{Pr}(U \le 23.30|\mathbf{x}) \approx 0.982$ por interpolação na tabela das distribuições $\chi^2$ no final do livro. Se $\sigma > 0.3$ for considerado um desvio padrão grande, o fabricante de queijo pode querer investigar melhores medidas de controle de qualidade.
+\end{quote}
+\vspace{1em}
+
+\subsection*{A Distribuição Marginal da Média}
+
+Quando a distribuição conjunta de $\mu$ e $\tau$ é uma distribuição normal-gama do tipo descrito no Teorema 8.6.1, então a distribuição condicional de $\mu$ para um dado valor de $\tau$ é uma distribuição normal e a distribuição marginal de $\tau$ é uma distribuição gama. Não está claro a partir desta especificação, no entanto, qual será a distribuição marginal de $\mu$. Derivaremos agora esta distribuição marginal.
+
+\vspace{1em}
+\noindent\textbf{Teorema 8.6.2 (Distribuição Marginal da Média)}
+\begin{quote}
+    Suponha que a distribuição a priori de $\mu$ e $\tau$ seja a distribuição normal-gama com hiperparâmetros $\mu_0, \lambda_0, \alpha_0,$ e $\beta_0$. Então a distribuição marginal de $\mu$ está relacionada a uma distribuição \textit{t} da seguinte maneira:
+    \[
+    \left(\frac{\lambda_0\alpha_0}{\beta_0}\right)^{1/2}(\mu - \mu_0)
+    \]
+    tem a distribuição \textit{t} com $2\alpha_0$ graus de liberdade.
+\end{quote}
+\vspace{1em}
+
+\noindent\textit{Prova.} Como a distribuição condicional de $\mu$ dado $\tau$ é a distribuição normal com média $\mu_0$ e variância $(\lambda_0\tau)^{-1}$, podemos usar o Teorema 5.6.4 para concluir que a distribuição condicional de $Z = (\lambda_0\tau)^{1/2}(\mu - \mu_0)$ dado $\tau$ é a distribuição normal padrão. Continuaremos a deixar $\xi_2(\tau)$ ser a f.d.p. marginal de $\tau$, e seja $\xi_1(\mu|\tau)$ seja a f.d.p. condicional de $\mu$ dado $\tau$. Então a f.d.p. conjunta de $Z$ e $\tau$ é
+\begin{equation} \label{eq:8.6.8}
+    f(z, \tau) = (\lambda_0\tau)^{-1/2}\xi_1((\lambda_0\tau)^{-1/2}z + \mu_0|\tau)\xi_2(\tau) = \phi(z)\xi_2(\tau).
+\end{equation}
+onde $\phi$ é a f.d.p. normal padrão da Eq. (5.6.6). Vemos da Eq. (\ref{eq:8.6.8}) que $Z$ e $\tau$ são independentes, com $Z$ tendo a distribuição normal padrão. Em seguida, seja $Y = 2\beta_0\tau$. Usando o resultado do Exercício 1 na Seção 5.7, encontramos que a distribuição de $Y$ é a distribuição gama com parâmetros $\alpha_0$ e $1/2$, que também é conhecida como a distribuição $\chi^2$ com $2\alpha_0$ graus de liberdade. Em resumo, $Y$ e $Z$ são independentes, com $Z$ tendo a distribuição normal padrão e $Y$ tendo a distribuição $\chi^2$ com $2\alpha_0$ graus de liberdade. Segue-se da definição das distribuições \textit{t} na Seção 8.4 que
+\begin{equation} \label{eq:8.6.9}
+    U = \frac{Z}{(Y/2\alpha_0)^{1/2}} = \frac{(\lambda_0\tau)^{1/2}(\mu - \mu_0)}{(2\beta_0\tau / 2\alpha_0)^{1/2}} = \left(\frac{\lambda_0\alpha_0}{\beta_0}\right)^{1/2}(\mu - \mu_0)
+\end{equation}
+tem a distribuição \textit{t} com $2\alpha_0$ graus de liberdade. \hfill $\blacksquare$
+
+\vspace{1em}
+O Teorema 8.6.2 também pode ser usado para encontrar a distribuição a posteriori de $\mu$ depois que os dados são observados. Para fazer isso, basta substituir $\mu_0$ por $\mu_1, \lambda_0$ por $\lambda_1, \alpha_0$ por $\alpha_1,$ e $\beta_0$ por $\beta_1$ na declaração do teorema. A razão para isso é que as distribuições a priori e a posteriori têm ambas a mesma forma, e o teorema depende apenas dessa forma. Este mesmo raciocínio se aplica à discussão que se segue, incluindo o Teorema 8.6.3.
+
+Uma maneira alternativa de descrever a distribuição marginal de $\mu$ começa reescrevendo (\ref{eq:8.6.9}) como
+\begin{equation} \label{eq:8.6.10}
+    \mu = \left(\frac{\beta_0}{\lambda_0\alpha_0}\right)^{1/2} U + \mu_0.
+\end{equation}
+Agora vemos que a distribuição de $\mu$ pode ser obtida de uma distribuição \textit{t} transladando a distribuição \textit{t} para que ela seja centrada em $\mu_0$ em vez de 0, e também mudando o fator de escala. Isso torna direto encontrar os momentos (se existirem) da distribuição de $\mu$.
+
+\vspace{1em}
+\noindent\textbf{Teorema 8.6.3}
+\begin{quote}
+    Suponha que $\mu$ e $\tau$ tenham a distribuição normal-gama conjunta com hiperparâmetros $\mu_0, \lambda_0, \alpha_0,$ e $\beta_0$. Se $\alpha_0 > 1/2$, então $E(\mu) = \mu_0$. Se $\alpha_0 > 1$, então
+    \begin{equation} \label{eq:8.6.11}
+        \text{Var}(\mu) = \frac{\beta_0}{\lambda_0(\alpha_0 - 1)}.
+    \end{equation}
+\end{quote}
+\vspace{1em}
+
+\noindent\textit{Prova.} A média e a variância da distribuição marginal de $\mu$ podem ser facilmente obtidas da média e da variância das distribuições \textit{t} que são dadas na Seção 8.4. Como $U$ na Eq. (8.6.9) tem a distribuição \textit{t} com $2\alpha_0$ graus de liberdade, segue-se da Seção 8.4 que $E(U) = 0$ se $\alpha_0 > 1/2$ e que $\text{Var}(U) = \alpha_0/(\alpha_0 - 1)$ se $\alpha_0 > 1$. Agora use a Eq. (8.6.10) para ver que, se $\alpha_0 > 1/2$, então $E(\mu) = \mu_0$. Além disso, se $\alpha_0 > 1$, então
+$$
+\text{Var}(\mu) = \left(\frac{\beta_0}{\lambda_0\alpha_0}\right) \text{Var}(U).
+$$
+A Eq. (8.6.11) agora segue diretamente. \hfill $\blacksquare$
+
+\vspace{1em}
+Além disso, a probabilidade de que $\mu$ esteja em qualquer intervalo especificado pode, em princípio, ser obtida de uma tabela da distribuição \textit{t} ou de software apropriado. A maioria dos pacotes estatísticos inclui funções que podem calcular a f.d.a. e a função de quantil de uma distribuição \textit{t} com graus de liberdade arbitrários, não apenas inteiros. As tabelas tipicamente lidam apenas com graus de liberdade inteiros. Se necessário, pode-se interpolar entre graus de liberdade adjacentes.
+
+Como já apontamos, podemos mudar os hiperparâmetros a priori para hiperparâmetros a posteriori nos Teoremas 8.6.2 e 8.6.3 e traduzi-los em resultados concernentes à distribuição marginal a posteriori de $\mu$. Em particular, a distribuição a posteriori da seguinte variável aleatória é a distribuição \textit{t} com $2\alpha_1$ graus de liberdade:
+\begin{equation} \label{eq:8.6.12}
+    \left(\frac{\lambda_1\alpha_1}{\beta_1}\right)^{1/2}(\mu - \mu_1).
+\end{equation}
+
+\vspace{1em}
+\noindent\textbf{Exemplo 8.6.3 (Lares de Idosos no Novo México)}
+\begin{quote}
+    Em 1988, o Departamento de Saúde e Serviços Sociais do Novo México registrou informações de muitas de suas casas de repouso licenciadas. Os dados foram analisados por Smith, Piland e Fisher (1992). Neste exemplo, consideraremos os dias anuais de pacientes internados $X$ (medidos em centenas) para uma amostra de 18 casas de repouso não rurais. Antes de observar os dados, modelaremos o valor de $X$ para cada casa de repouso como uma variável aleatória normal com média $\mu$ e precisão $\tau$. Para escolher uma média e variância a priori para $\mu$ e $\tau$, poderíamos falar com especialistas na área, mas, por simplicidade, vamos basear-se apenas em algumas informações adicionais que temos sobre o número de leitos nessas casas de repouso.
+
+    Existem, em média, 111 leitos com um desvio padrão amostral de 43.5 leitos. Suponha que nossa opinião a priori é que existe uma taxa de ocupação de 50 por cento. Então podemos ingenuamente escalar a média e o desvio padrão por um fator de $0.5 \times 365$ para obter uma média e desvio padrão a priori para o número de dias de internação em um ano. Em unidades de centenas de dias de internação por ano, isso nos dá uma média de $0.5 \times 365 \times 1.11 \approx 200$ e um desvio padrão de $0.5 \times 365 \times 0.435 \approx 6300^{1/2}$. Para mapear esses valores em hiperparâmetros a priori, dividiremos a variância de 6300 de modo que metade dela seja devida à variância entre as casas de repouso e metade seja a variância de $\mu$. Isto é, definiremos $\text{Var}(\mu) = 3150$ e $E(\tau) = 1/3150$. Escolhemos $\alpha_0 = 2$ para refletir apenas uma pequena quantidade de informação a priori. Então, como $E(\tau) = \alpha_0/\beta_0$, encontramos que $\beta_0 = 6300$. Usando $E(\mu) = \mu_0$ e (8.6.11), obtemos $\mu_0 = 200$ e $\lambda_0 = 2$.
+
+    Em seguida, determinaremos um intervalo a priori para $\mu$ centrado no ponto $\mu_0 = 200$ tal que a probabilidade de que $\mu$ esteja neste intervalo seja 0.95. Como a variável aleatória $U$ definida pela Eq. (8.6.9) tem a distribuição \textit{t} com $2\alpha_0$ graus de liberdade, segue que, para os valores numéricos recém-obtidos, a variável aleatória $0.025(\mu - 200)$ tem a distribuição \textit{t} com quatro graus de liberdade. A tabela da distribuição \textit{t} dá o quantil 0.975 da distribuição \textit{t} com quatro graus de liberdade como sendo 2.776. Assim,
+    \begin{equation} \label{eq:8.6.13}
+        \text{Pr}[-2.776 < 0.025(\mu - 200) < 2.776] = 0.95
+    \end{equation}
+    Uma declaração equivalente é
+    \begin{equation} \label{eq:8.6.14}
+        \text{Pr}(89 < \mu < 311) = 0.95
+    \end{equation}
+    (O exemplo continua...)
+\end{quote}
+\vspace{1em}
+    Assim, sob a distribuição a priori atribuída a $\mu$ e $\tau$, há uma probabilidade de 0.95 de que $\mu$ esteja no intervalo (89, 311).
+
+    Suponha agora que a seguinte é a nossa amostra de 18 números observados de dias de internação médica (em centenas):
+\begin{center}
+        128 281 291 238 155 148 154 232 316 96 146 151 100 213 208 157 48 217.
+    \end{center}
+    Para essas observações, que denotamos por $\mathbf{x}$, $\bar{x}_n = 182.17$ e $s_n^2 = 88678.5$. Então, segue-se do Teorema 8.6.1 que a distribuição a posteriori conjunta de $\mu$ e $\tau$ é a distribuição normal-gama com hiperparâmetros
+    \begin{equation} \label{eq:8.6.15}
+        \mu_1 = 183.95, \quad \lambda_1 = 20, \quad \alpha_1 = 11, \quad \beta_1 = 50925.37
+    \end{equation}
+    Portanto, os valores das médias e variâncias de $\mu$ e $\tau$, conforme encontrados a partir desta distribuição a posteriori conjunta, são
+    \begin{equation} \label{eq:8.6.16}
+    \begin{split}
+        E(\mu|\mathbf{x}) &= \mu_1 = 183.95, \quad \text{Var}(\mu|\mathbf{x}) = \frac{\beta_1}{\lambda_1(\alpha_1 - 1)} = 254.63, \\
+        E(\tau|\mathbf{x}) &= \frac{\alpha_1}{\beta_1} = 2.16 \times 10^{-4}, \quad \text{Var}(\tau|\mathbf{x}) = \frac{\alpha_1}{\beta_1^2} = 4.24 \times 10^{-9}
+    \end{split}
+    \end{equation}
+    Segue-se da Eq. (8.6.1) que a média $\mu_1$ da distribuição a posteriori de $\mu$ é uma média ponderada de $\mu_0$ e $\bar{x}_n$. Neste exemplo numérico, vê-se que $\mu_1$ está bastante próximo de $\bar{x}_n$.
+
+    Em seguida, determinaremos a distribuição marginal a posteriori de $\mu$. Seja $U$ a variável aleatória na Eq. (8.6.12), e use os valores computados em (\ref{eq:8.6.15}). Então $U' = (0.0657)(\mu - 183.95)$, e a distribuição a posteriori de $U'$ é a distribuição \textit{t} com $2\alpha_1 = 22$ graus de liberdade. O quantil 0.975 desta distribuição \textit{t} é 2.074, então
+    \begin{equation} \label{eq:8.6.17}
+        \text{Pr}(-2.074 < U < 2.074|\mathbf{x}) = 0.95
+    \end{equation}
+    Uma declaração equivalente é que
+    \begin{equation} \label{eq:8.6.18}
+        \text{Pr}(152.38 < \mu < 215.52|\mathbf{x}) = 0.95
+    \end{equation}
+    Em outras palavras, sob a distribuição a posteriori de $\mu$ e $\tau$, a probabilidade de que $\mu$ esteja no intervalo (152.38, 215.52) é 0.95.
+
+    Deve-se notar que o intervalo na Eq. (8.6.18) determinado a partir da distribuição a posteriori de $\mu$ é muito mais curto do que o intervalo na Eq. (8.6.14) determinado a partir da distribuição a priori. Isso reflete o fato de que a distribuição a posteriori de $\mu$ está muito mais concentrada em torno de sua média do que a distribuição a priori. A variância da distribuição a priori de $\mu$ era 3150, e a variância da distribuição a posteriori é 254.63. Gráficos das f.d.p.'s a priori e a posteriori de $\mu$ são mostrados na Fig. 8.7 juntamente com o intervalo a posteriori (8.6.18).
+\vspace{1em}
+
+\subsection*{Comparação com Intervalos de Confiança}
+
+Continue usando os dados das casas de repouso do Exemplo 8.6.3. Vamos agora construir um intervalo de confiança para $\mu$ com coeficiente de confiança 0.95 e comparar este intervalo com o intervalo na Eq. (8.6.18) para o qual a probabilidade a posteriori é 0.95. Como o tamanho da amostra $n$ no Exemplo 8.6.3 é 18, a variável aleatória $U$ definida pela Eq. (8.4.4) na página 481 tem a distribuição \textit{t} com 17 graus de liberdade. O quantil 0.975 desta distribuição \textit{t} é 2.110. Segue-se agora do Teorema 8.5.1 que os extremos de um intervalo de confiança para $\mu$ com coeficiente de confiança 0.95 serão
+\begin{align*}
+    A &= \bar{X}_n - 2.110 \frac{\sigma'}{n^{1/2}}, \\
+    B &= \bar{X}_n + 2.110 \frac{\sigma'}{n^{1/2}}.
+\end{align*}
+Quando os valores observados de $\bar{x}_n = 182.17$ e $s_n^2 = 88678.5$ são usados aqui, obtemos $\sigma' = (88678.5/17)^{1/2} = 72.22$. O intervalo de confiança observado para $\mu$ é então (146.25, 218.09).
+
+Este intervalo está próximo do intervalo (152.38, 215.52) na Eq. (8.6.18), para o qual a probabilidade a posteriori é 0.95. A similaridade dos dois intervalos ilustra a afirmação feita no final da Seção 8.5. Isto é, em muitos problemas envolvendo a distribuição normal, o método de intervalos de confiança e o método de usar probabilidades a posteriori produzem resultados similares, embora as interpretações dos dois métodos sejam bastante diferentes.
+
+\subsection*{Distribuições a Priori Impróprias}
+
+Como discutimos no final da Seção 7.3, na página 402, muitas vezes é conveniente usar prioris impróprias que não são distribuições reais, mas que levam a posteriores que são distribuições reais. Essas prioris impróprias são escolhidas mais por conveniência do que para representar as crenças de alguém. Quando há uma quantidade considerável de dados, a distribuição a posteriori resultante do uso de uma priori imprópria é frequentemente muito próxima daquela que resultaria do uso de uma distribuição a priori própria.
+
+Para o caso que estamos considerando nesta seção, podemos combinar a priori imprópria que introduzimos para um parâmetro de localização como $\mu$ juntamente com a priori imprópria para um parâmetro de escala como $\sigma = \tau^{-1/2}$ na priori imprópria usual para $\mu$ e $\tau$. A "f.d.p." imprópria típica para um parâmetro de localização foi encontrada (no Exemplo 7.3.15) como sendo a função constante $\xi_1(\mu) = 1$. A "f.d.p." imprópria típica para um parâmetro de escala $\sigma$ é $g(\sigma) = 1/\sigma$. Como $\sigma = \tau^{-1/2}$, podemos aplicar as técnicas da Seção 3.8 para encontrar a "f.d.p." imprópria de $\tau = \sigma^{-2}$. A derivada da função inversa é $-\frac{1}{2}\tau^{-3/2}$, então a "f.d.p." imprópria de $\tau$ seria
+\[
+\left|-\frac{1}{2}\tau^{-3/2}\right| g(1/\tau^{-1/2}) = \frac{1}{2}\tau^{-1},
+\]
+para $\tau > 0$. Como esta função tem integral infinita, descartaremos o fator 1/2 e definiremos $\xi_2(\tau) = \tau^{-1}$. Se agirmos como se $\mu$ e $\tau$ fossem independentes, então a "f.d.p." a priori imprópria conjunta para $\mu$ e $\tau$ é
+\[
+\xi(\mu, \tau) = \frac{1}{\tau}, \quad \text{para } -\infty < \mu < \infty, \tau > 0.
+\]
+Se fôssemos fingir que esta função era uma f.d.p., a f.d.p. a posteriori $\xi(\mu, \tau|\mathbf{x})$ seria proporcional a
+\begin{align} \label{eq:8.6.19}
+    \xi(\mu, \tau) f_n(\mathbf{x}|\mu, \tau) &\propto \tau^{-1}\tau^{n/2} \exp\left(-\frac{\tau}{2}s_n^2 - \frac{n\tau}{2}(\mu - \bar{x}_n)^2\right) \\
+    &= \left\{\tau^{1/2}\exp\left[-\frac{n\tau}{2}(\mu - \bar{x}_n)^2\right]\right\} \left\{\tau^{(n-1)/2 - 1} \exp\left[-\frac{\tau}{2}s_n^2\right]\right\}. \nonumber
+\end{align}
+Quando a expressão dentro das chaves no lado direito de (\ref{eq:8.6.19}) é considerada como uma função de $\mu$ para um valor fixo de $\tau$, esta expressão pode ser reconhecida como sendo (exceto por um fator que não depende nem de $\mu$ nem de $\tau$) a f.d.p. da distribuição normal com média $\bar{x}_n$ e precisão $n\tau$. Como a variável $\mu$ não aparece em nenhum outro lugar, segue-se que esta f.d.p. deve ser a f.d.p. condicional a posteriori de $\mu$ dado $\tau$. Segue-se, por sua vez, que a expressão fora das chaves no lado direito de (\ref{eq:8.6.19}) deve ser proporcional à f.d.p. marginal a posteriori de $\tau$. Esta expressão pode ser reconhecida como sendo (exceto por um fator constante) a f.d.p. da distribuição gama com parâmetros $(n-1)/2$ e $s_n^2/2$.
+
+Esta distribuição conjunta teria precisamente a mesma forma da distribuição no Teorema 8.6.1 se nossa distribuição a priori fosse da forma normal-gama com hiperparâmetros $\mu_0 = \beta_0 = \lambda_0 = 0$ e $\alpha_0 = -1/2$. Ou seja, se fingirmos que $\mu_0 = \beta_0 = \lambda_0 = 0$ e $\alpha_0 = -1/2$, e então aplicarmos o Teorema 8.6.1, obtemos os hiperparâmetros a posteriori $\mu_1 = \bar{x}_n, \lambda_1 = n, \alpha_1 = (n-1)/2,$ e $\beta_1 = s_n^2/2$.
+
+Não existe distribuição de probabilidade na família normal-gama com $\mu_0 = \beta_0 = \lambda_0 = 0$ e $\alpha_0 = -1/2$; no entanto, se fingirmos que esta era nossa priori, então dizemos que estamos usando a \textit{distribuição a priori imprópria usual}. Note que a distribuição a posteriori de $\mu$ e $\tau$ é um membro real da família normal-gama, desde que $n \ge 2$.
+
+\vspace{1em}
+\noindent\textbf{Exemplo 8.6.4 (Uma Priori Imprópria para a Chuva de Nuvens Semeadas)}
+\begin{quote}
+    Suponha que usemos a priori imprópria usual para os parâmetros nos Exemplos 8.3.2 e 8.5.3 com hiperparâmetros a priori $\mu_0 = \beta_0 = \lambda_0 = 0$ e $\alpha_0 = -1/2$. Os dados resumidos são $\bar{x}_n = 5.134$ e $s_n^2 = 63.96$. A distribuição a posteriori será então a distribuição normal-gama com hiperparâmetros $\mu_1 = \bar{x}_n = 5.134$, $\lambda_1 = n = 26$, $\alpha_1 = (n-1)/2 = 12.5$, e $\beta_1 = s_n^2/2 = 31.98$.
+    
+    Além disso, a distribuição marginal a posteriori de $\mu$ é dada por (7.6.12) [provavelmente um erro de digitação no livro, referindo-se a 8.6.12]. Em particular,
+    \begin{equation} \label{eq:8.6.20}
+        U = \left(\frac{26 \times 12.5}{31.98}\right)^{1/2}(\mu - 5.134) = 3.188(\mu - 5.134)
+    \end{equation}
+    tem a distribuição \textit{t} com 25 graus de liberdade. Suponha que queiramos um intervalo $(a, b)$ tal que a probabilidade a posteriori de $a < \mu < b$ seja 0.95. O quantil 0.975 da distribuição \textit{t} com 25 graus de liberdade é 2.060. Assim, temos $\text{Pr}(-2.060 < U < 2.060) = 0.95$. Combinando isso com (8.6.20), obtemos
+    \[
+    \text{Pr}(5.134 - 2.060/3.188 < \mu < 5.134 + 2.060/3.188|\mathbf{x}) = 0.95.
+    \]
+    O intervalo que precisamos vai de $a = 5.134 - 2.060/3.188 = 4.488$ até $b = 5.134 + 2.060/3.188 = 5.780$. Note que o intervalo $(4.488, 5.780)$ é precisamente o mesmo que o intervalo de confiança de 95\% para $\mu$ que foi calculado no Exemplo 8.5.3.
+
+    Outro cálculo que podemos fazer com esta distribuição a posteriori é ver quão provável é que $\mu > 4$, onde 4 é a média da log-precipitação para nuvens não semeadas:
+    \[
+    \text{Pr}(\mu > 4|\mathbf{x}) = \text{Pr}(U > 3.188(4 - 5.134)|\mathbf{x}) = 1 - T_{25}(-3.615) = 0.9993,
+    \]
+    onde o valor final é calculado usando software estatístico que inclui a f.d.a. de todas as distribuições \textit{t}. Parece bastante provável, após observar os dados, que a média da log-precipitação de nuvens semeadas seja maior que 4.
+\end{quote}
+\vspace{1em}
+
+\noindent\textbf{Nota: Prioris Impróprias Levam a Intervalos de Confiança.} O Exemplo 8.6.4 ilustra uma das propriedades mais interessantes da priori imprópria usual. Se alguém usa a priori imprópria usual com dados normais, então a probabilidade a posteriori é $\gamma$ de que $\mu$ esteja no valor observado de um intervalo de confiança com coeficiente $\gamma$. Em geral, se aplicarmos (8.6.9) após usar uma priori imprópria, descobrimos que a distribuição a posteriori de
+\begin{equation} \label{eq:8.6.21}
+    U = \left(\frac{n(n-1)}{s_n^2}\right)^{1/2} (\mu - \bar{x}_n)
+\end{equation}
+é a distribuição \textit{t} com $n-1$ graus de liberdade. Segue-se que se $\text{Pr}(-c < U < c) = \gamma$, então
+\begin{equation} \label{eq:8.6.22}
+    \text{Pr}\left(\bar{x}_n - c\frac{\sigma'}{n^{1/2}} < \mu < \bar{x}_n + c\frac{\sigma'}{n^{1/2}} \bigg| \mathbf{x}\right) = \gamma.
+\end{equation}
+O leitor notará a impressionante similaridade entre (8.6.22) e (8.5.3). A diferença entre os dois é que (8.6.22) é uma declaração sobre a distribuição a posteriori de $\mu$ \textit{após} observar os dados, enquanto (8.5.3) é uma declaração sobre a distribuição condicional das variáveis aleatórias $\bar{X}_n$ e $\sigma'$ dados $\mu$ e $\sigma$ \textit{antes} de observar os dados.
+
+Que essas duas probabilidades sejam as mesmas para todos os dados possíveis e todos os valores de $\gamma$ decorre do fato de que ambas são iguais a $\text{Pr}(-c < U < c)$ onde $U$ é definido na Eq. (8.4.4) ou Eq. (8.6.21). A distribuição amostral (condicional em $\mu$ e $\tau$) de $U$ é a distribuição \textit{t} com $n-1$ graus de liberdade, como encontramos na Eq. (8.4.4). A distribuição a posteriori da imprópria (condicional nos dados) de $U$ é também a distribuição \textit{t} com $n-1$ graus de liberdade.
+
+O mesmo tipo de coisa acontece quando tentamos estimar $\sigma^2 = 1/\tau$. A distribuição amostral (condicional em $\mu$ e $\tau$) de $V = (n-1)s_n^2/\sigma^2 = (n-1)\sigma^2\tau$ é a distribuição $\chi^2$ com $n-1$ graus de liberdade, como vimos na Eq. (8.3.11). A distribuição a posteriori da imprópria (condicional nos dados) de $V$ é também a distribuição $\chi^2$ com $n-1$ graus de liberdade (ver Exercício 4). Portanto, um intervalo de confiança com coeficiente $\gamma$ $(a, b)$ para $\sigma^2$ baseado na distribuição amostral de $V$ satisfará $\text{Pr}(a < \sigma^2 < b|\mathbf{x}) = \gamma$ como uma declaração de probabilidade a posteriori dados os dados se tivéssemos usado uma priori imprópria.
+
+Existem muitas situações em que a distribuição amostral de uma quantidade pivotal, como $U$, é a mesma que sua distribuição a posteriori quando uma priori imprópria é usada. Um tratamento matemático muito geral dessas situações pode ser encontrado em Schervish (1995, capítulo 6). As situações mais comuns envolvem parâmetros de localização (como $\mu$) e/ou parâmetros de escala (como $\sigma$).
+
+\subsection*{Resumo}
+
+Introduzimos uma família de distribuições a priori conjugadas para os parâmetros $\mu$ e $\tau = 1/\sigma^2$ de uma distribuição normal. A distribuição condicional de $\mu$ dado $\tau$ é normal com média $\mu_0$ e precisão $\lambda_0\tau$, e a distribuição marginal de $\tau$ é a distribuição gama com parâmetros $\alpha_0$ e $\beta_0$. Se $X_1 = x_1, \dots, X_n = x_n$ é uma amostra observada de tamanho $n$ da distribuição normal com média $\mu$ e precisão $\tau$, então a distribuição a posteriori de $\mu$ dado $\tau$ é a distribuição normal com média $\mu_1$ e precisão $\lambda_1\tau$, e a distribuição a posteriori de $\tau$ é a distribuição gama com parâmetros $\alpha_1$ e $\beta_1$, onde os valores de $\mu_1, \lambda_1, \alpha_1,$ e $\beta_1$ são dados nas Eqs. (8.6.1) e (8.6.2). A distribuição marginal a posteriori de $\mu$ é dada dizendo que $(\lambda_1\alpha_1/\beta_1)^{1/2}(\mu - \mu_1)$ tem a distribuição $t$ com $2\alpha_1$ graus de liberdade. Um intervalo contendo probabilidade $1-\alpha$ da distribuição a posteriori de $\mu$ é
+\[
+\left( \mu_1 - T_{2\alpha_1}^{-1}(1-\alpha/2)\left[\frac{\beta_1}{\alpha_1\lambda_1}\right]^{1/2}, \mu_1 + T_{2\alpha_1}^{-1}(1-\alpha/2)\left[\frac{\beta_1}{\alpha_1\lambda_1}\right]^{1/2} \right).
+\]
+
+Se usarmos a priori imprópria com hiperparâmetros a priori $\alpha_0 = -1/2$ e $\mu_0 = \lambda_0 = \beta_0 = 0$, então a variável aleatória $n^{1/2}(\bar{X}_n - \mu)/\sigma'$ tem a distribuição $t$ com $n-1$ graus de liberdade tanto como sua distribuição a posteriori dados os dados quanto como sua distribuição amostral dados $\mu$ e $\sigma$. Além disso, $(n-1)\sigma'^2/\sigma^2$ tem a distribuição $\chi^2$ com $n-1$ graus de liberdade tanto como sua distribuição a posteriori dados os dados quanto como sua distribuição amostral dados $\mu$ e $\sigma$. Portanto, se usarmos a priori imprópria, estimativas intervalares de $\mu$ ou $\sigma$ baseadas na distribuição a posteriori também serão intervalos de confiança, e vice-versa.
+
+\section*{Exercícios}
+
+\begin{enumerate}
+    \item Suponha que uma variável aleatória $X$ tenha a distribuição normal com média $\mu$ e precisão $\tau$. Mostre que a variável aleatória $Y = aX + b$ ($a \neq 0$) tem a distribuição normal com média $a\mu + b$ e precisão $\tau/a^2$.
+
+    \item Suponha que $X_1, \dots, X_n$ formem uma amostra aleatória da distribuição normal com média desconhecida $\mu$ ($-\infty < \mu < \infty$) e precisão \textit{conhecida} $\tau$. Suponha também que a distribuição a priori de $\mu$ é a distribuição normal com média $\mu_0$ e precisão $\lambda_0$. Mostre que a distribuição a posteriori de $\mu$, dado que $X_i = x_i$ ($i = 1, \dots, n$) é a distribuição normal com média
+    $$ \frac{\lambda_0\mu_0 + n\tau\bar{x}_n}{\lambda_0 + n\tau} $$
+    e precisão $\lambda_0 + n\tau$.
+
+    \item Suponha que $X_1, \dots, X_n$ formem uma amostra aleatória da distribuição normal com média \textit{conhecida} $\mu$ e precisão desconhecida $\tau$ ($\tau > 0$). Suponha também que a distribuição a priori de $\tau$ é a distribuição gama com parâmetros $\alpha_0$ e $\beta_0$ ($\alpha_0 > 0$ e $\beta_0 > 0$). Mostre que a distribuição a posteriori de $\tau$ dado que $X_i = x_i$ ($i=1, \dots, n$) é a distribuição gama com parâmetros $\alpha_0 + (n/2)$ e
+    $$ \beta_0 + \frac{1}{2}\sum_{i=1}^{n}(x_i - \mu)^2. $$
+    
+    \item Suponha que $X_1, \dots, X_n$ são i.i.d. tendo a distribuição normal com média $\mu$ e precisão $\tau$ dados $(\mu, \tau)$. Seja $(\mu, \tau)$ com a priori imprópria usual. Seja $\sigma'^2 = s_n^2/(n-1)$. Prove que a distribuição a posteriori de $V = (n-1)\sigma'^2\tau$ é a distribuição $\chi^2$ com $n-1$ graus de liberdade.
+    
+    \item Suponha que duas variáveis aleatórias $\mu$ e $\tau$ tenham a distribuição normal-gama conjunta tal que $E(\mu) = -5$, $\text{Var}(\mu) = 1$, $E(\tau) = 1/2$, e $\text{Var}(\tau) = 1/8$. Encontre os hiperparâmetros a priori $\mu_0, \lambda_0, \alpha_0,$ e $\beta_0$ que especificam a distribuição normal-gama.
+    
+    \item Mostre que duas variáveis aleatórias $\mu$ e $\tau$ não podem ter uma distribuição normal-gama conjunta tal que $E(\mu) = 0$, $\text{Var}(\mu) = 1$, $E(\tau) = 1/2$, e $\text{Var}(\tau) = 1/4$.
+
+\end{enumerate}
+\begin{enumerate}
+    \setcounter{enumi}{6} % Continua a numeração do exercício anterior
+    \item Mostre que duas variáveis aleatórias $\mu$ e $\tau$ não podem ter a distribuição normal-gama conjunta tal que $E(\mu) = 0$, $E(\tau) = 1$, e $\text{Var}(\tau) = 4$.
+
+    \item Suponha que duas variáveis aleatórias $\mu$ e $\tau$ tenham a distribuição normal-gama conjunta com hiperparâmetros $\mu_0 = 4, \lambda_0 = 0.5, \alpha_0 = 1,$ e $\beta_0 = 8$. Encontre os valores de \textbf{(a)} $\text{Pr}(\mu > 0)$ e \textbf{(b)} $\text{Pr}(0.736 < \mu < 15.680)$.
+
+    \item Usando a priori e os dados no exemplo numérico sobre lares de idosos no Novo México nesta seção, encontre \textbf{(a)} o intervalo mais curto possível tal que a probabilidade a posteriori de que $\mu$ esteja no intervalo seja 0.90, e \textbf{(b)} o intervalo de confiança mais curto possível para $\mu$ para o qual o coeficiente de confiança é 0.90.
+
+    \item Suponha que $X_1, \dots, X_n$ formem uma amostra aleatória da distribuição normal com média desconhecida $\mu$ e precisão desconhecida $\tau$, e também que a distribuição a priori conjunta de $\mu$ e $\tau$ seja a distribuição normal-gama satisfazendo as seguintes condições: $E(\mu) = 0$, $E(\tau) = 2$, $E(\tau^2) = 5$, e $\text{Pr}(|\mu| < 1.412) = 0.5$. Determine os hiperparâmetros a priori $\mu_0, \lambda_0, \alpha_0,$ e $\beta_0$.
+
+    \item Considere novamente as condições do Exercício 10. Suponha também que em uma amostra aleatória de tamanho $n=10$, descobre-se que $\bar{x}_n = 1$ e $s_n^2 = 8$. Encontre o intervalo mais curto possível tal que a probabilidade a posteriori de que $\mu$ esteja no intervalo seja 0.95.
+
+    \item Suponha que $X_1, \dots, X_n$ formem uma amostra aleatória da distribuição normal com média desconhecida $\mu$ e precisão desconhecida $\tau$, e também que a distribuição a priori conjunta de $\mu$ e $\tau$ seja a distribuição normal-gama satisfazendo as seguintes condições: $E(\tau) = 1$, $\text{Var}(\tau) = 1/3$, $\text{Pr}(\mu > 3) = 0.5$, e $\text{Pr}(\mu > 0.12) = 0.9$. Determine os hiperparâmetros a priori $\mu_0, \lambda_0, \alpha_0,$ e $\beta_0$.
+
+    \item Considere novamente as condições do Exercício 12. Suponha também que em uma amostra aleatória de tamanho $n=8$, descobre-se que $\sum_{i=1}^n x_i = 16$ e $\sum_{i=1}^n x_i^2 = 48$. Encontre o intervalo mais curto possível tal que a probabilidade a posteriori de que $\mu$ esteja no intervalo é 0.99.
+
+\end{enumerate}
+
+\begin{enumerate}
+    \setcounter{enumi}{13} % Continua a numeração do exercício anterior
+    \item Continue a análise no Exemplo 8.6.2 na página 498. Calcule um intervalo $(a, b)$ tal que a probabilidade a posteriori seja 0.9 de que $a < \mu < b$. Compare este intervalo com o intervalo de confiança de 90\% do Exemplo 8.5.4 na página 487.
+
+    \item Vamos extrair uma amostra de tamanho $n=11$ da distribuição normal com média $\mu$ e precisão $\tau$. Usaremos uma priori conjugada natural para os parâmetros $(\mu, \tau)$ da família normal-gama com hiperparâmetros $\alpha_0 = 2, \beta_0 = 1, \mu_0 = 3.5,$ e $\lambda_0 = 2$. A amostra produz uma média de $\bar{x}_n = 7.2$ e $s_n^2 = 20.3$.
+    \begin{enumerate}
+        \item[\textbf{a.}] Encontre os hiperparâmetros a posteriori.
+        \item[\textbf{b.}] Encontre um intervalo que contenha 95\% da distribuição a posteriori de $\mu$.
+    \end{enumerate}
+
+    \item O estudo sobre a concentração de ácido lático em queijo incluiu um total de 30 medições de ácido lático, as 10 dadas no Exemplo 8.5.4 na página 487 e as 20 adicionais a seguir:
+    \begin{center}
+        1.68, 1.9, 1.06, 1.3, 1.52, 1.74, 1.16, 1.49, 1.63, 1.99, \\
+        1.15, 1.33, 1.44, 2.01, 1.31, 1.46, 1.72, 1.25, 1.08, 1.25.
+    \end{center}
+    \begin{enumerate}
+        \item[\textbf{a.}] Usando a mesma priori do Exemplo 8.6.2 na página 498, calcule a distribuição a posteriori de $\mu$ e $\tau$ com base em todas as 30 observações.
+        \item[\textbf{b.}] Use a distribuição a posteriori encontrada no Exemplo 8.6.2 na página 498 como se fosse a distribuição a priori antes de observar as 20 observações listadas neste problema. Use essas 20 novas observações para encontrar a distribuição a posteriori de $\mu$ e $\tau$ e compare o resultado com a resposta da parte (a).
+    \end{enumerate}
+
+\end{enumerate}
