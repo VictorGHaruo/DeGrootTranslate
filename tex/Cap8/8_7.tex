@@ -1,0 +1,250 @@
+\section{Estimadores Não Viesados}
+
+Seja $\delta$ um estimador de uma função $g$ de um parâmetro $\theta$. Dizemos que $\delta$ é não viesado se $E_\theta[\delta(\mathbf{X})] = g(\theta)$ para todos os valores de $\theta$. Esta seção fornece vários exemplos de estimadores não viesados.
+
+\vspace{1em}
+\noindent\textbf{Exemplo 8.7.1 (Definição de um Estimador Não Viesado)}
+\begin{quote}
+    Tempos de Vida de Componentes Eletrônicos. Considere a empresa do Exemplo 8.1.3 que deseja estimar a taxa de falha $\theta$ de componentes eletrônicos. Com base em uma amostra $X_1, X_2, X_3$ de tempos de vida, o E.M.V. de $\theta$ é $\hat{\theta} = 3/T$, onde $T = X_1 + X_2 + X_3$. A empresa espera que $\hat{\theta}$ esteja próximo de $\theta$. A média de uma variável aleatória, como $\hat{\theta}$, é uma medida de onde esperamos que a variável aleatória esteja. A média de $3/T$ é (de acordo com o Exercício 21 da Seção 5.7) $3\theta/2$. Se a média nos diz onde esperamos que o estimador esteja, esperamos que este estimador seja 50\% maior que $\theta$.
+\end{quote}
+\vspace{1em}
+
+Seja $\mathbf{X} = (X_1, \dots, X_n)$ uma amostra aleatória de uma distribuição que envolve um parâmetro (ou vetor de parâmetros) $\theta$ cujo valor é desconhecido. Suponha que desejamos estimar uma função $g(\theta)$ do parâmetro. Em um problema deste tipo, é desejável usar um estimador $\delta(\mathbf{X})$ que, com alta probabilidade, estará próximo de $g(\theta)$. Em outras palavras,
+
+é desejável usar um estimador $\delta$ cuja distribuição muda com o valor de $\theta$ de tal forma que, não importa qual seja o valor verdadeiro de $\theta$, a distribuição de probabilidade de $\delta$ está concentrada em torno de $g(\theta)$.
+
+Por exemplo, suponha que $\mathbf{X} = (X_1, \dots, X_n)$ forme uma amostra aleatória de uma distribuição normal para a qual a média $\theta$ é desconhecida e a variância é 1. Neste caso, o E.M.V. de $\theta$ é a média amostral $\bar{X}_n$. O estimador $\bar{X}_n$ é um estimador razoavelmente bom de $\theta$ porque sua distribuição é a distribuição normal com média $\theta$ e variância $1/n$. Esta distribuição está concentrada em torno do valor desconhecido de $\theta$, não importa quão grande ou quão pequeno $\theta$ seja.
+
+Essas considerações levam à seguinte definição.
+
+\vspace{1em}
+\noindent\textbf{Definição 8.7.1 (Estimador Não Viesado/Vício)}
+\begin{quote}
+    Um estimador $\delta(\mathbf{X})$ é um \textit{estimador não viesado} (ou \textit{não viciado}) de uma função $g(\theta)$ do parâmetro $\theta$ se $E_\theta[\delta(\mathbf{X})] = g(\theta)$ para todo valor possível de $\theta$. Um estimador que não é não viesado é chamado de \textit{estimador viesado} (ou \textit{viciado}). A diferença entre a esperança de um estimador e $g(\theta)$ é chamada de \textit{vício} (ou \textit{viés}) do estimador. Ou seja, o vício de $\delta$ como um estimador de $g(\theta)$ é $E_\theta[\delta(\mathbf{X})] - g(\theta)$, e $\delta$ é não viesado se e somente se o vício é 0 para todo $\theta$.
+
+    No caso de uma amostra de uma distribuição normal com média desconhecida $\theta$, $\bar{X}_n$ é um estimador não viesado de $\theta$ porque $E_\theta(\bar{X}_n) = \theta$ para $-\infty < \theta < \infty$.
+\end{quote}
+\vspace{1em}
+
+\noindent\textbf{Exemplo 8.7.2 (Tempos de Vida de Componentes Eletrônicos)}
+\begin{quote}
+    No Exemplo 8.7.1, o vício de $\hat{\theta} = 3/T$ como um estimador de $\theta$ é $3\theta/2 - \theta = \theta/2$. É fácil ver que um estimador não viesado de $\theta$ é $\delta(\mathbf{X}) = 2/T$.
+\end{quote}
+\vspace{1em}
+
+Se um estimador $\delta$ de alguma função não constante $g(\theta)$ do parâmetro é não viesado, então a distribuição de $\delta$ deve de fato mudar com o valor de $\theta$, já que a média desta distribuição é $g(\theta)$. Deve-se enfatizar, no entanto, que esta distribuição pode estar tanto proximamente concentrada em torno de $g(\theta)$ quanto amplamente espalhada. Por exemplo, um estimador que é igualmente provável de subestimar $g(\theta)$ em 1.000.000 de unidades ou de superestimar $g(\theta)$ em 1.000.000 de unidades seria um estimador não viesado, but it would never yield an estimate close to $g(\theta)$. Portanto, o mero fato de um estimador ser não viesado não implica necessariamente que o estimador seja bom ou mesmo razoável.
+
+No entanto, se um estimador não viesado também tiver uma variância pequena, segue-se que a distribuição do estimador estará necessariamente concentrada em torno de sua média $g(\theta)$, e haverá uma alta probabilidade de que o estimador esteja próximo de $g(\theta)$.
+
+Pelas razões que acabamos de mencionar, o estudo de estimadores não viesados é em grande parte dedicado à busca por um estimador não viesado que tenha uma variância pequena. No entanto, se um estimador $\delta$ é não viesado, então seu E.Q.M. (Erro Quadrático Médio) $E_\theta[(\delta - g(\theta))^2]$ é igual à sua variância $\text{Var}_\theta(\delta)$. Portanto, a busca por um estimador não viesado com uma variância pequena é equivalente à busca por um estimador não viesado com um E.Q.M. pequeno. O resultado a seguir é um corolário simples do Exercício 4 da Seção 4.3.
+
+\vspace{1em}
+\noindent\textbf{Corolário 8.7.1}
+\begin{quote}
+    Seja $\delta$ um estimador com variância finita. Então o E.Q.M. de $\delta$ como um estimador de $g(\theta)$ é igual à sua variância mais o quadrado do seu vício.
+\end{quote}
+\vspace{1em}
+
+\noindent\textbf{Exemplo 8.7.3 (Tempos de Vida de Componentes Eletrônicos)}
+\begin{quote}
+    Podemos comparar os dois estimadores $\hat{\theta}$ e $\delta(\mathbf{X})$ no Exemplo 8.7.2 usando o E.Q.M. De acordo com o Exercício 21 da Seção 5.7, a variância de $1/T$ é $\theta^2/4$. Então, o E.Q.M. de $\delta(\mathbf{X})$ é $\theta^2$. Para $\hat{\theta}$, a variância é $9\theta^2/4$ e o quadrado do vício é $\theta^2/4$. Portanto, o E.Q.M. é $5\theta^2/2$, que é 2,5 vezes maior que o E.Q.M. de $\delta(\mathbf{X})$. Se o E.Q.M. fosse a única preocupação, o estimador $\delta^*(\mathbf{X}) = 1/T$ tem variância $\theta^2/4$ e o vício ao quadrado ambos iguais a $\theta^2/4$, então o E.Q.M. é $\theta^2/2$, metade do E.Q.M. do estimador não viesado. A Figura 8.8 plota o E.Q.M. para cada um desses estimadores juntamente com o E.Q.M. do estimador de Bayes $4/(2+T)$ encontrado no Exemplo 8.1.3. O cálculo do E.Q.M. do estimador de Bayes requereu simulação. Eventualmente (acima de $\theta=3.1$), o E.Q.M. do estimador de Bayes cruza acima do E.Q.M. de $1/T$, mas permanece abaixo dos outros dois para todo $\theta$.
+
+\end{quote}
+\vspace{1em}
+
+
+\vspace{1em}
+\noindent\textbf{Exemplo 8.7.4 (Estimação Não Viesada da Média)}
+\begin{quote}
+    Seja $\mathbf{X} = (X_1, \dots, X_n)$ uma amostra aleatória de uma distribuição que depende de um parâmetro (ou vetor de parâmetros) $\theta$. Suponha que a média e a variância da distribuição sejam finitas. Defina $g(\theta) = E_\theta(X_1)$. A média amostral $\bar{X}_n$ é obviamente um estimador não viesado de $g(\theta)$. Seu E.Q.M. é $\text{Var}_\theta(X_1)/n$. No Exemplo 8.7.1, $g(\theta) = 1/\theta$ e $\bar{X}_n$ é um estimador não viesado da média.
+\end{quote}
+\vspace{1em}
+
+\subsection*{Estimação Não Viesada da Variância}
+
+\vspace{1em}
+\noindent\textbf{Teorema 8.7.1 (Amostragem de uma Distribuição Geral)}
+\begin{quote}
+    Seja $\mathbf{X} = (X_1, \dots, X_n)$ uma amostra aleatória de uma distribuição que depende de um parâmetro (ou vetor de parâmetros) $\theta$. Assuma que a variância da distribuição é finita. Defina $g(\theta) = \text{Var}_\theta(X_i)$. A seguinte estatística é um estimador não viesado da variância $g(\theta)$:
+    \[
+    \hat{\sigma}_1^2 = \frac{1}{n-1}\sum_{i=1}^n (X_i - \bar{X}_n)^2.
+    \]
+\end{quote}
+\vspace{1em}
+
+\noindent\textit{Prova.} Seja $\mu = E_\theta(X_i)$, e seja $\sigma^2$ representando $g(\theta) = \text{Var}_\theta(X_i)$. Como a média amostral é um estimador não viesado de $\mu$, é mais ou menos natural considerar primeiro a variância amostral $\hat{\sigma}_0^2 = (1/n)\sum_{i=1}^n(X_i - \bar{X}_n)^2$ e tentar determinar se é um estimador não viesado de $\sigma^2$. Usaremos a identidade
+\[
+\sum_{i=1}^n (X_i - \mu)^2 = \sum_{i=1}^n (X_i - \bar{X}_n)^2 + n(\bar{X}_n - \mu)^2.
+\]
+Então segue-se que
+\begin{align} \label{eq:8.7.1}
+    E(\hat{\sigma}_0^2) &= E\left[\frac{1}{n}\sum_{i=1}^n (X_i - \bar{X}_n)^2\right] \nonumber \\
+    &= E\left[\frac{1}{n}\sum_{i=1}^n (X_i - \mu)^2\right] - E[(\bar{X}_n - \mu)^2].
+\end{align}
+Como cada observação $X_i$ tem média $\mu$ e variância $\sigma^2$, então $E[(X_i - \mu)^2] = \sigma^2$ para $i = 1, \dots, n$. Portanto,
+\begin{equation} \label{eq:8.7.2}
+    E\left[\frac{1}{n}\sum_{i=1}^n (X_i - \mu)^2\right] = \frac{1}{n}\sum_{i=1}^n E[(X_i - \mu)^2] = \frac{1}{n}n\sigma^2 = \sigma^2.
+\end{equation}
+Além disso, a média amostral $\bar{X}_n$ tem média $\mu$ e variância $\sigma^2/n$. Portanto,
+\begin{equation} \label{eq:8.7.3}
+    E[(\bar{X}_n - \mu)^2] = \text{Var}(\bar{X}_n) = \frac{\sigma^2}{n}.
+\end{equation}
+Segue-se agora das Eqs. (\ref{eq:8.7.1}), (\ref{eq:8.7.2}) e (\ref{eq:8.7.3}) que
+\begin{equation} \label{eq:8.7.4}
+    E(\hat{\sigma}_0^2) = \sigma^2 - \frac{1}{n}\sigma^2 = \frac{n-1}{n}\sigma^2.
+\end{equation}
+Pode-se ver da Eq. (\ref{eq:8.7.4}) que a variância amostral $\hat{\sigma}_0^2$ não é um estimador não viesado de $\sigma^2$, porque sua esperança é $[(n-1)/n]\sigma^2$, em vez de $\sigma^2$. No entanto, se $\hat{\sigma}_0^2$ for multiplicado pelo fator $n/(n-1)$ para obter a estatística $\hat{\sigma}_1^2$, então a esperança de $\hat{\sigma}_1^2$ será de fato $\sigma^2$. Portanto, $\hat{\sigma}_1^2$ é um estimador não viesado de $\sigma^2$. \hfill $\blacksquare$
+
+\vspace{1em}
+À luz do Teorema 8.7.1, muitos livros didáticos definem a variância amostral como $\hat{\sigma}_1^2$, em vez de $\hat{\sigma}_0^2$.
+
+\vspace{1em}
+\noindent\textbf{Nota: Caso Especial de Amostra Aleatória Normal.} O estimador $\hat{\sigma}_0^2$ é o mesmo que o estimador de máxima verossimilhança $\hat{\sigma^2}$ de $\sigma^2$ quando $X_1, \dots, X_n$ têm a distribuição normal com média $\mu$ e variância $\sigma^2$. Além disso, $\hat{\sigma}_1^2$ é a mesma que a variável aleatória $\sigma'^2$ que aparece em intervalos de confiança para $\mu$. Optamos por usar nomes diferentes para esses estimadores nesta seção porque estamos discutindo distribuições gerais para as quais $\sigma^2$ pode ser alguma função $g(\theta)$ cujo E.M.V. é completamente diferente de $\hat{\sigma}_0^2$. (Veja o Exercício 1 para um tal exemplo.)
+
+\subsection*{Amostragem de uma Família Específica de Distribuições}
+
+Quando se pode assumir que $X_1, \dots, X_n$ formam uma amostra aleatória de uma família específica de distribuições, como a família de distribuições de Poisson, será geralmente desejável considerar não apenas $\hat{\sigma}_1^2$, mas também outros estimadores não viesados da variância.
+
+\vspace{1em}
+\noindent\textbf{Exemplo 8.7.5 (Amostra de uma Distribuição de Poisson)}
+\begin{quote}
+    Suponha que observemos uma amostra aleatória de uma distribuição de Poisson para a qual a média $\theta$ é desconhecida. Já vimos que $\bar{X}_n$ será um estimador não viesado da média $\theta$. Além disso, como a variância de uma distribuição de Poisson também é igual a $\theta$, segue-se que $\bar{X}_n$ é também um estimador não viesado da variância. Neste exemplo, portanto, tanto $\bar{X}_n$ quanto $\hat{\sigma}_1^2$ são estimadores não viesados da variância desconhecida $\theta$. Ademais, qualquer combinação de $\bar{X}_n$ e $\hat{\sigma}_1^2$ tendo a forma $a\bar{X}_n + (1-a)\hat{\sigma}_1^2$, onde $a$ é uma constante dada ($-\infty < a < \infty$), também será um estimador não viesado de $\theta$, porque sua esperança será
+    \begin{equation} \label{eq:8.7.5}
+        E[a\bar{X}_n + (1-a)\hat{\sigma}_1^2] = aE(\bar{X}_n) + (1-a)E(\hat{\sigma}_1^2) = a\theta + (1-a)\theta = \theta.
+    \end{equation}
+    Outros estimadores não viesados de $\theta$ também podem ser construídos.
+\end{quote}
+\vspace{1em}
+
+Se um estimador não viesado deve ser usado, o problema é determinar qual dos possíveis estimadores não viesados tem a menor variância ou, equivalentemente, tem o menor E.Q.M. (Erro Quadrático Médio). Não derivaremos a solução para este problema agora. No entanto, será mostrado na Seção 8.8 que, no Exemplo 8.7.5, para todo valor possível de $\theta$, o estimador $\bar{X}_n$ tem a menor variância entre todos os estimadores não viesados de $\theta$. Este resultado não é surpreendente. Sabemos do Exemplo 7.7.2 que $\bar{X}_n$ é uma estatística suficiente para $\theta$, e foi argumentado na Seção 7.9 que podemos restringir nossa atenção a estimadores que são funções apenas da estatística suficiente. (Veja também o Exercício 13 no final desta seção.)
+
+\vspace{1em}
+\noindent\textbf{Exemplo 8.7.6 (Amostragem de uma Distribuição Normal)}
+\begin{quote}
+    Suponha que $\mathbf{X} = (X_1, \dots, X_n)$ formem uma amostra aleatória de uma distribuição normal com média desconhecida $\mu$ e variância desconhecida $\sigma^2$. Vamos considerar o problema de estimar $\sigma^2$. Sabemos do Teorema 8.7.1 que o estimador $\hat{\sigma}_1^2$ é um estimador não viesado de $\sigma^2$. Além disso, sabemos do Exemplo 7.5.6 que $\hat{\sigma}_0^2$ é o E.M.V. de $\sigma^2$. Queremos determinar se o E.Q.M. $E[(\hat{\sigma}_0^2 - \sigma^2)^2]$ é menor para $\hat{\sigma}_0^2$ ou para o estimador $\hat{\sigma}_1^2$, e também se existe ou não algum outro estimador de $\sigma^2$ que tenha um E.Q.M. menor do que ambos $\hat{\sigma}_0^2$ e $\hat{\sigma}_1^2$.
+
+    Tanto o estimador $\hat{\sigma}_0^2$ quanto o estimador $\hat{\sigma}_1^2$ têm a forma:
+    \begin{equation} \label{eq:8.7.6}
+        T_c = c \sum_{i=1}^n (X_i - \bar{X}_n)^2,
+    \end{equation}
+    onde $c = 1/n$ para $\hat{\sigma}_0^2$ e $c = 1/(n-1)$ para $\hat{\sigma}_1^2$. Vamos agora determinar o E.Q.M. para um estimador arbitrário tendo a forma da Eq. (\ref{eq:8.7.6}) e então determinar o valor de $c$ para o qual este E.Q.M. é mínimo. Demonstraremos a propriedade marcante de que o mesmo valor de $c$ minimiza o E.Q.M. para todos os valores possíveis dos parâmetros $\mu$ e $\sigma^2$. Portanto, entre todos os estimadores que têm a forma da Eq. (\ref{eq:8.7.6}), existe um que tem o menor E.Q.M. para todos os valores possíveis de $\mu$ e $\sigma^2$.
+
+    Foi mostrado na Seção 8.3 que quando $X_1, \dots, X_n$ formam uma amostra aleatória de uma distribuição normal, a variável aleatória $\sum_{i=1}^n(X_i - \bar{X}_n)^2/\sigma^2$ tem a distribuição $\chi^2$ com $n-1$ graus de liberdade. Pelo Teorema 8.2.1, a média desta variável é $n-1$, e a variância é $2(n-1)$. Portanto, se $T_c$ é definido pela Eq. (\ref{eq:8.7.6}),
+    \begin{equation} \label{eq:8.7.7}
+        E(T_c) = (n-1)c\sigma^2 \quad \text{e} \quad \text{Var}(T_c) = 2(n-1)c^2\sigma^4.
+    \end{equation}
+    Assim, pelo Corolário 8.7.1, o E.Q.M. de $T_c$ pode ser encontrado da seguinte forma:
+    \begin{align} \label{eq:8.7.8}
+        E[(T_c - \sigma^2)^2] &= [E(T_c) - \sigma^2]^2 + \text{Var}(T_c^2) \nonumber \\
+        &= [(n-1)c - 1]^2\sigma^4 + 2(n-1)c^2\sigma^4 \nonumber \\
+        &= [(n^2-1)c^2 - 2(n-1)c + 1]\sigma^4.
+    \end{align}
+    O coeficiente de $\sigma^4$ na Eq. (\ref{eq:8.7.8}) é simplesmente uma função quadrática de $c$. Portanto, não importa o que $\sigma^2$ seja igual, o valor de minimização de $c$ é encontrado por diferenciação elementar. O resultado é $c = 1/(n+1)$.
+
+    Em resumo, estabelecemos o seguinte fato: Entre todos os estimadores de $\sigma^2$ tendo a forma da Eq. (\ref{eq:8.7.6}), o estimador que tem o menor E.Q.M. para todos os valores possíveis de $\mu$ e $\sigma^2$ é $T_1 = [1/(n+1)]\sum_{i=1}^n(X_i - \bar{X}_n)^2$. Em particular, $T_{1/(n+1)}$ tem um E.Q.M. menor do que o E.M.V. $\hat{\sigma}_0^2$ e o estimador não viesado $\hat{\sigma}_1^2$. Portanto, os estimadores $\hat{\sigma}_0^2$ e $\hat{\sigma}_1^2$, assim como todos os outros estimadores tendo a forma da Eq. (\ref{eq:8.7.6}) com $c \neq 1/(n+1)$, são inadmissíveis. Foi demonstrado por C. Stein em 1964 que mesmo o estimador $T_{1/(n+1)}$ é dominado por outros estimadores e que o próprio $T_{1/(n+1)}$ é, portanto, inadmissível.
+
+    Os estimadores $\hat{\sigma}_0^2$ e $\hat{\sigma}_1^2$ são comparados no Exercício 6 no final desta seção.
+    Claro, quando o tamanho da amostra $n$ é grande, faz pouca diferença se $n$, $n-1$, ou $n+1$ é usado como o divisor na estimativa de $\sigma^2$; todos os três estimadores $\hat{\sigma}_0^2$, $\hat{\sigma}_1^2$, e $T_{1/(n+1)}$ serão aproximadamente iguais.
+\end{quote}
+\vspace{1em}
+
+\subsection*{Limitações da Estimação Não Viesada}
+
+O conceito de estimação não viesada desempenhou um papel importante no desenvolvimento histórico da estatística, e o sentimento de que um estimador não viesado deve ser preferido a um estimador viesado é prevalente na prática estatística atual. De fato, que cientista deseja ser acusado de estar viesado? A própria terminologia da teoria da estimação não viesada parece tornar o uso de estimadores não viesados altamente desejável.
+
+No entanto, como explicado nesta seção, a qualidade de um estimador não viesado deve ser avaliada em termos de sua variância ou seu E.Q.M. (Erro Quadrático Médio). Os Exemplos 8.7.3 e 8.7.6 ilustram o seguinte fato: Em muitos problemas, existem estimadores viesados que têm um E.Q.M. menor do que todo estimador não viesado para todo valor possível do parâmetro. Além disso, pode-se mostrar que um estimador de Bayes, que faz uso de toda a informação a priori relevante sobre o parâmetro e que minimiza o E.Q.M. geral, é não viesado apenas em problemas triviais nos quais o parâmetro pode ser estimado perfeitamente. Algumas outras limitações da teoria da estimação não viesada serão agora descritas.
+
+\paragraph{Inexistência de um Estimador Não Viesado} Em muitos problemas, não existe qualquer estimador não viesado da função do parâmetro que deve ser estimada. Por exemplo, suponha que $X_1, \dots, X_n$ formem $n$ ensaios de Bernoulli para os quais o parâmetro $p$ é desconhecido ($0 \le p \le 1$). Então a média amostral $\bar{X}_n$ será um estimador não viesado de $p$, mas pode-se mostrar que não existe um estimador não viesado de $p^{1/2}$. (Veja Exercício 7.) Além disso, se for sabido neste exemplo que $p$ deve estar no intervalo $\frac{1}{2} \le p \le \frac{3}{4}$, então não há estimador não viesado de $p$ cujos valores possíveis estejam confinados a esse mesmo intervalo.
+
+\paragraph{Estimadores Não Viesados Inapropriados} Considere uma sequência infinita de ensaios de Bernoulli para a qual o parâmetro $p$ é desconhecido ($0 < p < 1$), e seja $X$ o número de falhas que ocorrem antes do primeiro sucesso. Então $X$ tem a distribuição geométrica com parâmetro $p$ cuja f.p. é dada pela Eq. (5.5.3). Se for desejado estimar o valor de $p$ a partir da observação $X$, então pode-se mostrar (veja Exercício 8) que o \textit{único} estimador não viesado de $p$ produz a estimativa 1 se $X=0$ e a estimativa 0 se $X > 0$. Este estimador parece inapropriado. Por exemplo, se o primeiro sucesso for obtido no segundo ensaio, isto é, se $X=1$, então é tolo estimar que a probabilidade de sucesso $p$ é 0. Similarmente, se $X=0$ (o primeiro ensaio é um sucesso), parece igualmente tolo estimar $p$ como sendo tão grande quanto 1.
+
+Como outro exemplo de um estimador não viesado inapropriado, suponha que a variável aleatória $X$ tenha a distribuição de Poisson com média desconhecida $\lambda$ ($\lambda > 0$), e suponha também que se deseja estimar o valor de $e^{-2\lambda}$. Pode-se mostrar (veja Exercício 9) que o \textit{único} estimador não viesado de $e^{-2\lambda}$ produz a estimativa $1$ se $X$ for um inteiro par e a estimativa $-1$ if $X$ for um inteiro ímpar. Este estimador é inapropriado por duas razões. Primeiro, ele produz a estimativa 1 ou $-1$ para um parâmetro $e^{-2\lambda}$, que deve estar entre 0 e 1. Segundo, o valor da estimativa depende apenas se $X$ é ímpar ou par, em vez de se $X$ é grande ou pequeno.
+
+\paragraph{Ignorando Informação} Mais uma crítica ao conceito de estimação não viesada é que o princípio de sempre usar um estimador não viesado para um parâmetro $\theta$ (quando tal existe) às vezes ignora informações valiosas que estão disponíveis. Como exemplo, suponha que a voltagem média $\theta$ em um certo circuito elétrico seja desconhecida; esta voltagem deve ser medida por um voltímetro para o qual a leitura $X$ tem a distribuição normal com média $\theta$ e variância $\sigma^2$ conhecida. Suponha também que a leitura observada no voltímetro seja 2.5 volts. Como $X$ é um estimador não viesado de $\theta$ neste exemplo, um cientista que desejasse usar um estimador não viesado estimaria o valor de $\theta$ como sendo 2.5 volts.
+
+No entanto, suponha também que, depois que o cientista relatou o valor 2.5 como sua estimativa de $\theta$, ele descobriu que o voltímetro trunca todas as leituras em 3 volts, assim como no Exemplo 3.2.7 na página 106. Ou seja, a leitura do voltímetro é precisa para qualquer voltagem menor que 3 volts, mas uma voltagem maior que 3 volts seria relatada como 3 volts. Como a leitura real foi 2.5 volts, esta leitura não foi afetada pelo truncamento. No entanto, a leitura observada não seria mais um estimador não viesado de $\theta$ porque a distribuição da leitura truncada $X$ não é uma distribuição normal com média $\theta$. Portanto, se o cientista ainda quisesse usar um estimador não viesado, ele teria que mudar sua estimativa de $\theta$ de 2.5 volts para um valor diferente.
+
+Ignorar o fato de que a leitura observada foi precisa parece inaceitável. Já que a leitura observada real foi de apenas 2.5 volts, é o mesmo que teria sido observado se não houvesse truncamento. Como a observação de truncamento não foi truncada, pareceria que o fato de poder ter havido um truncamento é irrelevante para a estimação de $\theta$. No entanto, como essa possibilidade muda o espaço amostral de $X$ e sua distribuição de probabilidade, ela também mudará a forma do estimador não viesado de $\theta$.
+
+\subsection*{Resumo}
+Um estimador $\delta(\mathbf{X})$ de $g(\theta)$ é não viesado se $E_\theta[\delta(\mathbf{X})] = g(\theta)$ for todos os valores possíveis de $\theta$. O vício de um estimador de $g(\theta)$ é $E_\theta[\delta(\mathbf{X})] - g(\theta)$. O E.Q.M. de um estimador é igual à sua variância mais o quadrado do seu vício. O E.Q.M. de um estimador não viesado é igual à sua variância.
+
+\section*{Exercícios}
+
+\begin{enumerate}
+    \item Sejam $X_1, \dots, X_n$ uma amostra aleatória da distribuição de Poisson com média $\theta$.
+    \begin{enumerate}
+        \item[\textbf{a.}] Expresse $\text{Var}_\theta(X_i)$ como uma função $\sigma^2 = g(\theta)$.
+        \item[\textbf{b.}] Encontre o E.M.V. de $g(\theta)$ e mostre que ele é não viesado.
+    \end{enumerate}
+
+    \item Suponha que $X$ seja uma variável aleatória cuja distribuição é completamente desconhecida, mas sabe-se que todos os momentos $E(X^k)$, para $k=1, 2, \dots$, são finitos. Suponha também que $X_1, \dots, X_n$ formem uma amostra aleatória desta distribuição. Mostre que para $k=1, 2, \dots$, o $k$-ésimo momento amostral $(1/n)\sum_{i=1}^n X_i^k$ é um estimador não viesado de $E(X^k)$.
+
+    \item Para as condições do Exercício 2, encontre um estimador não viesado de $[E(X)]^2$. \textit{Dica}: $[E(X)]^2 = E(X^2) - \text{Var}(X)$.
+
+    \item Suponha que uma variável aleatória $X$ tenha a distribuição geométrica com parâmetro desconhecido $p$. (Ver Seção 5.5.) Encontre uma estatística $\delta(X)$ que será um estimador não viesado de $1/p$.
+
+    \item Suponha que uma variável aleatória $X$ tenha a distribuição de Poisson com média desconhecida $\lambda$ ($\lambda > 0$). Encontre uma estatística $\delta(X)$ que será um estimador não viesado de $e^\lambda$. \textit{Dica}: Se $E[\delta(X)] = e^\lambda$, então
+    $$ \sum_{x=0}^{\infty} \frac{\delta(x)e^{-\lambda}\lambda^x}{x!} = e^\lambda. $$
+    Multiplique ambos os lados desta equação por $e^\lambda$, expanda o lado direito em uma série de potências em $\lambda$, e então iguale os coeficientes de $\lambda^x$ em ambos os lados da equação para $x = 0, 1, 2, \dots$.
+
+    \item Suponha que $X_1, \dots, X_n$ formem uma amostra aleatória da distribuição normal com média desconhecida $\mu$ e variância desconhecida $\sigma^2$. Sejam $\hat{\sigma}_0^2$ e $\hat{\sigma}_1^2$ os dois estimadores de $\sigma^2$, definidos como se segue:
+    $$ \hat{\sigma}_0^2 = \frac{1}{n}\sum_{i=1}^n (X_i - \bar{X}_n)^2 \quad \text{e} \quad \hat{\sigma}_1^2 = \frac{1}{n-1}\sum_{i=1}^n (X_i - \bar{X}_n)^2. $$
+    Mostre que o E.Q.M. de $\hat{\sigma}_0^2$ é menor que o E.Q.M. de $\hat{\sigma}_1^2$ para todos os valores possíveis de $\mu$ e $\sigma^2$.
+
+    \item Suponha que $X_1, \dots, X_n$ formem $n$ ensaios de Bernoulli para os quais o parâmetro $p$ é desconhecido ($0 \le p \le 1$). Mostre que a esperança de toda função $\delta(X_1, \dots, X_n)$ é um polinômio em $p$ cujo grau não excede $n$.
+
+    \item Suponha que uma variável aleatória $X$ tenha a distribuição geométrica com parâmetro desconhecido $p$ ($0 < p < 1$). Mostre que o único estimador não viesado de $p$ é o estimador $\delta(X)$ tal que $\delta(0)=1$ e $\delta(X)=0$ para $X > 0$.
+
+    \item Suponha que uma variável aleatória $X$ tenha a distribuição de Poisson com média desconhecida $\lambda$ ($\lambda > 0$). Mostre que o único estimador não viesado de $e^{-2\lambda}$ é o estimador $\delta(X)$ tal que $\delta(X) = 1$ se $X$ for um inteiro par e $\delta(X) = -1$ if $X$ for um inteiro ímpar.
+
+    \item Considere uma sequência infinita de ensaios de Bernoulli para a qual o parâmetro $p$ é desconhecido ($0 < p < 1$), e suponha que a amostragem continue até que exatamente $k$ sucessos tenham sido obtidos, onde $k$ é um inteiro fixo ($k \ge 2$). Seja $N$ o número total de ensaios que são necessários para obter os $k$ sucessos. Mostre que o estimador $(k-1)/(N-1)$ é um estimador não viesado de $p$.
+\end{enumerate}
+
+\begin{enumerate}
+    \setcounter{enumi}{10} % Continua a numeração do exercício anterior
+    \item Suponha que uma certa droga deva ser administrada a dois tipos diferentes de animais A e B. Sabe-se que a resposta média dos animais do tipo A é a mesma que a resposta média dos animais do tipo B, mas o valor comum $\theta$ desta média é desconhecido e deve ser estimado. Sabe-se também que a variância da resposta dos animais do tipo A é quatro vezes maior que a variância da resposta dos animais do tipo B. Sejam $X_1, \dots, X_m$ as respostas de uma amostra aleatória de $m$ animais do tipo A, e sejam $Y_1, \dots, Y_n$ as respostas de uma amostra aleatória independente de $n$ animais do tipo B. Finalmente, considere o estimador $\hat{\theta} = \alpha\bar{X}_m + (1-\alpha)\bar{Y}_n$.
+    \begin{enumerate}
+        \item[\textbf{a.}] Para quais valores de $\alpha, m,$ e $n$ $\hat{\theta}$ é um estimador não viesado de $\theta$?
+        \item[\textbf{b.}] Para valores fixos de $m$ e $n$, qual valor de $\alpha$ produz um estimador não viesado com variância mínima?
+    \end{enumerate}
+
+    \item Suponha que uma certa população de indivíduos seja composta por $k$ estratos diferentes ($k \ge 2$), e que para $i=1, \dots, k$, a proporção de indivíduos na população total que pertencem ao estrato $i$ é $p_i$, onde $p_i > 0$ e $\sum_{i=1}^k p_i = 1$. Estamos interessados em estimar o valor médio $\mu$ de uma certa característica entre a população total. Entre os indivíduos no estrato $i$, esta característica tem média $\mu_i$ e variância $\sigma_i^2$, onde o valor de $\mu_i$ é desconhecido e o valor de $\sigma_i^2$ é conhecido. Suponha que uma amostra estratificada seja retirada da população da seguinte forma: De cada estrato $i$, uma amostra aleatória de $n_i$ indivíduos é retirada, e a característica é medida para cada um desses indivíduos. As amostras dos $k$ estratos são retiradas independentemente umas das outras. Seja $\bar{X}_i$ a média da amostra das $n_i$ medições na amostra do estrato $i$.
+    \begin{enumerate}
+        \item[\textbf{a.}] Mostre que $\mu = \sum_{i=1}^k p_i \mu_i$, e mostre também que $\hat{\mu} = \sum_{i=1}^k p_i \bar{X}_i$ é um estimador não viesado de $\mu$.
+        \item[\textbf{b.}] Seja $n = \sum_{i=1}^k n_i$ o número total de observações nas $k$ amostras. Para um valor fixo de $n$, encontre os valores de $n_1, \dots, n_k$ para os quais a variância de $\hat{\mu}$ será mínima.
+    \end{enumerate}
+
+    \item Suponha que $X_1, \dots, X_n$ formem uma amostra aleatória de uma distribuição para a qual a f.d.p. ou a f.p. é $f(\mathbf{x}|\theta)$, onde o valor do parâmetro $\theta$ é desconhecido. Seja $\mathbf{X} = (X_1, \dots, X_n)$, e seja $T$ uma estatística. Assuma que $\delta(\mathbf{X})$ é um estimador não viesado de $\theta$ tal que $E_\theta[\delta(\mathbf{X})|T]$ não depende de $\theta$. (Se $T$ é uma estatística suficiente, como definido na Seção 7.7, então isso será verdadeiro para todo estimador $\delta$. A condição também é válida em outros exemplos.) Seja $\delta_0(T)$ a condicional $\delta_0(T) = E_\theta[\delta(\mathbf{X})|T]$.
+    \begin{enumerate}
+        \item[\textbf{a.}] Mostre que $\delta_0(T)$ é também um estimador não viesado de $\theta$.
+        \item[\textbf{b.}] Mostre que $\text{Var}_\theta(\delta_0) \le \text{Var}_\theta(\delta)$ para todo valor possível de $\theta$. \textit{Dica}: Use o resultado do Exercício 11 na Seção 4.7.
+    \end{enumerate}
+
+\end{enumerate}
+
+\begin{enumerate}
+    \setcounter{enumi}{13} % Continua a numeração do exercício anterior
+    \item Suponha que $X_1, \dots, X_n$ formem uma amostra aleatória da distribuição uniforme no intervalo $[0, \theta]$, onde o valor do parâmetro $\theta$ é desconhecido; e seja $Y_n = \max(X_1, \dots, X_n)$. Mostre que $[(n+1)/n]Y_n$ é um estimador não viesado de $\theta$.
+
+    \item Suponha que uma variável aleatória $X$ possa assumir apenas os cinco valores $x = 1, 2, 3, 4, 5$ com as seguintes probabilidades:
+    \begin{align*}
+        f(1|\theta) &= \theta^3, \quad f(2|\theta) = \theta^2(1-\theta), \\
+        f(3|\theta) &= 2\theta(1-\theta), \quad f(4|\theta) = \theta(1-\theta)^2, \\
+        f(5|\theta) &= (1-\theta)^3.
+    \end{align*}
+    Aqui, o valor do parâmetro $\theta$ é desconhecido ($0 \le \theta \le 1$).
+    \begin{enumerate}
+        \item[\textbf{a.}] Verifique se a soma das cinco probabilidades dadas é 1 para todo valor de $\theta$.
+        \item[\textbf{b.}] Considere um estimador $\delta_c(X)$ que tenha a seguinte forma:
+        \begin{align*}
+            \delta_c(1) &= 1, \quad \delta_c(2) = 2-2c, \quad \delta_c(3) = c, \\
+            \delta_c(4) &= 1-2c, \quad \delta_c(5) = 0.
+        \end{align*}
+        Mostre que para cada constante $c$, $\delta_c(X)$ é um estimador não viesado de $\theta$.
+        \item[\textbf{c.}] Seja $\theta_0$ um número tal que $0 < \theta_0 < 1$. Determine uma constante $c_0$ tal que quando $\theta = \theta_0$, a variância de $\delta_{c_0}(X)$ seja menor que a variância de $\delta_c(X)$ para todo outro valor de $c$.
+    \end{enumerate}
+
+    \item Reconsidere as condições do Exercício 3. Suponha que $n=2$, e observamos $X_1 = 2$ e $X_2 = -1$. Calcule o valor do estimador não viesado de $[E(X)]^2$ encontrado no Exercício 3. Descreva uma falha que você descobriu no estimador.
+
+\end{enumerate}
