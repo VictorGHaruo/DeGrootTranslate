@@ -1,0 +1,689 @@
+
+\setcounter{section}{0}
+\renewcommand{\thesection}{9.\arabic{section}}
+
+\section{Problemas de Teste de Hipóteses}
+
+No Exemplo 8.3.1, na página 473, estávamos interessados em saber se a média da log-precipitação $\mu$ de nuvens semeadas era ou não maior que alguma constante, especificamente 4. Problemas de teste de hipóteses são de natureza semelhante ao problema de decisão do Exemplo 8.3.1. Em geral, o teste de hipóteses se preocupa em tentar decidir se um parâmetro $\theta$ está em um subconjunto do espaço de parâmetros ou em seu complemento. Quando $\theta$ é unidimensional, pelo menos um dos dois subconjuntos será tipicamente um intervalo, possivelmente degenerado. Nesta seção, introduzimos a notação e alguma metodologia comum associada ao teste de hipóteses. Também demonstramos uma equivalência entre testes de hipóteses e intervalos de confiança.
+
+\subsection*{A Hipótese Nula e a Hipótese Alternativa}
+
+\vspace{1em}
+\noindent\textbf{Exemplo 9.1.1 (Chuva de Nuvens Semeadas)}
+\begin{quote}
+    No Exemplo 8.3.1, modelamos as log-precipitações de 26 nuvens semeadas como variáveis aleatórias normais com média desconhecida $\mu$ e variância desconhecida $\sigma^2$. Seja $\theta = (\mu, \sigma^2)$ o vetor de parâmetros. Estamos interessados em saber se $\mu > 4$ ou não. Para expressar isso em termos do vetor de parâmetros, estamos interessados em saber se $\theta$ pertence ou não ao conjunto $\{(\mu, \sigma^2) : \mu > 4\}$. No Exemplo 8.6.4, calculamos a probabilidade de que $\mu > 4$ como parte de uma análise Bayesiana. Se alguém não deseja fazer uma análise Bayesiana, deve-se abordar a questão de saber se $\mu > 4$ ou não por outros meios, como os introduzidos neste capítulo.
+\end{quote}
+\vspace{1em}
+
+Considere um problema estatístico envolvendo um parâmetro $\theta$ cujo valor é desconhecido, mas que deve pertencer a um certo espaço de parâmetros $\Omega$. Suponha agora que $\Omega$ possa ser particionado em dois subconjuntos disjuntos $\Omega_0$ e $\Omega_1$, e o estatístico esteja interessado em saber se $\theta$ pertence a $\Omega_0$ ou a $\Omega_1$.
+
+Vamos denotar por $H_0$ a hipótese de que $\theta \in \Omega_0$ e por $H_1$ a hipótese de que $\theta \in \Omega_1$. Como os subconjuntos $\Omega_0$ e $\Omega_1$ são disjuntos e $\Omega_0 \cup \Omega_1 = \Omega$, exatamente uma das hipóteses $H_0$ e $H_1$ deve ser verdadeira. O estatístico deve decidir qual das hipóteses $H_0$ ou $H_1$ parece ser verdadeira. Um problema desse tipo, no qual há apenas duas decisões possíveis, é chamado de problema de \textit{teste de hipóteses}. Se o estatístico tomar a decisão errada, ele pode sofrer uma certa perda ou pagar um certo custo. Em muitos problemas, ele terá a oportunidade de observar alguns dados antes de ter que tomar sua decisão, e os valores observados lhe fornecerão informações sobre o valor de $\theta$. Um procedimento para decidir qual hipótese escolher é chamado de \textit{procedimento de teste} ou simplesmente um \textit{teste}.
+
+Em nossa discussão até este ponto, tratamos as hipóteses $H_0$ e $H_1$ em pé de igualdade. Na maioria dos problemas, no entanto, as duas hipóteses são tratadas de forma bastante diferente.
+
+\vspace{1em}
+\noindent\textbf{Definição 9.1.1 (Hipótese Nula e Alternativa/Rejeitar)}
+\begin{quote}
+    A hipótese $H_0$ é chamada de \textit{hipótese nula} e a hipótese $H_1$ é chamada de \textit{hipótese alternativa}. Ao realizar um teste, se decidirmos que $\theta$ pertence a $\Omega_1$, dizemos \textit{rejeitar} $H_0$. Se decidirmos que $\theta$ pertence a $\Omega_0$, dizemos \textit{não rejeitar} $H_0$.
+\end{quote}
+\vspace{1em}
+
+A terminologia referente às decisões na Definição 9.1.1 é assimétrica no que diz respeito às hipóteses nula e alternativa. Retornaremos a este ponto mais adiante na seção.
+
+\vspace{1em}
+\noindent\textbf{Exemplo 9.1.2 (Crânios Egípcios)}
+\begin{quote}
+    Manly (1986, p.4) relata medições de várias dimensões de crânios humanos encontrados no Egito de vários períodos de tempo. Esses dados são atribuídos a Thomson e Randall-Maciver (1905). Um período de tempo é de aproximadamente 4000 a.C. Podemos modelar as medições de largura observadas (em mm) dos crânios como variáveis aleatórias normais com média desconhecida $\mu$ e variância 26. O interesse pode estar em como $\mu$ se compara à largura de um crânio moderno, cerca de 140mm. O espaço de parâmetros $\Omega$ poderia ser os números positivos, e poderíamos definir $\Omega_0$ como o intervalo $[140, \infty)$ enquanto $\Omega_1 = (0, 140)$. Neste caso, escreveríamos as hipóteses nula e alternativa como
+    \begin{align*}
+        H_0&: \mu \ge 140, \\
+        H_1&: \mu < 140.
+    \end{align*}
+    De forma mais realista, assumiríamos que tanto a média quanto a variância das medições de largura eram desconhecidas. Ou seja, cada medição é uma variável aleatória normal com média $\mu$ e variância $\sigma^2$. Neste caso, o parâmetro seria bidimensional, por exemplo, $\theta = (\mu, \sigma^2)$. O espaço de parâmetros $\Omega$ seria então pares de números reais. Neste caso, $\Omega_0 = [140, \infty) \times (0, \infty)$ e $\Omega_1 = (0, 140) \times (0, \infty)$, já que as hipóteses dizem respeito apenas à primeira coordenada $\mu$. As hipóteses a serem testadas são as mesmas de cima, mas agora $\mu$ é apenas uma coordenada de um vetor de parâmetros bidimensional. Abordaremos problemas deste tipo na Seção 9.5.
+\end{quote}
+\vspace{1em}
+
+Como decidimos que a hipótese nula deveria ser $H_0: \mu \ge 140$ no Exemplo 9.1.2 em vez de $\mu \le 140$? Seríamos levados à mesma conclusão de qualquer maneira? Podemos abordar essas questões depois de introduzirmos os possíveis erros que podem surgir no teste de hipóteses (Definição 9.1.7).
+
+\subsection*{Hipóteses Simples e Compostas}
+
+Suponha que $X_1, \dots, X_n$ formem uma amostra aleatória de uma distribuição para a qual a f.d.p. ou a f.p. é $f(x|\theta)$, onde o valor do parâmetro $\theta$ deve estar no espaço de parâmetros $\Omega$; e $\Omega_0$ e $\Omega_1$ são conjuntos disjuntos com $\Omega_0 \cup \Omega_1 = \Omega$; e deseja-se testar as seguintes hipóteses:
+\begin{align*}
+    H_0&: \theta \in \Omega_0, \\
+    H_1&: \theta \in \Omega_1.
+\end{align*}
+Para $i=0$ ou $i=1$, o conjunto $\Omega_i$ pode conter apenas um único valor de $\theta$ ou pode ser um conjunto maior.
+
+\vspace{1em}
+\noindent\textbf{Definição 9.1.2 (Hipóteses Simples e Compostas)}
+\begin{quote}
+    Se $\Omega_i$ contém apenas um único valor de $\theta$, então $H_i$ é uma \textit{hipótese simples}. Se o conjunto $\Omega_i$ contém mais de um valor de $\theta$, então $H_i$ é uma \textit{hipótese composta}.
+\end{quote}
+\vspace{1em}
+
+Sob uma hipótese simples, a distribuição das observações é completamente especificada. Sob uma hipótese composta, é especificado apenas que a distribuição das observações pertence a uma certa classe. Por exemplo, uma hipótese nula simples $H_0$ deve ter a forma
+\begin{equation} \label{eq:9.1.1}
+    H_0: \theta = \theta_0.
+\end{equation}
+
+\vspace{1em}
+\noindent\textbf{Definição 9.1.3 (Hipóteses Unilaterais e Bilaterais)}
+\begin{quote}
+    Seja $\theta$ um parâmetro unidimensional. \textit{Hipóteses nulas unilaterais} são da forma $H_0: \theta \le \theta_0$ ou $H_0: \theta \ge \theta_0$, com as correspondentes \textit{hipóteses alternativas unilaterais} sendo $H_1: \theta > \theta_0$ ou $H_1: \theta < \theta_0$. Quando a hipótese nula é simples, como (9.1.1), a hipótese alternativa é usualmente \textit{bilateral}, $H_1: \theta \neq \theta_0$.
+\end{quote}
+\vspace{1em}
+
+As hipóteses no Exemplo 9.1.2 são unilaterais. No Exemplo 9.1.3 (logo a seguir), a hipótese alternativa é bilateral. Hipóteses unilaterais e bilaterais serão discutidas em mais detalhes nas Seções 9.3 e 9.4.
+
+\subsection*{A Região Crítica e Estatísticas de Teste}
+
+\vspace{1em}
+\noindent\textbf{Exemplo 9.1.3 (Testando Hipóteses sobre a Média de uma Distribuição Normal com Variância Conhecida)}
+\begin{quote}
+    Suponha que $\mathbf{X} = (X_1, \dots, X_n)$ seja uma amostra aleatória da distribuição normal com média desconhecida $\mu$ e variância conhecida $\sigma^2$. Desejamos testar as hipóteses
+    \begin{equation} \label{eq:9.1.2}
+    \begin{aligned}
+        H_0&: \mu = \mu_0, \\
+        H_1&: \mu \neq \mu_0.
+    \end{aligned}
+    \end{equation}
+    Pode parecer razoável rejeitar $H_0$ se $\bar{X}_n$ estiver longe de $\mu_0$. Por exemplo, poderíamos escolher um número $c$ e rejeitar $H_0$ se a distância de $\bar{X}_n$ até $\mu_0$ for maior que $c$. Uma maneira de expressar isso é dividindo o conjunto $S$ de todos os vetores de dados possíveis $\mathbf{x} = (x_1, \dots, x_n)$ (o espaço amostral) nos dois conjuntos
+    \[
+    S_0 = \{\mathbf{x} : -c \le \bar{x}_n - \mu_0 \le c\}, \quad \text{e} \quad S_1 = S_0^c.
+    \]
+    Então, rejeitamos $H_0$ se $\mathbf{X} \in S_1$, e não rejeitamos $H_0$ se $\mathbf{X} \in S_0$. Uma maneira mais simples de expressar o procedimento é definir a estatística $T = |\bar{X}_n - \mu_0|$, e rejeitar $H_0$ se $T \ge c$.
+\end{quote}
+\vspace{1em}
+
+Em geral, considere um problema no qual desejamos testar as seguintes hipóteses:
+\begin{equation} \label{eq:9.1.3}
+    H_0: \theta \in \Omega_0, \quad \text{e} \quad H_1: \theta \in \Omega_1.
+\end{equation}
+Suponha que, antes que o estatístico tenha que decidir qual hipótese escolher, ele possa observar uma amostra aleatória $\mathbf{X} = (X_1, \dots, X_n)$ de uma distribuição que envolve o parâmetro desconhecido $\theta$. Seja $S$ o espaço amostral do vetor aleatório $n$-dimensional $\mathbf{X}$. Em outras palavras, $S$ é o conjunto de todos os valores possíveis da amostra aleatória.
+
+Em um problema deste tipo, o estatístico pode especificar um procedimento de teste particionando o espaço amostral $S$ em dois subconjuntos. Um subconjunto $S_1$ contém os valores de $\mathbf{X}$ para os quais ela rejeitará $H_0$, e o outro subconjunto $S_0$ contém os valores de $\mathbf{X}$ para os quais ela não rejeitará $H_0$.
+
+\vspace{1em}
+\noindent\textbf{Definição 9.1.4 (Região Crítica)}
+\begin{quote}
+    O conjunto $S_1$ definido acima é chamado de \textit{região crítica} do teste.
+\end{quote}
+\vspace{1em}
+
+Em resumo, um procedimento de teste é determinado especificando-se a região crítica do teste. O complemento da região crítica deve então conter todos os resultados para os quais $H_0$ não será rejeitada.
+
+Na maioria dos problemas de teste de hipóteses, a região crítica é definida em termos de uma estatística, $T = r(\mathbf{X})$.
+
+\vspace{1em}
+\noindent\textbf{Exemplo 9.1.4 (Chuva de Nuvens Semeadas)}
+\begin{quote}
+    Podemos formular o problema descrito no Exemplo 9.1.1 como o de testar as hipóteses $H_0: \mu \le 4$ versus $H_1: \mu > 4$. Poderíamos usar a mesma estatística de teste do Exemplo 9.1.3. Alternativamente, poderíamos usar a estatística $U = n^{1/2}(\bar{X}_n - 4)/\sigma'$, que se parece muito com a variável aleatória da Eq. (8.5.1) na qual os intervalos de confiança foram baseados. Faz sentido, neste caso, rejeitar $H_0$ se $U$ for grande, já que isso corresponderia a $\bar{X}_n$ sendo grande em comparação com 4.
+\end{quote}
+\vspace{1em}
+
+\noindent\textbf{Nota: Divisão do Espaço de Parâmetros e do Espaço Amostral.} Nas várias definições dadas até agora, o leitor precisa manter em mente duas divisões diferentes. Primeiro, dividimos o espaço de parâmetros $\Omega$ em dois subconjuntos disjuntos, $\Omega_0$ e $\Omega_1$. Em seguida, dividimos o espaço amostral $S$ em dois subconjuntos disjuntos $S_0$ e $S_1$. Essas divisões estão relacionadas entre si, mas não são a mesma coisa. Por um lado, o espaço de parâmetros e o espaço amostral geralmente têm dimensões diferentes, então $\Omega_0$ será necessariamente diferente de $S_0$. A relação entre as duas divisões é a seguinte: Se a amostra aleatória $\mathbf{X}$ estiver na região crítica $S_1$, então rejeitamos a hipótese nula $\Omega_0$. Se $\mathbf{X} \in S_0$, não rejeitamos $\Omega_0$. Eventualmente, aprendemos qual $S_0$ ou $S_1$ contém $\mathbf{X}$. Raramente aprendemos qual $\Omega_0$ ou $\Omega_1$ contém $\theta$.
+
+\vspace{1em}
+\noindent\textbf{Definição 9.1.5 (Estatística de Teste/Região de Rejeição)}
+\begin{quote}
+    Seja $\mathbf{X}$ uma amostra aleatória de uma distribuição que depende de um parâmetro $\theta$. Seja $T=r(\mathbf{X})$ uma estatística, e seja $R$ um subconjunto da reta real. Suponha que um procedimento de teste para as hipóteses (9.1.3) seja da forma "rejeitar $H_0$ se $T \in R$". Então chamamos $T$ de \textit{estatística de teste} e chamamos $R$ de \textit{região de rejeição} do teste.
+\end{quote}
+\vspace{1em}
+
+Quando um teste é definido em termos de uma estatística de teste $T$ e região de rejeição $R$, como na Definição 9.1.5, o conjunto $S_1 = \{\mathbf{x} : r(\mathbf{x}) \in R\}$ é a região crítica da Definição 9.1.4.
+
+Tipicamente, a região de rejeição para um teste baseado em uma estatística de teste $T$ será algum intervalo fixo ou o exterior de algum intervalo fixo. Por exemplo, se o teste rejeita $H_0$ quando $T \ge c$, a região de rejeição é o intervalo $[c, \infty)$. Uma vez que uma estatística de teste está sendo usada, é mais simples expressar tudo em termos da estatística de teste em vez de tentar calcular a região crítica da Definição 9.1.4. Todos os testes no restante deste livro serão baseados em estatísticas de teste. De fato, a maioria dos testes pode ser escrita na forma "rejeitar $H_0$ se $T \ge c$". (O Exemplo 9.1.7 é uma das raras exceções.)
+
+No Exemplo 9.1.3, a estatística de teste é $T = |\bar{X}_n - \mu_0|$, e a região de rejeição é o intervalo $[c, \infty)$. Pode-se escolher uma estatística de teste usando critérios intuitivos, como no Exemplo 9.1.3, ou com base em considerações teóricas. Alguns argumentos teóricos são dados nas Seções 9.2-9.4 para a escolha de certas estatísticas de teste em uma variedade de problemas envolvendo um único parâmetro. Embora esses resultados teóricos forneçam testes ótimos nas situações em que se aplicam, muitos problemas práticos não satisfazem as condições necessárias para aplicar esses resultados.
+
+\subsection*{A Função de Poder e Tipos de Erro}
+
+Seja $\delta$ um procedimento de teste da forma discutida anteriormente nesta seção, seja baseado em uma região crítica ou em uma estatística de teste. As propriedades probabilísticas interessantes de $\delta$ podem ser resumidas computando, para cada valor de $\theta \in \Omega$, ou a probabilidade $\pi(\theta|\delta)$ de que o teste $\delta$ rejeitará $H_0$, ou a probabilidade $1 - \pi(\theta|\delta)$ de que ele não rejeitará $H_0$.
+
+\vspace{1em}
+\noindent\textbf{Definição 9.1.6 (Função de Poder)}
+\begin{quote}
+    Seja $\delta$ um procedimento de teste. A função $\pi(\theta|\delta)$ é chamada de \textit{função de poder} do teste $\delta$. Se $S_1$ denota a região crítica de $\delta$, então a função de poder $\pi(\theta|\delta)$ é determinada pela relação
+    \begin{equation} \label{eq:9.1.4}
+        \pi(\theta|\delta) = \text{Pr}(\mathbf{X} \in S_1|\theta) \quad \text{para } \theta \in \Omega.
+    \end{equation}
+    Se $\delta$ é descrito em termos de uma estatística de teste $T$ e região de rejeição $R$, a função de poder é
+    \begin{equation} \label{eq:9.1.5}
+        \pi(\theta|\delta) = \text{Pr}(T \in R|\theta) \quad \text{para } \theta \in \Omega.
+    \end{equation}
+    Como a função de poder $\pi(\theta|\delta)$ especifica, para cada valor possível do parâmetro $\theta$, a probabilidade de que $\delta$ rejeitará $H_0$, segue-se que a função de poder ideal seria aquela para a qual $\pi(\theta|\delta) = 0$ para todo valor de $\theta \in \Omega_0$, e $\pi(\theta|\delta) = 1$ para todo valor de $\theta \in \Omega_1$. Se a função de poder de um teste $\delta$ realmente tivesse esses valores, então, independentemente do valor real de $\theta$, $\delta$ levaria à decisão correta com probabilidade 1. Em um problema prático, no entanto, raramente existirá qualquer procedimento de teste com esta função de poder ideal.
+\end{quote}
+\vspace{1em}
+
+\noindent\textbf{Exemplo 9.1.5 (Testando Hipóteses sobre a Média de uma Distribuição Normal com Variância Conhecida)}
+\begin{quote}
+    No Exemplo 9.1.3, o teste $\delta$ é baseado na estatística de teste $T = |\bar{X}_n - \mu_0|$ com região de rejeição $R = [c, \infty)$. A distribuição de $\bar{X}_n$ é a distribuição normal com média $\mu$ e variância $\sigma^2/n$. O parâmetro é $\mu$ porque assumimos que $\sigma^2$ é conhecida. Seja $\Phi$ a f.d.a. normal padrão. Então
+    \begin{align*}
+        \text{Pr}(T \in R|\mu) &= \text{Pr}(\bar{X}_n \ge \mu_0 + c|\mu) + \text{Pr}(\bar{X}_n \le \mu_0 - c|\mu) \\
+        &= 1 - \Phi\left(\frac{n^{1/2}(\mu_0 + c - \mu)}{\sigma}\right) + \Phi\left(\frac{n^{1/2}(\mu_0 - c - \mu)}{\sigma}\right).
+    \end{align*}
+    A expressão final acima é a função de poder $\pi(\mu|\delta)$. A Figura 9.1 plota as funções de poder de três testes diferentes com $c=1, 2, 3$ no exemplo específico em que $\mu_0 = 4, n=15,$ e $\sigma^2 = 9$.
+\end{quote}
+\vspace{1em}
+
+Como a possibilidade de erro existe em virtualmente todo problema de teste, devemos considerar quais tipos de erros podemos cometer. Para cada valor de $\theta \in \Omega_0$, a decisão de rejeitar $H_0$ é uma decisão incorreta. Similarmente, para cada valor de $\theta \in \Omega_1$, a decisão de não rejeitar $H_0$ é uma decisão incorreta.
+
+\vspace{1em}
+\noindent\textbf{Definição 9.1.7 (Erro Tipo I/II)}
+\begin{quote}
+    Uma decisão errônea de rejeitar uma hipótese nula verdadeira é chamada de \textit{erro tipo I}, ou um erro de primeira espécie. Uma decisão errônea de não rejeitar uma hipótese nula falsa é chamada de \textit{erro tipo II}, ou um erro de segunda espécie.
+\end{quote}
+\vspace{1em}
+
+Em termos da função de poder, se $\theta \in \Omega_0$, $\pi(\theta|\delta)$ é a probabilidade de que o estatístico cometerá um erro tipo I. Similarmente, se $\theta \in \Omega_1$, $1 - \pi(\theta|\delta)$ é a probabilidade de cometer um erro tipo II. Claro, ou $\theta \in \Omega_0$ ou $\theta \in \Omega_1$, mas não ambos. Portanto, apenas um tipo de erro é possível condicional a $\theta$, mas não sabemos qual é.
+
+Se tivermos escolha entre vários testes, gostaríamos de escolher um teste $\delta$ que tenha uma pequena probabilidade de erro. Ou seja, gostaríamos que a função de poder $\pi(\theta|\delta)$ fosse baixa para valores de $\theta \in \Omega_0$, e gostaríamos que $\pi(\theta|\delta)$ fosse alta para $\theta \in \Omega_1$. Geralmente, esses dois objetivos trabalham um contra o outro. Isto é, se escolhermos $\delta$ para tornar $\pi(\theta|\delta)$ pequeno para $\theta \in \Omega_0$, usualmente descobriremos que $\pi(\theta|\delta)$ é pequeno para $\theta \in \Omega_1$ também. Por exemplo, o procedimento de teste $\delta_0$ que, independentemente dos dados observados, nunca rejeita $H_0$, terá $\pi(\theta|\delta_0) = 0$ para todo $\theta \in \Omega_0$. No entanto, para este procedimento $\pi(\theta|\delta_0) = 0$ para todo $\theta \in \Omega_1$ também. Similarmente, o teste $\delta_1$ que sempre rejeita $H_0$ terá $\pi(\theta|\delta_1) = 1$ para todo $\theta \in \Omega_1$, mas também terá $\pi(\theta|\delta_1) = 1$ para todo $\theta \in \Omega_0$. Portanto, é preciso encontrar um equilíbrio apropriado entre os dois objetivos de baixo poder em $\Omega_0$ e alto poder em $\Omega_1$.
+
+O método mais popular para encontrar um equilíbrio entre os dois objetivos é escolher um número $\alpha_0$ entre 0 e 1 e exigir que
+\begin{equation} \label{eq:9.1.6}
+    \pi(\theta|\delta) \le \alpha_0, \quad \text{para todo } \theta \in \Omega_0.
+\end{equation}
+Então, entre todos os testes que satisfazem (\ref{eq:9.1.6}), o estatístico procura um teste cuja função de poder seja tão alta quanto possível para $\theta \in \Omega_1$. Este método é discutido nas Seções 9.2 e 9.3. Outro método de balancear as probabilidades de erros tipo I e tipo II é minimizar uma combinação linear das diferentes probabilidades de erro. Discutiremos este método na Seção 9.2 e novamente na Seção 9.8.
+
+\vspace{1em}
+\noindent\textbf{Nota: Escolhendo Hipóteses Nula e Alternativa.} Se alguém escolhe balancear as probabilidades de erro tipo I e tipo II exigindo (9.1.6), então se introduziu uma assimetria no tratamento das hipóteses nula e alternativa. Na maioria dos problemas de teste, tal assimetria pode ser bastante natural. Geralmente, um dos dois erros (tipo I ou tipo II) é mais custoso ou menos palatável em algum sentido. Faria sentido, então, colocar controles mais rígidos sobre a probabilidade do erro mais sério. Por esta razão, geralmente se arranja as hipóteses nula e alternativa de modo que o erro tipo I seja o erro a ser mais evitado. Para casos em que nenhuma das hipóteses é naturalmente a nula, trocar os nomes das hipóteses nula e alternativa pode ter uma variedade de efeitos diferentes nos resultados dos procedimentos de teste. (Veja Exercício 21 nesta seção.)
+
+\vspace{1em}
+\noindent\textbf{Exemplo 9.1.6 (Crânios Egípcios)}
+\begin{quote}
+    No Exemplo 9.1.2, suponha que os experimentadores tenham uma teoria de que a largura dos crânios deveria aumentar (embora ligeiramente) ao longo de grandes períodos de tempo. Se $\mu$ é a largura média dos crânios de 4000 a.C. e 140 é a largura média dos crânios modernos, a teoria diria $\mu < 140$. Os experimentadores poderiam erroneamente afirmar que os dados suportam sua teoria ($\mu < 140$) quando, na verdade, $\mu \ge 140$, ou eles poderiam erroneamente afirmar que os dados falham em suportar sua teoria ($\mu > 140$) quando, na verdade, $\mu < 140$. Em estudos científicos, é comum tratar a falsa confirmação da própria teoria como um erro mais sério do que falhar falsamente em confirmar a própria teoria. Isso significaria que o erro tipo I deveria ser dizer que $\mu < 140$ (confirmar a teoria, rejeitar $H_0$) quando, na verdade, $\mu \ge 140$ (a teoria é falsa, $H_0$ é verdadeira). Tradicionalmente, inclui-se os extremos das hipóteses intervalares na nula, então formularíamos as hipóteses a serem testadas como
+    \begin{align*}
+        H_0&: \mu \ge 140, \\
+        H_1&: \mu < 140,
+    \end{align*}
+    como fizemos no Exemplo 9.1.2.
+\end{quote}
+\vspace{1em}
+
+As quantidades na Eq. (9.1.6) desempenham um papel fundamental no teste de hipóteses e têm nomes especiais.
+
+\vspace{1em}
+\noindent\textbf{Definição 9.1.8 (Nível/Tamanho)}
+\begin{quote}
+    Um teste que satisfaz (9.1.6) é chamado de um \textit{teste de nível $\alpha_0$}, e dizemos que o teste tem \textit{nível de significância $\alpha_0$}. Além disso, o \textit{tamanho} $\alpha(\delta)$ de um teste $\delta$ é definido como se segue:
+    \begin{equation} \label{eq:9.1.7}
+        \alpha(\delta) = \sup_{\theta \in \Omega_0} \pi(\theta|\delta).
+    \end{equation}
+    Os seguintes resultados são consequências imediatas da Definição 9.1.8.
+\end{quote}
+\vspace{1em}
+
+\noindent\textbf{Corolário 9.1.1}
+\begin{quote}
+    Um teste $\delta$ é um teste de nível $\alpha_0$ se e somente se seu tamanho é no máximo $\alpha_0$ (i.e., $\alpha(\delta) \le \alpha_0$). Se a hipótese nula é simples, isto é, $H_0: \theta = \theta_0$, então o tamanho de $\delta$ será $\alpha(\delta) = \pi(\theta_0|\delta)$. \hfill $\blacksquare$
+\end{quote}
+\vspace{1em}
+
+\noindent\textbf{Exemplo 9.1.7 (Testando Hipóteses sobre uma Distribuição Uniforme)}
+\begin{quote}
+    Suponha que uma amostra aleatória $X_1, \dots, X_n$ seja retirada da distribuição uniforme no intervalo $[0, \theta]$, onde o valor de $\theta$ é desconhecido ($\theta > 0$); e suponha também que se deseja testar as seguintes hipóteses:
+    \begin{equation} \label{eq:9.1.8}
+    \begin{aligned}
+        H_0&: 3 \le \theta \le 4, \\
+        H_1&: \theta < 3 \text{ ou } \theta > 4.
+    \end{aligned}
+    \end{equation}
+    Sabemos do Exemplo 6.5.15 que o E.M.V. de $\theta$ é $Y_n = \max\{X_1, \dots, X_n\}$. Embora $Y_n$ deva ser menor que $\theta$, há uma alta probabilidade de que $Y_n$ esteja próximo de $\theta$ se o tamanho da amostra $n$ for razoavelmente grande. Para fins ilustrativos, suponha que o teste $\delta$ não rejeita $H_0$ se $2.9 < Y_n < 4$, e $\delta$ rejeita $H_0$ se $Y_n$ não estiver neste intervalo. Assim, a região crítica do teste $\delta$ contém todos os valores de $X_1, \dots, X_n$ para os quais $Y_n \le 2.9$ ou $Y_n \ge 4$. Em termos da estatística de teste $Y_n$, a região de rejeição é a união de dois intervalos $(-\infty, 2.9] \cup [4, \infty)$.
+
+    A função de poder de $\delta$ é especificada pela relação
+    \[
+    \pi(\theta|\delta) = \text{Pr}(Y_n \le 2.9|\theta) + \text{Pr}(Y_n \ge 4|\theta).
+    \]
+    Se $\theta \le 2.9$, então $\text{Pr}(Y_n \le 2.9|\theta) = 1$ e $\text{Pr}(Y_n \ge 4|\theta) = 0$. Portanto, $\pi(\theta|\delta) = 1$ se $\theta \le 2.9$. Se $2.9 < \theta \le 4$, então $\text{Pr}(Y_n \le 2.9|\theta) = (2.9/\theta)^n$ e $\text{Pr}(Y_n \ge 4|\theta) = 0$. Neste caso, $\pi(\theta|\delta) = (2.9/\theta)^n$. Finalmente, se $\theta > 4$, então $\text{Pr}(Y_n \le 2.9|\theta) = (2.9/\theta)^n$ e $\text{Pr}(Y_n \ge 4|\theta) = 1 - (4/\theta)^n$. Neste caso, $\pi(\theta|\delta) = (2.9/\theta)^n + 1 - (4/\theta)^n$. A função de poder $\pi(\theta|\delta)$ é esboçada na Fig. 9.2.
+
+    Pela Eq. (9.1.7), o tamanho de $\delta$ é $\alpha(\delta) = \sup_{3 \le \theta \le 4} \pi(\theta|\delta)$. Pode ser visto na Fig. 9.2 e nos cálculos recém-dados que $\alpha(\delta) = \pi(3|\delta) = (2.9/30)^n$. Em particular, se o tamanho da amostra é $n=68$, então o tamanho de $\delta$ é $(29/30)^{68} = 0.0997$. Então $\delta$ é um teste de nível $\alpha_0$ para todo nível de significância $\alpha_0 \ge 0.0997$.
+\end{quote}
+\vspace{1em}
+
+\subsection*{Fazendo um Teste Ter um Nível de Significância Específico}
+
+Suponha que desejamos testar as hipóteses
+\begin{align*}
+    H_0&: \theta \in \Omega_0, \\
+    H_1&: \theta \in \Omega_1.
+\end{align*}
+Seja $T$ uma estatística de teste, e suponha que nosso teste rejeitará a hipótese nula se $T \ge c$, para alguma constante $c$. Suponha também que desejamos que nosso teste tenha o nível de significância $\alpha_0$. A função de poder do nosso teste é $\pi(\theta|\delta) = \text{Pr}(T \ge c|\theta)$, e queremos
+\begin{equation} \label{eq:9.1.9}
+    \sup_{\theta \in \Omega_0} \text{Pr}(T \ge c|\theta) \le \alpha_0.
+\end{equation}
+É claro que a função de poder, e portanto o lado esquerdo de (9.1.9), são funções não crescentes de $c$. Portanto, (9.1.9) será satisfeita para grandes valores de $c$, mas não para pequenos valores. Se quisermos que a função de poder seja a maior possível para $\theta \in \Omega_1$, devemos tornar $c$ o menor possível, enquanto ainda satisfazemos (9.1.9). Se $T$ tem uma distribuição contínua, então é usualmente simples encontrar um $c$ apropriado.
+
+\vspace{1em}
+\noindent\textbf{Exemplo 9.1.8 (Testando Hipóteses sobre a Média de uma Distribuição Normal com Variância Conhecida)}
+\begin{quote}
+    No Exemplo 9.1.5, nosso teste é rejeitar $H_0: \mu = \mu_0$ se $|\bar{X}_n - \mu_0| \ge c$. Como a hipótese nula é simples, o lado esquerdo de (9.1.9) se reduz à probabilidade (assumindo que $\mu=\mu_0$) de que $|\bar{X}_n - \mu_0| \ge c$. Como $Y = \bar{X}_n - \mu_0$ tem a distribuição normal com média 0 e variância $\sigma^2/n$ quando $\mu=\mu_0$, podemos encontrar um valor $c$ que torna o tamanho exatamente $\alpha_0$ para cada $\alpha_0$. A Figura 9.3 mostra a f.d.p. de $Y$ e o tamanho do teste indicado como a área sombreada sob a f.d.p. Como a f.d.p. normal é simétrica em torno da média (0 neste caso), as duas áreas sombreadas devem ser iguais, ou seja, $\alpha_0/2$. Isso significa que $c$ deve ser o quantil $1-\alpha_0/2$ da distribuição de $Y$. Este quantil é $c = \Phi^{-1}(1-\alpha_0/2)\sigma n^{-1/2}$.
+
+    Ao testar hipóteses sobre a média de uma distribuição normal, é tradicional reescrever este teste em termos da estatística
+    \begin{equation} \label{eq:9.1.10}
+        Z = \frac{n^{1/2}(\bar{X}_n - \mu_0)}{\sigma}.
+    \end{equation}
+    Então o teste rejeita $H_0$ se $|Z| \ge \Phi^{-1}(1-\alpha_0/2)$.
+\end{quote}
+\vspace{1em}
+
+\noindent\textbf{Exemplo 9.1.9 (Testando Hipóteses sobre um Parâmetro de Bernoulli)}
+\begin{quote}
+    Suponha que $X_1, \dots, X_n$ formem uma amostra aleatória da distribuição de Bernoulli com parâmetro $p$. Suponha que desejamos testar as hipóteses
+    \begin{equation} \label{eq:9.1.11}
+    \begin{aligned}
+        H_0&: p \le p_0, \\
+        H_1&: p > p_0.
+    \end{aligned}
+    \end{equation}
+    Seja $Y = \sum_{i=1}^n X_i$, que tem a distribuição binomial com parâmetros $n$ e $p$. Quanto maior $p$, maior esperamos que $Y$ seja. Então, suponha que escolhamos rejeitar $H_0$ se $Y \ge c$, para alguma constante $c$. Suponha também que queiramos que o tamanho do teste seja o mais próximo possível de $\alpha_0$ sem exceder $\alpha_0$. É fácil verificar que $\text{Pr}(Y \ge c|p)$ é uma função crescente de $p$; portanto, o tamanho do teste será $\text{Pr}(Y \ge c|p=p_0)$. Assim, $c$ deve ser o menor número tal que $\text{Pr}(Y \ge c|p=p_0) \le \alpha_0$. Por exemplo, se $n=10, p_0=0.3,$ e $\alpha_0=0.1$, podemos usar a tabela de probabilidades binomiais no final deste livro para determinar $c$. Podemos calcular $\sum_{y=6}^{10} \text{Pr}(Y=y|p=0.3) = 0.0473$ e $\sum_{y=5}^{10} \text{Pr}(Y=y|p=0.3) = 0.1503$. Para manter o tamanho do teste no máximo 0.1, devemos escolher $c > 5$. Todo valor de $c$ no intervalo $(5, 6]$ produz o mesmo teste, já que $Y$ assume apenas valores inteiros.
+\end{quote}
+\vspace{1em}
+
+Sempre que escolhemos um procedimento de teste, devemos também examinar a função de poder. Se uma boa escolha foi feita, a função de poder deve ser geralmente maior para $\theta \in \Omega_1$ do que para $\theta \in \Omega_0$. Além disso, a função de poder deve aumentar à medida que $\theta$ se afasta de $\Omega_0$. Por exemplo, a Fig. 9.4 plota as funções de poder para dois dos exemplos nesta seção. Em ambos os casos, a função de poder aumenta à medida que o parâmetro se afasta de $\Omega_0$.
+
+\subsection*{O p-valor}
+
+\vspace{1em}
+\noindent\textbf{Exemplo 9.1.10 (Testando Hipóteses sobre a Média de uma Distribuição Normal com Variância Conhecida)}
+\begin{quote}
+    No Exemplo 9.1.8, suponha que escolhamos testar a hipótese nula ao nível $\alpha_0 = 0.05$. Nós então calcularíamos a estatística de teste na Eq. (9.1.10) e rejeitaríamos $H_0$ se $|Z| \ge \Phi^{-1}(1-0.05/2) = 1.96$. Por exemplo, suponha que $Z = 2.78$ seja observado. Então, rejeitaríamos $H_0$. Suponha que fôssemos relatar o resultado dizendo que rejeitamos $H_0$ ao nível 0.05. O que outro estatístico, que achasse mais apropriado testar a hipótese nula a um nível diferente, seria capaz de fazer com este relatório?
+\end{quote}
+\vspace{1em}
+
+O resultado de um teste de hipóteses pode parecer um uso bastante ineficiente de nossos dados. Por exemplo, no Exemplo 9.1.10, decidimos rejeitar $H_0$ ao nível $\alpha_0 = 0.05$ se a estatística $Z$ na Eq. (9.1.10) for pelo menos 1.96. Isso significa que, quer observemos $Z=1.97$ ou $Z=6.97$, relataremos o mesmo resultado, ou seja, que rejeitamos $H_0$ ao nível 0.05. O relatório do resultado do teste não carrega nenhum senso de quão perto estávamos de tomar a outra decisão. Além disso, se outra estatística escolher usar um teste de tamanho 0.01, ela não rejeitaria $H_0$ com $Z=1.97$, mas rejeitaria $H_0$ com $Z=6.97$. O que ela faria com $Z=2.78$?
+
+Por essas razões, um experimentador não costuma escolher um valor de $\alpha_0$ antes do experimento e, em seguida, simplesmente relatar se $H_0$ foi ou não rejeitada ao nível $\alpha_0$. Em muitos campos de aplicação, tornou-se prática padrão relatar, além do valor observado da estatística de teste apropriada, como $Z$, todos os valores de $\alpha_0$ para os quais o teste de nível $\alpha_0$ levaria à rejeição de $H_0$.
+
+\vspace{1em}
+\noindent\textbf{Exemplo 9.1.11 (Testando Hipóteses sobre a Média de uma Distribuição Normal com Variância Conhecida)}
+\begin{quote}
+    Como o valor observado de $Z$ no Exemplo 9.1.10 é 2.78, a hipótese $H_0$ seria rejeitada para todo nível de significância $\alpha_0$ tal que $2.78 \ge \Phi^{-1}(1-\alpha_0/2)$. Usando a tabela da distribuição normal fornecida no final deste livro, esta desigualdade se traduz em $\alpha_0 \ge 0.0054$. O valor 0.0054 é chamado de \textit{p-valor} (ou \textit{valor-p}) para os dados observados e as hipóteses testadas. Como $0.01 > 0.0054$, a estatística que queria testar as hipóteses ao nível 0.01 também rejeitaria $H_0$.
+\end{quote}
+\vspace{1em}
+
+\vspace{1em}
+\noindent\textbf{Definição 9.1.9 (p-valor)}
+\begin{quote}
+    Em geral, o \textit{p-valor} (ou \textit{valor-p}) é o menor nível $\alpha_0$ tal que rejeitaríamos a hipótese nula ao nível $\alpha_0$ com os dados observados.
+\end{quote}
+\vspace{1em}
+
+Um experimentador que rejeita uma hipótese nula se e somente se o p-valor é no máximo $\alpha_0$ está usando um teste com nível de significância $\alpha_0$. Similarmente, um experimentador que queira usar um teste de nível $\alpha_0$ rejeitará a hipótese nula se e somente se o p-valor for no máximo $\alpha_0$. Por esta razão, o p-valor é às vezes chamado de \textit{nível de significância observado}.
+
+Um experimentador no Exemplo 9.1.10 tipicamente relataria que o valor observado de $Z$ foi 2.78 e que o p-valor correspondente foi 0.0054. É então dito que o valor observado de $Z$ é \textit{apenas significante} ao nível de significância 0.0054. Uma vantagem para o experimentador de relatar resultados experimentais desta maneira é que ele não precisa selecionar de antemão um nível de significância arbitrário $\alpha_0$ no qual realizar o teste. Além disso, quando um leitor do relatório do experimentador descobre que o valor observado de $Z$ foi apenas significante ao nível 0.0054, ela sabe imediatamente que $H_0$ seria rejeitada para todo valor maior de $\alpha_0$ e não seria rejeitada para qualquer valor menor.
+
+\paragraph{Calculando p-valores} Se todos os nossos testes são da forma "rejeitar a hipótese nula quando $T \ge c$" para uma única estatística de teste $T$, existe uma maneira direta de calcular p-valores. Para cada $t$, seja $\delta_t$ o teste que rejeita $H_0$ se $T \ge t$. Então o p-valor quando $T=t$ é observado é o tamanho do teste $\delta_t$. (Veja Exercício 18.) Ou seja, o p-valor é igual a
+\begin{equation} \label{eq:9.1.12}
+    \sup_{\theta \in \Omega_0} \pi(\theta|\delta_t) = \sup_{\theta \in \Omega_0} \text{Pr}(T \ge t|\theta).
+\end{equation}
+Tipicamente, $\pi(\theta|\delta_t)$ é maximizado em algum $\theta_0$ na fronteira entre $\Omega_0$ e $\Omega_1$. Como o p-valor é calculado como uma probabilidade na cauda superior da distribuição de $T$, ele às vezes é chamado de uma \textit{área de cauda}.
+
+\vspace{1em}
+\noindent\textbf{Exemplo 9.1.12 (Testando Hipóteses sobre um Parâmetro de Bernoulli)}
+\begin{quote}
+    Para testar as hipóteses (9.1.11) no Exemplo 9.1.9, usamos um teste que rejeita $H_0$ se $Y \ge c$. O p-valor, quando $Y=y$ é observado, será $\sup_{p \le p_0} \text{Pr}(Y \ge y|p)$. Neste exemplo, é fácil ver que $\text{Pr}(Y \ge y|p)$ aumenta como uma função de $p$. Portanto, o p-valor é $\text{Pr}(Y \ge y|p=p_0)$. Por exemplo, seja $p_0 = 0.3$ e $n=10$. Se $Y=6$ é observado, então $\text{Pr}(Y \ge 6|p=0.3) = 0.0473$, como calculamos no Exemplo 9.1.9.
+\end{quote}
+\vspace{1em}
+
+O cálculo do p-valor é mais complicado quando o teste não pode ser colocado na forma "rejeitar $H_0$ se $T \ge c$". Neste texto, calcularemos p-valores apenas para testes que tenham esta forma.
+
+\subsection*{Equivalência de Testes e Conjuntos de Confiança}
+
+\vspace{1em}
+\noindent\textbf{Exemplo 9.1.13 (Chuva de Nuvens Semeadas)}
+\begin{quote}
+    Nos Exemplos 8.5.5 e 8.5.6, encontramos um intervalo de confiança unilateral (limite inferior) com coeficiente $\gamma$ para $\mu$, a média da log-precipitação de nuvens semeadas. Para $\gamma = 0.9$, o intervalo observado é $(4.727, \infty)$. Uma das interpretações controversas deste intervalo é que temos confiança 0.9 (seja lá o que isso signifique) de que $\mu > 4.727$. Embora esta declaração seja deliberadamente ambígua e difícil de interpretar, ela soa como se pudesse nos ajudar a abordar o problema de testar as hipóteses $H_0: \mu \le 4$ versus $H_1: \mu > 4$. O fato de 4 não estar no intervalo de confiança com coeficiente 0.9 observado nos diz algo sobre se devemos ou não rejeitar $H_0$ em algum nível de significância ou outro?
+\end{quote}
+\vspace{1em}
+
+Ilustraremos agora como os intervalos de confiança (ver Seção 8.5) podem ser usados como um método alternativo para relatar os resultados de um teste de hipóteses. Em particular, mostraremos que um conjunto de confiança com coeficiente $\gamma$ (uma generalização do intervalo de confiança a ser definida em breve) pode ser pensado como um conjunto de hipóteses nulas que não seriam rejeitadas ao nível de significância $1 - \gamma$.
+
+\vspace{1em}
+\noindent\textbf{Teorema 9.1.1 (Definindo Conjuntos de Confiança a partir de Testes)}
+\begin{quote}
+    Seja $\mathbf{X} = (X_1, \dots, X_n)$ uma amostra aleatória de uma distribuição que depende de um parâmetro $\theta$. Seja $g(\theta)$ uma função, e suponha que para cada valor possível $g_0$ de $g(\theta)$, exista um teste de nível $\alpha_0$ $\delta_{g_0}$ das hipóteses
+    \begin{equation} \label{eq:9.1.13}
+        H_{0, g_0}: g(\theta) = g_0, \quad H_{1, g_0}: g(\theta) \neq g_0.
+    \end{equation}
+    Para cada valor possível $\mathbf{x}$ de $\mathbf{X}$, defina
+    \begin{equation} \label{eq:9.1.14}
+        \omega(\mathbf{x}) = \{g_0 : \delta_{g_0} \text{ não rejeita } H_{0, g_0} \text{ se } \mathbf{X} = \mathbf{x} \text{ é observado}\}.
+    \end{equation}
+    Seja $\gamma = 1 - \alpha_0$. Então, o conjunto aleatório $\omega(\mathbf{X})$ satisfaz
+    \begin{equation} \label{eq:9.1.15}
+        \text{Pr}[g(\theta_0) \in \omega(\mathbf{X})|\theta = \theta_0] \ge \gamma,
+    \end{equation}
+    para todo $\theta_0 \in \Omega$.
+\end{quote}
+\vspace{1em}
+
+\noindent\textit{Prova.} Seja $\theta_0$ um elemento arbitrário de $\Omega$, e defina $g_0 = g(\theta_0)$. Como $\delta_{g_0}$ é um teste de nível $\alpha_0$, sabemos que
+\begin{equation} \label{eq:9.1.16}
+    \text{Pr}[\delta_{g_0} \text{ não rejeita } H_{0, g_0}|\theta=\theta_0] \ge 1 - \alpha_0 = \gamma.
+\end{equation}
+Para cada $\mathbf{x}$, sabemos que $g(\theta_0) \in \omega(\mathbf{x})$ se e somente se o teste $\delta_{g_0}$ não rejeita $H_{0, g_0}$ quando $\mathbf{X} = \mathbf{x}$ é observado. Segue-se que o lado esquerdo da Eq. (\ref{eq:9.1.16}) é o mesmo que o lado esquerdo da Eq. (\ref{eq:9.1.15}). \hfill $\blacksquare$
+
+\vspace{1em}
+\noindent\textbf{Definição 9.1.10 (Conjunto de Confiança)}
+\begin{quote}
+    Se um conjunto aleatório $\omega(\mathbf{X})$ satisfaz (\ref{eq:9.1.15}) para todo $\theta_0 \in \Omega$, nós o chamamos de um \textit{conjunto de confiança com coeficiente $\gamma$} para $g(\theta)$. Se a desigualdade em (\ref{eq:9.1.15}) for uma igualdade para todo $\theta_0$, então chamamos o conjunto de confiança de \textit{exato}.
+\end{quote}
+\vspace{1em}
+
+Um conjunto de confiança é uma generalização do conceito de um intervalo de confiança introduzido na Seção 8.5. O que o Teorema 9.1.1 mostra é que uma coleção de testes de nível $\alpha_0$ das hipóteses (\ref{eq:9.1.13}) pode ser usada para construir um conjunto de confiança com coeficiente $\gamma = 1 - \alpha_0$ para $g(\theta)$. A construção inversa também é possível.
+
+\vspace{1em}
+\noindent\textbf{Teorema 9.1.2 (Definindo Testes a partir de Conjuntos de Confiança)}
+\begin{quote}
+    Seja $\mathbf{X} = (X_1, \dots, X_n)$ uma amostra aleatória de uma distribuição que depende de um parâmetro $\theta$. Seja $g(\theta)$ uma função de $\theta$, e seja $\omega(\mathbf{X})$ um conjunto de confiança com coeficiente $\gamma$ para $g(\theta)$. Para cada valor possível $g_0$ de $g(\theta)$, construa o seguinte teste $\delta_{g_0}$ das hipóteses na Eq. (\ref{eq:9.1.13}): $\delta_{g_0}$ não rejeita $H_{0, g_0}$ se e somente se $g_0 \in \omega(\mathbf{X})$. Então $\delta_{g_0}$ é um teste de nível $\alpha_0 = 1 - \gamma$ das hipóteses na Eq. (\ref{eq:9.1.13}).
+\end{quote}
+\vspace{1em}
+
+\noindent\textit{Prova.} Como $\omega(\mathbf{X})$ é um conjunto de confiança com coeficiente $\gamma$ para $g(\theta)$, ele satisfaz a Eq. (\ref{eq:9.1.15}) para todo $\theta_0 \in \Omega$. Como na prova do Teorema 9.1.1, os lados esquerdos das Eqs. (\ref{eq:9.1.15}) e (\ref{eq:9.1.16}) são os mesmos, o que torna $\delta_{g_0}$ um teste de nível $\alpha_0$. \hfill $\blacksquare$
+
+\vspace{1em}
+\noindent\textbf{Exemplo 9.1.14 (Um Intervalo de Confiança para a Média de uma Distribuição Normal)}
+\begin{quote}
+    Considere o teste encontrado no Exemplo 9.1.8 para as hipóteses (\ref{eq:9.1.2}). Seja $\alpha_0 = 1 - \gamma$. O teste de tamanho $\alpha_0$ $\delta_{\mu_0}$ é rejeitar $H_0$ se $|\bar{X}_n - \mu_0| \ge \Phi^{-1}(1-\alpha_0/2)\sigma n^{-1/2}$. Se $\bar{X}_n = \bar{x}_n$ é observado, o conjunto de $\mu_0$ tal que não rejeitaríamos $H_0$ é o conjunto de $\mu_0$ tal que
+    \[
+    |\bar{x}_n - \mu_0| < \Phi^{-1}\left(1 - \frac{\alpha_0}{2}\right)\sigma n^{-1/2}.
+    \]
+    Esta desigualdade facilmente se traduz para
+    \[
+    \bar{x}_n - \Phi^{-1}\left(1 - \frac{\alpha_0}{2}\right)\sigma n^{-1/2} < \mu_0 < \bar{x}_n + \Phi^{-1}\left(1 - \frac{\alpha_0}{2}\right)\sigma n^{-1/2}.
+    \]
+    O intervalo de confiança com coeficiente $\gamma$ torna-se
+    \[
+    (A, B) = \left(\bar{X}_n - \Phi^{-1}\left(1 - \frac{\alpha_0}{2}\right)\sigma n^{-1/2}, \bar{X}_n + \Phi^{-1}\left(1 - \frac{\alpha_0}{2}\right)\sigma n^{-1/2}\right).
+    \]
+    É fácil verificar que $\text{Pr}(A < \mu_0 < B|\mu = \mu_0) = \gamma$ para todo $\mu_0$. Este intervalo de confiança é exato.
+\end{quote}
+\vspace{1em}
+
+\noindent\textbf{Exemplo 9.1.15 (Construindo um Teste a partir de um Intervalo de Confiança)}
+\begin{quote}
+    Na Seção 8.5, aprendemos como construir um intervalo de confiança para a média desconhecida de uma distribuição normal quando a variância também era desconhecida. Seja $X_1, \dots, X_n$ uma amostra aleatória de uma distribuição normal com média desconhecida $\mu$ e variância desconhecida $\sigma^2$. Neste caso, o parâmetro é $\theta = (\mu, \sigma^2)$, e estamos interessados em $g(\theta) = \mu$. Na Seção 8.5, usamos as estatísticas
+    \begin{equation} \label{eq:9.1.17}
+        \bar{X}_n = \frac{1}{n}\sum_{i=1}^n X_i, \quad \sigma' = \left(\frac{1}{n-1}\sum_{i=1}^n (X_i - \bar{X}_n)^2\right)^{1/2}.
+    \end{equation}
+    O intervalo de confiança com coeficiente $\gamma$ para $g(\theta)$ é o intervalo
+    \begin{equation} \label{eq:9.1.18}
+        \left(\bar{X}_n - T_{n-1}^{-1}\left(\frac{1+\gamma}{2}\right) \frac{\sigma'}{n^{1/2}}, \bar{X}_n + T_{n-1}^{-1}\left(\frac{1+\gamma}{2}\right) \frac{\sigma'}{n^{1/2}}\right),
+    \end{equation}
+    onde $T_{n-1}^{-1}(\cdot)$ é a função de quantil da distribuição \textit{t} com $n-1$ graus de liberdade. Para cada $\mu_0$, podemos usar este intervalo para encontrar um teste de nível $\alpha_0 = 1 - \gamma$ das hipóteses
+    \begin{align*}
+        H_0&: \mu = \mu_0, \\
+        H_1&: \mu \neq \mu_0.
+    \end{align*}
+    O teste rejeitará $H_0$ if $\mu_0$ não está no intervalo (9.1.18). Um pouco de álgebra mostra que $\mu_0$ não está no intervalo (9.1.18) se e somente se
+    \[
+    \left|\frac{n^{1/2}(\bar{X}_n - \mu_0)}{\sigma'}\right| \ge T^{-1}_{n-1}\left(\frac{1+\gamma}{2}\right).
+    \]
+    Este teste é idêntico ao \textit{teste t} que estudaremos em mais detalhes na Seção 9.5.
+\end{quote}
+\vspace{1em}
+
+\subsection*{Intervalos de Confiança Unilaterais e Testes}
+
+Os Teoremas 9.1.1 e 9.1.2 estabelecem a equivalência entre conjuntos de confiança e testes de hipóteses da forma (9.1.13). Muitas vezes é necessário testar outras formas de hipóteses, e seria bom ter versões dos Teoremas 9.1.1 e 9.1.2 para lidar com esses casos. O Exemplo 9.1.13 é um desses casos em que as hipóteses são da forma
+\begin{equation} \label{eq:9.1.19}
+    H_{0, g_0}: g(\theta) \le g_0, \quad H_{1, g_0}: g(\theta) > g_0.
+\end{equation}
+O Teorema 9.1.1 estende-se imediatamente a tais casos. Deixamos a prova do Teorema 9.1.3 para o leitor.
+
+\vspace{1em}
+\noindent\textbf{Teorema 9.1.3 (Intervalos de Confiança Unilaterais a partir de Testes Unilaterais)}
+\begin{quote}
+    Seja $\mathbf{X} = (X_1, \dots, X_n)$ uma amostra aleatória de uma distribuição que depende de um parâmetro $\theta$. Seja $g(\theta)$ uma função de valor real, e suponha que para cada valor possível $g_0$ de $g(\theta)$, exista um teste de nível $\alpha_0$ $\delta_{g_0}$ das hipóteses (\ref{eq:9.1.19}). Para cada valor possível $\mathbf{x}$ de $\mathbf{X}$, defina $\omega(\mathbf{x})$ pela Eq. (\ref{eq:9.1.14}). Seja $\gamma = 1 - \alpha_0$. Então o conjunto aleatório $\omega(\mathbf{X})$ satisfaz a Eq. (\ref{eq:9.1.15}) para todo $\theta_0 \in \Omega$. \hfill $\blacksquare$
+\end{quote}
+\vspace{1em}
+
+Este intervalo de confiança não é exato.
+
+Infelizmente, o Teorema 9.1.2 não se estende imediatamente para hipóteses unilaterais pela seguinte razão. O tamanho de um teste unilateral para hipóteses da forma (9.1.19) depende de \textit{todos} os valores de $\theta$ tais que $g(\theta) \le g_0$, não apenas daqueles para os quais $g(\theta) = g_0$. Em particular, o tamanho do teste $\delta_{g_0}$ definido no Teorema 9.1.2 é
+\begin{equation} \label{eq:9.1.20}
+    \sup_{\{ \theta : g(\theta) \le g_0 \}} \text{Pr}[g_0 \notin \omega(\mathbf{X})|\theta].
+\end{equation}
+O coeficiente de confiança, por outro lado, é
+\[
+1 - \sup_{\{\theta: g(\theta) = g_0\}} \text{Pr}[g_0 \notin \omega(\mathbf{X})|\theta].
+\]
+Se pudéssemos provar que o supremo na Eq. (\ref{eq:9.1.20}) ocorreu em um $\theta$ para o qual $g(\theta) = g_0$, então o tamanho do teste seria 1 menos o coeficiente de confiança. Muitos dos casos com os quais lidaremos neste livro terão a propriedade de que o supremo na Eq. (\ref{eq:9.1.20}) de fato ocorre em um $\theta$ para o qual $g(\theta) = g_0$. O Exemplo 9.1.16 é um desses casos. O Exemplo 9.1.13 é outro. O exemplo a seguir é a versão geral do que precisamos no Exemplo 9.1.13.
+
+\vspace{1em}
+\noindent\textbf{Exemplo 9.1.16 (Intervalo de Confiança Unilateral para um Parâmetro de Bernoulli)}
+\begin{quote}
+    No Exemplo 9.1.9, mostramos como construir um teste de nível $\alpha_0$ das hipóteses unilaterais (\ref{eq:9.1.11}). Seja $Y = \sum_{i=1}^n X_i$. O teste rejeita $H_0$ se $Y \ge c(p_0)$, onde $c(p_0)$ é o menor número $c$ tal que $\text{Pr}(Y \ge c|p=p_0) \le \alpha_0$. Após observar os dados $\mathbf{X}$, podemos verificar, para cada $p_0$, se rejeitamos ou não $H_0$. Ou seja, para cada $p_0$, verificamos se $Y \ge c(p_0)$ ou não. Todos aqueles $p_0$ para os quais $Y < c(p_0)$ (i.e., não rejeitamos $H_0$) formarão um intervalo $\omega(\mathbf{X})$. Este intervalo satisfará $\text{Pr}(p_0 \in \omega(\mathbf{X})|p=p_0) \ge 1 - \alpha_0$ para todo $p_0$. Por exemplo, suponha que $n=10, \alpha_0=0.1,$ e $Y=6$ é observado. Para não rejeitar $H_0: p \le p_0$ ao nível 0.1, devemos ter uma região de rejeição que não contenha 6. Isso acontecerá se e somente se $\text{Pr}(Y \ge 6|p=p_0) > 0.1$. Tentando vários valores de $p_0$, descobrimos que esta desigualdade vale para todo $p_0 > 0.3542$. Assim, se $Y=6$ é observado, nosso intervalo de confiança de coeficiente 0.9 é $(0.3542, 1)$. Note que 0.3 não está no intervalo, então rejeitaríamos $H_0: p \le 0.3$ com um teste de nível 0.1, como fizemos no Exemplo 9.1.9. Para outros valores observados $Y=y$, os intervalos de confiança serão todos da forma $(q(y), 1)$ onde $q(y)$ pode ser calculado como delineado no Exercício 17. Para $n=10$ e $\alpha_0=0.1$, os valores de $q(y)$ são
+\end{quote}
+\vspace{1em}
+
+\noindent\textbf{Exemplo 9.1.17 (Testes Unilaterais e Intervalos de Confiança para uma Média Normal com Variância Desconhecida)}
+\begin{quote}
+    Seja $X_1, \dots, X_n$ uma amostra aleatória de uma distribuição normal com média desconhecida $\mu$ e variância desconhecida $\sigma^2$. Aqui $\theta = (\mu, \sigma^2)$. Seja $g(\theta) = \mu$. No Teorema 8.5.1, encontramos que
+    \begin{equation} \label{eq:9.1.21}
+        \left(\bar{X}_n - T_{n-1}^{-1}(\gamma)\frac{\sigma'}{n^{1/2}}, \infty\right)
+    \end{equation}
+    é um intervalo de confiança unilateral com coeficiente $\gamma$ para $g(\theta)$. Agora, suponha que usemos este intervalo para testar hipóteses. Rejeitaremos a hipótese nula $H_0: \mu = \mu_0$ se $\mu_0$ não estiver no intervalo (\ref{eq:9.1.21}). É fácil ver que $\mu_0$ não está no intervalo (\ref{eq:9.1.21}) se e somente if $\bar{X}_n \ge \mu_0 + \sigma'n^{-1/2}T_{n-1}^{-1}(\gamma)$. Tal teste pareceria fazer sentido para testar as hipóteses
+    \begin{equation} \label{eq:9.1.22}
+        H_0: \mu \le \mu_0, \quad H_1: \mu > \mu_0.
+    \end{equation}
+    Em particular, no Exemplo 9.1.13, o fato de 4 não estar no intervalo de confiança observado significa que o teste construído acima (com $\mu_0 = 4$ e $\gamma = 0.9$) rejeitaria $H_0: \mu \le 4$ ao nível $\alpha_0 = 0.1$.
+
+    O teste construído no Exemplo 9.1.17 é outro \textit{teste t} que estudaremos na Seção 9.5. Em particular, mostraremos na Seção 9.5 que este teste $t$ é um teste de nível $1-\gamma$. No Exercício 19, você pode encontrar o intervalo de confiança unilateral que corresponde a testar as hipóteses inversas.
+\end{quote}
+\vspace{1em}
+
+\subsection*{Testes da Razão de Verossimilhanças}
+
+Uma forma muito popular de teste de hipóteses é o teste da razão de verossimilhanças. Daremos uma justificativa teórica parcial para os testes da razão de verossimilhanças na Seção 9.2. Tais testes são baseados na função de verossimilhança $f_n(\mathbf{x}|\theta)$. (Veja Definição 7.2.3 na página 390.) A função de verossimilhança tende a ser mais alta perto do valor verdadeiro de $\theta$. De fato, é por isso que a estimação de máxima verossimilhança funciona tão bem em tantos casos. Agora, suponha que desejamos testar as hipóteses
+\begin{equation} \label{eq:9.1.23}
+    H_0: \theta \in \Omega_0, \quad H_1: \theta \in \Omega_1.
+\end{equation}
+Para comparar essas duas hipóteses, podemos querer ver se a função de verossimilhança é maior em $\Omega_0$ ou em $\Omega_1$, e se não for, quão menor é a função de verossimilhança em $\Omega_0$. Quando calculamos E.M.V.'s, maximizamos a função de verossimilhança sobre todo o espaço de parâmetros $\Omega$. Em particular, calculamos $\sup_{\theta \in \Omega} f_n(\mathbf{x}|\theta)$. Se restringirmos a atenção a $H_0$, então podemos calcular o maior valor da verossimilhança entre aqueles valores de parâmetros em $\Omega_0$: $\sup_{\theta \in \Omega_0} f_n(\mathbf{x}|\theta)$. A razão desses dois supremos pode então ser usada para testar as hipóteses (\ref{eq:9.1.23}).
+
+\vspace{1em}
+\noindent\textbf{Definição 9.1.11 (Teste da Razão de Verossimilhanças)}
+\begin{quote}
+    A estatística
+    \begin{equation} \label{eq:9.1.24}
+        \Lambda(\mathbf{x}) = \frac{\sup_{\theta \in \Omega_0} f_n(\mathbf{x}|\theta)}{\sup_{\theta \in \Omega} f_n(\mathbf{x}|\theta)}
+    \end{equation}
+    é chamada de \textit{estatística da razão de verossimilhanças}. Um \textit{teste da razão de verossimilhanças} das hipóteses (\ref{eq:9.1.23}) é rejeitar $H_0$ se $\Lambda(\mathbf{x}) \le k$ para alguma constante $k$.
+\end{quote}
+\vspace{1em}
+
+Em palavras, um teste da razão de verossimilhanças rejeita $H_0$ se a função de verossimilhança em $\Omega_0$ for suficientemente pequena em comparação com a função de verossimilhança em todo $\Omega$. Geralmente, $k$ é escolhido de modo que o teste tenha um nível $\alpha_0$ desejado, se isso for possível.
+
+\vspace{1em}
+\noindent\textbf{Exemplo 9.1.18 (Teste da Razão de Verossimilhanças para Hipóteses Bilaterais sobre um Parâmetro de Bernoulli)}
+\begin{quote}
+    Suponha que observaremos $Y$, o número de sucessos em $n$ ensaios de Bernoulli independentes com parâmetro desconhecido $\theta$. Considere as hipóteses $H_0: \theta = \theta_0$ versus $H_1: \theta \neq \theta_0$. Após o valor $Y=y$ ter sido observado, a função de verossimilhança é
+    \[
+    f(y|\theta) = \binom{n}{y} \theta^y (1-\theta)^{n-y}.
+    \]
+    Neste caso, $\Omega_0 = \{\theta_0\}$ e $\Omega = [0, 1]$. A estatística da razão de verossimilhanças é
+    \begin{equation} \label{eq:9.1.25}
+        \Lambda(y) = \frac{\theta_0^y(1-\theta_0)^{n-y}}{\sup_{\theta \in [0, 1]} \theta^y(1-\theta)^{n-y}}.
+    \end{equation}
+    O supremo no denominador da Eq. (\ref{eq:9.1.25}) pode ser encontrado como no Exemplo 7.5.4. O máximo ocorre onde $\theta$ é igual ao E.M.V., $\hat{\theta} = y/n$. Então,
+    \[
+    \Lambda(y) = \left(\frac{n\theta_0}{y}\right)^y \left(\frac{n(1-\theta_0)}{n-y}\right)^{n-y}.
+    \]
+    Não é difícil ver que $\Lambda(y)$ é pequeno para $y$ perto de 0 ou perto de $n$ e maior perto de $y = n\theta_0$. Como exemplo específico, suponha que $n=10$ e $\theta_0=0.3$. A Tabela 9.1 mostra os 11 valores possíveis de $y=0, \dots, 10$. Se desejássemos um teste com nível de significância $\alpha_0$, ordenaríamos os valores de $y$ de acordo com os valores de $\Lambda(y)$ do menor para o maior e somaríamos as probabilidades $\text{Pr}(Y=y|\theta=0.3)$ correspondentes a esses valores de $y$ com $\Lambda(y) \le k$ até o máximo $\alpha_0$ possível. Por exemplo, se $\alpha_0 = 0.05$, vemos pela Tabela 9.1 que podemos adicionar as probabilidades correspondentes a $y=10, 9, 8, 7, 0$ para obter 0.039. Mas se incluirmos $y=6$, o próximo menor valor de $\Lambda(y)$, a soma salta para 0.076, que é muito grande. O conjunto de $y \in \{10, 9, 8, 7, 0\}$ corresponde a $\Lambda(y) \le k$ para todo $k$ no intervalo semiaberto $[0.028, 0.147)$. O tamanho do teste que rejeita $H_0$ quando $y \in \{10, 9, 8, 7, 0\}$ é 0.039.
+\end{quote}
+\vspace{1em}
+
+\subsection*{Resumo}
+
+Teste de hipóteses é o problema de decidir se $\theta$ pertence a um subconjunto particular $\Omega_0$ do espaço de parâmetros ou ao seu complemento $\Omega_1$. A afirmação de que $\theta \in \Omega_0$ é chamada de \textit{hipótese nula} e é denotada por $H_0$. A \textit{hipótese alternativa} é a afirmação $H_1: \theta \in \Omega_1$. Se $S$ é o conjunto de todos os valores de dados (vetores) possíveis que podemos observar, um subconjunto $S_1 \subset S$ é chamado de \textit{região crítica} de um teste de $H_0$ contra $H_1$ se escolhermos rejeitar $H_0$ sempre que os dados observados $\mathbf{X}$ estiverem em $S_1$ e não rejeitar $H_0$ sempre que $\mathbf{X} \notin S_1$.
+
+A \textit{função de poder} deste teste $\delta$ é $\pi(\theta|\delta) = \text{Pr}(\mathbf{X} \in S_1|\theta)$. O \textit{tamanho} do teste $\delta$ é $\sup_{\theta \in \Omega_0} \pi(\theta|\delta)$. Diz-se que um teste é um \textit{teste de nível $\alpha_0$} se seu tamanho for no máximo $\alpha_0$. A hipótese nula $H_0$ é \textit{simples} se $\Omega_0$ for um conjunto com apenas um ponto; caso contrário, $H_0$ é \textit{composta}. Similarmente, $H_1$ é \textit{simples} se $\Omega_1$ tiver um único ponto, e $H_1$ é \textit{composta} caso contrário. Um \textit{erro tipo I} é rejeitar $H_0$ quando ela é verdadeira. Um \textit{erro tipo II} é não rejeitar $H_0$ quando ela é falsa.
+
+Testes de hipóteses são tipicamente construídos usando-se uma \textit{estatística de teste} $T$. A hipótese nula é rejeitada se $T$ pertencer a algum intervalo ou se $T$ estiver fora de algum intervalo. O intervalo é escolhido para fazer com que o teste tenha um \textit{nível de significância} desejado. O \textit{p-valor} é uma forma mais informativa de relatar os resultados de um teste. O $p$-valor pode ser calculado facilmente sempre que nosso teste tiver a forma "rejeitar $H_0$ se $T \ge c$" para alguma estatística $T$. O $p$-valor quando $T=t$ é observado é igual a $\sup_{\theta \in \Omega_0} \text{Pr}(T \ge t|\theta)$. Também mostramos como um \textit{conjunto de confiança} pode ser considerado como uma forma de relatar os resultados de um teste de hipóteses. Um conjunto de confiança com coeficiente $1-\alpha_0$ para $\theta$ é o conjunto de todos os $\theta_0 \in \Omega$ tais que não rejeitaríamos $H_0: \theta = \theta_0$ usando um teste de nível $\alpha_0$. Esses conjuntos de confiança são intervalos quando testamos hipóteses sobre um parâmetro unidimensional ou uma função unidimensional do parâmetro.
+
+\section*{Exercícios}
+
+\begin{enumerate}
+    \item Suponha que $X$ tenha a distribuição exponencial com parâmetro $\beta$. Suponha que desejamos testar as hipóteses $H_0: \beta \ge 1$ contra $H_1: \beta < 1$. Considere o procedimento de teste $\delta$ que rejeita $H_0$ se $X \ge 1$.
+    \begin{enumerate}
+        \item[\textbf{a.}] Determine a função de poder do teste.
+        \item[\textbf{b.}] Calcule o tamanho do teste.
+    \end{enumerate}
+
+    \item Suponha que $X_1, \dots, X_n$ formem uma amostra aleatória da distribuição uniforme no intervalo $[0, \theta]$, e que as seguintes hipóteses devam ser testadas:
+    \begin{align*}
+        H_0&: \theta \ge 2, \\
+        H_1&: \theta < 2.
+    \end{align*}
+    Seja $Y_n = \max\{X_1, \dots, X_n\}$, e considere um procedimento de teste tal que a região crítica contenha todos os resultados para os quais $Y_n \le 1.5$.
+    \begin{enumerate}
+        \item[\textbf{a.}] Determine a função de poder do teste.
+        \item[\textbf{b.}] Determine o tamanho do teste.
+    \end{enumerate}
+
+    \item Suponha que a proporção $p$ de itens defeituosos em uma grande população de itens seja desconhecida, e que se deseje testar as seguintes hipóteses:
+    \begin{align*}
+        H_0&: p = 0.2, \\
+        H_1&: p \neq 0.2.
+    \end{align*}
+    Suponha também que uma amostra aleatória de 20 itens seja retirada da população. Seja $Y$ o número de itens defeituosos na amostra, e considere um procedimento de teste $\delta$ tal que a região crítica contenha todos os resultados para os quais $Y \ge 7$ ou $Y \le 1$.
+    \begin{enumerate}
+        \item[\textbf{a.}] Determine o valor da função de poder $\pi(p|\delta)$ nos pontos $p = 0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9,$ e $1$; esboce a função de poder.
+        \item[\textbf{b.}] Determine o tamanho do teste.
+    \end{enumerate}
+
+    \item Suponha que $X_1, \dots, X_n$ formem uma amostra aleatória da distribuição normal com média desconhecida $\mu$ e variância conhecida 1. Suponha também que $\mu_0$ seja um número especificado, e que as seguintes hipóteses devam ser testadas:
+    \begin{align*}
+        H_0&: \mu = \mu_0, \\
+        H_1&: \mu \neq \mu_0.
+    \end{align*}
+    Finalmente, suponha que o tamanho da amostra $n$ seja 25, e considere um procedimento de teste tal que $H_0$ seja rejeitada se $|\bar{X}_n - \mu_0| \ge c$. Determine o valor de $c$ tal que o tamanho do teste seja 0.05.
+
+    \item Suponha que $X_1, \dots, X_n$ formem uma amostra aleatória da distribuição normal com média desconhecida $\mu$ e variância desconhecida $\sigma^2$. Classifique cada uma das seguintes hipóteses como simples ou composta:
+    \begin{itemize}
+        \item[\textbf{a.}] $H_0: \mu = 0 \text{ e } \sigma = 1$.
+        \item[\textbf{b.}] $H_0: \mu > 3 \text{ e } \sigma < 1$.
+        \item[\textbf{c.}] $H_0: \mu = -2 \text{ e } \sigma^2 < 5$.
+        \item[\textbf{d.}] $H_0: \mu = 0$.
+    \end{itemize}
+
+    \item Suponha que uma única observação $X$ seja retirada da distribuição uniforme no intervalo $[\theta - \frac{1}{2}, \theta + \frac{1}{2}]$, e suponha que as seguintes hipóteses devam ser testadas:
+    \begin{align*}
+        H_0&: \theta \le 3, \\
+        H_1&: \theta \ge 4.
+    \end{align*}
+    Construa um procedimento de teste $\delta$ para o qual a função de poder tenha os seguintes valores: $\pi(\theta|\delta) = 0$ para $\theta \le 3$ e $\pi(\theta|\delta) = 1$ para $\theta \ge 4$.
+
+    \item Retorne à situação descrita no Exemplo 9.1.7. Considere um teste $\delta^*$ que rejeita $H_0$ se $Y_n \le 2.9$ ou $Y_n \ge 4.5$. Seja $\delta$ o teste descrito no Exemplo 9.1.7.
+    \begin{enumerate}
+        \item[\textbf{a.}] Prove que $\pi(\theta|\delta^*) = \pi(\theta|\delta)$ para todo $\theta \le 4$.
+        \item[\textbf{b.}] Prove que $\pi(\theta|\delta^*) < \pi(\theta|\delta)$ para todo $\theta > 4$.
+        \item[\textbf{c.}] Qual dos dois testes parece melhor para testar as hipóteses (9.1.8)?
+    \end{enumerate}
+
+    \item Assuma que $X_1, \dots, X_n$ são i.i.d. com a distribuição normal que tem média $\mu$ e variância 1. Suponha que desejamos testar as hipóteses
+    \begin{align*}
+        H_0&: \mu \le \mu_0, \\
+        H_1&: \mu > \mu_0.
+    \end{align*}
+    Considere o teste que rejeita $H_0$ se $Z \ge c$, onde $Z$ é definido na Eq. (9.1.10).
+    \begin{enumerate}
+        \item[\textbf{a.}] Mostre que $\text{Pr}(Z \ge c|\mu)$ é uma função crescente de $\mu$.
+        \item[\textbf{b.}] Encontre $c$ para fazer o teste ter tamanho $\alpha_0$.
+    \end{enumerate}
+
+    \item Assuma que $X_1, \dots, X_n$ são i.i.d. com a distribuição normal que tem média $\mu$ e variância 1. Suponha que desejamos testar as hipóteses
+    \begin{align*}
+        H_0&: \mu \ge \mu_0, \\
+        H_1&: \mu < \mu_0.
+    \end{align*}
+    Encontre uma estatística de teste $T$ tal que, para todo $c$, o teste $\delta_c$ que rejeita $H_0$ quando $T \ge c$ tenha função de poder $\pi(\mu|\delta_c)$ que seja decrescente em $\mu$.
+    
+    \item No Exercício 8, assuma que $Z=z$ é observado. Encontre uma fórmula para o $p$-valor.
+    
+\end{enumerate}
+
+\begin{enumerate}
+    \setcounter{enumi}{10} % Continua a numeração do exercício anterior
+    \item Assuma que $X_1, \dots, X_9$ são i.i.d. tendo a distribuição de Bernoulli com parâmetro $p$. Suponha que desejamos testar as hipóteses
+    \begin{align*}
+        H_0&: p = 0.4, \\
+        H_1&: p \neq 0.4.
+    \end{align*}
+    Seja $Y = \sum_{i=1}^9 X_i$.
+    \begin{enumerate}
+        \item[\textbf{a.}] Encontre $c_1$ e $c_2$ tais que
+        \[
+        \text{Pr}(Y \le c_1|p=0.4) + \text{Pr}(Y \ge c_2|p=0.4)
+        \]
+        seja o mais próximo possível de 0.1 sem ser maior que 0.1.
+        \item[\textbf{b.}] Seja $\delta$ o teste que rejeita $H_0$ se $Y \le c_1$ ou $Y \ge c_2$. Qual é o tamanho do teste $\delta$?
+        \item[\textbf{c.}] Desenhe um gráfico da função de poder de $\delta$.
+    \end{enumerate}
+
+    \item Considere uma única observação $X$ de uma distribuição de Cauchy centrada em $\theta$. Isto é, a f.d.p. de $X$ é
+    \[
+    f(x|\theta) = \frac{1}{\pi[1+(x-\theta)^2]} \quad \text{para } -\infty < x < \infty.
+    \]
+    Suponha que desejamos testar as hipóteses
+    \begin{align*}
+        H_0&: \theta \le \theta_0, \\
+        H_1&: \theta > \theta_0.
+    \end{align*}
+    Seja $\delta_c$ o teste que rejeita $H_0$ se $X \ge c$.
+    \begin{enumerate}
+        \item[\textbf{a.}] Mostre que $\pi(\theta|\delta_c)$ é uma função crescente de $\theta$.
+        \item[\textbf{b.}] Encontre $c$ para fazer $\delta_c$ ter tamanho 0.05.
+        \item[\textbf{c.}] Se $X=x$ é observado, encontre uma fórmula para o $p$-valor.
+    \end{enumerate}
+
+    \item Seja $X$ com a distribuição de Poisson com média $\theta$. Suponha que desejamos testar as hipóteses
+    \begin{align*}
+        H_0&: \theta \le 1.0, \\
+        H_1&: \theta > 1.0.
+    \end{align*}
+    Seja $\delta_c$ o teste que rejeita $H_0$ se $X \ge c$. Encontre $c$ para tornar o tamanho de $\delta_c$ o mais próximo possível de 0.1 sem ser maior que 0.1.
+
+    \item Sejam $X_1, \dots, X_n$ i.i.d. com a distribuição exponencial com parâmetro $\theta$. Suponha que desejamos testar as hipóteses
+    \begin{align*}
+        H_0&: \theta \ge \theta_0, \\
+        H_1&: \theta < \theta_0.
+    \end{align*}
+    Seja $X = \sum_{i=1}^n X_i$. Seja $\delta_c$ o teste que rejeita $H_0$ se $X \ge c$.
+    \begin{enumerate}
+        \item[\textbf{a.}] Mostre que $\pi(\theta|\delta_c)$ é uma função decrescente de $\theta$.
+        \item[\textbf{b.}] Encontre $c$ para fazer $\delta_c$ ter tamanho $\alpha_0$.
+        \item[\textbf{c.}] Seja $\theta_0=2, n=1,$ e $\alpha_0=0.1$. Encontre a forma precisa do teste $\delta_c$ e esboce sua função de poder.
+    \end{enumerate}
+
+    \item Seja $X$ com a distribuição uniforme no intervalo $[0, \theta]$, e suponha que desejamos testar as hipóteses
+    \begin{align*}
+        H_0&: \theta \le 1, \\
+        H_1&: \theta > 1.
+    \end{align*}
+    Consideraremos procedimentos de teste da forma "rejeitar $H_0$ se $X \ge c$." Para cada valor possível $x$ de $X$, encontre o $p$-valor se $X=x$ for observado.
+
+    \item Considere o intervalo de confiança encontrado no Exercício 5 da Seção 8.5. Encontre a coleção de testes de hipóteses que é equivalente a este intervalo. Isto é, para cada $c > 0$, encontre um teste $\delta_c$ da hipótese nula $H_{0,c}: \sigma^2 = c$ contra alguma alternativa tal que $\delta_c$ rejeita $H_{0,c}$ se e somente se $c$ não está no intervalo. Escreva o teste em termos de uma estatística de teste $T=r(\mathbf{X})$ estar dentro ou fora de algum intervalo não aleatório que dependa de $c$.
+
+    \item Sejam $X_1, \dots, X_n$ i.i.d. com uma distribuição de Bernoulli que tem parâmetro $p$. Seja $Y = \sum_{i=1}^n X_i$. Desejamos encontrar um intervalo de confiança com coeficiente $\gamma$ para $p$ da forma $(q(y), 1)$. Prove que, se $Y=y$ for observado, então $q(y)$ deve ser escolhido como o menor valor $p_0$ tal que $\text{Pr}(Y \ge y|p=p_0) \ge 1-\gamma$.
+
+    \item Considere a situação descrita imediatamente antes da Eq. (9.1.12). Prove que a expressão (9.1.12) é igual ao menor $\alpha_0$ tal que rejeitaríamos $H_0$ ao nível de significância $\alpha_0$.
+
+    \item Retorne à situação descrita no Exemplo 9.1.17. Suponha que desejamos testar as hipóteses
+    \begin{equation} \label{eq:9.1.27}
+    \begin{aligned}
+        H_0&: \mu \ge \mu_0, \\
+        H_1&: \mu < \mu_0.
+    \end{aligned}
+    \end{equation}
+    ao nível $\alpha_0$. Faz sentido rejeitar $H_0$ se $\bar{X}_n$ for pequeno. Construa um intervalo de confiança unilateral com coeficiente $1-\alpha_0$ para $\mu$ tal que possamos rejeitar $H_0$ se $\mu_0$ não estiver no intervalo. Certifique-se de que o teste formado desta maneira rejeite $H_0$ se $\bar{X}_n$ for pequeno.
+
+    \item Prove o Teorema 9.1.3.
+
+    \item Retorne às situações descritas no Exemplo 9.1.17 e no Exercício 19. Desejamos comparar o que pode acontecer se invertermos as hipóteses nula e alternativa. Ou seja, queremos comparar os resultados de testar as hipóteses em (9.1.22) ao nível $\alpha_0$ com os resultados de testar as hipóteses em (9.1.27) ao nível $\alpha_0$.
+    \begin{enumerate}
+        \item[\textbf{a.}] Seja $\alpha_0 < 0.5$. Prove que não há conjuntos de dados possíveis tais que rejeitaríamos ambas as hipóteses nulas simultaneamente. Ou seja, para todo $\bar{X}_n$ e $\sigma'$ possíveis, devemos falhar em rejeitar pelo menos uma das duas hipóteses nulas.
+        \item[\textbf{b.}] Seja $\alpha_0 < 0.5$. Prove que existem conjuntos de dados que levariam a falhar em rejeitar ambas as hipóteses nulas. Prove também que existem conjuntos de dados que levariam a rejeitar cada uma das hipóteses nulas enquanto se falha em rejeitar a outra.
+        \item[\textbf{c.}] Seja $\alpha_0 > 0.5$. Prove que existem conjuntos de dados que levariam a rejeitar ambas as hipóteses nulas.
+    \end{enumerate}
+
+\end{enumerate}
