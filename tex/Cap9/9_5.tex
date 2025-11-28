@@ -1,0 +1,443 @@
+\section{O Teste t}
+
+Iniciamos o tratamento de vários casos especiais de teste de hipóteses sobre parâmetros de uma distribuição normal. Nesta seção, tratamos o caso em que tanto a média quanto a variância são desconhecidas. Desenvolvemos testes para hipóteses relativas à média. Esses testes serão baseados na distribuição \textit{t}.
+
+\subsection*{Testando Hipóteses sobre a Média de uma Distribuição Normal Quando a Variância é Desconhecida}
+
+\vspace{1em}
+\noindent\textbf{Exemplo 9.5.1 (Lares de Idosos no Novo México)}
+\begin{quote}
+    No Exemplo 8.6.3, descrevemos um estudo sobre dias de pacientes internados em casas de repouso no Novo México. Como naquele exemplo, modelaremos os números de dias de pacientes internados como uma amostra aleatória de $n=18$ variáveis aleatórias normais com média desconhecida $\mu$ e variância desconhecida $\sigma^2$. Suponha que estejamos interessados em testar as hipóteses $H_0: \mu \ge 200$ versus $H_1: \mu < 200$. Que teste devemos usar e quais são suas propriedades?
+\end{quote}
+\vspace{1em}
+
+Nesta seção, consideraremos o problema de testar hipóteses sobre a média de uma distribuição normal quando tanto a média quanto a variância são desconhecidas. Especificamente, suporemos que as variáveis aleatórias $X_1, \dots, X_n$ formem uma amostra aleatória de uma distribuição normal para a qual a média $\mu$ e a variância $\sigma^2$ são desconhecidas, e consideraremos testar as seguintes hipóteses:
+\begin{align} \label{eq:9.5.1}
+    H_0&: \mu \le \mu_0, \nonumber \\
+    H_1&: \mu > \mu_0.
+\end{align}
+O espaço de parâmetros $\Omega$ neste problema compreende todo vetor bidimensional $(\mu, \sigma^2)$, onde $-\infty < \mu < \infty$ e $\sigma^2 > 0$. A hipótese nula $H_0$ especifica que o vetor $(\mu, \sigma^2)$ está no subconjunto $\Omega_0$ de $\Omega$, compreendendo todos os vetores para os quais $\mu \le \mu_0$ e $\sigma^2 > 0$, como ilustrado na Fig. 9.11. A hipótese alternativa $H_1$ especifica que $(\mu, \sigma^2)$ pertence ao subconjunto $\Omega_1$ de $\Omega$, compreendendo todos os vetores que não pertencem a $\Omega_0$.
+
+No Exemplo 9.1.17 na página 543, mostramos como derivar um teste das hipóteses (9.5.1) a partir de um intervalo de confiança unilateral para $\mu$. Para ser específico, defina $\bar{X}_n = \sum_{i=1}^n X_i/n$, $\sigma' = (\sum_{i=1}^n(X_i - \bar{X}_n)^2/[n-1])^{1/2}$, e
+\begin{equation} \label{eq:9.5.2}
+    U = \frac{n^{1/2}(\bar{X}_n - \mu_0)}{\sigma'}.
+\end{equation}
+O teste rejeita $H_0$ se $U \ge c$. Quando $\mu = \mu_0$, segue-se do Teorema 8.4.2 que a distribuição da estatística $U$ definida na Eq. (9.5.2) é a distribuição \textit{t} com $n-1$ graus de liberdade, independentemente do valor de $\sigma^2$. Por essa razão, testes baseados em $U$ são chamados de \textit{testes t}. Quando queremos testar
+\begin{align} \label{eq:9.5.3}
+    H_0&: \mu \ge \mu_0, \nonumber \\
+    H_1&: \mu < \mu_0,
+\end{align}
+o teste é da forma "rejeitar $H_0$ se $U \le c$".
+
+\vspace{1em}
+\noindent\textbf{Exemplo 9.5.2 (Lares de Idosos no Novo México)}
+\begin{quote}
+    No Exemplo 9.5.1, se desejássemos um teste de nível $\alpha_0$, poderíamos usar o teste \textit{t} que rejeita $H_0$ se a estatística $U$ na Eq. (9.5.2) for no máximo igual à constante $c$ escolhida para tornar o tamanho do teste igual a $\alpha_0$.
+\end{quote}
+\vspace{1em}
+
+\subsection*{Propriedades dos Testes t}
+
+O Teorema 9.5.1 fornece algumas propriedades úteis dos testes \textit{t}.
+
+\vspace{1em}
+\noindent\textbf{Teorema 9.5.1 (Nível e Imparcialidade dos Testes t)}
+\begin{quote}
+    Seja $\mathbf{X} = (X_1, \dots, X_n)$ uma amostra aleatória da distribuição normal com média $\mu$ e variância $\sigma^2$, seja $U$ a estatística na Eq. (9.5.2), e seja $c$ o quantil $1-\alpha_0$ da distribuição \textit{t} com $n-1$ graus de liberdade. Seja $\delta$ o teste que rejeita $H_0$ em (9.5.1) se $U \ge c$. A função de poder $\pi(\mu, \sigma^2|\delta)$ tem as seguintes propriedades:
+    \begin{enumerate}
+        \item[i.] $\pi(\mu, \sigma^2|\delta) = \alpha_0$ quando $\mu = \mu_0$,
+        \item[ii.] $\pi(\mu, \sigma^2|\delta) < \alpha_0$ quando $\mu < \mu_0$,
+        \item[iii.] $\pi(\mu, \sigma^2|\delta) > \alpha_0$ quando $\mu > \mu_0$,
+        \item[iv.] $\pi(\mu, \sigma^2|\delta) \to 0$ quando $\mu \to -\infty$,
+        \item[v.] $\pi(\mu, \sigma^2|\delta) \to 1$ quando $\mu \to \infty$.
+    \end{enumerate}
+    Além disso, o teste $\delta$ tem tamanho $\alpha_0$ e é não viesado.
+\end{quote}
+\vspace{1em}
+
+\noindent\textit{Prova.} Se $\mu = \mu_0$, então $U$ tem a distribuição \textit{t} com $n-1$ graus de liberdade. Portanto,
+\[
+\pi(\mu_0, \sigma^2|\delta) = \text{Pr}(U \ge c|\mu_0, \sigma^2) = \alpha_0.
+\]
+Isso prova (i) acima. Para (ii) e (iii), defina
+\[
+U^* = \frac{n^{1/2}(\bar{X}_n - \mu)}{\sigma'} \quad \text{e} \quad W = \frac{n^{1/2}(\mu_0 - \mu)}{\sigma'}.
+\]
+Então $U = U^* - W$. Primeiro, suponha que $\mu < \mu_0$ para que $W > 0$. Segue-se que
+\begin{align} \label{eq:9.5.4}
+    \pi(\mu, \sigma^2|\delta) &= \text{Pr}(U \ge c|\mu, \sigma^2) = \text{Pr}(U^* - W \ge c|\mu, \sigma^2) \nonumber \\
+    &= \text{Pr}(U^* \ge c + W|\mu, \sigma^2) < \text{Pr}(U^* \ge c|\mu, \sigma^2).
+\end{align}
+Como $U^*$ tem a distribuição \textit{t} com $n-1$ graus de liberdade, a última probabilidade em (9.5.4) é $\alpha_0$. Isso prova (ii). Para (iii), seja $\mu > \mu_0$ para que $W < 0$. O menor que em (9.5.4) torna-se um maior que, e (iii) é provado.
+
+Que o tamanho do teste é $\alpha_0$ é imediato das partes (i) e (ii). Que o teste é não viesado é imediato das partes (i) e (iii).
+
+As provas de (iv) e (v) são mais difíceis e não serão dadas aqui em detalhes. Intuitivamente, se $\mu$ é muito grande, então $W$ na Eq. (9.5.4) tenderá a ser muito negativo, e a probabilidade estará próxima de 1 de que $U^* \ge c + W$. Similarmente, se $\mu$ é muito menor que 0, então $W$ tenderá a ser muito positivo, e a chance de $U^* \ge c + W$ estará próxima de 0. \hfill $\blacksquare$
+
+Para as hipóteses da Eq. (9.5.3), propriedades muito similares são válidas.
+
+\vspace{1em}
+\noindent\textbf{Corolário 9.5.1 (Testes t para Hipóteses da Eq. (9.5.3))}
+\begin{quote}
+    Seja $\mathbf{X} = (X_1, \dots, X_n)$ uma amostra aleatória da distribuição normal com média $\mu$ e variância $\sigma^2$, seja $U$ a estatística na Eq. (9.5.2), e seja $c$ o quantil $\alpha_0$ da distribuição \textit{t} com $n-1$ graus de liberdade. Seja $\delta$ o teste que rejeita $H_0$ em (9.5.3) se $U \le c$. A função de poder $\pi(\mu, \sigma^2|\delta)$ tem as seguintes propriedades:
+    \begin{enumerate}
+        \item[i.] $\pi(\mu, \sigma^2|\delta) = \alpha_0$ quando $\mu = \mu_0$,
+        \item[ii.] $\pi(\mu, \sigma^2|\delta) > \alpha_0$ quando $\mu < \mu_0$,
+        \item[iii.] $\pi(\mu, \sigma^2|\delta) < \alpha_0$ quando $\mu > \mu_0$,
+        \item[iv.] $\pi(\mu, \sigma^2|\delta) \to 1$ quando $\mu \to -\infty$,
+        \item[v.] $\pi(\mu, \sigma^2|\delta) \to 0$ quando $\mu \to \infty$.
+    \end{enumerate}
+    Além disso, o teste $\delta$ tem tamanho $\alpha_0$ e é não viesado. \hfill $\blacksquare$
+\end{quote}
+\vspace{1em}
+
+\noindent\textbf{Exemplo 9.5.3 (Lares de Idosos no Novo México)}
+\begin{quote}
+    Nos Exemplos 9.5.1 e 9.5.2, suponha que desejamos um teste com nível de significância $\alpha_0 = 0.1$. Então rejeitamos $H_0$ se $U \le c$ onde $c$ é o quantil 0.1 da distribuição \textit{t} com 17 graus de liberdade, a saber, $-1.333$. Usando os dados do Exemplo 8.6.3, calculamos o valor observado de $\bar{X}_{18} = 182.17$ e $\sigma' = 72.22$. O valor observado de $U$ é então $(17)^{1/2}(182.17 - 200)/72.22 = -1.018$. Não rejeitaríamos $H_0: \mu \ge 200$ ao nível de significância 0.1, porque o valor observado de $U$ é maior que $-1.333$.
+\end{quote}
+\vspace{1em}
+
+\vspace{1em}
+\noindent\textbf{Teorema 9.5.2 (p-valores para Testes t)}
+\begin{quote}
+    Suponha que estejamos testando as hipóteses na Eq. (9.5.1) ou as hipóteses na Eq. (9.5.3). Seja $u$ o valor observado da estatística $U$ na Eq. (9.5.2), e seja $T_{n-1}(\cdot)$ a f.d.a. da distribuição \textit{t} com $n-1$ graus de liberdade. Então o $p$-valor para as hipóteses na Eq. (9.5.1) é $1 - T_{n-1}(u)$ e o $p$-valor para as hipóteses na Eq. (9.5.3) é $T_{n-1}(u)$.
+\end{quote}
+\vspace{1em}
+
+\noindent\textit{Prova.} Seja $T_{n-1}^{-1}(\cdot)$ a função de quantil da distribuição \textit{t} com $n-1$ graus de liberdade. Esta é a inversa da função estritamente crescente $T_{n-1}$. Rejeitaríamos as hipóteses na Eq. (9.5.1) ao nível $\alpha_0$ se e somente se $u \ge T_{n-1}^{-1}(1-\alpha_0)$, o que é equivalente a $T_{n-1}(u) \ge 1 - \alpha_0$, que é equivalente a $\alpha_0 \ge 1 - T_{n-1}(u)$. Portanto, o menor nível $\alpha_0$ no qual poderíamos rejeitar $H_0$ é $1 - T_{n-1}(u)$. Similarmente, rejeitaríamos as hipóteses na Eq. (9.5.3) se e somente se $u \le T_{n-1}^{-1}(\alpha_0)$, o que é equivalente a $\alpha_0 \ge T_{n-1}(u)$. \hfill $\blacksquare$
+
+\vspace{1em}
+\noindent\textbf{Exemplo 9.5.4 (Comprimentos de Fibras)}
+\begin{quote}
+    Suponha que os comprimentos em milímetros de fibras metálicas produzidas por um determinado processo tenham a distribuição normal com média desconhecida $\mu$ e variância desconhecida $\sigma^2$, e as seguintes hipóteses devem ser testadas:
+    \begin{align} \label{eq:9.5.5}
+        H_0&: \mu \le 5.2, \nonumber \\
+        H_1&: \mu > 5.2.
+    \end{align}
+    Suponha que os comprimentos de 15 fibras selecionadas aleatoriamente sejam medidos, e descobre-se que a média amostral $\bar{X}_{15}$ é 5.4 e $\sigma' = 0.4226$. Com base nessas medições, realizaremos um teste \textit{t} ao nível de significância $\alpha_0 = 0.05$.
+
+    Como $n=15$ e $\mu_0 = 5.2$, a estatística $U$ definida pela Eq. (9.5.2) terá a distribuição \textit{t} com 14 graus de liberdade quando $\mu=5.2$. Encontra-se na tabela da distribuição \textit{t} que $T_{14}^{-1}(0.95) = 1.761$. Portanto, a hipótese nula $H_0$ será rejeitada se $U > 1.761$. Como o valor numérico de $U$ calculado da Eq. (9.5.2) é 1.833, $H_0$ seria rejeitada ao nível 0.05.
+
+    Com o valor observado $u = 1.833$ para a estatística $U$ e $n=15$, podemos calcular o $p$-valor para as hipóteses (9.5.1) usando software de computador que inclua a f.d.a. de várias distribuições \textit{t}. Em particular, encontramos $1 - T_{14}(1.833) = 0.0441$.
+\end{quote}
+\vspace{1em}
+
+\subsection*{A Função de Poder Completa}
+
+Para todos os valores de $\mu$, a função de poder de um teste \textit{t} pode ser determinada se conhecermos a distribuição de $U$ definido na Eq. (9.5.2). Podemos reescrever $U$ como
+\begin{equation} \label{eq:9.5.6}
+    U = \frac{n^{1/2}(\bar{X}_n - \mu_0)/\sigma}{\sigma'/\sigma}.
+\end{equation}
+O numerador do lado direito na Eq. (9.5.6) tem a distribuição normal com média $n^{1/2}(\mu - \mu_0)/\sigma$ e variância 1. O denominador é a raiz quadrada de uma variável aleatória $\chi^2$ dividida por seus graus de liberdade, $n-1$. Se não fosse pela média não nula, a razão teria a distribuição \textit{t} com $n-1$ graus de liberdade como já mostramos. Quando a média do numerador não é 0, $U$ tem uma distribuição \textit{t não central}.
+
+\vspace{1em}
+\noindent\textbf{Definição 9.5.1 (Distribuições t Não Centrais)}
+\begin{quote}
+    Sejam $Y$ e $W$ variáveis aleatórias independentes com $W$ tendo a distribuição normal com média $\psi$ e variância 1 e $Y$ tendo a distribuição $\chi^2$ com $m$ graus de liberdade. Então a distribuição de
+    \[
+    X = \frac{W}{(Y/m)^{1/2}}
+    \]
+    é chamada de \textit{distribuição t não central com $m$ graus de liberdade e parâmetro de não centralidade $\psi$}. Denotaremos $T_m(t|\psi)$ como a f.d.a. desta distribuição. Isto é, $T_m(t|\psi) = \text{Pr}(X \le t)$.
+\end{quote}
+\vspace{1em}
+
+Deve ser óbvio que a distribuição \textit{t} não central com $m$ graus de liberdade e parâmetro de não centralidade $\psi=0$ é também a distribuição \textit{t} com $m$ graus de liberdade. O resultado a seguir é também imediato da Definição 9.5.1.
+
+\vspace{1em}
+\noindent\textbf{Teorema 9.5.3}
+\begin{quote}
+    Seja $X_1, \dots, X_n$ uma amostra aleatória da distribuição normal com média $\mu$ e variância $\sigma^2$. A distribuição da estatística $U$ na Eq. (9.5.2) é a distribuição \textit{t} não central com $n-1$ graus de liberdade e parâmetro de não centralidade $\psi = n^{1/2}(\mu - \mu_0)/\sigma$. Seja $\delta$ o teste que rejeita $H_0: \mu \le \mu_0$ quando $U \ge c$. Então a função de poder de $\delta$ é $\pi(\mu, \sigma^2|\delta) = 1 - T_{n-1}(c|\psi)$. Seja $\delta'$ o teste que rejeita $H_0: \mu \ge \mu_0$ quando $U \le c$. Então a função de poder de $\delta'$ é $\pi(\mu, \sigma^2|\delta') = T_{n-1}(c|\psi)$.
+\end{quote}
+\vspace{1em}
+
+No Exercício 11, você pode provar que $1 - T_m(t|\psi) = T_m(-t|-\psi)$. Existem programas de computador para calcular a f.d.a. de distribuições \textit{t} não centrais, e alguns pacotes de software estatístico incluem tais programas. A Figura 9.12 plota as funções de poder de testes \textit{t} de nível 0.05 e nível 0.01 para vários graus de liberdade e vários valores do parâmetro de não centralidade. O eixo horizontal é rotulado $|\psi|$ porque os mesmos gráficos podem ser usados para ambos os tipos de hipóteses unilaterais. O próximo exemplo ilustra como usar a Fig. 9.12 para aproximar a função de poder.
+
+\vspace{1em}
+\noindent\textbf{Exemplo 9.5.5 (Comprimentos de Fibras)}
+\begin{quote}
+    No Exemplo 9.5.4, testamos as hipóteses (9.5.5) ao nível 0.05. Suponha que estamos interessados no poder de nosso teste quando $\mu$ não é igual a 5.2. Em particular, suponha que estamos interessados no poder quando $\mu = 5.2 + \sigma/2$, meio desvio padrão acima de 5.2. Então o parâmetro de não centralidade é
+    \[
+    \psi = 15^{1/2}\left(\frac{5.2 + \sigma/2 - 5.2}{\sigma}\right) = 1.936.
+    \]
+    Não há curva para 14 graus de liberdade na Fig. 9.12; no entanto, não há muita diferença entre as curvas para 10 e 60 graus de liberdade, então podemos assumir que nossa resposta está em algum lugar entre esses dois. Se olharmos para o gráfico de nível 0.05 na Fig. 9.12 e subirmos de 1.936 (cerca de 2) no eixo horizontal até chegarmos um pouco acima da curva para graus de liberdade igual a 10, descobrimos que o poder é cerca de 0.6. (O poder real é 0.578.)
+\end{quote}
+\vspace{1em}
+
+\noindent\textbf{Nota: O Poder é uma Função do Parâmetro de Não Centralidade.} No Exemplo 9.5.5, não podemos responder a uma pergunta como "Qual é o poder de um teste de nível 0.05 quando $\mu = 5.5$?" A razão é que o poder é uma função de ambos $\mu$ e $\sigma$ através do parâmetro de não centralidade. (Veja Exercício 6.) Para cada $\sigma$ possível e $\mu=5.5$, o parâmetro de não centralidade é $\psi = 15^{1/2} \times 0.3/\sigma$, que varia de 0 a $\infty$ dependendo de $\sigma$. É por isso que, sempre que queremos um valor numérico para o poder de um teste \textit{t}, precisamos especificar ambos $\mu$ e $\sigma$ ou especificar quão longe $\mu$ está de $\mu_0$ em múltiplos de $\sigma$.
+
+\subsection*{Escolhendo um Tamanho de Amostra}
+
+É possível usar a função de poder de um teste para ajudar a determinar qual seria um tamanho de amostra apropriado para observar.
+
+\vspace{1em}
+\noindent\textbf{Exemplo 9.5.6 (Comprimentos de Fibras)}
+\begin{quote}
+    No Exemplo 9.5.5, descobrimos que o poder do teste foi 0.578 quando $\mu = 5.2 + \sigma/2$. Suponha que queremos que o poder esteja próximo de 0.8 quando $\mu = 5.2 + \sigma/2$. Serão necessárias mais do que $n=15$ observações para conseguir isso. Na Fig. 9.12, podemos ver que tamanho de parâmetro de não centralidade $\psi$ precisamos para que o poder alcance 0.8. Para graus de liberdade entre 10 e 60, precisamos que $\psi$ seja cerca de 2.5. Mas $\psi = n^{1/2}/2$ quando $\mu = 5.2 + \sigma/2$. Então precisamos de $n=25$ aproximadamente. O cálculo preciso mostra que, com $n=25$, o poder do teste de nível 0.05 é 0.7834 quando $\mu = 5.2 + \sigma/2$. Com $n=26$, o poder é 0.7981, e com $n=27$ o poder é 0.8118.
+\end{quote}
+\vspace{1em}
+
+\subsection*{O Teste t Pareado}
+
+Em muitos experimentos, a mesma variável é medida sob duas condições diferentes na mesma unidade experimental, e estamos interessados em saber se o valor médio é maior em uma condição do que na outra. Em tais casos, é comum subtrair as duas medidas e tratar as diferenças como uma amostra aleatória de uma distribuição normal. Podemos então testar hipóteses relativas à média das diferenças.
+
+\vspace{1em}
+\noindent\textbf{Exemplo 9.5.7 (Manequins de Teste de Colisão)}
+\begin{quote}
+    O National Transportation Safety Board (Conselho Nacional de Segurança em Transportes) coleta dados de testes de colisão sobre a quantidade e localização de danos em manequins colocados nos carros testados. Em uma série de testes, um manequim foi colocado no assento do motorista e outro foi colocado no assento do passageiro dianteiro de cada carro. Uma variável medida foi a quantidade de lesão na cabeça de cada manequim. A Figura 9.13 mostra um gráfico dos pares de logaritmos das medidas de lesão na cabeça para manequins nos dois assentos diferentes. Entre outras coisas, o interesse reside em saber se e em que medida a quantidade de lesão na cabeça difere entre o assento do motorista e o assento do passageiro.
+
+    Sejam $X_1, \dots, X_n$ as diferenças entre os logaritmos das medidas de lesão na cabeça para o lado do motorista e o lado do passageiro. Podemos modelar $X_1, \dots, X_n$ como uma amostra aleatória de uma distribuição normal com média $\mu$ e variância $\sigma^2$. Suponha que desejamos testar a hipótese nula $H_0: \mu \le 0$ contra a alternativa $H_1: \mu > 0$ ao nível $\alpha_0 = 0.01$. Existem $n=164$ carros representados na Fig. 9.13. O teste rejeitaria $H_0$ se $U \ge T_{163}^{-1}(0.99) = 2.35$.
+
+    A média das diferenças das coordenadas na Fig. 9.13 é $\bar{x}_n = 0.2199$. O valor de $\sigma'$ é 0.5342. A estatística $U$ é então 5.271. Isso é maior que 2.35, e a hipótese nula seria rejeitada ao nível 0.01. De fato, o $p$-valor é menor que $1.0 \times 10^{-6}$.
+
+    Suponha também que estamos interessados na função de poder sob $H_1$ do teste de nível 0.01. Suponha que a diferença média entre o logaritmo da lesão na cabeça do lado do motorista e do passageiro seja $\sigma/4$. Então o parâmetro de não centralidade é $(164)^{1/2}/4 = 3.20$. No painel direito da Fig. 9.12, parece que o poder é pouco acima de 0.8. (De fato, é 0.802.)
+\end{quote}
+\vspace{1em}
+
+\subsection*{Testando com uma Alternativa Bilateral}
+
+\vspace{1em}
+\noindent\textbf{Exemplo 9.5.8 (Crânios Egípcios)}
+\begin{quote}
+    Nos Exemplos 9.4.1 e 9.4.2, modelamos as larguras de crânios de 4000 a.C. como uma amostra aleatória de tamanho $n=30$ de uma distribuição normal com média desconhecida $\mu$ e variância conhecida. Vamos agora generalizar esse modelo para permitir a suposição mais realista de que a variância $\sigma^2$ é desconhecida. Suponha que desejamos testar a hipótese nula $H_0: \mu = 140$ versus a hipótese alternativa $H_1: \mu \neq 140$. Ainda podemos calcular a estatística $U$ na Eq. (9.5.2), mas agora faria sentido rejeitar $H_0$ se $U \le c_1$ ou $U \ge c_2$ para números adequadamente escolhidos $c_1$ e $c_2$. Como devemos escolher $c_1$ e $c_2$, e quais são as propriedades do teste resultante?
+\end{quote}
+\vspace{1em}
+
+Como antes, assuma que $\mathbf{X} = (X_1, \dots, X_n)$ é uma amostra aleatória de uma distribuição normal para a qual tanto a média $\mu$ quanto a variância $\sigma^2$ são desconhecidas. Suponha agora que as seguintes hipóteses devem ser testadas:
+\begin{align} \label{eq:9.5.7}
+    H_0&: \mu = \mu_0, \nonumber \\
+    H_1&: \mu \neq \mu_0.
+\end{align}
+Aqui, a hipótese alternativa $H_1$ é bilateral.
+
+No Exemplo 9.1.15, derivamos um teste de nível $\alpha_0$ das hipóteses (9.5.7) a partir do intervalo de confiança que foi desenvolvido na Seção 8.5. Esse teste tem a forma "rejeitar $H_0$ se $|U| \ge T_{n-1}^{-1}(1 - \alpha_0/2)$", onde $T_{n-1}^{-1}$ é a função de quantil da distribuição \textit{t} com $n-1$ graus de liberdade e $U$ é definido na Eq. (9.5.2).
+
+\vspace{1em}
+\noindent\textbf{Exemplo 9.5.9 (Crânios Egípcios)}
+\begin{quote}
+    No Exemplo 9.5.8, suponha que queremos um teste de nível $\alpha_0 = 0.05$ de $H_0: \mu = 140$ versus $H_1: \mu \neq 140$. Se usarmos o teste descrito acima (derivado no Exemplo 9.1.15), então os dois números $c_1$ e $c_2$ serão de sinais opostos e iguais em magnitude. Especificamente, $c_1 = -T_{29}^{-1}(0.975) = -2.045$ e $c_2 = 2.045$. O valor observado de $\bar{X}_{30}$ é 131.37, e o valor observado de $\sigma'$ é 5.129. O valor observado $u$ da estatística $U$ é $u = (30)^{1/2}(131.37 - 140)/5.129 = -9.219$. Isso é menor que $-2.045$, então rejeitaríamos $H_0$ ao nível 0.05.
+\end{quote}
+\vspace{1em}
+
+\noindent\textbf{Exemplo 9.5.10 (Comprimentos de Fibras)}
+\begin{quote}
+    Consideraremos novamente o problema discutido no Exemplo 9.5.4, mas vamos supor agora que, em vez das hipóteses (9.5.5), as seguintes hipóteses devem ser testadas:
+    \begin{align} \label{eq:9.5.8}
+        H_0&: \mu = 5.2, \nonumber \\
+        H_1&: \mu \neq 5.2.
+    \end{align}
+    Vamos assumir novamente que os comprimentos de 15 fibras são medidos, e o valor de $U$ calculado a partir dos valores observados é 1.833. Testaremos as hipóteses (9.5.8) ao nível de significância $\alpha_0 = 0.05$.
+
+    Como $\alpha_0 = 0.05$, nosso valor crítico será o quantil $1 - 0.05/2 = 0.975$ da distribuição \textit{t} com 14 graus de liberdade. Da tabela de distribuições \textit{t} neste livro, encontramos $T_{14}^{-1}(0.975) = 2.145$. Então o teste especifica rejeitar $H_0$ se $U \le -2.145$ ou $U \ge 2.145$. Como $U = 1.833$, a hipótese $H_0$ não seria rejeitada.
+\end{quote}
+\vspace{1em}
+
+Os valores numéricos nos Exemplos 9.5.4 e 9.5.10 enfatizam a importância de decidir se a hipótese alternativa apropriada em um problema dado é unilateral ou bilateral. Quando as hipóteses (9.5.5) foram testadas ao nível de significância 0.05, a hipótese $H_0$ que $\mu \le 5.2$ foi rejeitada. Quando as hipóteses (9.5.8) foram testadas ao mesmo nível de significância, e os mesmos dados foram usados, a hipótese $H_0$ que $\mu = 5.2$ não foi rejeitada.
+
+\subsection*{Funções de Poder de Testes Bilaterais}
+
+A função de poder do teste $\delta$ que rejeita $H_0: \mu = \mu_0$ quando $|U| \ge c$, onde $c = T_{n-1}^{-1}(1-\alpha_0/2)$, pode ser encontrada usando a distribuição \textit{t} não central. Se $\mu \neq \mu_0$, então $U$ tem a distribuição \textit{t} não central com $n-1$ graus de liberdade e parâmetro de não centralidade $\psi = n^{1/2}(\mu - \mu_0)/\sigma$, exatamente como tinha quando testamos hipóteses unilaterais. A função de poder de $\delta$ é então
+\[
+\pi(\mu, \sigma^2|\delta) = T_{n-1}(-c|\psi) + 1 - T_{n-1}(c|\psi).
+\]
+A Figura 9.14 plota essas funções de poder para vários graus de liberdade e parâmetros de não centralidade. Poderíamos usar a Fig. 9.14 para encontrar o poder do teste no Exemplo 9.5.10 quando $\mu = 5.2 + \sigma/2$, ou seja, quando $\psi = 1.936$. Parece ser cerca de 0.45. (O poder real é 0.438.)
+
+\vspace{1em}
+\noindent\textbf{Teorema 9.5.4 (p-Valores para Testes t Bilaterais)}
+\begin{quote}
+    Suponha que estamos testando as hipóteses na Eq. (9.5.7). Seja $u$ o valor observado da estatística $U$, e seja $T_{n-1}(\cdot)$ a f.d.a. da distribuição \textit{t} com $n-1$ graus de liberdade. Então o $p$-valor é $2[1 - T_{n-1}(|u|)]$.
+\end{quote}
+\vspace{1em}
+
+\noindent\textit{Prova.} Seja $T_{n-1}^{-1}(\cdot)$ a função de quantil da distribuição \textit{t} com $n-1$ graus de liberdade. Rejeitaríamos as hipóteses na Eq. (9.5.7) ao nível $\alpha_0$ se e somente se $|u| \ge T_{n-1}^{-1}(1-\alpha_0/2)$, o que é equivalente a $T_{n-1}(|u|) \ge 1 - \alpha_0/2$, o que é equivalente a $\alpha_0 \ge 2[1 - T_{n-1}(|u|)]$. Portanto, o menor nível $\alpha_0$ no qual poderíamos rejeitar $H_0$ é $2[1 - T_{n-1}(|u|)]$. \hfill $\blacksquare$
+
+\vspace{1em}
+\noindent\textbf{Exemplo 9.5.11 (Comprimentos de Fibras)}
+\begin{quote}
+    No Exemplo 9.5.10, o $p$-valor é $2[1 - T_{14}(1.833)] = 0.0882$. Note que isso é o dobro do $p$-valor quando as hipóteses eram (9.5.1).
+\end{quote}
+\vspace{1em}
+
+Para testes \textit{t}, se o $p$-valor para testar as hipóteses (9.5.1) ou (9.5.3) é $p$, então o $p$-valor para hipóteses (9.5.7) é o menor entre $2p$ e $2(1-p)$.
+
+\subsection*{O Teste t como um Teste da Razão de Verossimilhanças}
+
+Introduzimos testes da razão de verossimilhanças na Seção 9.1. Podemos calcular tais testes para as hipóteses desta seção.
+
+\vspace{1em}
+\noindent\textbf{Exemplo 9.5.12 (Teste da Razão de Verossimilhanças de Hipóteses Unilaterais sobre a Média de uma Distribuição Normal)}
+\begin{quote}
+    Considere as hipóteses (9.5.1). Após os valores $x_1, \dots, x_n$ na amostra aleatória terem sido observados, a função de verossimilhança é
+    \begin{equation} \label{eq:9.5.9}
+        f_n(\mathbf{x}|\mu, \sigma^2) = \frac{1}{(2\pi\sigma^2)^{n/2}} \exp\left[-\frac{1}{2\sigma^2}\sum_{i=1}^n(x_i - \mu)^2\right].
+    \end{equation}
+    Neste caso, $\Omega_0 = \{(\mu, \sigma^2) : \mu \le \mu_0\}$ e $\Omega_1 = \{(\mu, \sigma^2) : \mu > \mu_0\}$. A estatística da razão de verossimilhanças é
+    \begin{equation} \label{eq:9.5.10}
+        \Lambda(\mathbf{x}) = \frac{\sup_{\{(\mu, \sigma^2): \mu \le \mu_0\}} f_n(\mathbf{x}|\mu, \sigma^2)}{\sup_{(\mu, \sigma^2)} f_n(\mathbf{x}|\mu, \sigma^2)}.
+    \end{equation}
+    Vamos agora derivar uma forma explícita para o teste da razão de verossimilhanças baseado em (9.5.10). Como na Seção 7.5, deixaremos $\hat{\mu}$ e $\hat{\sigma}^2$ denotarem os E.M.V.'s de $\mu$ e $\sigma^2$ quando se sabe apenas que o ponto $(\mu, \sigma^2)$ pertence ao espaço de parâmetros $\Omega$. Foi mostrado no Exemplo 7.5.6 que
+    \[
+    \hat{\mu} = \bar{x}_n \quad \text{e} \quad \hat{\sigma}^2 = \frac{1}{n}\sum_{i=1}^n (x_i - \bar{x}_n)^2.
+    \]
+    Segue-se que o denominador de $\Lambda(\mathbf{x})$ é igual a
+    \begin{equation} \label{eq:9.5.11}
+        \sup_{(\mu, \sigma^2)} f_n(\mathbf{x}|\mu, \sigma^2) = \frac{1}{(2\pi\hat{\sigma}^2)^{n/2}} \exp\left(-\frac{n}{2}\right).
+    \end{equation}
+    Similarmente, deixaremos $\hat{\mu}_0$ e $\hat{\sigma}_0^2$ denotarem os E.M.V.'s de $\mu$ e $\sigma^2$ quando o ponto $(\mu, \sigma^2)$ é restrito a estar no subconjunto $\Omega_0$. Suponha primeiro que os valores observados na amostra sejam tais que $\bar{x}_n \le \mu_0$. Então o ponto $(\hat{\mu}, \hat{\sigma}^2)$ estará em $\Omega_0$ de modo que $\hat{\mu}_0 = \hat{\mu}$ e $\hat{\sigma}_0^2 = \hat{\sigma}^2$ e o numerador de $\Lambda(\mathbf{x})$ também é igual a (9.5.11). Neste caso, $\Lambda(\mathbf{x}) = 1$.
+
+    Em seguida, suponha que os valores observados na amostra sejam tais que $\bar{x}_n > \mu_0$. Então o ponto $(\hat{\mu}, \hat{\sigma}^2)$ não está em $\Omega_0$. Neste caso, pode-se mostrar que $f_n(\mathbf{x}|\mu, \sigma^2)$ atinge seu valor máximo entre todos os pontos $(\mu, \sigma^2) \in \Omega_0$ se $\mu$ for escolhido tão próximo quanto possível de $\bar{x}_n$. O valor de $\mu$ mais próximo de $\bar{x}_n$ entre todos os pontos no subconjunto $\Omega_0$ é $\mu = \mu_0$. Portanto, $\hat{\mu}_0 = \mu_0$. Por sua vez, pode ser mostrado, como no Exemplo 7.5.6, que o E.M.V. de $\sigma^2$ será
+    \[
+    \hat{\sigma}_0^2 = \frac{1}{n}\sum_{i=1}^n(x_i - \hat{\mu}_0)^2 = \frac{1}{n}\sum_{i=1}^n(x_i - \mu_0)^2.
+    \]
+    Neste caso, o numerador de $\Lambda(\mathbf{x})$ é então
+    \begin{equation} \label{eq:9.5.12}
+        \sup_{\{(\mu, \sigma^2): \mu \le \mu_0\}} f_n(\mathbf{x}|\mu, \sigma^2) = \frac{1}{(2\pi\hat{\sigma}_0^2)^{n/2}} \exp\left(-\frac{n}{2}\right).
+    \end{equation}
+    Tomando a razão de (9.5.12) para (9.5.11), descobrimos que
+    \begin{equation} \label{eq:9.5.13}
+        \Lambda(\mathbf{x}) = \begin{cases}
+            \left(\frac{\hat{\sigma}^2}{\hat{\sigma}_0^2}\right)^{n/2} & \text{se } \bar{x}_n > \mu_0, \\
+            1 & \text{caso contrário.}
+        \end{cases}
+    \end{equation}
+    Em seguida, use a relação
+    \[
+    \sum_{i=1}^n (x_i - \mu_0)^2 = \sum_{i=1}^n (x_i - \bar{x}_n)^2 + n(\bar{x}_n - \mu_0)^2
+    \]
+    para escrever o ramo superior de (9.5.13) como
+    \begin{equation} \label{eq:9.5.14}
+        \left[1 + \frac{n(\bar{x}_n - \mu_0)^2}{\sum_{i=1}^n(x_i - \bar{x}_n)^2}\right]^{-n/2}.
+    \end{equation}
+    Se $u$ é o valor observado da estatística $U$ na Eq. (9.5.2), então pode-se facilmente verificar que
+    \[
+    \frac{n(\bar{x}_n - \mu_0)^2}{\sum_{i=1}^n(x_i - \bar{x}_n)^2} = \frac{u^2}{n-1}.
+    \]
+    Segue-se que $\Lambda(\mathbf{x})$ é uma função não crescente de $u$. Portanto, para $k < 1$, $\Lambda(\mathbf{x}) \le k$ se e somente se $u \ge c$, onde
+    \[
+    c = \left(\left[\frac{1}{k^{2/n}} - 1\right](n-1)\right)^{1/2}.
+    \]
+    Segue-se que o teste da razão de verossimilhanças é um teste \textit{t}.
+\end{quote}
+\vspace{1em}
+
+Não é difícil adaptar o argumento no Exemplo 9.5.12 para encontrar os testes da razão de verossimilhanças para as hipóteses (9.5.3) e (9.5.7). (Veja Exercícios 17 e 18, por exemplo.)
+
+\subsection*{Resumo}
+
+Quando $X_1, \dots, X_n$ formam uma amostra aleatória da distribuição normal com média desconhecida $\mu$ e variância desconhecida $\sigma^2$, podemos testar hipóteses sobre $\mu$ usando o fato de que $n^{1/2}(\bar{X}_n - \mu)/\sigma'$ tem a distribuição \textit{t} com $n-1$ graus de liberdade. Seja $T_{n-1}^{-1}$ a denotar a função de quantil da distribuição \textit{t} com $n-1$ graus de liberdade. Então, para testar $H_0: \mu \le \mu_0$ versus $H_1: \mu > 0$ ao nível $\alpha_0$, por exemplo, rejeitamos $H_0$ se $n^{1/2}(\bar{X}_n - \mu_0)/\sigma' > T_{n-1}^{-1}(1-\alpha_0)$. Para testar $H_0: \mu = \mu_0$ versus $H_1: \mu \neq \mu_0$, rejeitamos $H_0$ se $|n^{1/2}(\bar{X}_n - \mu_0)/\sigma'| \ge T_{n-1}^{-1}(1-\alpha_0/2)$. As funções de poder de cada um desses testes podem ser escritas em termos da f.d.a. de uma distribuição \textit{t} não central com $n-1$ graus de liberdade e parâmetro de não centralidade $\psi = n^{1/2}(\mu - \mu_0)/\sigma$.
+
+\section*{Exercícios}
+
+\begin{enumerate}
+    \item Use os dados no Exemplo 8.5.4, compreendendo uma amostra de $n=10$ medições de ácido lático em queijo. Assuma, como fizemos lá, que as medições de ácido lático são uma amostra aleatória da distribuição normal com média desconhecida $\mu$ e variância desconhecida $\sigma^2$. Suponha que desejamos testar as seguintes hipóteses:
+    \begin{align*}
+        H_0&: \mu \le 1.2, \\
+        H_1&: \mu > 1.2.
+    \end{align*}
+    \begin{enumerate}
+        \item[\textbf{a.}] Realize o teste de nível $\alpha_0 = 0.05$ dessas hipóteses.
+        \item[\textbf{b.}] Calcule o $p$-valor.
+        \item[\textbf{c.}] A partir dos dados, construa o intervalo de confiança observado para $\mu$ com coeficiente de confiança 0.95.
+    \end{enumerate}
+
+    \item Suponha que nove observações sejam selecionadas aleatoriamente da distribuição normal com média desconhecida $\mu$ e variância desconhecida $\sigma^2$, e para essas nove observações descobre-se que $\bar{X}_n = 22$ e $\sum_{i=1}^n(X_i - \bar{X}_n)^2 = 72$.
+    \begin{enumerate}
+        \item[\textbf{a.}] Realize um teste das seguintes hipóteses ao nível de significância 0.05:
+        \begin{align*}
+            H_0&: \mu \le 20, \\
+            H_1&: \mu > 20.
+        \end{align*}
+        \item[\textbf{b.}] Realize um teste das seguintes hipóteses ao nível de significância 0.05 usando o teste \textit{t} bilateral:
+        \begin{align*}
+            H_0&: \mu = 20, \\
+            H_1&: \mu \neq 20.
+        \end{align*}
+    \end{enumerate}
+
+    \item O fabricante de um certo tipo de automóvel afirma que, sob condições típicas de condução urbana, o automóvel viajará em média pelo menos 20 milhas por galão de gasolina. A proprietária deste tipo de automóvel anota as quilometragens que obteve em sua própria condução urbana quando enche o tanque de seu automóvel com gasolina em nove ocasiões diferentes. As quilometragens, em milhas por galão, são as seguintes: 15.6, 18.6, 18.3, 20.1, 21.5, 18.4, 19.1, 20.4, e 19.0. Teste a afirmação do fabricante realizando um teste ao nível de significância $\alpha_0 = 0.05$. Liste cuidadosamente as suposições que você fizer.
+
+    \item Suponha que uma amostra aleatória de oito observações $X_1, \dots, X_8$ seja retirada da distribuição normal com média desconhecida $\mu$ e variância desconhecida $\sigma^2$, e deseja-se testar as seguintes hipóteses:
+    \begin{align*}
+        H_0&: \mu = 0, \\
+        H_1&: \mu \neq 0.
+    \end{align*}
+    Suponha também que os dados da amostra são tais que $\sum_{i=1}^8 X_i = -11.2$ e $\sum_{i=1}^8 X_i^2 = 43.7$. Se um teste \textit{t} simétrico é realizado ao nível de significância 0.10 de modo que cada cauda da região crítica tenha probabilidade 0.05, a hipótese $H_0$ deve ser rejeitada ou não?
+
+    \item Considere novamente as condições do Exercício 4, e suponha novamente que um teste \textit{t} deve ser realizado ao nível de significância 0.10. Suponha agora, no entanto, que o teste \textit{t} não deve ser simétrico e a hipótese $H_0$ deve ser rejeitada se $U \le c_1$ ou $U \ge c_2$, onde $\text{Pr}(U \le c_1) = 0.01$ e $\text{Pr}(U \ge c_2) = 0.09$. Para os dados da amostra especificados no Exercício 4, $H_0$ deve ser rejeitada ou não?
+
+    \item Suponha que as variáveis $X_1, \dots, X_n$ formem uma amostra aleatória da distribuição normal com média desconhecida $\mu$ e variância desconhecida $\sigma^2$, e um teste \textit{t} a um dado nível de significância $\alpha_0$ deve ser realizado para testar as seguintes hipóteses:
+    \begin{align*}
+        H_0&: \mu \le \mu_0, \\
+        H_1&: \mu > \mu_0.
+    \end{align*}
+    Seja $\pi(\mu, \sigma^2|\delta)$ a função de poder deste teste \textit{t}, e assuma que $(\mu_1, \sigma_1^2)$ e $(\mu_2, \sigma_2^2)$ são valores dos parâmetros tais que
+    \[
+    \frac{\mu_1 - \mu_0}{\sigma_1} = \frac{\mu_2 - \mu_0}{\sigma_2}.
+    \]
+    Mostre que $\pi(\mu_1, \sigma_1^2|\delta) = \pi(\mu_2, \sigma_2^2|\delta)$.
+
+    \item Considere a distribuição normal com média desconhecida $\mu$ e variância desconhecida $\sigma^2$, e suponha que se deseja testar as seguintes hipóteses:
+    \begin{align*}
+        H_0&: \mu \le \mu_0, \\
+        H_1&: \mu > \mu_0.
+    \end{align*}
+    Suponha que é possível observar apenas um único valor de $X$ desta distribuição, mas que uma amostra aleatória independente de $n$ observações $Y_1, \dots, Y_n$ está disponível da distribuição normal com média conhecida 0 e a mesma variância $\sigma^2$ que para $X$. Mostre como realizar um teste das hipóteses $H_0$ e $H_1$ baseado na distribuição \textit{t} com $n$ graus de liberdade.
+
+    \item Suponha que as variáveis $X_1, \dots, X_n$ formem uma amostra aleatória da distribuição normal com média desconhecida $\mu$ e variância desconhecida $\sigma^2$. Seja $\sigma_0^2$ um número positivo dado, e suponha que se deseja testar as seguintes hipóteses a um nível de significância especificado $\alpha_0$ ($0 < \alpha_0 < 1$):
+    \begin{align*}
+        H_0&: \sigma^2 \le \sigma_0^2, \\
+        H_1&: \sigma^2 > \sigma_0^2.
+    \end{align*}
+    Seja $S_n^2 = \sum_{i=1}^n (X_i - \bar{X}_n)^2$, e suponha que o procedimento de teste a ser usado especifica que $H_0$ deve ser rejeitada se $S_n^2/\sigma_0^2 \ge c$. Além disso, seja $\pi(\mu, \sigma^2|\delta)$ a função de poder deste procedimento. Explique como escolher a constante $c$ de modo que, independentemente do valor de $\mu$, os seguintes requisitos sejam satisfeitos: $\pi(\mu, \sigma^2|\delta) < \alpha_0$ se $\sigma^2 < \sigma_0^2$, $\pi(\mu, \sigma^2|\delta) = \alpha_0$ se $\sigma^2 = \sigma_0^2$, e $\pi(\mu, \sigma^2|\delta) > \alpha_0$ se $\sigma^2 > \sigma_0^2$.
+
+\end{enumerate}
+
+\begin{enumerate}
+    \setcounter{enumi}{8} % Continua a numeração do exercício anterior
+    \item Suponha que uma amostra aleatória de 10 observações $X_1, \dots, X_{10}$ seja retirada da distribuição normal com média desconhecida $\mu$ e variância desconhecida $\sigma^2$, e deseja-se testar as seguintes hipóteses:
+    \begin{align*}
+        H_0&: \sigma^2 \le 4, \\
+        H_1&: \sigma^2 > 4.
+    \end{align*}
+    Suponha que um teste da forma descrita no Exercício 8 deva ser realizado ao nível de significância $\alpha_0 = 0.05$. Se o valor observado de $S_n^2$ é 60, a hipótese $H_0$ deve ser rejeitada ou não?
+
+    \item Suponha novamente, como no Exercício 9, que uma amostra aleatória de 10 observações seja retirada da distribuição normal com média desconhecida $\mu$ e variância desconhecida $\sigma^2$, mas suponha agora que as seguintes hipóteses devem ser testadas ao nível de significância 0.05:
+    \begin{align*}
+        H_0&: \sigma^2 = 4, \\
+        H_1&: \sigma^2 \neq 4.
+    \end{align*}
+    Suponha que a hipótese nula $H_0$ deve ser rejeitada se $S_n^2 \le c_1$ ou $S_n^2 \ge c_2$, onde as constantes $c_1$ e $c_2$ devem ser escolhidas de modo que, quando a hipótese $H_0$ for verdadeira,
+    \[
+    \text{Pr}(S_n^2 \le c_1) = \text{Pr}(S_n^2 \ge c_2) = 0.025.
+    \]
+    Determine os valores de $c_1$ e $c_2$.
+
+    \item Suponha que $U_1$ tenha a distribuição \textit{t} não central com $m$ graus de liberdade e parâmetro de não centralidade $\psi$, e suponha que $U_2$ tenha a distribuição \textit{t} não central com $m$ graus de liberdade e parâmetro de não centralidade $-\psi$. Prove que $\text{Pr}(U_1 \ge c) = \text{Pr}(U_2 \le -c)$.
+
+    \item Suponha que uma amostra aleatória $X_1, \dots, X_n$ deve ser retirada da distribuição normal com média desconhecida $\mu$ e variância desconhecida $\sigma^2$, e as seguintes hipóteses devem ser testadas:
+    \begin{align*}
+        H_0&: \mu \le 3, \\
+        H_1&: \mu > 3.
+    \end{align*}
+    Suponha também que o tamanho da amostra $n$ é 17, e descobre-se a partir dos valores observados na amostra que $\bar{X}_n = 3.2$ e $(1/n)\sum_{i=1}^n(X_i - \bar{X}_n)^2 = 0.09$. Calcule o valor da estatística $U$ e encontre o $p$-valor correspondente.
+
+    \item Considere novamente as condições do Exercício 12, mas suponha agora que o tamanho da amostra $n$ é 170, e descobre-se novamente a partir dos valores observados na amostra que $\bar{X}_n = 3.2$ e $(1/n)\sum_{i=1}^n(X_i - \bar{X}_n)^2 = 0.09$. Calcule o valor da estatística $U$ e encontre o $p$-valor correspondente.
+
+    \item Considere novamente as condições do Exercício 12, mas suponha agora que as seguintes hipóteses devem ser testadas:
+    \begin{align*}
+        H_0&: \mu = 3.1, \\
+        H_1&: \mu \neq 3.1.
+    \end{align*}
+    Suponha, como no Exercício 12, que o tamanho da amostra $n$ é 17, e descobre-se a partir dos valores observados na amostra que $\bar{X}_n = 3.2$ e $(1/n)\sum_{i=1}^n(X_i - \bar{X}_n)^2 = 0.09$. Calcule o valor da estatística $U$ e encontre o $p$-valor correspondente.
+
+    \item Considere novamente as condições do Exercício 14, mas suponha agora que o tamanho da amostra $n$ é 170, e descobre-se novamente a partir dos valores observados na amostra que $\bar{X}_n = 3.2$ e $(1/n)\sum_{i=1}^n(X_i - \bar{X}_n)^2 = 0.09$. Calcule o valor da estatística $U$ e encontre o $p$-valor correspondente.
+
+\end{enumerate}
+
+\begin{enumerate}
+    \setcounter{enumi}{15} % Continua a numeração do exercício anterior
+    \item Considere novamente as condições do Exercício 14. Suponha, como no Exercício 14, que o tamanho da amostra $n$ é 17, mas suponha agora que se descobre a partir dos valores observados na amostra que $\bar{X}_n = 3.0$ e $(1/n) \sum_{i=1}^n(X_i - \bar{X}_n)^2 = 0.09$. Calcule o valor da estatística $U$ e encontre o $p$-valor correspondente.
+
+    \item Prove que o teste da razão de verossimilhanças para as hipóteses (9.5.7) é o teste $t$ bilateral que rejeita $H_0$ se $|U| \ge c$, onde $U$ é definido na Eq. (8.5.1). O argumento é ligeiramente mais simples do que, mas muito semelhante, ao dado no texto para o caso unilateral.
+
+    \item Prove que o teste da razão de verossimilhanças para as hipóteses (9.5.3) é rejeitar $H_0$ se $U \le c$, onde $U$ é definido na Eq. (8.5.1).
+\end{enumerate}
