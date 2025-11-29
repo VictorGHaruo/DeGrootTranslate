@@ -1,0 +1,323 @@
+\setcounter{section}{5} % Define o contador para 5, para que a próxima seção seja a 9.6
+
+\section{Comparando as Médias de Duas Distribuições Normais}
+
+É muito comum comparar duas distribuições para ver qual tem a média maior ou apenas para ver o quão diferentes as duas médias são. Quando as duas distribuições são normais, os testes e intervalos de confiança baseados na distribuição \textit{t} são muito similares aos que surgiram quando consideramos uma única distribuição.
+
+\subsection*{O Teste t para Duas Amostras}
+
+\vspace{1em}
+\noindent\textbf{Exemplo 9.6.1 (Chuva de Nuvens Semeadas)}
+\begin{quote}
+    No Exemplo 8.3.1, estávamos interessados em saber se a log-precipitação média de nuvens semeadas era maior que 4, o que supúnhamos ter sido a log-precipitação média de nuvens não semeadas. Se quisermos comparar chuvas de nuvens semeadas e não semeadas sob condições de outra forma similares, normalmente observaríamos duas amostras aleatórias de chuvas: uma de nuvens semeadas e uma de nuvens não semeadas, mas de outra forma sob condições similares. Modelaríamos essas amostras como sendo amostras aleatórias independentes de duas distribuições normais diferentes, e gostaríamos de comparar suas médias e possivelmente suas variâncias para ver quão diferentes as distribuições são.
+\end{quote}
+\vspace{1em}
+
+Considere primeiro um problema no qual amostras aleatórias estão disponíveis de duas distribuições normais com variância desconhecida comum, e deseja-se determinar qual distribuição tem a média maior. Especificamente, assumiremos que $\mathbf{X} = (X_1, \dots, X_m)$ forma uma amostra aleatória de $m$ observações de uma distribuição normal para a qual tanto a média $\mu_1$ quanto a variância $\sigma^2$ são desconhecidas, e que $\mathbf{Y} = (Y_1, \dots, Y_n)$ forma uma amostra aleatória independente de $n$ observações de outra distribuição normal para a qual tanto a média $\mu_2$ quanto a variância $\sigma^2$ são desconhecidas. Então estaremos interessados em testar hipóteses como
+\begin{equation} \label{eq:9.6.1}
+    H_0: \mu_1 \le \mu_2 \quad \text{versus} \quad H_1: \mu_1 > \mu_2.
+\end{equation}
+Para cada procedimento de teste $\delta$, denotaremos por $\pi(\mu_1, \mu_2, \sigma^2|\delta)$ a função de poder de $\delta$. Assumiremos que a variância $\sigma^2$ é a mesma para ambas as distribuições, embora o valor de $\sigma^2$ seja desconhecido. Se esta suposição parecer injustificada, o teste \textit{t} para duas amostras que derivaremos a seguir não seria apropriado. Um procedimento de teste diferente é discutido mais adiante nesta seção para o caso em que as duas populações podem ter variâncias diferentes. Mais adiante nesta seção, derivaremos o teste da razão de verossimilhanças. Na Seção 9.7, discutiremos alguns procedimentos para comparar as variâncias de duas distribuições normais, o que inclui testar a hipótese nula de que as variâncias são as mesmas.
+
+Intuitivamente, faz sentido rejeitar $H_0$ em (\ref{eq:9.6.1}) se a diferença entre as médias amostrais for grande. O Teorema 9.6.1 deriva a distribuição de uma estatística de teste natural para usar.
+
+\vspace{1em}
+\noindent\textbf{Teorema 9.6.1 (Estatística t para Duas Amostras)}
+\begin{quote}
+    Assuma a estrutura descrita nos parágrafos anteriores. Defina
+    \begin{equation} \label{eq:9.6.2}
+    \begin{aligned}
+        \bar{X}_m &= \frac{1}{m}\sum_{i=1}^m X_i, \quad \bar{Y}_n = \frac{1}{n}\sum_{i=1}^n Y_i, \\
+        S_X^2 &= \sum_{i=1}^m (X_i - \bar{X}_m)^2, \quad \text{e} \quad S_Y^2 = \sum_{i=1}^n (Y_i - \bar{Y}_n)^2.
+    \end{aligned}
+    \end{equation}
+    Defina a estatística de teste
+    \begin{equation} \label{eq:9.6.3}
+        U = \frac{(m+n-2)^{1/2}(\bar{X}_m - \bar{Y}_n)}{\left(\frac{1}{m} + \frac{1}{n}\right)^{1/2} (S_X^2 + S_Y^2)^{1/2}}.
+    \end{equation}
+    Para todos os valores de $\theta = (\mu_1, \mu_2, \sigma^2)$ tais que $\mu_1 = \mu_2$, a distribuição de $U$ é a distribuição \textit{t} com $m+n-2$ graus de liberdade.
+\end{quote}
+\vspace{1em}
+
+
+\noindent\textit{Prova.} Assuma que $\mu_1 = \mu_2$. Defina as seguintes duas variáveis aleatórias:
+\begin{equation} \label{eq:9.6.4}
+    Z = \frac{\bar{X}_m - \bar{Y}_n}{\left(\frac{1}{m} + \frac{1}{n}\right)^{1/2}\sigma},
+\end{equation}
+\begin{equation} \label{eq:9.6.5}
+    W = \frac{S_X^2 + S_Y^2}{\sigma^2}.
+\end{equation}
+A estatística $U$ pode agora ser representada na forma
+\begin{equation} \label{eq:9.6.6}
+    U = \frac{Z}{[W/(m+n-2)]^{1/2}}.
+\end{equation}
+O restante da prova consiste em provar que $Z$ tem a distribuição normal padrão, que $W$ tem a distribuição $\chi^2$ com $m+n-2$ graus de liberdade, e que $Z$ e $W$ são independentes. O resultado então segue da Definição 8.4.1, a definição da família de distribuições \textit{t}.
+
+Assumimos que $\mathbf{X}$ e $\mathbf{Y}$ são independentes dado $\theta$. Segue-se que toda função de $\mathbf{X}$ é independente de toda função de $\mathbf{Y}$. Em particular, $(\bar{X}_m, S_X^2)$ é independente de $(\bar{Y}_n, S_Y^2)$. Pelo Teorema 8.3.1, $\bar{X}_m$ e $S_X^2$ são independentes, e $\bar{Y}_n$ e $S_Y^2$ também são independentes. Segue-se que todos os quatro de $\bar{X}_m, \bar{Y}_n, S_X^2,$ e $S_Y^2$ são mutuamente independentes. Portanto, $Z$ e $W$ também são independentes. Também segue do Teorema 8.3.1 que $S_X^2/\sigma^2$ e $S_Y^2/\sigma^2$ têm, respectivamente, as distribuições $\chi^2$ com $m-1$ e $n-1$ graus de liberdade. Portanto, $W$ é a soma de duas variáveis aleatórias independentes com distribuições $\chi^2$ e, portanto, tem a distribuição $\chi^2$ com a soma dos dois graus de liberdade, a saber, $m+n-2$. $\bar{X}_m - \bar{Y}_n$ tem a distribuição normal com média $\mu_1 - \mu_2 = 0$ e variância $\sigma^2/m + \sigma^2/n$. Segue-se que $Z$ tem a distribuição normal padrão. \hfill $\blacksquare$
+
+Um \textit{teste t para duas amostras} com nível de significância $\alpha_0$ é o procedimento $\delta$ que rejeita $H_0$ se $U \ge T_{m+n-2}^{-1}(1 - \alpha_0)$. O Teorema 9.6.2 declara algumas propriedades úteis de testes \textit{t} para duas amostras análogas às do Teorema 9.5.1. A prova é tão similar à do Teorema 9.5.1 que não a apresentaremos aqui.
+
+\vspace{1em}
+\noindent\textbf{Teorema 9.6.2 (Nível e Não-Viesamento de Testes t para Duas Amostras)}
+\begin{quote}
+    Seja $\delta$ o teste \textit{t} para duas amostras definido acima. A função de poder $\pi(\mu_1, \mu_2, \sigma^2|\delta)$ tem as seguintes propriedades:
+    \begin{enumerate}
+        \item[i.] $\pi(\mu_1, \mu_2, \sigma^2|\delta) = \alpha_0$ quando $\mu_1 = \mu_2$,
+        \item[ii.] $\pi(\mu_1, \mu_2, \sigma^2|\delta) < \alpha_0$ quando $\mu_1 < \mu_2$,
+        \item[iii.] $\pi(\mu_1, \mu_2, \sigma^2|\delta) > \alpha_0$ quando $\mu_1 > \mu_2$,
+        \item[iv.] $\pi(\mu_1, \mu_2, \sigma^2|\delta) \to 0$ quando $\mu_1 - \mu_2 \to -\infty$,
+        \item[v.] $\pi(\mu_1, \mu_2, \sigma^2|\delta) \to 1$ quando $\mu_1 - \mu_2 \to \infty$.
+    \end{enumerate}
+    Além disso, o teste $\delta$ tem tamanho $\alpha_0$ e é não viesado. \hfill $\blacksquare$
+\end{quote}
+\vspace{1em}
+
+\noindent\textbf{Nota: As Outras Hipóteses Unilaterais.} Se as hipóteses são
+\begin{equation} \label{eq:9.6.7}
+    H_0: \mu_1 \ge \mu_2 \quad \text{versus} \quad H_1: \mu_1 < \mu_2,
+\end{equation}
+o teste \textit{t} de nível $\alpha_0$ correspondente é rejeitar $H_0$ quando $U \le -T_{m+n-2}^{-1}(1-\alpha_0)$. Este teste tem propriedades análogas às do outro teste unilateral.
+
+$P$-valores são calculados quase da mesma maneira que eram para o teste \textit{t} para uma amostra. A prova do Teorema 9.6.3 é virtualmente a mesma que a prova do Teorema 9.5.2 e não é dada aqui.
+
+\vspace{1em}
+\noindent\textbf{Teorema 9.6.3 (p-Valores para Testes t de Duas Amostras)}
+\begin{quote}
+    Suponha que estamos testando ou as hipóteses na Eq. (9.6.1) ou as hipóteses na Eq. (9.6.7). Seja $u$ o valor observado da estatística $U$ na Eq. (9.6.3), e seja $T_{m+n-2}(\cdot)$ a f.d.a. da distribuição \textit{t} com $m+n-2$ graus de liberdade. Então o $p$-valor para as hipóteses na Eq. (9.6.1) é $1 - T_{m+n-2}(u)$ e o $p$-valor para as hipóteses na Eq. (9.6.7) é $T_{m+n-2}(u)$. \hfill $\blacksquare$
+\end{quote}
+\vspace{1em}
+
+\noindent\textbf{Exemplo 9.6.2 (Chuva de Nuvens Semeadas)}
+\begin{quote}
+    No Exemplo 9.6.1, na verdade temos 26 observações de nuvens não semeadas para acompanhar as 26 observações de nuvens semeadas. Sejam $X_1, \dots, X_{26}$ as medições de log-precipitação das nuvens semeadas, e sejam $Y_1, \dots, Y_{26}$ as medições das nuvens não semeadas. Modelamos todas as medições como independentes, com os $X_i$'s tendo distribuição normal com média $\mu_1$ e variância $\sigma^2$, e os $Y_i$'s tendo distribuição normal com média $\mu_2$ e variância $\sigma^2$. Por enquanto, modelamos as duas distribuições como tendo uma variância comum. Suponha que desejamos testar se a log-precipitação média de nuvens semeadas é ou não maior do que a log-precipitação média de nuvens não semeadas. Escolhemos as hipóteses nula e alternativa de modo que o erro tipo I corresponda a afirmar que a semeadura aumenta a chuva quando, na verdade, ela não aumenta a chuva. Ou seja, a hipótese nula é $H_0: \mu_1 \le \mu_2$ e a hipótese alternativa é $H_1: \mu_1 > \mu_2$. Escolhemos um nível de significância de $\alpha_0 = 0.01$. Antes de prosseguir com o teste formal, é uma boa ideia olhar para os dados primeiro. A Figura 9.15 contém histogramas das log-precipitações de nuvens tanto semeadas quanto não semeadas. As duas amostras parecem diferentes, com as nuvens semeadas parecendo ter log-precipitações maiores. O teste formal exige que calculemos as estatísticas:
+    \[
+    \bar{X}_m = 5.13, \quad \bar{Y}_n = 3.99,
+    \]
+    \[
+    S_X^2 = 63.96, \quad \text{e} \quad S_Y^2 = 67.39.
+    \]
+    O valor crítico é $T_{50}^{-1}(0.99) = 2.403$, e a estatística de teste é
+    \[
+    U = \frac{50^{1/2}(5.13 - 3.99)}{\left(\frac{1}{26} + \frac{1}{26}\right)^{1/2}(63.96 + 67.39)^{1/2}} = 2.544,
+    \]
+    que é maior que 2.403. Portanto, rejeitaríamos a hipótese nula ao nível de significância $\alpha_0 = 0.01$. O $p$-valor é o menor nível no qual rejeitaríamos $H_0$, a saber, $1 - T_{50}(2.544) = 0.007$.
+\end{quote}
+\vspace{1em}
+
+
+\noindent\textbf{Exemplo 9.6.3 (Cerâmica Romana na Grã-Bretanha)}
+\begin{quote}
+    Tubb, Parker e Nickless (1980) descrevem um estudo de amostras de cerâmica da era Romana encontradas em vários locais na Grã-Bretanha. Uma medição feita em cada amostra de cerâmica foi a porcentagem da amostra que era óxido de alumínio. Suponha que estamos interessados em comparar as porcentagens de óxido de alumínio em dois locais diferentes. Havia $m=14$ amostras analisadas de Llanederyn, com média amostral de $\bar{X}_m = 12.56$ e $S_X^2 = 24.65$. Outras $n=5$ amostras vieram de Ashley Rails, com $\bar{Y}_n = 17.32$ e $S_Y^2 = 11.01$. Um dos tamanhos de amostra é muito pequeno para que o histograma seja muito esclarecedor. Suponha que modelamos os dados como variáveis aleatórias normais com duas médias diferentes $\mu_1$ e $\mu_2$, mas variância comum $\sigma^2$. Queremos testar a hipótese nula $H_0: \mu_1 \ge \mu_2$ contra a hipótese alternativa $H_1: \mu_1 < \mu_2$. O valor observado de $U$ definido pela Eq. (9.6.3) é $-6.302$. Da tabela da distribuição \textit{t} neste livro, com $m+n-2 = 17$ graus de liberdade, encontramos que $T_{17}^{-1}(0.995) = 2.898$ e $U < -2.898$. Portanto, rejeitaríamos $H_0$ em qualquer nível $\alpha_0 \ge 0.005$. De fato, o $p$-valor associado a este valor de $U$ é $T_{17}(-6.302) = 4 \times 10^{-6}$.
+\end{quote}
+
+\subsection*{Poder do Teste}
+
+Para cada vetor de parâmetros $\theta = (\mu_1, \mu_2, \sigma^2)$, a função de poder do teste \textit{t} para duas amostras pode ser calculada usando a distribuição \textit{t} não central introduzida na Definição 9.5.1. Um raciocínio quase idêntico àquele que levou ao Teorema 9.5.3 prova o seguinte.
+
+\vspace{1em}
+\noindent\textbf{Teorema 9.6.4 (Poder do Teste t para Duas Amostras)}
+\begin{quote}
+    Assuma as condições declaradas anteriormente nesta seção. Seja $U$ definido na Eq. (9.6.6). Então $U$ tem a distribuição \textit{t} não central com $m+n-2$ graus de liberdade e parâmetro de não centralidade
+    \begin{equation} \label{eq:9.6.8}
+        \psi = \frac{\mu_1 - \mu_2}{\sigma \left(\frac{1}{m} + \frac{1}{n}\right)^{1/2}}.
+    \end{equation}
+\end{quote}
+\vspace{1em}
+
+Podemos usar a Fig. 9.12 na página 580 para aproximar cálculos de poder se não tivermos um programa de computador apropriado à mão.
+
+\subsection*{Alternativas Bilaterais}
+
+O teste \textit{t} para duas amostras pode ser facilmente adaptado para testar as seguintes hipóteses a um nível de significância especificado $\alpha_0$:
+\begin{equation} \label{eq:9.6.9}
+    H_0: \mu_1 = \mu_2 \quad \text{versus} \quad H_1: \mu_1 \neq \mu_2.
+\end{equation}
+O teste \textit{t} bilateral para duas amostras de tamanho $\alpha_0$ rejeita $H_0$ se $|U| \ge c$ onde $c = T_{m+n-2}^{-1}(1 - \alpha_0/2)$, e a estatística $U$ é definida na Eq. (9.6.3). O $p$-valor quando $U=u$ é observado é igual a $2[1 - T_{m+n-2}(|u|)]$. (Veja Exercício 9.)
+
+\vspace{1em}
+\noindent\textbf{Exemplo 9.6.5 (Comparando Minérios de Cobre)}
+\begin{quote}
+    Suponha que uma amostra aleatória de oito espécimes de minério é coletada de uma certa localização em uma mina de cobre, e a quantidade de cobre em cada um dos espécimes é medida em gramas. Denotaremos essas oito quantidades por $X_1, \dots, X_8$ e suporemos que os valores observados são tais que $\bar{X}_8 = 2.6$ e $S_X^2 = 0.32$. Suponha também que uma segunda amostra aleatória de 10 espécimes de minério é coletada de outra parte da mina. Denotaremos as quantidades de cobre nesses espécimes por $Y_1, \dots, Y_{10}$ e suporemos que os valores observados em gramas são tais que $\bar{Y}_{10} = 2.3$ e $S_Y^2 = 0.22$. Seja $\mu_1$ a quantidade média de cobre em todo o minério na primeira localização na mina, seja $\mu_2$ a quantidade média de cobre em todo o minério na segunda localização, e suponha que as hipóteses (9.6.9) devem ser testadas.
+
+    Assumiremos que todas as observações têm uma distribuição normal, e a variância é a mesma em ambas as localizações na mina, embora as médias possam ser diferentes. Neste exemplo, os tamanhos das amostras são $m=8$ e $n=10$, e o valor da estatística $U$ definido pela Eq. (9.6.3) é 3.442. Também, pelo uso de uma tabela da distribuição \textit{t} com 16 graus de liberdade, descobre-se que $T_{16}^{-1}(0.995) = 2.921$, de modo que a área da cauda correspondente a este valor observado de $U$ é menor que $2 \times 0.005$. Portanto, a hipótese nula será rejeitada para qualquer nível de significância especificado $\alpha_0 \ge 0.01$. (De fato, a área da cauda bilateral associada a $U = 3.442$ é 0.003.)
+\end{quote}
+\vspace{1em}
+
+\subsection*{O Teste t para Duas Amostras como um Teste da Razão de Verossimilhanças}
+
+Nesta seção, mostraremos que o teste \textit{t} para duas amostras para as hipóteses (9.6.1) é um teste da razão de verossimilhanças. Após os valores $x_1, \dots, x_m$ e $y_1, \dots, y_n$ nas duas amostras terem sido observados, a função de verossimilhança $g(\mathbf{x}, \mathbf{y}|\mu_1, \mu_2, \sigma^2)$ é
+\[
+g(\mathbf{x}, \mathbf{y}|\mu_1, \mu_2, \sigma^2) = f_m(\mathbf{x}|\mu_1, \sigma^2) f_n(\mathbf{y}|\mu_2, \sigma^2).
+\]
+Aqui, tanto $f_m(\mathbf{x}|\mu_1, \sigma^2)$ quanto $f_n(\mathbf{y}|\mu_2, \sigma^2)$ têm a forma dada na Eq. (9.5.9), e o valor de $\sigma^2$ é o mesmo em ambos os termos. Neste caso, $\Omega_0 = \{(\mu_1, \mu_2, \sigma^2): \mu_1 \le \mu_2\}$. A estatística da razão de verossimilhanças é
+\begin{equation} \label{eq:9.6.10}
+    \Lambda(\mathbf{x}, \mathbf{y}) = \frac{\sup_{\{(\mu_1, \mu_2, \sigma^2): \mu_1 \le \mu_2\}} g(\mathbf{x}, \mathbf{y}|\mu_1, \mu_2, \sigma^2)}{\sup_{(\mu_1, \mu_2, \sigma^2)} g(\mathbf{x}, \mathbf{y}|\mu_1, \mu_2, \sigma^2)}.
+\end{equation}
+O procedimento de teste da razão de verossimilhanças especifica então que $H_0$ deve ser rejeitada se $\Lambda(\mathbf{x}, \mathbf{y}) \le k$, onde $k$ é tipicamente escolhido de modo que o teste tenha um nível $\alpha_0$ desejado.
+
+Para facilitar as maximizações em (9.6.10), seja
+\[
+s_x^2 = \sum_{i=1}^m (x_i - \bar{x}_m)^2, \quad \text{e} \quad s_y^2 = \sum_{i=1}^n (y_i - \bar{y}_n)^2.
+\]
+Então podemos escrever
+\begin{align*}
+    g(\mathbf{x}, \mathbf{y}|\mu_1, \mu_2, \sigma^2) &= \frac{1}{(2\pi\sigma^2)^{(m+n)/2}} \exp\left(-\frac{1}{2\sigma^2}\left[m(\bar{x}_m - \mu_1)^2 + n(\bar{y}_n - \mu_2)^2 + s_x^2 + s_y^2\right]\right).
+\end{align*}
+O denominador de (9.6.10) é maximizado pelos E.M.V.'s gerais, ou seja, quando
+\begin{equation} \label{eq:9.6.11}
+    \mu_1 = \bar{x}_m, \quad \mu_2 = \bar{y}_n, \quad \text{e} \quad \sigma^2 = \frac{1}{m+n}(s_x^2 + s_y^2).
+\end{equation}
+Para o numerador de (9.6.10), quando $\bar{x}_m \le \bar{y}_n$, o vetor de parâmetros em (9.6.11) está em $\Omega_0$, e portanto o máximo também ocorre nos valores na Eq. (9.6.11). Logo, $\Lambda(\mathbf{x}, \mathbf{y}) = 1$ se $\bar{x}_m \le \bar{y}_n$.
+
+Para o outro caso, quando $\bar{x}_m > \bar{y}_n$, não é difícil ver que $\mu_1 = \mu_2$ é necessário para atingir o máximo. Nesses casos, o máximo ocorre quando
+\begin{align*}
+    \mu_1 &= \mu_2 = \frac{m\bar{x}_m + n\bar{y}_n}{m+n}, \\
+    \sigma^2 &= \frac{mn(\bar{x}_m - \bar{y}_n)^2/(m+n) + s_x^2 + s_y^2}{m+n}.
+\end{align*}
+Substituindo todos esses valores em (9.6.10) resulta
+\[
+\Lambda(\mathbf{x}, \mathbf{y}) = \begin{cases} 1 & \text{se } \bar{x}_m \le \bar{y}_n, \\ (1+v^2)^{-(m+n)/2} & \text{se } \bar{x}_m > \bar{y}_n, \end{cases}
+\]
+onde
+\begin{equation} \label{eq:9.6.12}
+    v = \frac{(\bar{x}_m - \bar{y}_n)}{\left(\frac{1}{m} + \frac{1}{n}\right)^{1/2}(s_x^2 + s_y^2)^{1/2}}.
+\end{equation}
+Se $k < 1$, é direto mostrar que $\Lambda(\mathbf{x}, \mathbf{y}) \le k$ é equivalente a $v \ge k'$ para alguma outra constante $k'$. Finalmente, note que $(m+n-2)^{1/2}v$ é o valor observado de $U$, então o teste da razão de verossimilhanças é rejeitar $H_0$ quando $U \ge c$, para alguma constante $c$. Este é o mesmo que o teste \textit{t} para duas amostras. O argumento anterior pode ser facilmente adaptado para lidar com as outras hipóteses unilaterais e o caso bilateral. (Veja Exercício 13 para o caso bilateral.)
+
+\subsection*{Variâncias Desiguais}
+
+\paragraph{Razão de Variâncias Conhecida} O teste \textit{t} pode ser estendido para um problema no qual as variâncias das duas distribuições normais não são iguais, mas a razão de uma variância para a outra é conhecida. Especificamente, suponha que $X_1, \dots, X_m$ formem uma amostra aleatória da distribuição normal com média $\mu_1$ e variância $\sigma_1^2$, e $Y_1, \dots, Y_n$ formem uma amostra aleatória independente de outra distribuição normal com média $\mu_2$ e variância $\sigma_2^2$. Suponha também que os valores de $\mu_1, \mu_2, \sigma_1^2,$ e $\sigma_2^2$ sejam desconhecidos, mas que $\sigma_2^2 = k\sigma_1^2$, onde $k$ é uma constante positiva conhecida. Então pode-se mostrar (veja Exercício 4 no final desta seção) que quando $\mu_1 = \mu_2$, a seguinte variável aleatória $U$ terá a distribuição \textit{t} com $m+n-2$ graus de liberdade:
+\begin{equation} \label{eq:9.6.13}
+    U = \frac{(m+n-2)^{1/2}(\bar{X}_m - \bar{Y}_n)}{\left(\frac{1}{m} + \frac{k}{n}\right)^{1/2}\left(S_X^2 + \frac{S_Y^2}{k}\right)^{1/2}}.
+\end{equation}
+Portanto, a estatística $U$ definida pela Eq. (9.6.13) pode ser usada para testar tanto as hipóteses (9.6.1) quanto as hipóteses (9.6.9).
+
+\paragraph{O Problema de Behrens-Fisher} Se os valores de todos os quatro parâmetros $\mu_1, \mu_2, \sigma_1^2,$ e $\sigma_2^2$ são desconhecidos, e se o valor da razão $\sigma_1^2/\sigma_2^2$ é também desconhecido, então o problema de testar as hipóteses (9.6.1) ou as hipóteses (9.6.9) torna-se muito difícil. Mesmo a estatística da razão de verossimilhanças $\Lambda$ não tem distribuição conhecida. Este problema é conhecido como o \textit{problema de Behrens-Fisher}. Alguns métodos de simulação para o problema de Behrens-Fisher serão descritos no Capítulo 12 (Exemplos 12.2.4 e 12.6.10). Vários outros procedimentos de teste foram propostos, mas a maioria deles tem sido objeto de controvérsia em relação à sua adequação ou utilidade. O mais popular dos métodos propostos foi desenvolvido em uma série de artigos por Welch (1938, 1947, 1951). Welch propôs usar a estatística
+\begin{equation} \label{eq:9.6.14}
+    V = \frac{\bar{X}_m - \bar{Y}_n}{\left(\frac{S_X^2}{m(m-1)} + \frac{S_Y^2}{n(n-1)}\right)^{1/2}}.
+\end{equation}
+Mesmo quando $\mu_1 = \mu_2$, a distribuição de $V$ não é conhecida de forma fechada. No entanto, Welch aproximou a distribuição de $V$ por uma distribuição \textit{t} como segue. Seja
+\begin{equation} \label{eq:9.6.15}
+    W = \frac{S_X^2}{m(m-1)} + \frac{S_Y^2}{n(n-1)},
+\end{equation}
+e aproxime a distribuição de $W$ por uma distribuição gama com a mesma média e variância de $W$. (Veja Exercício 12.) Se fôssemos assumir que $W$ realmente tinha essa distribuição gama aproximada, então $V$ teria a distribuição \textit{t} com
+\begin{equation} \label{eq:9.6.16}
+    \frac{\left(\frac{\sigma_1^2}{m} + \frac{\sigma_2^2}{n}\right)^2}{\frac{1}{m-1}\left(\frac{\sigma_1^2}{m}\right)^2 + \frac{1}{n-1}\left(\frac{\sigma_2^2}{n}\right)^2}
+\end{equation}
+graus de liberdade. Em seguida, substitua as estimativas não viesadas $s_x^2/(m-1)$ e $s_y^2/(n-1)$ para $\sigma_1^2$ e $\sigma_2^2$, respectivamente, em (9.6.16) para obter os graus de liberdade para a aproximação da distribuição \textit{t} de Welch:
+\begin{equation} \label{eq:9.6.17}
+    \nu = \frac{\left(\frac{s_x^2}{m(m-1)} + \frac{s_y^2}{n(n-1)}\right)^2}{\frac{1}{(m-1)^3}\left(\frac{s_x^2}{m}\right)^2 + \frac{1}{(n-1)^3}\left(\frac{s_y^2}{n}\right)^2}.
+\end{equation}
+Na Eq. (9.6.17), $s_x^2$ e $s_y^2$ são os valores observados de $S_X^2$ e $S_Y^2$. Para resumir o procedimento de Welch, aja como se $V$ na Eq. (9.6.14) tivesse a distribuição \textit{t} com $\nu$ graus de liberdade quando $\mu_1 = \mu_2$. Testes de hipóteses unilaterais e bilaterais são então construídos comparando $V$ a vários quantis da distribuição \textit{t} com $\nu$ graus de liberdade. Se $\nu$ não é um inteiro, arredonde-o para o inteiro mais próximo ou use um programa de computador que possa lidar com distribuições \textit{t} com graus de liberdade não inteiros.
+
+\vspace{1em}
+\noindent\textbf{Exemplo 9.6.6 (Comparando Minérios de Cobre)}
+\begin{quote}
+    Usando os dados do Exemplo 9.6.5, calculamos
+    \begin{align*}
+        V &= \frac{2.6 - 2.3}{\left(\frac{0.32}{8 \times 7} + \frac{0.22}{10 \times 9}\right)^{1/2}} = 3.321, \\
+        \nu &= \frac{\left(\frac{0.32}{8 \times 7} + \frac{0.22}{10 \times 9}\right)^2}{\frac{1}{7^3}\left(\frac{0.32}{8}\right)^2 + \frac{1}{9^3}\left(\frac{0.22}{10}\right)^2} = 12.49.
+    \end{align*}
+    O $p$-valor associado aos dados observados para as hipóteses (9.6.9) é $2[1 - T_{12.49}(3.321)] = 0.0058$, não muito diferente do que obtivemos no Exemplo 9.6.5.
+\end{quote}
+\vspace{1em}
+
+\paragraph{Teste da Razão de Verossimilhanças} Uma alternativa à aproximação de Welch descrita acima seria aplicar a aproximação de grande amostra do Teorema 9.1.4. Usando a mesma notação de antes nesta seção, podemos escrever a função de verossimilhança como
+\begin{equation} \label{eq:9.6.18}
+    g(\mathbf{x}, \mathbf{y}|\mu_1, \mu_2, \sigma_1^2, \sigma_2^2) = \frac{1}{(2\pi\sigma_1^2)^{m/2}(2\pi\sigma_2^2)^{n/2}} \exp\left(-\frac{m(\bar{x}_m - \mu_1)^2 + s_x^2}{2\sigma_1^2} - \frac{n(\bar{y}_n - \mu_2)^2 + s_y^2}{2\sigma_2^2}\right).
+\end{equation}
+Os E.M.V.'s gerais são
+\begin{equation} \label{eq:9.6.19}
+    \hat{\mu}_1 = \bar{x}_m, \quad \hat{\mu}_2 = \bar{y}_n, \quad \hat{\sigma}_1^2 = \frac{s_x^2}{m}, \quad \hat{\sigma}_2^2 = \frac{s_y^2}{n}.
+\end{equation}
+Sob $H_0: \mu_1 = \mu_2$, não podemos encontrar fórmulas para os E.M.V.'s. No entanto, se deixarmos $\hat{\mu}$ representar o valor comum de $\hat{\mu}_1 = \hat{\mu}_2$, descobrimos que os E.M.V.'s satisfazem as seguintes equações:
+\begin{equation} \label{eq:9.6.20}
+    \hat{\sigma}_1^2 = \frac{1}{m}\left[s_x^2 + m(\bar{x}_m - \hat{\mu})^2\right],
+\end{equation}
+\begin{equation} \label{eq:9.6.21}
+    \hat{\sigma}_2^2 = \frac{1}{n}\left[s_y^2 + n(\bar{y}_n - \hat{\mu})^2\right],
+\end{equation}
+\begin{equation} \label{eq:9.6.22}
+    \hat{\mu} = \frac{\frac{m\bar{x}_m}{\hat{\sigma}_1^2} + \frac{n\bar{y}_n}{\hat{\sigma}_2^2}}{\frac{m}{\hat{\sigma}_1^2} + \frac{n}{\hat{\sigma}_2^2}}.
+\end{equation}
+Essas equações podem ser resolvidas recursivamente, embora não tenhamos uma solução de forma fechada. Um algoritmo é o seguinte:
+\begin{enumerate}
+    \item Defina $k=0$ e escolha um valor inicial $\hat{\mu}^{(0)}$, tal como $(m\bar{x}_m + n\bar{y}_n)/(m+n)$.
+    \item Calcule $\hat{\sigma}_1^{2(k)}$ e $\hat{\sigma}_2^{2(k)}$ substituindo $\hat{\mu}^{(k)}$ nas Eqs. (9.6.20) e (9.6.21).
+    \item Calcule $\hat{\mu}^{(k+1)}$ substituindo $\hat{\sigma}_1^{2(k)}$ e $\hat{\sigma}_2^{2(k)}$ na Eq. (9.6.22).
+    \item Se $\hat{\mu}^{(k+1)}$ estiver próximo o suficiente de $\hat{\mu}^{(k)}$ pare. Caso contrário, substitua $k$ por $k+1$ e retorne ao passo 2.
+\end{enumerate}
+
+\vspace{1em}
+\noindent\textbf{Exemplo 9.6.7 (Comparando Minérios de Cobre)}
+\begin{quote}
+    Usando os dados no Exemplo 9.6.5, começaremos com $\hat{\mu}^{(0)} = (8 \times 2.6 + 10 \times 2.3)/18 = 2.433$. Inserindo este valor nas Eqs. (9.6.20) e (9.6.21) nos dá $\hat{\sigma}_1^{2(0)} = 0.068$ e $\hat{\sigma}_2^{2(0)} = 0.0398$. Inserindo estes na Eq. (9.6.22) nos dá $\hat{\mu}^{(1)} = 2.396$. Após 13 iterações, os valores param de mudar e nossos E.M.V.'s finais são $\hat{\mu} = 2.347$, $\hat{\sigma}_1^2 = 0.1039$, e $\hat{\sigma}_2^2 = 0.0242$. Podemos então substituir esses E.M.V.'s na função de verossimilhança (9.6.18) para obter o numerador da estatística da razão de verossimilhanças $\Lambda(\mathbf{x}, \mathbf{y})$. (Lembre-se de substituir $\hat{\mu}$ tanto por $\mu_1$ quanto por $\mu_2$.) Também podemos substituir os E.M.V.'s gerais da Eq. (9.6.19) em (9.6.18) para obter o denominador de $\Lambda(\mathbf{x}, \mathbf{y})$. O resultado é $\Lambda(\mathbf{x}, \mathbf{y}) = 0.01356$. O Teorema 9.1.4 diz que devemos comparar $-2\log \Lambda(\mathbf{x}, \mathbf{y}) = 8.602$ com um valor crítico da distribuição $\chi^2$ com um grau de liberdade. O $p$-valor associado à estatística observada é a probabilidade de que uma variável aleatória $\chi^2$ com um grau de liberdade seja maior que 8.602, a saber, 0.003. Isso é o mesmo que o $p$-valor que obtivemos no Exemplo 9.6.5 quando assumimos que as duas variâncias eram as mesmas.
+\end{quote}
+\vspace{1em}
+
+Para os casos de hipóteses unilaterais, como (9.6.1) e (9.6.7), a estatística da razão de verossimilhanças é um pouco mais complicada. Por exemplo, se $\mu_1 = \mu_2$, $-2\log \Lambda(\mathbf{X}, \mathbf{Y})$ converge em distribuição para uma distribuição que não é nem discreta nem contínua. Não discutiremos este caso mais adiante neste livro.
+
+\subsection*{Resumo}
+
+Suponha que observemos amostras aleatórias independentes de duas distribuições normais: $X_1, \dots, X_m$ tendo média $\mu_1$ e variância $\sigma_1^2$, e $Y_1, \dots, Y_n$ tendo média $\mu_2$ e variância $\sigma_2^2$. Para testar hipóteses sobre $\mu_1$ e $\mu_2$, testes \textit{t} estão disponíveis se assumirmos que $\sigma_1^2 = \sigma_2^2$. Os testes \textit{t} todos fazem uso da estatística $U$ definida na Eq. (9.6.3). Para testar $H_0: \mu_1 = \mu_2$ versus $H_1: \mu_1 \neq \mu_2$ ao nível $\alpha_0$, rejeite $H_0$ se $|U| \ge T_{m+n-2}^{-1}(1-\alpha_0/2)$, onde $T_{m+n-2}^{-1}$ é a função de quantil da distribuição \textit{t} com $m+n-2$ graus de liberdade. Para testar $H_0: \mu_1 \le \mu_2$ versus $H_1: \mu_1 > \mu_2$ ao nível $\alpha_0$, rejeite $H_0$ se $U > T_{m+n-2}^{-1}(1-\alpha_0)$. Para testar $H_0: \mu_1 \ge \mu_2$ versus $H_1: \mu_1 < \mu_2$ ao nível $\alpha_0$, rejeite $H_0$ se $U < -T_{m+n-2}^{-1}(1-\alpha_0)$. As funções de poder desses testes podem ser computadas usando a família de distribuições \textit{t} não centrais. Testes aproximados estão disponíveis se não assumirmos que $\sigma_1^2 = \sigma_2^2$.
+
+\section*{Exercícios}
+
+\begin{enumerate}
+    \item No Exemplo 9.6.3, discutimos cerâmica Romana encontrada em duas localizações diferentes na Grã-Bretanha. Havia amostras encontradas em outras localizações também. Uma outra localização, Island Thorns, tinha cinco amostras $X_1, \dots, X_n$ com uma porcentagem média de óxido de alumínio de $\bar{X} = 18.18$ com $\sum_{i=1}^5 (X_i - \bar{X})^2 = 12.61$. Sejam $Y_1, \dots, Y_5$ as cinco amostras de Ashley Rails no Exemplo 9.6.3. Teste a hipótese nula de que as porcentagens médias de óxido de alumínio em Ashley Rails e Island Thorns são as mesmas versus a alternativa de que elas são diferentes ao nível $\alpha_0 = 0.05$.
+
+    \item Suponha que uma certa droga $A$ foi administrada a oito pacientes selecionados ao acaso, e após um período de tempo fixo, a concentração da droga em certas células corporais de cada paciente foi medida em unidades apropriadas. Suponha que as concentrações para os oito pacientes foram encontradas como sendo as seguintes:
+    \begin{center}
+        1.23, 1.42, 1.41, 1.62, 1.55, 1.51, 1.60, e 1.76.
+    \end{center}
+    Suponha também que uma segunda droga $B$ foi administrada a seis pacientes diferentes selecionados ao acaso, e quando a concentração da droga $B$ foi medida de forma similar para esses seis pacientes, os resultados foram os seguintes:
+    \begin{center}
+        1.76, 1.41, 1.87, 1.49, 1.67, e 1.81.
+    \end{center}
+    Assumindo que todas as observações têm uma distribuição normal com uma variância comum, teste as seguintes hipóteses ao nível de significância 0.10: A hipótese nula é que a concentração média da droga $A$ entre todos os pacientes é pelo menos tão grande quanto a concentração média da droga $B$. A hipótese alternativa é que a concentração média da droga $B$ é maior do que a da droga $A$.
+
+    \item Considere novamente as condições do Exercício 2, mas suponha agora que deseja-se testar as seguintes hipóteses: A hipótese nula é que a concentração média da droga $A$ entre todos os pacientes é a mesma que a concentração média da droga $B$. A hipótese alternativa, que é bilateral, é que as concentrações médias das duas drogas não são as mesmas. Encontre o número $c$ tal que o teste \textit{t} bilateral de nível 0.05 rejeitará $H_0$ quando $|U| \ge c$, onde $U$ é definido pela Eq. (9.6.3). Além disso, realize o teste.
+
+    \item Suponha que $X_1, \dots, X_m$ formem uma amostra aleatória da distribuição normal com média $\mu_1$ e variância $\sigma_1^2$, e $Y_1, \dots, Y_n$ formem uma amostra aleatória independente da distribuição normal com média $\mu_2$ e variância $\sigma_2^2$. Mostre que se $\mu_1 = \mu_2$ e $\sigma_2^2 = k\sigma_1^2$, então a variável aleatória $U$ definida pela Eq. (9.6.13) tem a distribuição \textit{t} com $m+n-2$ graus de liberdade.
+
+    \item Considere novamente as condições e valores observados do Exercício 2. No entanto, suponha agora que cada observação para a droga $A$ tem uma variância desconhecida $\sigma_1^2$, e cada observação para a droga $B$ tem uma variância desconhecida $\sigma_2^2$, mas sabe-se que $\sigma_2^2 = (6/5)\sigma_1^2$. Teste as hipóteses descritas no Exercício 2 ao nível de significância 0.10.
+
+    \item Suponha que $X_1, \dots, X_m$ formem uma amostra aleatória da distribuição normal com média desconhecida $\mu_1$ e variância desconhecida $\sigma^2$, e $Y_1, \dots, Y_n$ formem uma amostra aleatória independente de outra distribuição normal com média desconhecida $\mu_2$ e a mesma variância desconhecida $\sigma^2$. Para cada constante $\lambda$ ($-\infty < \lambda < \infty$), construa um teste \textit{t} das seguintes hipóteses com $m+n-2$ graus de liberdade:
+    \begin{align*}
+        H_0&: \mu_1 - \mu_2 = \lambda, \\
+        H_1&: \mu_1 - \mu_2 \neq \lambda.
+    \end{align*}
+
+    \item Considere novamente as condições do Exercício 2. Seja $\mu_1$ a denotar a média de cada observação para a droga $A$, e seja $\mu_2$ a denotar a média de cada observação para a droga $B$. Assume-se, como no Exercício 2, que todas as observações têm uma variância desconhecida comum. Use os resultados do Exercício 6 para construir um intervalo de confiança para $\mu_1 - \mu_2$ com coeficiente de confiança 0.90.
+
+    \item No Exemplo 9.6.5, determine o poder de um teste de nível 0.01 se $|\mu_1 - \mu_2| = \sigma$.
+
+    \item Suponha que desejamos testar as hipóteses (9.6.9). Usaremos a estatística $U$ definida na Eq. (9.6.3) e rejeitaremos $H_0$ se $|U|$ for grande. Prove que o $p$-valor quando $U=u$ é observado é $2[1 - T_{m+n-2}(|u|)]$.
+
+    \item Lyle et al. (1987) conduziram um experimento para estudar o efeito de um suplemento de cálcio na pressão sanguínea de homens afro-americanos. Um grupo de 10 homens recebeu um suplemento de cálcio, e outro grupo de 11 homens recebeu um placebo. O experimento durou 12 semanas. Tanto antes quanto depois do período de 12 semanas, cada homem teve sua pressão sanguínea sistólica medida enquanto estava em repouso. As mudanças (após menos antes) são dadas na Tabela 9.2. Teste a hipótese nula de que a mudança média na pressão sanguínea para o grupo do suplemento de cálcio é menor que a mudança média na pressão sanguínea para o grupo placebo. Use nível $\alpha_0 = 0.1$.
+
+    \begin{table}[h]
+        \centering
+        \caption{Dados de pressão sanguínea para o Exercício 10}
+        \begin{tabular}{lrrrrrrrrrrr}
+            \hline
+            Cálcio & 7 & $-4$ & 18 & 17 & $-3$ & $-5$ & 1 & 10 & 11 & $-2$ & \\
+            Placebo & $-1$ & 12 & $-1$ & $-3$ & 3 & $-5$ & 5 & 2 & $-11$ & $-1$ & $-3$ \\
+            \hline
+        \end{tabular}
+    \end{table}
+
+    \item Frisby e Clatworthy (1975) estudaram os tempos que leva para sujeitos fundirem estereogramas de pontos aleatórios. Estereogramas de pontos aleatórios são pares de imagens que parecem à primeira vista ser pontos aleatórios. Após um sujeito olhar para o par de imagens da distância adequada e seus olhos cruzarem na quantidade certa, uma imagem de objeto reconhecível aparece da fusão das duas imagens. Os experimentadores estavam preocupados com a extensão em que informação a priori sobre o objeto reconhecível afetava o tempo que levava para fundir as imagens.
+    
+    Um grupo de 43 sujeitos não recebeu uma imagem do objeto antes de serem solicitados a fundir as imagens. Seu tempo médio foi $\bar{X}_{43} = 8.560$ e $S_X^2 = 2745.7$. O segundo grupo de 35 sujeitos recebeu uma imagem do objeto, e suas estatísticas amostrais foram $\bar{Y}_{35} = 5.551$ e $S_Y^2 = 783.9$. A hipótese nula é que o tempo médio do primeiro grupo não é maior que o tempo médio do segundo grupo, enquanto a hipótese alternativa é que o primeiro grupo leva mais tempo.
+    \begin{enumerate}
+        \item[\textbf{a.}] Teste as hipóteses ao nível de significância $\alpha_0 = 0.01$, assumindo que as variâncias são iguais para os dois grupos.
+        \item[\textbf{b.}] Teste as hipóteses ao nível de significância $\alpha_0 = 0.01$, usando o teste aproximado de Welch.
+    \end{enumerate}
+    \item Encontre a média $a$ e a variância $b$ da variável aleatória $W$ na Eq. (9.6.15). Agora, sejam $a$ e $b$ a média e a variância, respectivamente, da distribuição gama com parâmetros $\alpha$ e $\beta$. Prove que $2\alpha$ é igual à expressão em (9.6.16).
+    \item Seja $U$ definido como na Eq. (9.6.3), e suponha que deseja-se testar as hipóteses na Eq. (9.6.9). Prove que cada teste da razão de verossimilhanças tem a seguinte forma: rejeitar $H_0$ se $|U| \ge c$, onde $c$ é uma constante. \textit{Dica}: Primeiro prove que $\Lambda(\mathbf{x}, \mathbf{y}) = (1 + v^2)^{-(m+n)/2}$, onde $v$ foi definido na Eq. (9.6.12).
+\end{enumerate}
+
+
+
+
